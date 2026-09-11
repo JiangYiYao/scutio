@@ -3,7 +3,8 @@
 from __future__ import annotations
 
 from datetime import datetime, timedelta, timezone
-from typing import Any, Dict, List, Optional, Sequence
+from functools import partial
+from typing import Any, Dict, Optional, Sequence
 
 from scutio_data._runtime.environment import CN_TZ
 from scutio_data._runtime.parsing import finite_number
@@ -16,6 +17,7 @@ from scutio_data._runtime.results import (
 )
 from scutio_data._runtime.symbols import canonical_symbol, split_code
 from scutio_data._runtime.timeouts import operation
+from scutio_data.batch import fetch_many
 from scutio_data.macro import quotes, series
 from scutio_data.macro.quotes import commodities_spot, fx_usdcny
 from scutio_data.macro.series import (
@@ -133,54 +135,49 @@ def economic_calendar(day=None, regions=None, min_importance=0, days=1) -> dict:
         )
 
 
-@operation("batch")
-def macro_surprises(names=None, limit=12, fallback=False) -> dict:
-    """中美关键指标实际-预期惊喜历史。
-
-    金十 ``[日期, 今值, 预测值, 前值]`` 为主。显式 ``fallback=True`` 时可退到 toolkit 已有
-    命名序列，但该备源通常只有 actual/prev，显式标记 ``actual_only_fallback``，
-    不会把 ``prev`` 冒充 ``forecast``。
-    """
-    selected = list(names or _DEFAULT_SURPRISE_SERIES)
-    items: List[dict] = []
-    errors: Dict[str, str] = {}
-    partial = False
-    for name in selected:
-        if name not in series.CONSENSUS_SPECS:
-            errors[name] = "no jin10 consensus mapping"
-            partial = True
-            if not fallback:
-                continue
-            env = series.macro_series(name, limit=limit)
-            if env.get("ok"):
-                for row in envelope_items(env):
-                    item = _surprise_item(row)
-                    item["series"] = name
-                    item["data_quality"] = "actual_only_fallback"
-                    items.append(item)
-            continue
+def _surprise_series(name, limit, fallback):
+    primary_error = None
+    if name not in series.CONSENSUS_SPECS:
+        primary_error = "no jin10 consensus mapping"
+    else:
         try:
             rows = series.consensus_history(name, limit=max(1, int(limit)))
-            partial = partial or any(row.get("partial") or row.get("stale") for row in rows)
-            for row in rows:
-                item = _surprise_item(row)
-                item["series"] = name
-                items.append(item)
-        except Exception as primary_exc:
-            errors[name] = str(primary_exc)
-            partial = True
-            if not fallback:
-                continue
-            env = series.macro_series(name, limit=limit)
-            if env.get("ok"):
-                for row in envelope_items(env):
-                    item = _surprise_item(row)
-                    item["series"] = name
-                    item["data_quality"] = "actual_only_fallback"
-                    item["primary_error"] = str(primary_exc)
-                    items.append(item)
-            else:
-                errors[name] = "%s; fallback: %s" % (primary_exc, env.get("error"))
+            return result_list(
+                [dict(_surprise_item(row), series=name) for row in rows],
+                partial=any(row.get("partial") or row.get("stale") for row in rows),
+            )
+        except Exception as exc:
+            primary_error = str(exc)
+    if not fallback:
+        return result_list_err(primary_error)
+    env = series.macro_series(name, limit=limit)
+    if not env.get("ok"):
+        return result_list_err("%s; fallback: %s" % (primary_error, env.get("error")))
+    items = [
+        dict(_surprise_item(row), series=name, data_quality="actual_only_fallback")
+        for row in envelope_items(env)
+    ]
+    if name in series.CONSENSUS_SPECS:
+        for item in items:
+            item["primary_error"] = primary_error
+    return result_list(items, partial=True, primary_error=primary_error)
+
+
+@operation("batch")
+def macro_surprises(names=None, limit=12, fallback=False) -> dict:
+    """中美实际-预期历史；fallback 仅补 actual，不把前值当预期。"""
+    selected = list(names or _DEFAULT_SURPRISE_SERIES)
+    fetched = fetch_many(
+        {name: partial(_surprise_series, name, limit, fallback) for name in selected}
+    )["results"]
+    items, errors, partial_result = [], {}, False
+    for name in selected:
+        env = fetched[name]["result"]
+        items.extend(envelope_items(env))
+        error = env.get("primary_error") or env.get("error")
+        if error:
+            errors[name] = error
+        partial_result = partial_result or bool(error) or bool(env.get("partial"))
     items.sort(key=lambda row: (row.get("date") or "", row.get("series") or ""), reverse=True)
     if not items:
         return result_list_err(
@@ -192,7 +189,7 @@ def macro_surprises(names=None, limit=12, fallback=False) -> dict:
     return result_list(
         items,
         source="macro_surprises",
-        partial=partial,
+        partial=partial_result,
         errors=errors,
         selected=selected,
         primary_source="jin10_ec",
@@ -219,61 +216,60 @@ def lpr_history(limit=20):
         return result_list_err(str(exc), source="akshare_lpr")
 
 
+def _shibor_latest(key):
+    from scutio_data._providers.akshare.client import fetch
+    from scutio_data._providers.akshare.errors import AKShareError
+
+    tenor = _SHIBOR_TENORS[key]
+    try:
+        rows = fetch(
+            "rate_interbank", market="上海银行同业拆借市场", symbol="Shibor人民币", indicator=tenor
+        )
+    except AKShareError as exc:
+        return result_err(str(exc), source="akshare_rate_interbank", error_code=exc.code)
+    rows.sort(key=lambda row: str(row.get("报告日") or ""), reverse=True)
+    if not rows:
+        return result_err("empty", source="akshare_rate_interbank")
+    row = rows[0]
+    return result_ok(
+        source="akshare_rate_interbank",
+        item={
+            "date": _date_str(row.get("报告日")),
+            "period": tenor,
+            "rate": finite_number(row.get("利率")),
+            "change": finite_number(row.get("涨跌")),
+            "units": {"rate": "pct", "change": "bp"},
+            "source": "akshare_rate_interbank",
+        },
+    )
+
+
 @operation("batch")
 def rates_snapshot() -> dict:
     """LPR 最新 + SHIBOR 多期限快照（默认 ON/1W/1M/3M/1Y）。"""
-    legs: Dict[str, Any] = {}
-    errors: Dict[str, str] = {}
-
-    lpr = lpr_history(limit=3)
+    jobs = {"lpr": partial(lpr_history, limit=3)}
+    jobs.update({key: partial(_shibor_latest, key) for key in _SHIBOR_SNAPSHOT_KEYS})
+    results = fetch_many(jobs)["results"]
+    legs, errors, shibor = {}, {}, {}
+    lpr = results["lpr"]["result"]
     lpr_items = envelope_items(lpr)
     if lpr.get("ok") and lpr_items:
         legs["lpr"] = lpr_items[0]
     else:
         errors["lpr"] = lpr.get("error") or "lpr failed"
-
-    shibor: Dict[str, Any] = {}
     for key in _SHIBOR_SNAPSHOT_KEYS:
-        try:
-            from scutio_data._providers.akshare.client import fetch
-
-            tenor = _SHIBOR_TENORS[key]
-            rows = fetch(
-                "rate_interbank",
-                market="上海银行同业拆借市场",
-                symbol="Shibor人民币",
-                indicator=tenor,
-            )
-            rows.sort(key=lambda row: str(row.get("报告日") or ""), reverse=True)
-            if not rows:
-                errors["shibor_%s" % key] = "empty"
-                continue
-            r0 = rows[0]
-            shibor[key] = {
-                "date": _date_str(r0.get("报告日")),
-                "period": tenor,
-                "rate": finite_number(r0.get("利率")),
-                "change": finite_number(r0.get("涨跌")),
-                "units": {"rate": "pct", "change": "bp"},
-                "source": "akshare_rate_interbank",
-            }
-        except Exception as exc:
-            errors["shibor_%s" % key] = str(exc)
+        env = results[key]["result"]
+        if env.get("ok"):
+            shibor[key] = env["item"]
+        else:
+            errors["shibor_%s" % key] = env.get("error") or "shibor failed"
     if shibor:
         legs["shibor"] = shibor
-
     if not legs:
         return result_err(
-            "all rate legs failed: %s" % errors,
-            source="rates_snapshot",
-            errors=errors,
+            "all rate legs failed: %s" % errors, source="rates_snapshot", errors=errors
         )
-    return result_ok(
-        source="rates_snapshot",
-        partial=bool(errors),
-        errors=errors or None,
-        **legs,
-    )
+    return result_ok(source="rates_snapshot", partial=bool(errors), errors=errors or None, **legs)
 
 
 @operation("history")
@@ -405,9 +401,56 @@ def macro_snapshot(preloaded=None) -> dict:
     """
     errors: Dict[str, str] = {}
     payload: Dict[str, Any] = {}
-    supplied = dict(preloaded or {})
+    try:
+        supplied = dict(preloaded or {})
+        supplied_series = dict(supplied.get("series") or {})
+    except (TypeError, ValueError) as exc:
+        return result_err(
+            "invalid preloaded mapping: %s" % exc,
+            source="macro_snapshot",
+            error_code="invalid_preloaded",
+        )
+    cn_names = ("cpi_yoy", "pmi_mfg", "pmi_non_mfg", "forex_reserves", "rrr", "social_financing")
+    us_names = ("us_cpi_yoy", "us_unemployment", "us_nfp", "us_ism_pmi", "us_fed_funds_upper")
+    loaders = {
+        "rates_snapshot": rates_snapshot,
+        "bond_yields_cn_us": partial(bond_yields_cn_us, limit=3),
+        "fx_usdcny": quotes.fx_usdcny,
+        "index_board": index_board,
+        "commodities_spot": quotes.commodities_spot,
+    }
+    jobs = {name: loader for name, loader in loaders.items() if name not in supplied}
+    jobs.update(
+        {
+            "series:" + name: partial(series.cn_macro_series, name, limit=1)
+            for name in cn_names
+            if name not in supplied_series
+        }
+    )
+    jobs.update(
+        {
+            "series:" + name: partial(series.us_macro_series, name, limit=1)
+            for name in us_names
+            if name not in supplied_series
+        }
+    )
+    fetched = fetch_many(jobs)["results"]
+    for name in loaders:
+        if name not in supplied:
+            supplied[name] = fetched[name]["result"]
+        elif not isinstance(supplied[name], dict):
+            supplied[name] = result_err(
+                "invalid preloaded envelope for " + name, source="macro_snapshot"
+            )
+    for name in (*cn_names, *us_names):
+        if name not in supplied_series:
+            supplied_series[name] = fetched["series:" + name]["result"]
+        elif not isinstance(supplied_series[name], dict):
+            supplied_series[name] = result_err(
+                "invalid preloaded envelope for " + name, source="macro_snapshot"
+            )
 
-    rates = supplied["rates_snapshot"] if "rates_snapshot" in supplied else rates_snapshot()
+    rates = supplied["rates_snapshot"]
     if rates.get("ok"):
         payload["rates"] = {k: rates[k] for k in ("lpr", "shibor") if k in rates}
         if rates.get("errors"):
@@ -415,18 +458,14 @@ def macro_snapshot(preloaded=None) -> dict:
     else:
         errors["rates"] = rates.get("error") or "rates failed"
 
-    bonds = (
-        supplied["bond_yields_cn_us"]
-        if "bond_yields_cn_us" in supplied
-        else bond_yields_cn_us(limit=3)
-    )
+    bonds = supplied["bond_yields_cn_us"]
     bonds_items = envelope_items(bonds)
     if bonds.get("ok") and bonds_items:
         payload["bonds"] = bonds_items[0]
     else:
         errors["bonds"] = bonds.get("error") or "bonds failed"
 
-    fx = supplied["fx_usdcny"] if "fx_usdcny" in supplied else quotes.fx_usdcny()
+    fx = supplied["fx_usdcny"]
     if fx.get("ok"):
         payload["fx"] = {
             "pair": fx.get("pair"),
@@ -440,7 +479,7 @@ def macro_snapshot(preloaded=None) -> dict:
     else:
         errors["fx"] = fx.get("error") or "fx failed"
 
-    idx = supplied["index_board"] if "index_board" in supplied else index_board()
+    idx = supplied["index_board"]
     if idx.get("ok"):
         payload["indices"] = idx.get("indices")
         payload["indices_status"] = {
@@ -465,11 +504,7 @@ def macro_snapshot(preloaded=None) -> dict:
     else:
         errors["indices"] = idx.get("error") or "indices failed"
 
-    cmd = (
-        supplied["commodities_spot"]
-        if "commodities_spot" in supplied
-        else quotes.commodities_spot()
-    )
+    cmd = supplied["commodities_spot"]
     if cmd.get("ok"):
         payload["commodities"] = {k: cmd[k] for k in ("gold", "wti") if cmd.get(k)}
         if cmd.get("errors"):
@@ -477,42 +512,8 @@ def macro_snapshot(preloaded=None) -> dict:
     else:
         errors["commodities"] = cmd.get("error") or "commodities failed"
 
-    # 可选：中美关键序列各 1 点（失败不影响主快照）
-    supplied_series = dict(supplied.get("series") or {})
-    for sname in (
-        "cpi_yoy",
-        "pmi_mfg",
-        "pmi_non_mfg",
-        "forex_reserves",
-        "rrr",
-        "social_financing",
-    ):
-        ser = (
-            supplied_series[sname]
-            if sname in supplied_series
-            else series.cn_macro_series(sname, limit=1)
-        )
-        sit = envelope_items(ser)
-        if ser.get("ok") and sit and sit[0].get("value") is not None:
-            payload.setdefault("latest_series", {})[sname] = sit[0]
-            if ser.get("partial") or ser.get("stale"):
-                errors["series_%s" % sname] = "partial or stale source coverage"
-        else:
-            errors["series_%s" % sname] = ser.get("error") or "empty"
-
-    us_names = (
-        "us_cpi_yoy",
-        "us_unemployment",
-        "us_nfp",
-        "us_ism_pmi",
-        "us_fed_funds_upper",
-    )
-    for sname in us_names:
-        ser = (
-            supplied_series[sname]
-            if sname in supplied_series
-            else series.us_macro_series(sname, limit=1)
-        )
+    for sname in (*cn_names, *us_names):
+        ser = supplied_series[sname]
         items = envelope_items(ser)
         if ser.get("ok") and items and items[0].get("value") is not None:
             payload.setdefault("latest_series", {})[sname] = items[0]

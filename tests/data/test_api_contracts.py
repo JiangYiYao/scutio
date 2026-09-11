@@ -61,144 +61,6 @@ def test_split_code_hong_kong_markers():
         split_code("02513")
 
 
-def test_em_get_retries_without_proxy_on_proxy_error(monkeypatch):
-    """Broken env proxy should trigger one no-retry direct recovery."""
-
-    primary_calls = []
-    direct_calls = []
-    reservations = []
-
-    def primary_request(method, url, **kwargs):
-        primary_calls.append(kwargs.get("proxies"))
-        raise requests.exceptions.ProxyError("Unable to connect to proxy")
-
-    def direct_request(method, url, **kwargs):
-        direct_calls.append(kwargs.get("proxies"))
-        return response(data={"ok": True})
-
-    monkeypatch.setattr(providers_eastmoney.EM_SESSION, "request", primary_request)
-    monkeypatch.setattr(providers_eastmoney._EM_DIRECT_SESSION, "request", direct_request)
-    monkeypatch.setattr(providers_eastmoney, "_em_reserve_start", lambda: reservations.append(1))
-    monkeypatch.setattr(providers_eastmoney.time, "sleep", lambda _seconds: None)
-    out = providers_eastmoney.em_get("https://push2.eastmoney.com/x")
-    assert out.json()["ok"] is True
-    assert primary_calls == [None]
-    assert direct_calls == [None]
-    assert providers_eastmoney._EM_DIRECT_SESSION.trust_env is False
-    assert len(reservations) == 2
-
-
-def test_em_direct_session_ignores_all_proxy(monkeypatch):
-
-    monkeypatch.setenv("ALL_PROXY", "http://proxy.invalid:9999")
-    settings = providers_eastmoney._EM_DIRECT_SESSION.merge_environment_settings(
-        "https://push2.eastmoney.com/x", {}, None, None, None
-    )
-    assert settings["proxies"] == {}
-
-
-def test_em_rate_limit_coordinates_separate_processes(tmp_path):
-    """同机两个 Python 进程共享东财请求槽。"""
-    import os
-    import subprocess
-    import sys
-
-    scripts = Path(__file__).resolve().parents[2] / "skills" / "scutio" / "scripts"
-    state = tmp_path / "em-rate.state"
-    env = dict(os.environ)
-    env.update(
-        {
-            "PYTHONPATH": str(scripts),
-            "SCUTIO_EM_CROSS_PROCESS_RATE": "1",
-            "SCUTIO_EM_RATE_STATE_PATH": str(state),
-        }
-    )
-    code = (
-        "import time; from scutio_data._providers import eastmoney as core; "
-        "core.EM_MIN_INTERVAL=0.5; core._em_reserve_start(); print(time.time())"
-    )
-    first = float(subprocess.check_output([sys.executable, "-c", code], env=env, text=True).strip())
-    second = float(
-        subprocess.check_output([sys.executable, "-c", code], env=env, text=True).strip()
-    )
-    assert second - first >= 0.45
-
-
-def test_em_get_recovers_chunked_response_once(monkeypatch):
-    """A truncated response gets one recovery outside the retrying adapter."""
-
-    calls = {"primary": 0, "recovery": 0}
-
-    def primary_request(method, url, **kwargs):
-        calls["primary"] += 1
-        raise requests.exceptions.ChunkedEncodingError("response ended prematurely")
-
-    def recovery_request(method, url, **kwargs):
-        calls["recovery"] += 1
-        assert "proxies" not in kwargs
-        return response(data={"ok": True})
-
-    monkeypatch.setattr(providers_eastmoney.EM_SESSION, "request", primary_request)
-    monkeypatch.setattr(providers_eastmoney._EM_RECOVERY_SESSION, "request", recovery_request)
-    monkeypatch.setattr(providers_eastmoney, "_em_reserve_start", lambda: None)
-    out = providers_eastmoney.em_get("https://push2.eastmoney.com/x")
-    assert out.json()["ok"] is True
-    assert calls == {"primary": 1, "recovery": 1}
-
-
-def test_em_get_retries_generic_connections_through_rate_limiter(monkeypatch):
-    """Each connection retry must reserve a slot instead of hiding in Adapter."""
-    import pytest
-
-    calls = {"primary": 0, "recovery": 0}
-
-    def primary_request(method, url, **kwargs):
-        calls["primary"] += 1
-        raise requests.exceptions.ConnectionError("Remote end closed connection without response")
-
-    def recovery_request(method, url, **kwargs):
-        calls["recovery"] += 1
-        return response(data={"ok": True})
-
-    monkeypatch.setattr(providers_eastmoney.EM_SESSION, "request", primary_request)
-    monkeypatch.setattr(providers_eastmoney._EM_RECOVERY_SESSION, "request", recovery_request)
-    reservations = []
-    monkeypatch.setattr(providers_eastmoney, "_em_reserve_start", lambda: reservations.append(1))
-    monkeypatch.setattr(providers_eastmoney.time, "sleep", lambda _seconds: None)
-    with pytest.raises(requests.exceptions.ConnectionError):
-        providers_eastmoney.em_get("https://push2.eastmoney.com/x")
-    assert calls == {"primary": providers_eastmoney.EM_MAX_ATTEMPTS, "recovery": 0}
-    assert len(reservations) == providers_eastmoney.EM_MAX_ATTEMPTS
-
-
-def test_em_recovery_session_has_no_adapter_retries():
-    """The one-shot recovery path must not start another retry chain."""
-
-    primary = providers_eastmoney.EM_SESSION.get_adapter("https://").max_retries
-    recovery = providers_eastmoney._EM_RECOVERY_SESSION.get_adapter("https://").max_retries
-    assert primary.total == 0
-    assert recovery.total == 0
-
-
-def test_em_get_does_not_retry_non_transient_request_errors(monkeypatch):
-    """Non-transient RequestException should fail immediately."""
-
-    calls = {"n": 0}
-
-    def fake_request(method, url, **kwargs):
-        calls["n"] += 1
-        raise requests.exceptions.InvalidURL("bad url")
-
-    monkeypatch.setattr(providers_eastmoney.EM_SESSION, "request", fake_request)
-    monkeypatch.setattr(providers_eastmoney, "_em_reserve_start", lambda: None)
-    try:
-        providers_eastmoney.em_get("https://push2.eastmoney.com/x")
-        assert False, "expected InvalidURL"
-    except requests.exceptions.InvalidURL:
-        pass
-    assert calls["n"] == 1
-
-
 def test_parse_news_time_and_rank():
     """本地时间解析 + 噪音过滤 + time/relevance 排序。"""
     from scutio_data.feeds import parse_news_time, rank_stock_news_items
@@ -325,16 +187,11 @@ def test_news_contracts(monkeypatch):
     assert filtered["empty_reason"] == "all_filtered"
 
 
-def test_fundamental_and_flow_contracts(monkeypatch, tmp_path):
+def test_fundamental_and_flow_contracts(monkeypatch):
     """Fundamental, margin, block-trade, dividend and flow fields stay stable."""
-    from scutio_data import capital, fundamentals, source_pref
-    from scutio_data._runtime.results import envelope_items
-
-    # 隔离 source_pref，避免 last_ok=tencent 跳过东财 mock
-    monkeypatch.setenv("SCUTIO_SOURCE_PREF_PATH", str(tmp_path / "pref.json"))
-    source_pref.clear_pref()
-
+    from scutio_data import capital, fundamentals
     from scutio_data._providers.akshare import client as akshare_source
+    from scutio_data._runtime.results import envelope_items
 
     monkeypatch.setattr(
         akshare_source,
@@ -480,12 +337,11 @@ def test_daily_fund_flow_is_chronological_and_preserves_null_and_zero(monkeypatc
     assert [row["main_net"] for row in result["items"]] == [0, None]
 
 
-def test_industry_comparison_fetches_gainers_and_losers(monkeypatch, tmp_path):
+def test_industry_comparison_fetches_gainers_and_losers(monkeypatch):
     """Full-table sorting must find the real losers and preserve classification."""
     from scutio_data import capital
     from scutio_data._providers.akshare import client as akshare_source
 
-    monkeypatch.setenv("SCUTIO_SOURCE_PREF_PATH", str(tmp_path / "pref.json"))
     rows = [
         {"板块名称": name, "涨跌幅": pct, "上涨家数": 1, "下跌家数": 3, "领涨股票-涨跌幅": 9}
         for name, pct in [("强势A", 5), ("最弱X", -8), ("强势B", 4), ("次弱Y", -6)]
@@ -499,12 +355,11 @@ def test_industry_comparison_fetches_gainers_and_losers(monkeypatch, tmp_path):
     assert out["top"][0]["leader_change"] == 9
 
 
-def test_industry_comparison_partial_success(monkeypatch, tmp_path):
+def test_industry_comparison_partial_success(monkeypatch):
     """Invalid numeric rows cannot enter a ranking as real zero returns."""
     from scutio_data import capital
     from scutio_data._providers.akshare import client as akshare_source
 
-    monkeypatch.setenv("SCUTIO_SOURCE_PREF_PATH", str(tmp_path / "pref.json"))
     monkeypatch.setattr(
         akshare_source,
         "fetch",
@@ -518,11 +373,10 @@ def test_industry_comparison_partial_success(monkeypatch, tmp_path):
     assert out["top"][0]["name"] == "valid"
 
 
-def test_industry_comparison_both_legs_fail(monkeypatch, tmp_path):
+def test_industry_comparison_both_legs_fail(monkeypatch):
     from scutio_data import capital
     from scutio_data._providers.akshare import client as akshare_source
 
-    monkeypatch.setenv("SCUTIO_SOURCE_PREF_PATH", str(tmp_path / "pref.json"))
     monkeypatch.setattr(
         akshare_source, "fetch", lambda *a, **k: (_ for _ in ()).throw(ConnectionError("down"))
     )
@@ -531,12 +385,10 @@ def test_industry_comparison_both_legs_fail(monkeypatch, tmp_path):
     assert set(out["errors"]) == {"eastmoney", "sina"}
 
 
-def test_industry_comparison_sina_fallback(monkeypatch, tmp_path):
+def test_industry_comparison_sina_fallback(monkeypatch):
     """Company count is not the number of advancing stocks."""
     from scutio_data import capital
     from scutio_data._providers.akshare import client as akshare_source
-
-    monkeypatch.setenv("SCUTIO_SOURCE_PREF_PATH", str(tmp_path / "pref.json"))
 
     def fake(function, **params):
         if function == "stock_board_industry_name_em":
@@ -558,22 +410,6 @@ def test_industry_comparison_sina_fallback(monkeypatch, tmp_path):
     row = out["top"][0]
     assert row["constituent_count"] == 19 and row["up_count"] is None and row["down_count"] is None
     assert row["leader_change"] == 3.7
-
-
-def test_source_pref_last_ok_temporarily_first(monkeypatch, tmp_path):
-    """再探窗口内 last_ok 排第一；主源再次成功后切回。"""
-    from scutio_data import source_pref
-
-    monkeypatch.setenv("SCUTIO_SOURCE_PREF_PATH", str(tmp_path / "pref2.json"))
-    monkeypatch.setenv("SCUTIO_SOURCE_PREF", "1")
-    source_pref.clear_pref()
-    default = ["eastmoney", "sina"]
-    assert source_pref.ordered_sources("cap_x", default) == default
-    source_pref.mark_ok("cap_x", "sina", default_primary="eastmoney")
-    assert source_pref.ordered_sources("cap_x", default) == ["sina", "eastmoney"]
-    # 自检/业务再次打通主源 → last_ok 改回
-    source_pref.mark_ok("cap_x", "eastmoney", default_primary="eastmoney")
-    assert source_pref.ordered_sources("cap_x", default)[0] == "eastmoney"
 
 
 def test_security_quote_and_bars_fallback_envelope(monkeypatch):
@@ -1101,65 +937,6 @@ def test_security_quote_omits_ambiguous_bare_alias(monkeypatch):
     assert "000001" not in out["quotes"]
 
 
-def test_source_pref_periodically_reprobes_primary_and_ignores_partial(monkeypatch):
-    """完整备胎只短期优先；部分降级不会成为首选。"""
-    from scutio_data import source_pref
-
-    now = {"value": 100.0}
-    monkeypatch.setattr(source_pref.time, "time", lambda: now["value"])
-    monkeypatch.setenv("SCUTIO_SOURCE_PREF_PRIMARY_PROBE_INTERVAL", "10")
-    default = ["eastmoney", "sina"]
-    source_pref.mark_ok("cap_reprobe", "sina", default_primary="eastmoney")
-    assert source_pref.ordered_sources("cap_reprobe", default)[0] == "sina"
-    now["value"] = 111.0
-    assert source_pref.ordered_sources("cap_reprobe", default) == default
-
-    source_pref.mark_ok(
-        "cap_partial",
-        "sina",
-        default_primary="eastmoney",
-        quality="partial",
-    )
-    assert source_pref.ordered_sources("cap_partial", default) == default
-    source_pref.mark_fail("cap_partial", "eastmoney", default_primary="eastmoney")
-    assert source_pref.ordered_sources("cap_partial", default) == ["sina", "eastmoney"]
-    assert "last_ok" not in source_pref.get_pref("cap_partial")
-    now["value"] = 172.0
-    assert source_pref.ordered_sources("cap_partial", default) == default
-
-
-def test_source_pref_reprobe_context_is_read_only_by_default():
-    from scutio_data import source_pref
-
-    source_pref.mark_ok("cap_readonly", "eastmoney", default_primary="eastmoney")
-    with source_pref.reprobe_context():
-        source_pref.mark_ok("cap_readonly", "sina", default_primary="eastmoney")
-    assert source_pref.get_pref("cap_readonly")["last_ok"] == "eastmoney"
-    with source_pref.reprobe_context(apply=True):
-        source_pref.mark_ok("cap_readonly", "sina", default_primary="eastmoney")
-    assert source_pref.get_pref("cap_readonly")["last_ok"] == "sina"
-
-
-def test_source_pref_reloads_external_process_update(tmp_path, monkeypatch):
-    import json
-
-    from scutio_data import source_pref
-
-    path = tmp_path / "source_pref.json"
-    monkeypatch.setenv("SCUTIO_SOURCE_PREF_PATH", str(path))
-    source_pref.reset_runtime_state()
-    source_pref.mark_ok("cap_a", "eastmoney", default_primary="eastmoney")
-    state = json.loads(path.read_text(encoding="utf-8"))
-    state["caps"]["cap_external"] = {
-        "last_ok": "sina",
-        "last_ok_at": 123,
-        "default_primary": "eastmoney",
-        "fails": {},
-    }
-    path.write_text(json.dumps(state), encoding="utf-8")
-    assert source_pref.get_pref("cap_external")["last_ok"] == "sina"
-
-
 def test_a_only_facades_reject_hk_us_without_network(monkeypatch):
     """A 股专属门面应在发请求前返回稳定 unsupported_market。"""
     from scutio_data import announcements, capital, research
@@ -1259,3 +1036,66 @@ def test_quote_identity_failure_retries_only_the_missing_security(monkeypatch):
     assert result["quotes"]["sz000001"]["price"] == 11
     assert result["quotes"]["sh600519"]["source"] == "tencent"
     assert "identity mismatch" in result["errors"]["tencent:sz000001"]
+
+
+def test_em_transport_uses_isolated_sessions_and_shared_retry(monkeypatch):
+    from scutio_data._runtime.http import Session
+
+    seen = []
+
+    def request(self, method, url, **kwargs):
+        seen.append((self, kwargs))
+        return response(data={"ok": True})
+
+    monkeypatch.setattr(Session, "request", request)
+    providers_eastmoney.em_get("https://push2.eastmoney.com/api/qt/stock/get")
+    providers_eastmoney.em_get("https://push2.eastmoney.com/api/qt/stock/get")
+    assert seen[0][0] is not seen[1][0]
+    assert all(item[1]["_source_attempts"] == 2 for item in seen)
+    assert all(item[0].headers.get("User-Agent") for item in seen)
+
+
+@pytest.mark.parametrize("error", [requests.exceptions.ProxyError, requests.exceptions.SSLError])
+def test_em_proxy_recovery_is_owned_by_shared_http(monkeypatch, error):
+    from scutio_data._runtime.http import Session
+
+    routes = []
+
+    def transfer(self, method, url, *, network_trust_env, **kwargs):
+        routes.append(network_trust_env)
+        if network_trust_env:
+            raise error("private-proxy")
+        return SimpleNamespace(status_code=200, headers={}, json=lambda: {"ok": True})
+
+    monkeypatch.setattr(Session, "_transport_request", transfer)
+    assert providers_eastmoney.em_get("https://push2.eastmoney.com/api/qt/stock/get").json()["ok"]
+    assert routes == [True, False]
+
+
+@pytest.mark.parametrize(
+    "error", [requests.exceptions.ConnectionError, requests.exceptions.ChunkedEncodingError]
+)
+def test_em_transient_retry_uses_the_shared_executor(monkeypatch, error):
+    from unittest.mock import Mock
+
+    from scutio_data._runtime.http import Session
+
+    call = Mock(side_effect=[error("down"), SimpleNamespace(status_code=200, headers={})])
+    monkeypatch.setattr(Session, "_transport_request", call)
+    assert (
+        providers_eastmoney.em_get("https://push2.eastmoney.com/api/qt/stock/get").status_code
+        == 200
+    )
+    assert call.call_count == 2
+
+
+def test_em_invalid_url_is_not_retried(monkeypatch):
+    from unittest.mock import Mock
+
+    from scutio_data._runtime.http import Session
+
+    call = Mock(side_effect=requests.exceptions.InvalidURL("bad url"))
+    monkeypatch.setattr(Session, "_transport_request", call)
+    with pytest.raises(requests.exceptions.InvalidURL):
+        providers_eastmoney.em_get("https://push2.eastmoney.com/api/qt/stock/get")
+    assert call.call_count == 1

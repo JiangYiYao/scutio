@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 
-from scutio_data import source_pref as source_pref
+from functools import partial
+
 from scutio_data._providers.eastmoney_capital import concept_blocks as concept_blocks
 from scutio_data._runtime.parsing import finite_number, source_a_code, source_date
 from scutio_data._runtime.results import (
@@ -14,6 +15,7 @@ from scutio_data._runtime.results import (
 )
 from scutio_data._runtime.symbols import market_of, require_a_share
 from scutio_data._runtime.timeouts import operation
+from scutio_data.batch import fetch_many
 from scutio_data.capital import dividends
 from scutio_data.capital.dividends import dividend_history
 from scutio_data.capital.flows import MUTUAL_TYPE as MUTUAL_TYPE
@@ -256,9 +258,16 @@ def corporate_actions(code, page_size=30, preloaded=None):
         "pledges": pledge_status,
         "dividends": dividends.dividend_history,
     }
+    fetched = fetch_many(
+        {
+            name: partial(loader, code, page_size=page_size)
+            for name, loader in loaders.items()
+            if name not in supplied
+        }
+    )["results"]
     legs = {}
-    for name, loader in loaders.items():
-        env = supplied[name] if name in supplied else loader(code, page_size=page_size)
+    for name in loaders:
+        env = supplied[name] if name in supplied else fetched[name]["result"]
         if not isinstance(env, dict):
             env = result_list_err(
                 "invalid preloaded envelope for %s" % name,
@@ -368,7 +377,7 @@ def industry_comparison(top_n=20):
 
     top_n = max(1, int(top_n))
     errors = {}
-    for src in source_pref.ordered_sources("industry_comparison", ["eastmoney", "sina"]):
+    for src in ("eastmoney", "sina"):
         try:
             if src == "eastmoney":
                 raw = fetch("stock_board_industry_name_em")
@@ -402,7 +411,6 @@ def industry_comparison(top_n=20):
             if not rows:
                 raise ValueError("industry data empty")
             rows.sort(key=lambda row: row["change_pct"], reverse=True)
-            source_pref.mark_ok("industry_comparison", src, default_primary="eastmoney")
             return result_ok(
                 source="industry_comparison" if src == "eastmoney" else "sina_industry",
                 adapter="akshare",
@@ -420,7 +428,6 @@ def industry_comparison(top_n=20):
             )
         except Exception as exc:
             errors[src] = str(exc)
-            source_pref.mark_fail("industry_comparison", src, default_primary="eastmoney")
     return result_err(
         "; ".join(errors.values()),
         source="industry_comparison",

@@ -12,9 +12,9 @@ from scutio_data._runtime.config import (
     set_setting,
     settings,
 )
+from scutio_data._runtime.execution import health_snapshot
 from scutio_data._runtime.storage import private_write as private_write
 from scutio_data._runtime.storage import read_json
-from scutio_data.paths import state_dir
 
 
 def status():
@@ -23,15 +23,9 @@ def status():
 
     key, origin = credential()
     import hashlib
-    import time
 
     health = (
-        read_json(
-            state_dir()
-            / "hithink"
-            / hashlib.sha256((key or "").encode()).hexdigest()[:24]
-            / "health.json"
-        )
+        health_snapshot("hithink", credential_scope=hashlib.sha256(key.encode()).hexdigest()[:24])
         if key
         else {}
     )
@@ -43,32 +37,12 @@ def status():
         "hithink_enabled": enabled(),
         "permission_status": "not_checked",
         "verified_capabilities": health.get("verified_capabilities", {}),
-        "cooldown_until": health.get("cooldown")
-        if health.get("cooldown", 0) > time.time()
-        else None,
-        "capability_cooldowns": {
-            path: until
-            for path, until in health.items()
-            if path.startswith("/api/") and until > time.time()
-        },
+        "cooldown_until": health.get("cooldown_until"),
+        "capability_cooldowns": health.get("capability_cooldowns", {}),
         "free_sources": ["tencent", "sina", "eastmoney", "cninfo"],
         "free_adapter": "akshare + direct adapters",
         "source_policy": "financial_api_akshare_with_direct_adapters",
         "direct_adapters": list(DIRECT_ADAPTERS),
-    }
-
-
-def reuse_context() -> dict:
-    """用于采集结果复用的配置身份，不返回原始凭据。"""
-    import hashlib
-
-    key, _ = credential()
-    active = mode() == "auto" and bool(key)
-    return {
-        "mode": mode(),
-        "hithink_enabled": active,
-        "financial_detail": "full",
-        "credential_namespace": hashlib.sha256(key.encode()).hexdigest()[:24] if active else None,
     }
 
 
@@ -84,7 +58,6 @@ def hint(market):
 
 __all__ = [
     "status",
-    "reuse_context",
     "hint",
     "configure",
     "mode",

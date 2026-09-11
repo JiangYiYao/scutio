@@ -291,7 +291,7 @@ def test_tls_retry_keeps_verification_and_shared_budget(monkeypatch):
             SimpleNamespace(stdout=json.dumps({"ok": True, "items": []})),
         ]
     )
-    monkeypatch.setattr(akshare_source.subprocess, "run", runner)
+    monkeypatch.setattr(akshare_source, "managed_run", runner)
     assert akshare_source.fetch("stock_profit_sheet_by_report_em", symbol="SH600519") == []
     first, second = runner.call_args_list
     assert second.kwargs["timeout"] <= first.kwargs["timeout"]

@@ -60,7 +60,13 @@ def dependency_snapshot(requirements):
 
 def source_files(root):
     raw = git(root, "ls-files", "--cached", "--others", "--exclude-standard", "-z")
-    return sorted({Path(name) for name in raw.split("\0") if name})
+    return sorted(
+        {
+            Path(name)
+            for name in raw.split("\0")
+            if name and ((root / name).exists() or (root / name).is_symlink())
+        }
+    )
 
 
 def check_public_files(root, files):

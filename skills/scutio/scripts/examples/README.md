@@ -29,4 +29,6 @@ export SCUTIO_PYTHON="${SCUTIO_PYTHON:-$HOME/.scutio/.venv/bin/python}"
 
 先检查 `ok`，再读取 `quotes`、`bars`、`items` 或 `contracts`。`ok=True` 仍可能 `partial=True`；读取 `warning/errors`、覆盖元信息和源数据日期后再使用。`None` 不等于零，合法空结果不等于请求失败。示例退出码仅表示演示请求是否取得所需结果，不保证字段完整或数据实时。
 
+自定义多个独立请求时，直接复用 [运行时批量调用](../../references/toolkit/01-runtime.md#批量调用)。
+
 接口细节见 [调用索引](../../references/toolkit/index.md)。开发者离线验证见仓库 `tests/README.md`；示例回归使用 mock，不需要 Key 或真实网络。

@@ -6,6 +6,7 @@ A failed/missing partition never implies a zero balance or no trading activity."
 from __future__ import annotations
 
 from datetime import date, datetime, timedelta
+from functools import partial
 
 from scutio_data._providers.akshare import snapshots as akshare_snapshots
 from scutio_data._runtime.environment import CN_TZ
@@ -13,6 +14,7 @@ from scutio_data._runtime.results import result_list, result_list_err
 from scutio_data._runtime.symbols import require_a_share
 from scutio_data._runtime.timeouts import operation
 from scutio_data._runtime.timeouts import remaining as time_left
+from scutio_data.batch import fetch_many
 
 
 def _day(value):
@@ -293,6 +295,18 @@ def pledge_history(code, page_size=20, *, end_date=None, lookback_days=730):
     )
 
 
+def _shareholder_snapshot(label):
+    from scutio_data._providers.akshare.errors import AKShareError
+
+    try:
+        rows, snapshot = akshare_snapshots.fetch_snapshot(
+            "stock_ggcg_em", symbol="股东" + label, _timeout_seconds=time_left("batch_partition")
+        )
+    except AKShareError as exc:
+        return result_list_err(str(exc), source="eastmoney_holder_change", error_code=exc.code)
+    return result_list(rows, snapshot=snapshot)
+
+
 @operation("batch")
 def shareholder_history(code, direction="all", page_size=50):
     from scutio_data._runtime.parsing import finite_number
@@ -319,12 +333,15 @@ def shareholder_history(code, direction="all", page_size=50):
         "变动后持股情况-持流通股数": "float_shares_after_wan",
         "变动后持股情况-占流通股比例": "after_float_share_pct",
     }
+    results = fetch_many({label: partial(_shareholder_snapshot, label) for label in selected})[
+        "results"
+    ]
     for label in selected:
         try:
-            remaining = time_left("batch_partition")
-            rows, snapshot = akshare_snapshots.fetch_snapshot(
-                "stock_ggcg_em", symbol="股东" + label, _timeout_seconds=remaining
-            )
+            env = results[label]["result"]
+            if not env.get("ok"):
+                raise ValueError(env.get("error") or "shareholder fetch failed")
+            rows, snapshot = env["items"], env["snapshot"]
             leg_items = []
             for row in rows:
                 identity = _code(row.get("代码"))

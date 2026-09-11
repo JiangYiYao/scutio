@@ -40,27 +40,17 @@ def test_path_helpers_importable_from_package_root():
     assert callable(ensure_toolkit_for_skill_script)
 
 
-def test_ensure_toolkit_for_skill_scripts_from_collectors():
+def test_ensure_toolkit_for_skill_scripts_from_examples():
     from pathlib import Path
 
     from scutio_data.paths import ensure_toolkit_for_skill_script
 
-    scripts = Path(__file__).resolve().parents[2] / "skills" / "scutio" / "scripts" / "collectors"
-    for name in ("collect_research_base.py",):
+    scripts = Path(__file__).resolve().parents[2] / "skills" / "scutio" / "scripts" / "examples"
+    for name in ("01_quote_and_bars.py",):
         path = ensure_toolkit_for_skill_script(scripts / name)
         assert path is not None
         assert Path(path).name == "scripts"
         assert (Path(path) / "scutio_data").is_dir()
-
-
-def test_collectors_have_one_public_entry():
-    from pathlib import Path
-
-    directory = Path(__file__).resolve().parents[2] / "skills/scutio/scripts/collectors"
-    assert {path.name for path in directory.glob("*.py") if not path.name.startswith("_")} == {
-        "collect_research_base.py"
-    }
-    assert not (directory / "_snapshot").exists()
 
 
 def test_result_ok_and_result_err_envelope():

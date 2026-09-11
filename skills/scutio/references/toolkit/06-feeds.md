@@ -17,6 +17,8 @@ items = env["items"] if env["ok"] else []
 
 返回 `ok/error/source/items`。个股新闻条目含 `title/content/time/source/url/relevance`；保留 URL 方便核实。`name` 可辅助识别相关稿件；`drop_noise` 过滤缺少目标身份的榜单式标题。
 
+`code` 必须是证券代码，公司名放在可选 `name` 中，不能替代代码。尚未确认上市主体与代码时，先用宿主搜索核实，不给公司名猜配证券。
+
 三条路径均经 AKShare 获取，源窗口分别为 10/20/200 条。请求超过窗口会披露 `partial`，不保证历史分页或全量覆盖。电报组合源日期与北京时间，按最新在前返回。
 
 检查 `fetched_raw/after_filter/filtered_out/returned/truncated/empty_reason`：合法空结果可能是上游空或全部被过滤，不能直接说“今天没有新闻”；`ok=False` 表示取数失败。新闻相关分不代表事实可信度。

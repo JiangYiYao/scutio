@@ -2,6 +2,7 @@
 
 import json
 import os
+import time
 from types import SimpleNamespace
 from unittest.mock import Mock
 
@@ -32,11 +33,14 @@ def test_proxy_recovery_is_confined_to_worker_and_shares_deadline(monkeypatch, f
         return reply("proxy_error") if clock[0] == 108 else reply()
 
     runner = Mock(side_effect=run)
-    monkeypatch.setattr(akshare_source.subprocess, "run", runner)
-    monkeypatch.setattr(akshare_source.time, "monotonic", lambda: clock[0])
+    monkeypatch.setattr(akshare_source, "managed_run", runner)
+    monkeypatch.setattr(
+        akshare_source, "time", SimpleNamespace(monotonic=lambda: clock[0], time=time.time)
+    )
     assert akshare_source.fetch(function) == [{"price": 10}]
     first, second = runner.call_args_list
-    assert first.kwargs["timeout"] == budget and second.kwargs["timeout"] == budget - 8
+    assert first.kwargs["timeout"] == pytest.approx(budget, abs=0.1)
+    assert second.kwargs["timeout"] == pytest.approx(budget - 8, abs=0.1)
     assert "https_proxy" in first.kwargs["env"]
     assert "https_proxy" not in second.kwargs["env"]
     assert second.kwargs["env"]["NO_PROXY"] == second.kwargs["env"]["no_proxy"] == "*"
@@ -51,7 +55,7 @@ def test_proxy_recovery_is_confined_to_worker_and_shares_deadline(monkeypatch, f
 def test_non_proxy_failures_are_not_retried(monkeypatch, code):
     monkeypatch.setenv("SCUTIO_AKSHARE_NETWORK", "auto")
     runner = Mock(return_value=reply(code, status=400))
-    monkeypatch.setattr(akshare_source.subprocess, "run", runner)
+    monkeypatch.setattr(akshare_source, "managed_run", runner)
     with pytest.raises(AKShareError) as caught:
         akshare_source.fetch("stock_hk_hist", symbol="00700")
     assert caught.value.code == code and runner.call_count == 1
@@ -61,7 +65,7 @@ def test_non_proxy_failures_are_not_retried(monkeypatch, code):
 def test_forced_route_never_silently_changes_network(monkeypatch, mode):
     monkeypatch.setenv("SCUTIO_AKSHARE_NETWORK", mode)
     runner = Mock(return_value=reply("proxy_error"))
-    monkeypatch.setattr(akshare_source.subprocess, "run", runner)
+    monkeypatch.setattr(akshare_source, "managed_run", runner)
     with pytest.raises(AKShareError) as caught:
         akshare_source.fetch("stock_hk_hist")
     assert runner.call_count == 1 and caught.value.attempts == [
@@ -72,8 +76,8 @@ def test_forced_route_never_silently_changes_network(monkeypatch, mode):
 def test_proxy_then_direct_failure_reports_both_routes(monkeypatch):
     monkeypatch.setenv("SCUTIO_AKSHARE_NETWORK", "auto")
     monkeypatch.setattr(
-        akshare_source.subprocess,
-        "run",
+        akshare_source,
+        "managed_run",
         Mock(side_effect=[reply("proxy_error"), reply("upstream_connection_error")]),
     )
     with pytest.raises(AKShareError) as caught:
@@ -88,15 +92,17 @@ def test_proxy_then_direct_failure_reports_both_routes(monkeypatch):
 def test_exhausted_budget_never_starts_second_worker(monkeypatch):
     monkeypatch.setenv("SCUTIO_AKSHARE_NETWORK", "auto")
     clock = [100.0]
-    monkeypatch.setattr(akshare_source.time, "monotonic", lambda: clock[0])
+    monkeypatch.setattr(
+        akshare_source, "time", SimpleNamespace(monotonic=lambda: clock[0], time=time.time)
+    )
 
     def run(*args, **kwargs):
         clock[0] += 61
         return reply("proxy_error")
 
     runner = Mock(side_effect=run)
-    monkeypatch.setattr(akshare_source.subprocess, "run", runner)
-    with pytest.raises(AKShareError, match=r"60(?:\.0)?s"):
+    monkeypatch.setattr(akshare_source, "managed_run", runner)
+    with pytest.raises(AKShareError, match="total request timeout"):
         akshare_source.fetch("stock_hk_hist")
     assert runner.call_count == 1
 
@@ -113,7 +119,7 @@ def test_api_failure_does_not_leak_upstream_message():
 @pytest.mark.parametrize("function", ["stock_individual_spot_xq", "stock_hk_spot_em"])
 def test_disabled_quote_sources_never_start_worker(monkeypatch, function):
     runner = Mock()
-    monkeypatch.setattr(akshare_source.subprocess, "run", runner)
+    monkeypatch.setattr(akshare_source, "managed_run", runner)
     with pytest.raises(ValueError, match="unsupported AKShare adapter"):
         akshare_source.fetch(function)
     runner.assert_not_called()
@@ -125,3 +131,41 @@ def test_nested_proxy_error_is_distinguished_without_leaking_url():
     failure = safe_failure(wrapped)
     assert failure["code"] == "proxy_error"
     assert "password" not in json.dumps(failure) and "private" not in json.dumps(failure)
+
+
+def test_adapter_registry_groups_real_sources_and_heavy_scans():
+    from scutio_data._providers.akshare.registry import ADAPTERS, ALLOWED
+
+    assert set(ADAPTERS) == ALLOWED
+    assert ADAPTERS["macro_china_shrzgm"].provider == "mofcom"
+    assert ADAPTERS["macro_china_cpi"].provider == "eastmoney"
+    assert ADAPTERS["macro_china_cpi_yearly"].provider == "jin10"
+    assert ADAPTERS["stock_profit_forecast_ths"].provider == "ths_public"
+    assert ADAPTERS["stock_margin_detail_sse"].provider == "sse"
+    assert ADAPTERS["stock_repurchase_em"].heavy_scan
+    assert not ADAPTERS["stock_individual_fund_flow"].heavy_scan
+
+
+@pytest.mark.parametrize(
+    "status,code",
+    [(401, "authentication"), (403, "permission"), (429, "rate_limited"), (503, "transient")],
+)
+def test_akshare_http_status_keeps_canonical_health_category(status, code):
+    error = AKShareError("upstream_http_error", status=status)
+    assert error.code == code
+
+
+def test_explicit_adapter_budget_includes_source_queue(monkeypatch):
+    import time as real_time
+
+    runner = Mock(return_value=reply())
+    monkeypatch.setattr(akshare_source, "managed_run", runner)
+
+    def queued(provider, endpoint, call, **kwargs):
+        real_time.sleep(0.06)
+        return call()
+
+    monkeypatch.setattr(akshare_source, "execute", queued)
+    with pytest.raises(AKShareError, match="total request timeout"):
+        akshare_source.fetch("stock_hk_hist", _timeout_seconds=0.03)
+    runner.assert_not_called()

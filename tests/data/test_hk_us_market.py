@@ -7,6 +7,36 @@ import scutio_data._providers.eastmoney as providers_eastmoney
 from scutio_data._providers import quotes as quote_source
 from scutio_data._providers.akshare import market as akshare_market
 
+
+@pytest.mark.parametrize("code,currency", [("hk00700", "CNY"), ("usAAPL", "USD")])
+@pytest.mark.parametrize("provided", [False, True])
+def test_financial_report_discloses_missing_currency_without_guessing(
+    monkeypatch, code, currency, provided
+):
+    from scutio_data import fundamentals
+    from scutio_data._providers.akshare import client
+
+    raw = {
+        "SECURITY_CODE": code[2:],
+        "REPORT_DATE": "2025-12-31",
+        "STD_ITEM_NAME": "营业额",
+        "ITEM_NAME": "营业收入",
+        "AMOUNT": 123,
+    }
+    if provided:
+        raw["CURRENCY"] = currency
+    monkeypatch.setattr(client, "fetch", lambda *args, **kwargs: [raw])
+    result = fundamentals.financial_report(code, num=1)
+    assert result["ok"]
+    assert result["partial"] is (not provided)
+    assert result["missing_fields"] == ([] if provided else ["currency"])
+    assert result["items"][0].get("币种") == (currency if provided else None)
+    assert ("report currency" in (result["warning"] or "")) is (not provided)
+    if not provided:
+        short = fundamentals.financial_report(code, num=2)
+        assert "Only 1 of 2" in short["warning"] and "report currency" in short["warning"]
+
+
 # Realistic Tencent quote lines (truncated field count but enough for parser).
 _TENCENT_HK = (
     'v_hk00700="100~腾讯控股~00700~471.800~466.400~466.400~31791979.0~0~0~471.800'
@@ -532,11 +562,8 @@ def test_tencent_index_missing_pb_and_price_limits_are_null():
     assert row["pb"] is row["limit_up"] is row["limit_down"] is None
 
 
-def test_eastmoney_stock_info_hk_us_secid(monkeypatch, tmp_path):
-    from scutio_data import fundamentals, source_pref
-
-    monkeypatch.setenv("SCUTIO_SOURCE_PREF_PATH", str(tmp_path / "pref.json"))
-    source_pref.clear_pref()
+def test_eastmoney_stock_info_hk_us_secid(monkeypatch):
+    from scutio_data import fundamentals
     from scutio_data._providers.akshare import client as akshare_source
 
     monkeypatch.setattr(
@@ -552,11 +579,8 @@ def test_eastmoney_stock_info_hk_us_secid(monkeypatch, tmp_path):
     assert us["code"] == "AAPL" and us["partial"] and us["price"] == 338.19
 
 
-def test_stock_info_hk_tencent_fallback_when_em_empty(monkeypatch, tmp_path):
-    from scutio_data import fundamentals, source_pref
-
-    monkeypatch.setenv("SCUTIO_SOURCE_PREF_PATH", str(tmp_path / "pref2.json"))
-    source_pref.clear_pref()
+def test_stock_info_hk_tencent_fallback_when_em_empty(monkeypatch):
+    from scutio_data import fundamentals
 
     def fake_em_get(url, params=None, **kwargs):
         return type("R", (), {"json": lambda self: {"data": {}}})()

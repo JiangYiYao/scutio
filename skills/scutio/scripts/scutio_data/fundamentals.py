@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-from scutio_data import source_pref
 from scutio_data._runtime.results import (
     result_err,
     result_list,
@@ -85,9 +84,7 @@ def _stock_info(code):
     mkt, prefix, pure = require_company(code, "stock_info")
     # Keep full code for secid; pure for display fields.
     full = prefix + pure
-    cap = "stock_info:%s" % mkt
-    primary = "eastmoney"
-    order = source_pref.ordered_sources(cap, [primary, "tencent"])
+    order = ("eastmoney", "tencent")
 
     def _from_em():
         if mkt == "a":
@@ -177,18 +174,16 @@ def _stock_info(code):
         if src == "eastmoney":
             try:
                 out = _from_em()
-                source_pref.mark_ok(cap, primary, default_primary=primary)
                 return _as_ok(out)
             except Exception:
-                source_pref.mark_fail(cap, primary, default_primary=primary)
+                pass
             continue
         if src == "tencent":
             try:
                 out = _from_tencent()
-                source_pref.mark_ok(cap, "tencent", default_primary=primary, quality="partial")
                 return _as_ok(out)
             except Exception:
-                source_pref.mark_fail(cap, "tencent", default_primary=primary)
+                pass
 
     return result_err(
         "stock_info unavailable",
@@ -462,6 +457,16 @@ def financial_report(
                 "unsupported market for financial_report: %r" % code,
                 source="financial_report",
             )
+        missing_currency = mkt in ("hk", "us") and any(not row.get("币种") for row in items)
+        warnings = []
+        if len(items) < n:
+            warnings.append(
+                "Only %d of %d requested report periods are available" % (len(items), n)
+            )
+        if missing_currency:
+            warnings.append(
+                "Source did not provide report currency; verify it before comparing amounts"
+            )
         return result_list(
             items,
             source=src,
@@ -475,12 +480,9 @@ def financial_report(
             fallback_reason=fallback_reason,
             requested_count=n,
             returned_count=len(items),
-            partial=len(items) < n,
-            warning=(
-                "Only %d of %d requested report periods are available" % (len(items), n)
-                if len(items) < n
-                else None
-            ),
+            partial=len(items) < n or missing_currency,
+            missing_fields=["currency"] if missing_currency else [],
+            warning="; ".join(warnings) or None,
         )
     except Exception as exc:
         return result_list_err(str(exc), source="financial_report")

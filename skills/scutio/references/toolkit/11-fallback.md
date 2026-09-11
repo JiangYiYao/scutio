@@ -1,6 +1,6 @@
 # 降级、源优先级与跨域 FAQ
 
-**范围**：排障与维护向——主门面已封装的 fallback、`source_pref`、覆盖缺口、跨域易混点。
+**范围**：排障与维护向——主门面已封装的 fallback、健康冷却、覆盖缺口、跨域易混点。
 **市场**：行情降级链覆盖 **A / 港 / 美**；多数监管/资金语义 **仅 A**（见下表与 index.md §2 速览）。
 **日常取数**：直接调能力门面，读 `ok` / `source` / `error`；**不要**在业务里手写「源 A 失败再调源 B」。
 
@@ -30,32 +30,14 @@
 - 默认 **不复权**（`adjust='none'`）。A 股前复权日线免费优先 AKShare 东财 → 新浪；后复权走 AKShare 新浪 → 东财。腾讯适配仅接受不复权日线。各源复权因子不同，读 `adjustment_basis`，不跨源拼接。
 - 可用 `sources=('akshare_eastmoney',)` 等覆盖。
 - 常量：`market.QUOTE_FALLBACK_BY_MARKET` / `BARS_FALLBACK_BY_MARKET`。
-- **行情链不走** 下方 `source_pref`。
 
 ---
 
+## 来源顺序与健康冷却
 
+各门面使用固定来源顺序；`industry_comparison` 先东财、后新浪，`stock_info` 先完整档案、后可用的报价子集。降级结果保留 `partial` / `data_quality` 与缺失字段，不会因上次成功而优先返回较少数据。
 
----
-
-## 动态源优先级（`source_pref`）
-
-**仅**下列能力用 `last_ok` 重排探测顺序（与行情固定链不同）：
-
-| 能力键 | 模块 | 市场 | 思路 |
-|--------|------|------|------|
-| `industry_comparison` | capital | A | 东财 ↔ 新浪行业榜 |
-| `stock_info:{a\|hk\|us}` | fundamentals | A/港/美 | 按市场隔离；AKShare 档案 ↔ 腾讯报价子集（带缺失字段说明） |
-
-- 状态文件：`$SCUTIO_HOME/state/source_pref.json`
-- 状态读改写使用同机文件锁与原子替换；多 agent/collector 会重新加载外部更新，避免偏好状态互相覆盖。
-- 源偏好是可选状态：锁忙或无法写入时立即跳过该次更新，已取得的数据照常返回；读取忙时使用默认来源顺序。显式 `clear_pref` 未能获取锁会报错，不会假装已清除。
-- fallback 偏好默认每 300 秒再探主源，偏好 3600 秒过期；失败源默认冷却 60 秒；可用对应环境变量调整。
-- `data_quality=partial_fallback` 只记录可用性，不提升为首选源。
-- 自检默认只读；只有显式 `--apply-source-pref` 才把探测结果写回路由。
-- 关闭：`SCUTIO_SOURCE_PREF=0`；路径：`SCUTIO_SOURCE_PREF_PATH`
-- 单测：隔离 path + `reset_runtime_state()`
-- **不在表内**：多数 feeds / announcements / macro、以及 `security_*`
+请求层共用提供方、凭据及接口范围的失败冷却，遇到暂时不可用的来源可跳过该次尝试并由门面继续既有降级链。调度、预算与配置统一见 [运行时](01-runtime.md#批量调用)。自检也使用相同执行状态。
 
 ---
 
@@ -67,8 +49,7 @@
 4. 按已登记覆盖缺口选择公开原文，或用显式 `sources=` 排障。
 5. 输出中写明源、时点、缺口 —— **不伪造**。
 
-保留的直接东财适配器由 `em_get` 协调最多一次额外尝试，认证/权限错误不重试，限流等待遵守 `Retry-After`；HTTPAdapter 自身不重试。与 AKShare 共用[请求预算策略](12-data-sources.md#请求控制)，退避超过剩余时间时直接结束。每一次真实尝试都先经过
-1 秒请求槽，并通过状态文件约束同机多进程。坏环境代理使用
+保留的直接东财适配器由 `em_get` 协调最多一次额外尝试，认证/权限错误不重试，限流等待遵守 `Retry-After`；HTTPAdapter 自身不重试。与 AKShare 共用[请求预算策略](12-data-sources.md#请求控制)，退避超过剩余时间时直接结束。每一次真实尝试都先经过共享提供方配额，并通过状态文件约束同机多进程。坏环境代理使用
 `trust_env=False` 的直连 Session，确保 `ALL_PROXY` 不会泄漏到恢复请求。
 
 ---

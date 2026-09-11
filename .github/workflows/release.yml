@@ -120,9 +120,16 @@ jobs:
           assert report['scutio_version'] == os.environ['RELEASE_VERSION']
           assert pathlib.Path(report['scripts']).resolve() == pathlib.Path('installed skills/scutio/scripts').resolve()
           print(result.stdout)
+          scripts = pathlib.Path('installed skills/scutio/scripts').resolve()
+          sys.path.insert(0, str(scripts))
+          from scutio_data.batch import fetch_many
+          batch = fetch_many({'value': lambda: {'ok': True, 'value': 1}, 'empty': lambda: {'ok': True, 'items': []}})
+          assert batch['batch_state'] == 'finished'
+          assert batch['results']['value']['result']['value'] == 1
+          assert batch['results']['empty']['state'] == 'success'
       - name: Check standalone entry points
         run: |
-          python "installed skills/scutio/scripts/collectors/collect_research_base.py" --help
+          python "installed skills/scutio/scripts/screen_records.py" --help
           python "installed skills/scutio/scripts/journal.py" --help
           python "installed skills/scutio/scripts/data_sources.py" --help
 

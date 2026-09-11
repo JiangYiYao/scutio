@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-import requests
-
 from scutio_data._providers import eastmoney
 from scutio_data._providers.eastmoney import (
     em_secid_candidates,
@@ -29,11 +27,7 @@ def _http_get_bytes(url, *, headers=None, timeout=20, decode=None):
     if "User-Agent" not in hdrs:
         hdrs["User-Agent"] = UA
     with Session() as session:
-        try:
-            response = session.get(url, headers=hdrs, timeout=timeout)
-        except (requests.exceptions.ProxyError, requests.exceptions.SSLError):
-            session.trust_env = False
-            response = session.get(url, headers=hdrs, timeout=timeout)
+        response = session.get(url, headers=hdrs, timeout=timeout)
         response.raise_for_status()
         raw = response.content
     if decode:

@@ -1,6 +1,7 @@
 """AKShare Dragon Tiger records and seats; never merge different listing reasons."""
 
 from datetime import datetime, timedelta
+from functools import partial
 
 from scutio_data._providers.akshare import snapshots as akshare_snapshots
 from scutio_data._runtime.environment import CN_TZ
@@ -9,6 +10,7 @@ from scutio_data._runtime.results import result_err, result_ok
 from scutio_data._runtime.symbols import require_a_share
 from scutio_data._runtime.timeouts import operation
 from scutio_data._runtime.timeouts import remaining as time_left
+from scutio_data.batch import fetch_many
 
 
 def _day(value):
@@ -18,6 +20,13 @@ def _day(value):
 def _number(value, divisor=1, precision=2):
     number = finite_number(value)
     return None if number is None else round(number / divisor, precision)
+
+
+def _detail_snapshot(endpoint, **kwargs):
+    rows, snapshot = akshare_snapshots.fetch_snapshot(
+        endpoint, **kwargs, _timeout_seconds=time_left("batch_partition")
+    )
+    return result_ok(rows=rows, snapshot=snapshot)
 
 
 def _records(start, end):
@@ -112,16 +121,30 @@ def board(code, trade_date, look_back=30):
         snapshots = [dict(part="records", **snapshot)]
         if records:
             day = records[0]["date"]
-            for side, flag in (("buy", "买入"), ("sell", "卖出")):
+            compact_day = day.replace("-", "")
+            jobs = {
+                side: partial(
+                    _detail_snapshot,
+                    "stock_lhb_stock_detail_em",
+                    symbol=pure,
+                    date=compact_day,
+                    flag=flag,
+                )
+                for side, flag in (("buy", "买入"), ("sell", "卖出"))
+            }
+            jobs["institution"] = partial(
+                _detail_snapshot,
+                "stock_lhb_jgmmtj_em",
+                start_date=compact_day,
+                end_date=compact_day,
+            )
+            results = fetch_many(jobs)["results"]
+            for side in ("buy", "sell"):
                 try:
-                    remaining = time_left("batch_partition")
-                    raw, part_snapshot = akshare_snapshots.fetch_snapshot(
-                        "stock_lhb_stock_detail_em",
-                        symbol=pure,
-                        date=day.replace("-", ""),
-                        flag=flag,
-                        _timeout_seconds=remaining,
-                    )
+                    env = results[side]["result"]
+                    if not env.get("ok"):
+                        raise ValueError(env.get("error") or "seat fetch failed")
+                    raw, part_snapshot = env["rows"], env["snapshot"]
                     snapshots.append(dict(part=side, **part_snapshot))
                     if not raw:
                         raise ValueError("seat table empty for listed security/date")
@@ -153,13 +176,10 @@ def board(code, trade_date, look_back=30):
             if len(groups) == 1:
                 seats = next(iter(groups.values()))
             try:
-                remaining = time_left("batch_partition")
-                raw, part_snapshot = akshare_snapshots.fetch_snapshot(
-                    "stock_lhb_jgmmtj_em",
-                    start_date=day.replace("-", ""),
-                    end_date=day.replace("-", ""),
-                    _timeout_seconds=remaining,
-                )
+                env = results["institution"]["result"]
+                if not env.get("ok"):
+                    raise ValueError(env.get("error") or "institution fetch failed")
+                raw, part_snapshot = env["rows"], env["snapshot"]
                 snapshots.append(dict(part="institution", **part_snapshot))
                 for row in raw:
                     if _day(row.get("上榜日期")) != day:
@@ -185,7 +205,7 @@ def board(code, trade_date, look_back=30):
             else set()
         )
         missing_reasons = sorted(expected_reasons - set(groups))
-        partial = bool(
+        partial_result = bool(
             errors
             or missing_reasons
             or len(groups) > 1
@@ -199,7 +219,7 @@ def board(code, trade_date, look_back=30):
             seat_groups=groups,
             institution=institution,
             institution_records=institution_records,
-            partial=partial,
+            partial=partial_result,
             errors=errors,
             snapshots=snapshots,
             query_window={"start": start, "end": end},

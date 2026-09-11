@@ -88,20 +88,19 @@ def installed_skill(tmp_path):
     return destination / "scutio", env
 
 
-def test_copied_skill_collectors_find_their_own_data_package(installed_skill, tmp_path):
+def test_copied_skill_public_api_uses_its_own_data_package(installed_skill, tmp_path):
     skill, env = installed_skill
     # Loading and invoking locators checks more than CLI --help, which can defer imports.
     code = """
-import importlib.util, json, sys
+import json, sys
 from pathlib import Path
 skill = Path(sys.argv[1])
-entries = ["collectors/collect_research_base.py"]
-for i, relative in enumerate(entries):
-    spec = importlib.util.spec_from_file_location("collector_%s" % i, skill / "scripts" / relative)
-    module = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(module)
-    found = module._DIRECTORY.parent
-    assert Path(found).resolve() == (skill / "scripts").resolve(), (relative, found)
+sys.path.insert(0, str(skill / "scripts"))
+from scutio_data.batch import fetch_many
+batch = fetch_many({"one": lambda: {"ok": True, "value": 1}, "two": lambda: {"ok": True, "items": []}})
+assert batch["batch_state"] == "finished"
+assert batch["results"]["one"]["result"]["value"] == 1
+assert batch["results"]["two"]["result"]["items"] == []
 from scutio_data import paths
 assert Path(paths.__file__).resolve().is_relative_to(skill.resolve())
 print(json.dumps({"scripts": str(paths.find_scripts_dir())}))
@@ -127,7 +126,6 @@ print(json.dumps({"scripts": str(paths.find_scripts_dir())}))
     for relative in (
         "journal.py",
         "local_storage.py",
-        "collectors/collect_research_base.py",
         "screen_records.py",
         "data_sources.py",
     ):

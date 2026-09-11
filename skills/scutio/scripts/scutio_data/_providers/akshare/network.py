@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import hashlib
+import json
 import os
 
 
@@ -23,3 +25,12 @@ def worker_env(direct: bool = False) -> dict[str, str]:
         # NO_PROXY also disables macOS system proxy discovery in this worker.
         env.update(NO_PROXY="*", no_proxy="*")
     return env
+
+
+def network_identity():
+    """Hash the observable proxy configuration without exposing its secrets."""
+    proxy = {
+        key.lower(): value for key, value in os.environ.items() if key.lower().endswith("_proxy")
+    }
+    proxy["network_mode"] = network_mode()
+    return hashlib.sha256(json.dumps(proxy, sort_keys=True).encode()).hexdigest()[:24]

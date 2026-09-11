@@ -4,7 +4,7 @@
 **只调能力门面**；多源/限流/备胎由 `scutio_data` 内部处理——不要自选源站或手写 fallback。
 字段与陷阱 → [01-runtime](01-runtime.md) … [11-fallback](11-fallback.md)（按需打开）。
 
-这些接口为查证、研究、推演、复核和复盘共享。批量材料按 [问题采集](research-collection.md) 显式选择模块；有明确样本与条件时用 [程序筛选](screening.md)，不以热榜或筛选结果生成机会排名。
+这些接口为查证、研究、推演、复核和复盘共享。独立请求可用 [批量调用](01-runtime.md#批量调用)；有明确样本与条件时用 [程序筛选](screening.md)，不以热榜或筛选结果生成机会排名。
 
 | 用 | 不用 |
 |----|------|
@@ -17,6 +17,8 @@
 
 用 **`SCUTIO_PYTHON`**；包根 **`SCUTIO_TOOLKIT_SCRIPTS`**（含 `scutio_data`）→ `from scutio_data.<域> import …`。
 路径 / env / 依赖 / 缓存 / 非入口 → [01-runtime](01-runtime.md)。
+
+首次使用一个接口前，读取下方对应域的函数签名与返回字段；不从其它接口类推参数名。不确定时可离线运行 `inspect.signature(已导入的函数)`，修正调用后只重试失败项。
 
 | 市场 | 写法 | 注意 |
 |------|------|------|

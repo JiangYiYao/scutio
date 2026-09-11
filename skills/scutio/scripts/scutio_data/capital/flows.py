@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from functools import partial
+
 from scutio_data._runtime.parsing import finite_number, source_date
 from scutio_data._runtime.results import (
     envelope_items,
@@ -12,6 +14,7 @@ from scutio_data._runtime.results import (
 )
 from scutio_data._runtime.symbols import require_a_share, split_code
 from scutio_data._runtime.timeouts import operation
+from scutio_data.batch import fetch_many
 
 # Eastmoney RPT_MUTUAL_DEAL_HISTORY MUTUAL_TYPE (verified 2026-07).
 MUTUAL_TYPE = {
@@ -127,9 +130,13 @@ def southbound_daily(page_size=30, detail=False):
     """港股通/南向日频。flat 返回 result_list；detail 返回 result_ok 嵌套。"""
     if not detail:
         return mutual_connect_daily("south", page_size=page_size)
-    total = mutual_connect_daily("south", page_size=page_size)
-    sh = mutual_connect_daily("ggt_sh", page_size=page_size)
-    sz = mutual_connect_daily("ggt_sz", page_size=page_size)
+    results = fetch_many(
+        {
+            kind: partial(mutual_connect_daily, kind, page_size=page_size)
+            for kind in ("south", "ggt_sh", "ggt_sz")
+        }
+    )["results"]
+    total, sh, sz = (results[kind]["result"] for kind in ("south", "ggt_sh", "ggt_sz"))
     if not total.get("ok") and not sh.get("ok") and not sz.get("ok"):
         return result_err(
             total.get("error") or sh.get("error") or sz.get("error") or "all legs failed",
@@ -158,9 +165,13 @@ def northbound_daily(page_size=30, detail=False):
     """北向日频。flat 返回 result_list；detail 返回 result_ok 嵌套。"""
     if not detail:
         return mutual_connect_daily("north", page_size=page_size)
-    total = mutual_connect_daily("north", page_size=page_size)
-    hgt = mutual_connect_daily("hgt", page_size=page_size)
-    sgt = mutual_connect_daily("sgt", page_size=page_size)
+    results = fetch_many(
+        {
+            kind: partial(mutual_connect_daily, kind, page_size=page_size)
+            for kind in ("north", "hgt", "sgt")
+        }
+    )["results"]
+    total, hgt, sgt = (results[kind]["result"] for kind in ("north", "hgt", "sgt"))
     if not total.get("ok") and not hgt.get("ok") and not sgt.get("ok"):
         return result_err(
             total.get("error") or hgt.get("error") or sgt.get("error") or "all legs failed",

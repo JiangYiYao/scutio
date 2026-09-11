@@ -3,16 +3,15 @@
 from __future__ import annotations
 
 import os
-import threading
-import time
 from datetime import date
-from typing import Dict, List, Optional, Tuple
+from typing import Dict, List, Tuple
 
 from scutio_data._documents.hints import FALLBACK_HINT_US
 from scutio_data._runtime import http
+from scutio_data._runtime.execution import CacheSpec, execute
 from scutio_data._runtime.results import result_list, result_list_err
 from scutio_data._runtime.symbols import normalize_code
-from scutio_data._runtime.timeouts import RequestTimeout, pause, remaining, source
+from scutio_data._runtime.timeouts import source
 
 # SEC fair-access：须可识别的 UA；可用 SCUTIO_SEC_UA 设真实联系邮箱
 _SEC_UA = (
@@ -28,21 +27,6 @@ _SEC_HEADERS = {
 }
 
 
-_SEC_TICKERS: Optional[Dict[str, str]] = None  # ticker upper -> cik zero-padded 10
-
-
-_SEC_TICKERS_TS = 0.0
-
-
-_SEC_SUBMISSIONS: Dict[str, Tuple[float, dict]] = {}
-
-
-_SEC_SUBMISSIONS_TTL = 300.0
-
-
-_SEC_SUBMISSIONS_LOCK = threading.Lock()
-
-
 _US_FORMS = {
     "annual": ("10-K", "10-K/A", "20-F", "20-F/A"),
     "semi": ("10-Q", "10-Q/A"),
@@ -53,28 +37,40 @@ _US_FORMS = {
 
 
 def _load_sec_tickers(force: bool = False) -> Dict[str, str]:
-    global _SEC_TICKERS, _SEC_TICKERS_TS
-    now = time.time()
-    if not force and _SEC_TICKERS is not None and now - _SEC_TICKERS_TS < 86400:
-        return _SEC_TICKERS
-    r = http.get(
-        "https://www.sec.gov/files/company_tickers.json",
-        headers=_SEC_HEADERS,
-        timeout=30,
+    def load():
+        response = http.get(
+            "https://www.sec.gov/files/company_tickers.json", headers=_SEC_HEADERS, timeout=30
+        )
+        response.raise_for_status()
+        data = response.json()
+        out = {}
+        for row in data.values() if isinstance(data, dict) else data:
+            if not isinstance(row, dict):
+                continue
+            ticker = str(row.get("ticker") or "").upper().strip()
+            cik = str(row.get("cik_str") or row.get("cik") or "").strip()
+            if ticker and cik.isdigit():
+                out[ticker] = cik.zfill(10)
+        return out
+
+    return execute(
+        "sec",
+        "/files/company_tickers.json",
+        load,
+        cache=None
+        if force
+        else CacheSpec(
+            ttl=86400,
+            version=1,
+            validator=lambda value: (
+                isinstance(value, dict)
+                and all(
+                    isinstance(k, str) and isinstance(v, str) and len(v) == 10 and v.isdigit()
+                    for k, v in value.items()
+                )
+            ),
+        ),
     )
-    r.raise_for_status()
-    data = r.json()
-    out: Dict[str, str] = {}
-    for row in data.values() if isinstance(data, dict) else data:
-        if not isinstance(row, dict):
-            continue
-        ticker = str(row.get("ticker") or "").upper().strip()
-        cik = str(row.get("cik_str") or row.get("cik") or "").strip()
-        if ticker and cik.isdigit():
-            out[ticker] = cik.zfill(10)
-    _SEC_TICKERS = out
-    _SEC_TICKERS_TS = now
-    return out
 
 
 def resolve_us_cik(code: str) -> str:
@@ -89,31 +85,36 @@ def resolve_us_cik(code: str) -> str:
 
 @source("history")
 def load_submissions(code: str, refresh: bool = False) -> Tuple[str, str, dict]:
-    """读取 SEC submissions，并在进程内短缓存供不同 form 过滤器复用。"""
+    """SEC submissions shared by exact CIK through the common cache and quota."""
     pure = normalize_code(code).upper()
     cik = resolve_us_cik(code)
-    now = time.monotonic()
-    cached = _SEC_SUBMISSIONS.get(cik)
-    if not refresh and cached and now - cached[0] < _SEC_SUBMISSIONS_TTL:
-        return pure, cik, cached[1]
-    if not _SEC_SUBMISSIONS_LOCK.acquire(timeout=remaining("queue_wait")):
-        raise RequestTimeout("queue_wait")
-    try:
-        now = time.monotonic()
-        cached = _SEC_SUBMISSIONS.get(cik)
-        if not refresh and cached and now - cached[0] < _SEC_SUBMISSIONS_TTL:
-            return pure, cik, cached[1]
-        pause(0.15, "rate_wait")
-        response = http.get(
-            "https://data.sec.gov/submissions/CIK%s.json" % cik,
-            headers=_SEC_HEADERS,
-            timeout=40,
-        )
+    path = "/submissions/CIK%s.json" % cik
+
+    def load():
+        response = http.get("https://data.sec.gov" + path, headers=_SEC_HEADERS, timeout=40)
         response.raise_for_status()
         data = response.json()
-        _SEC_SUBMISSIONS[cik] = (now, data)
-    finally:
-        _SEC_SUBMISSIONS_LOCK.release()
+        if not isinstance(data, dict):
+            raise ValueError("SEC submissions must be an object")
+        return data
+
+    data = execute(
+        "sec",
+        path,
+        load,
+        parameters={"cik": cik},
+        cache=None
+        if refresh
+        else CacheSpec(
+            ttl=300,
+            version=1,
+            identity={"cik": cik},
+            validator=lambda value: (
+                isinstance(value, dict)
+                and ("cik" not in value or str(value["cik"]).zfill(10) == cik)
+            ),
+        ),
+    )
     return pure, cik, data
 
 

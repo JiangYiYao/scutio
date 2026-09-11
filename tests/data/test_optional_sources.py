@@ -40,7 +40,6 @@ def transport(monkeypatch, responses):
     session.get.side_effect = responses
     monkeypatch.setattr(hithink, "Session", lambda: session)
     monkeypatch.setenv(data_sources.KEY_NAME, "test-credential")
-    monkeypatch.setattr(hithink.time, "sleep", lambda _: None)
     return session
 
 
@@ -178,7 +177,7 @@ def test_cache_preserves_timestamp_and_separates_adjustments(monkeypatch):
     assert a["data_as_of"] is None
     hithink.request("/api/test", {"adjust": "forward"}, ttl=30)
     assert session.get.call_count == 2
-    for path in (cache_dir() / "api" / "hithink").rglob("*.json"):
+    for path in (cache_dir() / "api" / "responses" / "hithink").rglob("*.json"):
         assert "test-credential" not in path.read_text()
 
 
@@ -318,7 +317,7 @@ def test_akshare_null_amount_and_share_unit(monkeypatch):
 
 def test_akshare_worker_is_allowlisted_and_has_total_deadline(monkeypatch):
     runner = Mock(side_effect=subprocess.TimeoutExpired("worker", 25))
-    monkeypatch.setattr(akshare_source.subprocess, "run", runner)
+    monkeypatch.setattr(akshare_source, "managed_run", runner)
     monkeypatch.setenv(data_sources.KEY_NAME, "test-key")
     with pytest.raises(RuntimeError, match="total request timeout"):
         akshare_source.fetch("stock_zh_a_daily", symbol="sh600519")
@@ -382,18 +381,6 @@ def test_adjusted_free_bars_keep_source_native_basis(monkeypatch):
     result = market.security_bars("600519", count=1, adjust="qfq")
     assert result["ok"] and result["source"] == "akshare_sina"
     assert result["adjustment_basis"]["cross_source_equivalent"] is False and result["warning"]
-
-
-def test_changing_data_mode_invalidates_collector_reuse(monkeypatch):
-    from collectors import _research_collection as collection
-
-    fetch = Mock(return_value={"ok": True, "quotes": {}})
-    monkeypatch.setattr(market, "security_quote", fetch)
-    first = collection.collect("600519", question="test", modules=["quote"])
-    monkeypatch.setenv("SCUTIO_DATA_MODE", "public")
-    second = collection.collect("600519", question="test", modules=["quote"], reuse=first)
-    assert fetch.call_count == 2
-    assert not second["observations"]["quote"]["reused"]
 
 
 @pytest.mark.parametrize("separate_homes", [False, True])
@@ -473,3 +460,57 @@ config.set_setting('mode', 'public')
             if process is not None and process.poll() is None:
                 process.kill()
                 process.wait()
+
+
+@pytest.mark.parametrize(
+    "failures,reason",
+    [
+        (("proxy", "connection"), "upstream_connection_error"),
+        (("proxy", "business"), "transient"),
+        (("connection", "proxy"), "proxy_error"),
+    ],
+)
+def test_hithink_route_switch_and_retry_share_two_physical_attempts(monkeypatch, failures, reason):
+    import itertools
+
+    import requests
+    from scutio_data._runtime.http import Session
+
+    monkeypatch.setenv(data_sources.KEY_NAME, "test-credential")
+    events = itertools.cycle(failures)
+    calls = []
+
+    def transfer(self, method, url, *, network_trust_env, **kwargs):
+        calls.append(network_trust_env)
+        failure = next(events)
+        if failure == "business":
+            return response(code=5001)
+        error = (
+            requests.exceptions.ProxyError
+            if failure == "proxy"
+            else requests.exceptions.ConnectionError
+        )
+        raise error("sensitive network details")
+
+    monkeypatch.setattr(Session, "_transport_request", transfer)
+    with pytest.raises(hithink.SourceError, match=reason):
+        hithink.request("/api/test", {})
+    assert len(calls) == 2
+
+
+def test_hithink_transient_retry_can_return_success(monkeypatch):
+    import requests
+    from scutio_data._runtime.http import Session
+
+    monkeypatch.setenv(data_sources.KEY_NAME, "test-credential")
+    calls = []
+
+    def transfer(self, method, url, *, network_trust_env, **kwargs):
+        calls.append(network_trust_env)
+        if len(calls) == 1:
+            raise requests.exceptions.ConnectionError("private network details")
+        return response({"item": []})
+
+    monkeypatch.setattr(Session, "_transport_request", transfer)
+    assert hithink.request("/api/test", {})["data"]["item"] == []
+    assert calls == [True, True]

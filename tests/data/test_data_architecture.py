@@ -92,17 +92,20 @@ def test_importing_result_contracts_does_not_load_source_transports():
     assert run.returncode == 0, run.stderr
 
 
-def test_akshare_worker_entrypoint_imports_from_nested_location(tmp_path):
+def test_akshare_worker_entrypoint_imports_from_nested_location(tmp_path, local_worker_command):
     scripts = Path(__file__).resolve().parents[2] / "skills/scutio/scripts"
     worker = scripts / "scutio_data/_providers/akshare/_akshare_worker.py"
     # Unsupported function fails before importing AKShare or making a network request.
     run = subprocess.run(
-        [
-            sys.executable,
-            "-B",
-            "-c",
-            f"import runpy; runpy.run_path({str(worker)!r}, run_name='__main__')",
-        ],
+        local_worker_command(
+            [
+                sys.executable,
+                "-B",
+                "-c",
+                f"import runpy, sys; sys.modules['akshare'] = None; "
+                f"runpy.run_path({str(worker)!r}, run_name='__main__')",
+            ]
+        ),
         input='{"function":"not_allowlisted","params":{}}',
         env=dict(os.environ, PYTHONPATH=""),
         capture_output=True,

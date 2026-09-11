@@ -27,7 +27,6 @@ _DOMAIN_MODULES = frozenset(
         "market",
         "paths",
         "research",
-        "source_pref",
         "valuation",
     )
 )
@@ -52,7 +51,6 @@ __all__ = [
     "market",
     "paths",
     "research",
-    "source_pref",
     "valuation",
     "default_python_path",
     "default_scutio_home",

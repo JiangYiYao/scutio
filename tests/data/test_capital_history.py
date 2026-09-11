@@ -192,9 +192,9 @@ def test_shortened_worker_budget_is_not_sent_to_akshare(monkeypatch):
         seen.append(kwargs)
         return SimpleNamespace(stdout='{"ok": true, "items": []}')
 
-    monkeypatch.setattr(akshare_source.subprocess, "run", run)
+    monkeypatch.setattr(akshare_source, "managed_run", run)
     assert akshare_source.fetch("stock_dzjy_mrmx", _timeout_seconds=2, symbol="A股") == []
-    assert seen[0]["timeout"] == 2
+    assert seen[0]["timeout"] == pytest.approx(2, abs=0.1)
     assert json.loads(seen[0]["input"])["params"] == {"symbol": "A股"}
 
 

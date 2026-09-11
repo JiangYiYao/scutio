@@ -455,7 +455,6 @@ def test_macro_snapshot_reuses_preloaded_legs(monkeypatch):
 def test_sec_submissions_shared_by_periodic_and_ownership(monkeypatch):
     from scutio_data import capital
 
-    providers_sec._SEC_SUBMISSIONS.clear()
     monkeypatch.setattr(providers_sec, "resolve_us_cik", lambda *_: "0000320193")
     calls = []
     payload = {
@@ -479,7 +478,6 @@ def test_sec_submissions_shared_by_periodic_and_ownership(monkeypatch):
     assert periodic["ok"] is True
     assert ownership["ok"] is True
     assert len(calls) == 1
-    providers_sec._SEC_SUBMISSIONS.clear()
 
 
 def test_us_periodic_all_excludes_current_report_6k(monkeypatch):

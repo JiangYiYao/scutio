@@ -12,14 +12,16 @@ def test_bulk_snapshot_reuses_success_but_never_expired_failure(monkeypatch, tmp
 
     monkeypatch.setenv("SCUTIO_CONFIG_DIR", str(tmp_path))
     clock = [10000]
-    monkeypatch.setattr(snapshots.time, "time", lambda: clock[0])
+    from scutio_data._providers.akshare import client
+
+    monkeypatch.setattr(client.time, "time", lambda: clock[0])
     calls = []
 
     def fetch(*a, **k):
         calls.append(a)
-        return [{"股票代码": "600519", "已回购股份数量": 100}]
+        return {"items": [{"股票代码": "600519", "已回购股份数量": 100}], "retrieved_at": clock[0]}
 
-    monkeypatch.setattr(snapshots.akshare_source, "fetch", fetch)
+    monkeypatch.setattr(snapshots.akshare_source, "_worker", fetch)
     rows, fresh = snapshots.fetch_snapshot("stock_repurchase_em")
     clock[0] += 100
     cached_rows, cached = snapshots.fetch_snapshot("stock_repurchase_em")
@@ -31,7 +33,7 @@ def test_bulk_snapshot_reuses_success_but_never_expired_failure(monkeypatch, tmp
     clock[0] += 3600
     monkeypatch.setattr(
         snapshots.akshare_source,
-        "fetch",
+        "_worker",
         lambda *a, **k: (_ for _ in ()).throw(RuntimeError("down")),
     )
     with pytest.raises(RuntimeError, match="down"):
@@ -43,8 +45,14 @@ def test_bulk_snapshot_version_change_invalidates_cache(monkeypatch, tmp_path):
 
     monkeypatch.setenv("SCUTIO_CONFIG_DIR", str(tmp_path))
     versions = ["1.0"]
-    monkeypatch.setattr(snapshots, "version", lambda _: versions[0])
-    monkeypatch.setattr(snapshots.akshare_source, "fetch", lambda *a, **k: [])
+    monkeypatch.setattr(snapshots.akshare_source, "version", lambda _: versions[0])
+    import time
+
+    monkeypatch.setattr(
+        snapshots.akshare_source,
+        "_worker",
+        lambda *a, **k: {"items": [], "retrieved_at": time.time()},
+    )
     snapshots.fetch_snapshot("stock_repurchase_em")
     versions[0] = "1.1"
     assert not snapshots.fetch_snapshot("stock_repurchase_em")[1]["snapshot_cached"]

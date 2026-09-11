@@ -22,11 +22,12 @@
 
 | 函数 | A | 港 | 美 | 说明 |
 |------|---|----|----|------|
-| `stock_announcements(code, …)` | ✓ | — | — | AKShare 巨潮近一年列表 |
+| `stock_announcements(code, page_size=30, page_num=1)` | ✓ | — | — | AKShare 巨潮近一年列表 |
 | `periodic_reports(code, kind='annual', page_size=20)` | ✓ | ✓ | ✓ | 定期报告列表 |
 | `download_announcement_pdf(item, extract_text=True, timeout=None, single_attempt=False)` | ✓ | ✓ | ✓ | 下载原文 + 默认写 `.txt`；可要求单次尝试 |
 | `extract_filing_text(path)` | ✓ | ✓ | ✓ | 本地 PDF/HTML → 文本 |
-| `irm`（仅深市） / `lockup_expiry` | ✓ | — | — | 互动易 / 解禁 |
+| `irm`（仅深市） | ✓ | — | — | 互动易 |
+| `lockup_expiry(code, trade_date, forward_days=90)` | ✓ | — | — | 按基准日分隔历史与未来解禁 |
 
 ```python
 from scutio_data.announcements import periodic_reports, download_announcement_pdf
@@ -154,6 +155,6 @@ $SCUTIO_HOME/cache/documents/filings/{a|hk|us}/{code}/日期_…标题_身份摘
 
 A 股普通公告查询近 365 天，定期报告查询近 20×365 天，`query_window` 显示精确边界；两者均本地排序、去重、分页，不能当作全部历史。公告列表 `pdf_url=None` 且 `file_resolution=cninfo_detail`，将整条 item 传给 `download_announcement_pdf`，会通过官方详情接口校验股票与公告 ID 后取得 PDF。附件路径不从公告日期猜测。
 
-`lockup_expiry` 通过 AKShare 解禁队列，历史只含 `trade_date` 之前，未来包含当日至指定天数。`shares/able_shares` 为股，`ratio` 为流通股比例（0–1）；返回达到源端 500 条上限时标记可能截断。
+`lockup_expiry` 必须传 `trade_date="YYYY-MM-DD"` 作为查询基准日，例如 `lockup_expiry("600519", trade_date="2026-09-11", forward_days=365)`。通过 AKShare 解禁队列，历史只含 `trade_date` 之前，未来包含当日至指定天数。`shares/able_shares` 为股，`ratio` 为流通股比例（0–1）；返回达到源端 500 条上限时标记可能截断。
 
 港股定期报告走 AKShare 巨潮：空 symbol + 股票代码关键词查询，再精确校验证券代码/链接；近 20 年有限窗口，按标题分类，partial=True。PDF 用官方详情验证公告 ID 和五位港股代码后解析；不再请求东财港股公告列表。

@@ -4,9 +4,9 @@
 
 你可以带着一家公司、一条消息或一个尚不完整的想法来。Scutio 围绕影响未来价值的问题搜集证据，追踪资源投入、客户行为和竞争变化，推演收益归属与价格条件，并按需保留研究记录。
 
-**当前为 `0.1.0-alpha.1` 早期预览。** 欢迎用真实问题测试，反馈研究遗漏与错误数据。
+**当前为 `0.1.0-alpha.2` 早期预览。** 欢迎用真实问题测试，反馈研究遗漏与错误数据。
 
-[快速开始](#快速开始) · [下载预览版](https://github.com/JiangYiYao/scutio/releases/tag/v0.1.0-alpha.1) · [真实案例](#先看一次真实研究) · [数据覆盖](skills/scutio/references/toolkit/index.md) · [反馈](https://github.com/JiangYiYao/scutio/issues/new/choose)
+[快速开始](#快速开始) · [下载预览版](https://github.com/JiangYiYao/scutio/releases/tag/v0.1.0-alpha.2) · [真实案例](#先看一次真实研究) · [数据覆盖](skills/scutio/references/toolkit/index.md) · [反馈](https://github.com/JiangYiYao/scutio/issues/new/choose)
 
 ## 先看一次真实研究
 

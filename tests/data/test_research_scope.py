@@ -48,7 +48,7 @@ def test_removed_akshare_capabilities_never_start_worker(monkeypatch, function):
     def forbidden(*args, **kwargs):
         pytest.fail("removed capability started a worker")
 
-    monkeypatch.setattr(client.subprocess, "run", forbidden)
+    monkeypatch.setattr(client, "managed_run", forbidden)
     with pytest.raises(ValueError, match="unsupported AKShare adapter"):
         client.fetch(function)
 

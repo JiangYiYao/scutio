@@ -61,21 +61,6 @@ def migration_plan(*, legacy_data_home: Path | None = None, journal_root: Path |
     add(legacy / "settings.lock", config_dir() / "settings.lock")
     add(legacy / "akshare_health.json", state_dir() / "akshare" / "health.json")
     add(legacy / "akshare_health.lock", state_dir() / "akshare" / "health.lock")
-    for source in sorted((legacy / "cache").glob("*/request.lock")):
-        add(source, state_dir() / "hithink" / source.parent.name / source.name)
-    for source in sorted((legacy / "cache").glob("*/*.json")):
-        namespace = source.parent.name
-        target = (
-            state_dir() / "hithink" / namespace / "health.json"
-            if source.name == "health.json"
-            else home / "cache" / "api" / "hithink" / namespace / source.name
-        )
-        add(source, target)
-    for source in sorted((legacy / "akshare_snapshots").glob("*.json")):
-        add(source, home / "cache" / "api" / "akshare" / source.name)
-    for name in ("source_pref.json", "em_rate_limit.state"):
-        add(home / "cache" / name, state_dir() / name)
-    add(home / "cache/source_pref.json.lock", state_dir() / "source_pref.json.lock")
     for name in ("filings", "reports"):
         source = home / "cache" / name
         if source.exists() and referenced(source):

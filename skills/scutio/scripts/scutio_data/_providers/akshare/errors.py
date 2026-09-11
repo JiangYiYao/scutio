@@ -1,8 +1,14 @@
 """Safe AKShare failure metadata; never return upstream messages or URLs."""
 
+from scutio_data._runtime.execution import SourceFailure
 
-class AKShareError(RuntimeError):
+
+class AKShareError(SourceFailure):
     def __init__(self, code, *, error_type=None, status=None, attempts=None, timeout_seconds=25):
+        if code in ("upstream_http_error", "upstream_api_error", "provider_error"):
+            code = {401: "authentication", 403: "permission", 429: "rate_limited"}.get(
+                status, "transient" if isinstance(status, int) and status >= 500 else code
+            )
         self.code = code
         self.error_type = error_type
         self.status = status
@@ -22,7 +28,7 @@ class AKShareError(RuntimeError):
             message += "; routes: " + ", ".join(
                 "%s=%s" % (a["network"], a["code"]) for a in self.attempts
             )
-        super().__init__(message)
+        super().__init__(code, message)
 
 
 def safe_failure(exc):

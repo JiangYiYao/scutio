@@ -149,7 +149,7 @@ history = valuation_history("600519", include_series=False)  # 紧凑历史分�
 `financial_report(..., detail='full')` 默认保留完整源科目（AKShare 东财），不会因配置 Key 而缩减字段。
 `detail='summary'` 在 A 股且有 Key 时请求 Financial API 摘要，返回 `field_schema='hithink'`、金额单位及累计口径。无 Key 或摘要失败时返回 AKShare 东财完整报表，显式标记 `detail='full', requested_detail='summary', field_schema='source_native'`；调用方必须读字段视图，不能按同名英文猜测跨源科目等价。银行现金分配科目尤其不可直接替换。`total_debt` 是源总负债（对应 `TOTAL_LIABILITIES`），不是有息债务；`holder_equity_total` 是含少数股东权益的总权益，不是归母权益。报告期以业务日期为准，源时间戳以 UTC 显示为前日 16:00 时需按源东八区期末理解。
 
-港美完整表保留源科目名，源未提供币种时不猜填。跨市场金额、现金流支出符号及收入分类需查原文：例如腾讯「营运收入」与「营业额」不同，Apple 购买固定资产为负现金流，不能与 A 股支付项目直接比较符号。
+港美完整表保留源科目名，源未提供币种时不猜填，并标记 `partial=True, missing_fields=['currency']` 与 `warning`；金额比较前需查明报表币种，不能从上市市场推断。跨市场金额、现金流支出符号及收入分类需查原文：例如腾讯「营运收入」与「营业额」不同，Apple 购买固定资产为负现金流，不能与 A 股支付项目直接比较符号。
 
 `valuation_snapshot(code, quote_env=...)` 复用传入报价，独立请求估值；`pe_mrq` 不是静态 PE，`pb` 的 Financial API 别名基准为 MRQ。价格和指标来源在 `field_sources` 中分别记录，源时间未知保持空。未提供市值等字段时返回 `missing_fields`。
 

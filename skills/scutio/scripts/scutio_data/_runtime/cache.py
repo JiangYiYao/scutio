@@ -5,7 +5,9 @@ from __future__ import annotations
 import json
 import math
 import time
+from dataclasses import dataclass
 from pathlib import Path
+from typing import Callable
 
 from scutio_data._runtime.storage import file_lock, private_write, read_json
 from scutio_data.paths import cache_dir, state_dir
@@ -16,12 +18,51 @@ SWEEP_INTERVAL = 600
 MAX_AGE = 21600
 
 
+@dataclass(frozen=True)
+class CacheSpec:
+    """Cache only the exact source representation validated by its adapter."""
+
+    ttl: float
+    version: int = 1
+    identity: object = None
+    validator: Callable | None = None
+
+    def __post_init__(self):
+        if isinstance(self.ttl, bool) or not math.isfinite(self.ttl) or self.ttl <= 0:
+            raise ValueError("cache ttl must be a positive finite number")
+
+
+def read_api_cache(path, identity, spec):
+    entry = read_json(path)
+    saved = entry.get("saved_at")
+    expires = entry.get("expires_at")
+    now = time.time()
+    if (
+        entry.get("identity") != identity
+        or not isinstance(saved, (float, int))
+        or not math.isfinite(saved)
+        or not 0 <= now - saved < spec.ttl
+        or not isinstance(expires, (float, int))
+        or not math.isfinite(expires)
+        or expires <= now
+        or "value" not in entry
+    ):
+        return False, None
+    value = entry["value"]
+    try:
+        if spec.validator is not None and spec.validator(value) is False:
+            return False, None
+    except (TypeError, ValueError, KeyError, IndexError, AttributeError):
+        return False, None
+    return True, value
+
+
 def _entries():
     root = cache_dir() / "api"
     if root.is_symlink():
         return []
     paths = []
-    for pattern in ("hithink/*/*.json", "akshare/*.json"):
+    for pattern in ("hithink/*/*.json", "akshare/*.json", "responses/*/*.json"):
         for path in root.glob(pattern):
             if path.is_file() and not any(p.is_symlink() for p in (path, *path.parents)):
                 paths.append(path)

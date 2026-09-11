@@ -44,6 +44,7 @@ def test_migration_preserves_config_record_bytes_and_referenced_evidence(monkeyp
     secret = write(old / "credentials.env", config.KEY_NAME + "=test-token\n")
     secret.chmod(0o600)
     write(old / "settings.json", {"mode": "public"})
+    write(old / "akshare_health.json", {"last_check_at": 100})
     write(old / "cache" / "example" / "health.json", {"cooldown": 9999999999})
     write(old / "cache" / "example" / "response.json", {"saved_at": 1})
     write(old / "akshare_snapshots" / "snapshot.json", {"items": []})
@@ -61,14 +62,15 @@ def test_migration_preserves_config_record_bytes_and_referenced_evidence(monkeyp
     assert not record.exists() and not secret.exists()
     assert config.credential() == ("test-token", "credentials_file")
     assert config.mode() == "public"
+    assert json.loads((state_dir() / "akshare/health.json").read_text()) == {"last_check_at": 100}
     if os.name != "nt":
         assert (config_dir() / "credentials.env").stat().st_mode & 0o777 == 0o600
-    assert (
-        json.loads((state_dir() / "hithink/example/health.json").read_text())["cooldown"]
-        == 9999999999
-    )
-    assert (cache_dir() / "api/hithink/example/response.json").exists()
-    assert (cache_dir() / "api/akshare/snapshot.json").exists()
+    # Execution caches and health schemas are not user data and cannot be migrated as valid responses.
+    assert (old / "cache/example/health.json").exists()
+    assert (old / "cache/example/response.json").exists()
+    assert (old / "akshare_snapshots/snapshot.json").exists()
+    assert not (state_dir() / "hithink").exists()
+    assert not (cache_dir() / "api").exists()
     assert evidence.read_text() == "source evidence" and export.exists()
     assert not report.exists() and (cache_dir() / "documents/reports/report.pdf").exists()
     assert local_storage.migrate(apply=True)["moves"] == []
@@ -265,11 +267,11 @@ def test_migration_keeps_journal_locks_and_removes_only_empty_old_directories():
     write(home / "journal/.locks/old.lock", "")
     legacy_record()
     local_storage.migrate(apply=True)
-    assert not (home / "data_sources").exists()
+    assert (home / "data_sources/cache/test/request.lock").exists()
     assert not (home / "journal/decisions").exists()
     assert (home / "journal/.locks/old.lock").exists()
     assert (config_dir() / "settings.lock").exists()
     assert not (state_dir() / "settings.lock").exists()
     assert (state_dir() / "akshare/health.lock").exists()
-    assert (state_dir() / "hithink/test/request.lock").exists()
+    assert not (state_dir() / "hithink").exists()
     assert not (state_dir() / "journal").exists()

@@ -100,3 +100,10 @@ def test_release_tag_matches_version_and_commit_for_lightweight_and_annotated_ta
     git("commit", "--allow-empty", "-m", "Later work")
     with pytest.raises(ValueError, match="checked-out commit"):
         release.validate_tag(tmp_path, "0.1.0-alpha.1", git("rev-parse", "HEAD"), "v0.1.0-alpha.1")
+
+
+def test_release_worktree_inputs_exclude_deleted_tracked_files(monkeypatch, tmp_path):
+    present = tmp_path / "present.py"
+    present.write_text("value = 1\n")
+    monkeypatch.setattr(release, "git", lambda *args: "present.py\0deleted.py\0")
+    assert release.source_files(tmp_path) == [Path("present.py")]

@@ -74,6 +74,22 @@ def test_bare_us_ticker_rejected():
         em_secid("AAPL")
 
 
+def test_company_name_is_rejected_before_news_provider_without_us_ticker_hint(monkeypatch):
+    from scutio_data import feeds
+    from scutio_data._providers.akshare import client
+    from scutio_data._runtime.symbols import split_code
+
+    with pytest.raises(ValueError, match="security code, not a company name") as error:
+        split_code("贵州茅台")
+    assert "US ticker" not in str(error.value)
+    calls = []
+    monkeypatch.setattr(client, "fetch", lambda *a, **kw: calls.append(True))
+    result = feeds.stock_news("贵州茅台")
+    assert result["ok"] is False
+    assert "security code, not a company name" in result["error"]
+    assert calls == []
+
+
 @pytest.mark.parametrize(
     "raw",
     ["600519foo", "1234567", "hk123456", "600519.HK", "sz1234567"],

@@ -22,7 +22,7 @@ from case_catalog import KIND_LABEL, STATUS_LABEL, lookup
 _TESTS = Path(__file__).resolve().parent
 _REPO_ROOT = _TESTS.parent
 _SCRIPTS = _REPO_ROOT / "skills" / "scutio" / "scripts"
-for directory in (_SCRIPTS, _SCRIPTS / "collectors"):
+for directory in (_SCRIPTS,):
     if directory.is_dir() and str(directory) not in sys.path:
         sys.path.insert(0, str(directory))
 
@@ -34,19 +34,23 @@ def pytest_configure(config: pytest.Config) -> None:
 
 
 @pytest.fixture(autouse=True)
-def _isolate_source_pref(monkeypatch, tmp_path, request):
-    """每个 case 独立 source_pref，避免 last_ok 污染与写用户 ~/.scutio。"""
+def _isolate_data_runtime(monkeypatch, tmp_path, request, _local_worker_commands):
+    """每个 case 隔离配置、响应缓存和执行状态，不读写用户 ~/.scutio。"""
     if request.node.get_closest_marker("live") is None:
         import subprocess
 
-        original_run = subprocess.run
+        original_popen = subprocess.Popen
 
         def offline_worker_guard(args, *a, **k):
-            if any(str(arg).endswith(("_akshare_worker.py", "_http_worker.py")) for arg in args):
+            command = (str(args),) if isinstance(args, (str, bytes)) else tuple(map(str, args))
+            network_worker = any(
+                name in arg for arg in command for name in ("_akshare_worker.py", "_http_worker.py")
+            )
+            if network_worker and command not in _local_worker_commands:
                 raise RuntimeError("offline tests must mock the network worker boundary")
-            return original_run(args, *a, **k)
+            return original_popen(args, *a, **k)
 
-        monkeypatch.setattr(subprocess, "run", offline_worker_guard)
+        monkeypatch.setattr(subprocess, "Popen", offline_worker_guard)
     monkeypatch.setenv("SCUTIO_HOME", str(tmp_path / "home"))
     monkeypatch.setenv("SCUTIO_CONFIG_DIR", str(tmp_path / "home" / "config"))
     monkeypatch.delenv("HITHINK_FINANCE_API_KEY", raising=False)
@@ -56,26 +60,27 @@ def _isolate_source_pref(monkeypatch, tmp_path, request):
     from scutio_data._providers import eastmoney as providers_eastmoney
 
     monkeypatch.setattr(providers_eastmoney, "_em_us_market_cache", {})
-    pref_path = tmp_path / "source_pref.json"
-    monkeypatch.setenv("SCUTIO_SOURCE_PREF_PATH", str(pref_path))
-    monkeypatch.setenv("SCUTIO_SOURCE_PREF", "1")
-    # 单元测试使用确定性的进程内时钟；跨进程文件锁由 live/部署默认开启。
-    monkeypatch.setenv("SCUTIO_EM_CROSS_PROCESS_RATE", "0")
-    monkeypatch.setenv("SCUTIO_EM_RATE_STATE_PATH", str(tmp_path / "em_rate_limit.state"))
-    try:
-        from scutio_data import source_pref
-
-        source_pref.reset_runtime_state()
-        source_pref.clear_pref()
-    except Exception:
-        pass
     yield
-    try:
-        from scutio_data import source_pref
 
-        source_pref.reset_runtime_state()
-    except Exception:
-        pass
+
+@pytest.fixture
+def _local_worker_commands():
+    return set()
+
+
+@pytest.fixture
+def local_worker_command(_local_worker_commands):
+    """Allow one exact test command with a socketpair or an injected offline connector.
+
+    This does not disable the worker guard for the test. The caller must arrange
+    transport isolation inside the child before it invokes the real transfer code.
+    """
+
+    def allow(command):
+        _local_worker_commands.add(tuple(map(str, command)))
+        return command
+
+    return allow
 
 
 @pytest.fixture

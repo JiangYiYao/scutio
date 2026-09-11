@@ -3,6 +3,7 @@
 import base64
 import json
 import sys
+from pathlib import Path
 
 import requests
 
@@ -27,6 +28,10 @@ def transfer(payload):
 
 
 def main():
+    sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+    from scutio_data._runtime.processes import install_worker_guard
+
+    install_worker_guard()
     try:
         result = transfer(json.load(sys.stdin))
     except requests.RequestException as exc:

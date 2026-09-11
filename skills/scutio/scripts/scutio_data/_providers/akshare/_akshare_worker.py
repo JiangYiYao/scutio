@@ -8,11 +8,14 @@ from pathlib import Path
 
 
 def main():
-    request = json.load(sys.stdin)
     # Import the allowlist without importing the entire AKShare runtime in the parent.
     sys.path.insert(0, str(Path(__file__).resolve().parents[3]))
-    from scutio_data._providers.akshare.client import ALLOWED
+    from scutio_data._runtime.processes import install_worker_guard
+
+    install_worker_guard()
+    request = json.load(sys.stdin)
     from scutio_data._providers.akshare.errors import safe_failure
+    from scutio_data._providers.akshare.registry import ALLOWED
 
     if request.get("function") not in ALLOWED:
         raise ValueError("unsupported adapter")

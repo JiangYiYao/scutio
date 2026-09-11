@@ -1291,7 +1291,6 @@ def run_self_check(
     groups: Optional[Iterable[str]] = None,
     only: Optional[Iterable[str]] = None,
     pace_sec: float = 0.6,
-    apply_source_pref: bool = False,
 ) -> SelfCheckReport:
     """运行自检并返回结构化报告。
 
@@ -1299,12 +1298,9 @@ def run_self_check(
         groups: 仅跑这些 group（market/capital/…）
         only: 仅跑这些 probe id
         pace_sec: 探针间隔，降低东财断连
-        apply_source_pref: 是否把探测结果写入生产源偏好；默认只读
 
-    自检始终按默认主源顺序再探；默认不修改生产路由状态。
+    自检使用与公开接口相同的执行协调与健康冷却，不绕过失败源状态。
     """
-    from scutio_data.source_pref import reprobe_context
-
     group_set = {g.strip() for g in groups} if groups else None
     only_set = {x.strip() for x in only} if only else None
     unknown = (only_set or set()) - {probe.id for probe in PROBES}
@@ -1320,38 +1316,37 @@ def run_self_check(
             continue
         selected.append(p)
 
-    with reprobe_context(apply=apply_source_pref):
-        for i, p in enumerate(selected):
-            t0 = time.time()
-            try:
-                status, structure_ok, message, sample, checks = p.run()
-                err = None if status != "fail" else message
-            except Exception as exc:  # noqa: BLE001
-                status = "fail"
-                structure_ok = False
-                message = "exception: %s" % exc
-                sample = ""
-                checks = []
-                err = traceback.format_exc(limit=4)
-            elapsed = (time.time() - t0) * 1000
-            results.append(
-                ProbeResult(
-                    id=p.id,
-                    name=p.name,
-                    group=p.group,
-                    entry=p.entry,
-                    status=status,
-                    critical=p.critical,
-                    elapsed_ms=round(elapsed, 1),
-                    message=message,
-                    structure_ok=structure_ok,
-                    sample=sample,
-                    error=err,
-                    checks=checks,
-                )
+    for i, p in enumerate(selected):
+        t0 = time.time()
+        try:
+            status, structure_ok, message, sample, checks = p.run()
+            err = None if status != "fail" else message
+        except Exception as exc:  # noqa: BLE001
+            status = "fail"
+            structure_ok = False
+            message = "exception: %s" % exc
+            sample = ""
+            checks = []
+            err = traceback.format_exc(limit=4)
+        elapsed = (time.time() - t0) * 1000
+        results.append(
+            ProbeResult(
+                id=p.id,
+                name=p.name,
+                group=p.group,
+                entry=p.entry,
+                status=status,
+                critical=p.critical,
+                elapsed_ms=round(elapsed, 1),
+                message=message,
+                structure_ok=structure_ok,
+                sample=sample,
+                error=err,
+                checks=checks,
             )
-            if pace_sec > 0 and i < len(selected) - 1:
-                time.sleep(pace_sec)
+        )
+        if pace_sec > 0 and i < len(selected) - 1:
+            time.sleep(pace_sec)
 
     counts = {"ok": 0, "degraded": 0, "fail": 0, "skip": 0}
     critical_fail = 0
@@ -1513,14 +1508,9 @@ def main(argv: list[str] | None = None) -> int:
         "-o",
         "--output",
         default="",
-        help="写入该路径（默认 stdout；不写缓存、不记上次运行时间）",
+        help="写入报告到该路径（默认 stdout；取数仍使用运行时缓存与状态）",
     )
     parser.add_argument("--pace", type=float, default=0.6, help="探针间隔秒（默认 0.6）")
-    parser.add_argument(
-        "--apply-source-pref",
-        action="store_true",
-        help="将自检成功源写入动态源偏好（默认只读）",
-    )
     parser.add_argument("--list", action="store_true", help="列出探针后退出")
     args = parser.parse_args(argv)
 
@@ -1538,7 +1528,6 @@ def main(argv: list[str] | None = None) -> int:
             groups=groups,
             only=only,
             pace_sec=args.pace,
-            apply_source_pref=args.apply_source_pref,
         )
     except ValueError as exc:
         parser.error(str(exc))

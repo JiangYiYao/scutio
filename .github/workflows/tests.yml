@@ -55,6 +55,7 @@ jobs:
         run: >-
           python -m pytest -q tests/runtime tests/journal
           tests/data/test_request_timeouts.py tests/data/test_optional_sources.py
+          tests/data/test_execution.py tests/data/test_batch.py tests/data/test_batch_domains.py
           -m 'not live' -p no:cacheprovider
 
   live-canary:
@@ -73,7 +74,6 @@ jobs:
         run: python -m pytest -q tests/data/test_live_smoke.py --junitxml=artifacts/http.xml -p no:cacheprovider
         env:
           SCUTIO_LIVE: "1"
-          SCUTIO_EM_CROSS_PROCESS_RATE: "1"
       - name: Market and fragile capability probes
         id: sources
         continue-on-error: true
@@ -81,8 +81,6 @@ jobs:
           python tests/self_check.py
           --only security_quote,security_bars,hk_us_quote,hk_us_bars,concept_blocks,stock_reports,periodic_reports_hk
           --pace 1 --json -o artifacts/sources.json
-        env:
-          SCUTIO_EM_CROSS_PROCESS_RATE: "1"
       - name: Write source health summary
         if: always()
         shell: python

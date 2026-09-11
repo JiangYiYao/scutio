@@ -73,7 +73,7 @@
 - SEC `ownership_filings` 是申报列表，不是按个股聚合后的 13F 全机构持仓表。
 - 回购、增减持、质押均通过 AKShare 获取；巨潮公告可作证据，但不冒充同构数值 backup。
 - 回购完成记录可能把原计划金额上下限覆盖成实际花费；识别到此情况时返回 `plan_amount_low/high=None`、`plan_amount_available=False` 和 `partial=True`，实际回购金额仍保留。原授权范围需看方案公告。
-- 使用 `corporate_actions` 或四条明细腿，不能两边都调；已有腿时传 `preloaded`。
+- 只关心回购、增减持、质押或分红时直接取对应项；需要完整组合时再用 `corporate_actions`，已有腿传 `preloaded`，避免两边重复调用。完整组合可能包含全市场分页和多个质押统计日期，冷调用仍可能分钟级；并发不会减少所要求的历史覆盖。
 - 两融、成交、股东、分红字段上游缺失时为 `None`；只有上游明确给零才是 0。
 - `industry_comparison` 从 AKShare 全行业表取涨跌两端；切换新浪时**行业分类口径不同**，`constituent_count` 是公司家数，涨跌家数缺失为 `None`。
 
@@ -105,10 +105,12 @@
 
 ## 龙虎榜（仅 A 股，按需）
 
+`dragon_tiger_board(code, trade_date, look_back=30)` 必须传查询截止日 `trade_date="YYYY-MM-DD"`，回看天数由 `look_back` 指定。
+
 ```python
 from scutio_data.capital import dragon_tiger_board, daily_dragon_tiger
 
-board = dragon_tiger_board("600519", "2026-09-08", look_back=30)
+board = dragon_tiger_board("600519", trade_date="2026-09-08", look_back=30)
 daily = daily_dragon_tiger("2026-09-08")
 ```
 

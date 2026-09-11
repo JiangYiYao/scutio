@@ -14,7 +14,14 @@ from pathlib import Path
 
 import requests
 
-from scutio_data._runtime.timeouts import RequestTimeout, remaining, source_budget
+from scutio_data._runtime.processes import managed_run
+from scutio_data._runtime.timeouts import (
+    RequestTimeout,
+    observe_event,
+    remaining,
+    source_budget,
+    transport_timeout,
+)
 
 
 def retry_after(value):
@@ -55,6 +62,57 @@ def _worker_exit_error(result):
 
 class Session(requests.Session):
     def request(self, method, url, **kwargs):
+        from scutio_data._runtime import execution
+
+        with source_budget(), execution.attempt_budget(2) as transfers:
+            attempts = kwargs.pop("_source_attempts", 1)
+            identity = execution.http_identity(url)
+            provider, endpoint = identity or (None, None)
+            network = execution.network_identity()
+            automatic = self.trust_env and "proxies" not in kwargs
+            route = "environment" if self.trust_env else "direct"
+            if automatic and provider:
+                route = execution.preferred_route(provider, endpoint, network) or "environment"
+            routes = [route] + (["direct"] if automatic and route != "direct" else [])
+            for position, route in enumerate(routes):
+                observe_event("source_attempt", source=provider, endpoint=endpoint, route=route)
+
+                def transfer():
+                    remaining("response")
+                    execution.http_transfer_started()
+                    return self._transport_request(
+                        method, url, network_trust_env=route != "direct", **kwargs
+                    )
+
+                try:
+                    if provider is not None and not execution.in_source_attempt():
+                        response = execution.execute(
+                            provider,
+                            endpoint,
+                            transfer,
+                            parameters={
+                                "method": method,
+                                "url": url,
+                                "options": kwargs,
+                                "headers": dict(self.headers),
+                                "cookies": self.cookies.get_dict(),
+                                "trust_env": route != "direct",
+                            },
+                            attempts=attempts,
+                            route=network + ":" + route,
+                        )
+                    else:
+                        response = transfer()
+                except (requests.exceptions.ProxyError, requests.exceptions.SSLError):
+                    if position + 1 < len(routes) and transfers.used < transfers.maximum:
+                        remaining("response")
+                        continue
+                    raise
+                if automatic and provider and route == "direct" and response.status_code < 400:
+                    execution.remember_route(provider, endpoint, network, "direct")
+                return response
+
+    def _transport_request(self, method, url, *, network_trust_env, **kwargs):
         with source_budget():
             seconds = remaining("response")
             specified = kwargs.pop("timeout", None)
@@ -66,7 +124,7 @@ class Session(requests.Session):
                     connect, read = specified
                 else:
                     read = min(read, specified)
-            kwargs["timeout"] = (min(connect, seconds), min(read, seconds))
+            kwargs["timeout"] = transport_timeout(connect, read)
             headers = dict(self.headers)
             headers.update(kwargs.pop("headers", None) or {})
             payload = {
@@ -74,7 +132,7 @@ class Session(requests.Session):
                 "url": url,
                 "headers": headers,
                 "cookies": self.cookies.get_dict(),
-                "trust_env": self.trust_env,
+                "trust_env": network_trust_env,
                 "options": kwargs,
             }
             env = {
@@ -83,7 +141,7 @@ class Session(requests.Session):
                 if not any(part in key.upper() for part in ("KEY", "TOKEN", "SECRET"))
             }
             try:
-                result = subprocess.run(
+                result = managed_run(
                     # Do not let this directory's http.py shadow stdlib http.client.
                     [sys.executable, "-P", "-B", str(Path(__file__).with_name("_http_worker.py"))],
                     input=json.dumps(payload),
@@ -94,6 +152,7 @@ class Session(requests.Session):
                     timeout=seconds,
                     env=env,
                     check=False,
+                    stage="worker",
                 )
             except subprocess.TimeoutExpired:
                 raise RequestTimeout("response") from None

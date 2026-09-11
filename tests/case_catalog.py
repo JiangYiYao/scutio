@@ -35,46 +35,6 @@ CASES: dict[str, dict[str, Any]] = {
         "input": "hk02513、HK02513、02513.HK、HK.02513、hk700、00700.HK；裸 02513",
         "expected": "前缀码 → (hk, 补齐码)；get_prefix/normalize 正确；裸 02513 抛 ValueError",
     },
-    "test_em_get_retries_without_proxy_on_proxy_error": {
-        "module": "HTTP 传输",
-        "kind": "offline_mock",
-        "entry": "scutio_data._providers.eastmoney.em_get",
-        "feature": "环境代理失败时用 trust_env=False Session 直连恢复一次",
-        "input": "mock：主 Session 抛 ProxyError，直连 Session 成功",
-        "expected": "主链和直连链各调用 1 次；ALL_PROXY 不泄漏且两次均遵守限流",
-    },
-    "test_em_get_recovers_chunked_response_once": {
-        "module": "HTTP 传输",
-        "kind": "offline_mock",
-        "entry": "scutio_data._providers.eastmoney.em_get",
-        "feature": "响应残缺时用无重试 Session 恢复一次",
-        "input": "mock：主 Session 抛 ChunkedEncodingError，恢复 Session 成功",
-        "expected": "主链和恢复链各调用 1 次；不叠加第二条 Adapter 重试链",
-    },
-    "test_em_get_retries_generic_connections_through_rate_limiter": {
-        "module": "HTTP 传输",
-        "kind": "offline_mock",
-        "entry": "scutio_data._providers.eastmoney.em_get",
-        "feature": "常规连接重试由 em_get 协调，每次真实尝试都重新限流",
-        "input": "mock：主 Session 最终抛 ConnectionError",
-        "expected": "共尝试 EM_MAX_ATTEMPTS 次；预约次数与真实请求次数一致",
-    },
-    "test_em_recovery_session_has_no_adapter_retries": {
-        "module": "HTTP 传输",
-        "kind": "offline_unit",
-        "entry": "scutio_data._providers.eastmoney 的主/恢复 Session",
-        "feature": "所有 Session 的 Adapter 都不隐藏重试",
-        "input": "读取 HTTPS Adapter 的 max_retries 配置",
-        "expected": "主链与恢复链 Adapter total 均为 0",
-    },
-    "test_em_get_does_not_retry_non_transient_request_errors": {
-        "module": "HTTP 传输",
-        "kind": "offline_mock",
-        "entry": "scutio_data._providers.eastmoney.em_get",
-        "feature": "非瞬时 RequestException 立即失败、不空转重试",
-        "input": "mock：固定抛出非瞬时 RequestException",
-        "expected": "只请求 1 次并向上抛出/失败",
-    },
     "test_parse_news_time_and_rank": {
         "module": "新闻",
         "kind": "offline_unit",
@@ -130,14 +90,6 @@ CASES: dict[str, dict[str, Any]] = {
         "feature": "东财失败时使用 AKShare 新浪行业榜，保留分类差异",
         "input": "mock AKShare 东财失败、新浪公司家数与领涨数据",
         "expected": "ok=true、source=sina_industry；top/bottom 按涨跌幅取端",
-    },
-    "test_source_pref_last_ok_temporarily_first": {
-        "module": "源优先级",
-        "kind": "offline_unit",
-        "entry": "source_pref.ordered_sources / mark_ok",
-        "feature": "再探窗口内 last_ok 优先；主源成功后切回",
-        "input": "独立 pref 文件；default=[eastmoney,sina]",
-        "expected": "mark_ok(sina) 后 sina 优先；mark_ok(eastmoney) 后主源优先",
     },
     "test_security_quote_and_bars_fallback_envelope": {
         "module": "行情多源",
@@ -574,22 +526,6 @@ CASES: dict[str, dict[str, Any]] = {
         "input": "600519 + BAD",
         "expected": "ok=true partial=true；invalid/missing 完整",
     },
-    "test_source_pref_periodically_reprobes_primary_and_ignores_partial": {
-        "module": "源优先级",
-        "kind": "offline_unit",
-        "entry": "source_pref",
-        "feature": "定期重探主源且不提升部分降级",
-        "input": "模拟时钟",
-        "expected": "到间隔恢复默认顺序",
-    },
-    "test_source_pref_reprobe_context_is_read_only_by_default": {
-        "module": "源优先级",
-        "kind": "offline_unit",
-        "entry": "source_pref.reprobe_context",
-        "feature": "自检默认不改生产路由",
-        "input": "apply false/true",
-        "expected": "仅 apply=true 写回",
-    },
     "test_a_only_facades_reject_hk_us_without_network": {
         "module": "市场边界",
         "kind": "offline_mock",
@@ -613,22 +549,6 @@ CASES: dict[str, dict[str, Any]] = {
         "feature": "研报示例解包 result_list",
         "input": "fixture 信封",
         "expected": "执行成功",
-    },
-    "test_em_direct_session_ignores_all_proxy": {
-        "module": "HTTP 传输",
-        "kind": "offline_unit",
-        "entry": "_providers.eastmoney._EM_DIRECT_SESSION",
-        "feature": "直连恢复忽略 ALL_PROXY",
-        "input": "设置坏 ALL_PROXY",
-        "expected": "合并代理为空",
-    },
-    "test_em_rate_limit_coordinates_separate_processes": {
-        "module": "HTTP 传输",
-        "kind": "offline_unit",
-        "entry": "_providers.eastmoney._em_reserve_start",
-        "feature": "同机多进程共享请求槽",
-        "input": "两个 Python 进程",
-        "expected": "开始时间至少相隔配置值",
     },
     "test_trade_calendar_primary_and_historical_backup": {
         "module": "P0 交易日历",
@@ -725,6 +645,10 @@ STATUS_LABEL = {
 # 未逐条补充业务说明的用例按文件归组，报告保留完整 nodeid 直达实际断言。
 # 分组说明表示该文件的覆盖范围，不冒充每个 case 的输入和断言。
 CASE_GROUPS: dict[str, tuple[str, str]] = {
+    "data/test_batch.py": ("批量取数", "同步终态、独立预算、上下文、进度与取消"),
+    "data/test_batch_domains.py": ("领域组合", "独立取数腿并发、依赖复用和部分覆盖"),
+    "data/test_execution.py": ("来源执行", "跨进程配额、缓存复用、故障隔离与恢复探测"),
+    "data/test_screen_records.py": ("程序筛选", "显式样本、条件计算、覆盖范围与缺失项"),
     "data/test_request_timeouts.py": ("取数超时", "共享预算、缓慢响应取消、队列、回退与可选状态锁"),
     "data/test_research_scope.py": ("研究数据范围", "保留能力、删除入口与频率边界"),
     "data/test_api_contracts.py": ("接口契约", "代码身份、返回信封、缺失字段与来源回退"),
@@ -768,7 +692,7 @@ CASE_GROUPS: dict[str, tuple[str, str]] = {
     "data/test_live_smoke.py": ("公网通路", "公开数据门面可用性；需显式启用网络"),
 }
 
-LAYER_LABELS = {"collectors": "研究采集", "journal": "研究记录", "runtime": "运行时与文档"}
+LAYER_LABELS = {"journal": "研究记录", "runtime": "运行时与文档"}
 
 
 def lookup(nodeid: str) -> dict[str, Any]:

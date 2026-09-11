@@ -74,13 +74,16 @@ def split_code(code):
 
     if re.fullmatch(r"\d{6}", upper):
         code6 = upper
-    elif upper and upper[0].isalpha() and all(ch.isalnum() or ch in ".-" for ch in upper):
+    elif re.fullmatch(r"[A-Z][A-Z0-9.\-]{0,11}", upper):
         raise ValueError(
             "US ticker %r requires explicit prefix us/US or suffix .US "
             "(e.g. usAAPL / AAPL.US); bare tickers are not inferred" % (code,)
         )
     else:
-        raise ValueError("invalid A-share code: %r" % (code,))
+        raise ValueError(
+            "invalid security code: %r; pass a security code, not a company name "
+            "(e.g. 600519 / hk00700 / usAAPL)" % (code,)
+        )
 
     # Infer exchange when caller omitted it (stock-oriented defaults).
     if code6.startswith(("110", "113", "204")):

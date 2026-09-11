@@ -12,7 +12,7 @@
 | 覆盖缺口 | 美国部分指标保留受限东财查询；带源时间 USDCNY 暂保留新浪 |
 
 **原则**：只取数，不写宏观叙事或交易结论。  
-**首选（但重）**：`macro_snapshot()` —— 多腿取数（各 AKShare 子调用有独立总时限，聚合可能较慢），仍不宜当轻量探针；超时或只关心子集时改用 `list_macro_series` + 单序列 / `rates_snapshot` / `bond_yields_cn_us` 等。
+按问题选择 `list_macro_series` + 单序列 / `rates_snapshot` / `bond_yields_cn_us` 等；需要整个宏观快照时再用 `macro_snapshot()`。完整组合同步等待多项取数，冷调用仍可能分钟级，不宜当轻量探针。各项和组合共享上层剩余预算，已有材料通过 `preloaded` 复用。
 **按名取序列**：不确定有哪些名时先 `list_macro_series(market=...)`，再 `macro_series` / `cn_macro_series` / `us_macro_series`。
 
 ---

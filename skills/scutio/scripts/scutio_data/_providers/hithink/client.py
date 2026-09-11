@@ -1,33 +1,34 @@
-"""Bounded official Financial API REST transport; no SDK or public-source recursion."""
+"""Official Financial API protocol over the shared source execution boundary."""
 
 from __future__ import annotations
 
 import hashlib
-import json
-import os
-import threading
-import time
-from contextlib import contextmanager
 from datetime import datetime, timezone
 
 import requests
 
 from scutio_data._runtime import config
-from scutio_data._runtime.cache import write_api_cache
+from scutio_data._runtime.execution import CacheSpec, SourceFailure, execute, network_identity
 from scutio_data._runtime.http import Session, retry_after
 from scutio_data._runtime.symbols import is_a_share as eligible
 from scutio_data._runtime.symbols import split_code
-from scutio_data._runtime.timeouts import RequestTimeout, pause, remaining, source, source_budget
-from scutio_data.paths import cache_dir, state_dir
+from scutio_data._runtime.timeouts import source, source_budget
 
 BASE = "https://fuyao.aicubes.cn"
 
 
-_lock = threading.Lock()
+_FINANCIAL_FIELDS = {
+    key: value.split()
+    for key, value in {
+        "lrb": "basic_eps operating_income operating_costs operating_expenses operating_profit profit_total net_profit parent_holder_net_profit income_tax_expense interest_expenses manage_fee sales_fee research_and_development_expenses",
+        "fzb": "total_current_assets non_current_nets_total assets_total total_debt holder_equity_total cash accounts_receivable",
+        "llb": "act_cash_flow_net invest_cash_flow_net financing_cash_flow_net cash_equivalents_net_addition pay_dividends_profits_interest_cash pay_fixed_assets_etc_cash",
+    }.items()
+}
 
 
 class SourceError(RuntimeError):
-    """Only locally constructed, credential-free errors may leave the transport."""
+    """Credential-free source errors exposed to the domain adapters."""
 
 
 def preferred(code):
@@ -38,142 +39,166 @@ def namespace(key):
     return hashlib.sha256(key.encode()).hexdigest()[:24]
 
 
-@contextmanager
-def _exclusive(path, deadline):
-    path.parent.mkdir(parents=True, exist_ok=True)
-    if not _lock.acquire(timeout=max(0, deadline - time.monotonic())):
-        raise RequestTimeout("queue_wait")
-    try:
-        with open(path, "a+b") as stream:
-            if os.name == "nt":
-                import msvcrt
+def _valid_value(value, path, params):
+    if not isinstance(value, dict) or value.get("source") != "hithink":
+        return False
+    data = value.get("data")
+    if not isinstance(data, dict) or not isinstance(data.get("item"), list):
+        return False
+    rows = data["item"]
+    if any(not isinstance(row, dict) for row in rows):
+        return False
+    if path.startswith("/api/a-share/financials/"):
+        expected_period = "annual" if params.get("period") == "annual" else "quarterly"
+        if any(
+            row.get("thscode") != params.get("thscode")
+            or row.get("currency") != "CNY"
+            or row.get("period") != expected_period
+            for row in rows
+        ):
+            return False
+    elif path.endswith(("/historical", "/adjustment-factors")):
+        if data.get("thscode") != params.get("thscode"):
+            return False
+        if path.endswith("/historical") and any(
+            data.get(key) != params.get(key) for key in ("adjust", "interval")
+        ):
+            return False
+    elif path.endswith("/snapshot"):
+        expected = set(str(params.get("thscodes", "")).split(","))
+        if any(row.get("thscode") not in expected for row in rows):
+            return False
+    if not isinstance(value.get("retrieved_at"), str):
+        return False
+    from scutio_data._providers.hithink import parse
 
-                stream.write(b"0")
-                stream.flush()
-            else:
-                import fcntl
-            while True:
-                try:
-                    if os.name == "nt":
-                        stream.seek(0)
-                        msvcrt.locking(stream.fileno(), msvcrt.LK_NBLCK, 1)
-                    else:
-                        fcntl.flock(stream, fcntl.LOCK_EX | fcntl.LOCK_NB)
-                    break
-                except OSError:
-                    if time.monotonic() >= deadline:
-                        raise RequestTimeout("queue_wait") from None
-                    time.sleep(0.05)
+    try:
+        if path.startswith("/api/a-share/financials/"):
+            report = {
+                "income-statements": "lrb",
+                "balance-sheets": "fzb",
+                "cash-flow-statements": "llb",
+            }.get(path.rsplit("/", 1)[-1])
+            if report:
+                for row in rows:
+                    parse.date_ms(row.get("period_end_ms"))
+                    values = [parse.number(row.get(field)) for field in _FINANCIAL_FIELDS[report]]
+                    if all(value is None for value in values):
+                        return False
+        elif path.endswith("/prices/historical"):
+            parse.bars(rows, params["thscode"], {})
+        elif path.endswith("/adjustment-factors"):
+            parse.dividends(rows, params["thscode"])
+        elif path.endswith("/valuations/snapshot"):
+            for row in rows:
+                values = [
+                    parse.number(row.get(field))
+                    for field in ("pe_ttm", "pe_mrq", "pb_mrq", "ps_ttm", "pcf_ttm")
+                ]
+                if all(value is None for value in values):
+                    return False
+    except (ValueError, TypeError, OverflowError, OSError):
+        return False
+    return True
+
+
+def _transport(path, params, key):
+    with Session() as session:
+        session.headers.update({"X-api-key": key, "Accept": "application/json"})
+        try:
+            response = session.get(BASE + path, params=params, allow_redirects=False)
+        except requests.RequestException as exc:
+            code = (
+                "proxy_error"
+                if isinstance(exc, requests.exceptions.ProxyError)
+                else "tls_error"
+                if isinstance(exc, requests.exceptions.SSLError)
+                else "upstream_timeout"
+                if isinstance(exc, requests.exceptions.Timeout)
+                else "upstream_connection_error"
+                if isinstance(exc, requests.exceptions.ConnectionError)
+                else "transient"
+            )
+            raise SourceFailure(code, "hithink: " + code) from None
+        status = response.status_code
+        try:
+            payload = response.json()
+        except ValueError:
+            payload = {}
+        code = payload.get("code") if isinstance(payload, dict) else None
+        if 200 <= status < 300 and type(code) is int and code == 0:
+            data = payload.get("data")
+            if not isinstance(data, dict):
+                raise SourceFailure("invalid_response", "hithink: invalid response schema")
+            timestamp = data.get("timestamp")
             try:
-                yield
-            finally:
-                if os.name == "nt":
-                    stream.seek(0)
-                    msvcrt.locking(stream.fileno(), msvcrt.LK_UNLCK, 1)
-                else:
-                    fcntl.flock(stream, fcntl.LOCK_UN)
-    finally:
-        _lock.release()
+                if isinstance(timestamp, bool):
+                    raise ValueError("invalid timestamp")
+                data_time = (
+                    datetime.fromtimestamp(timestamp / 1000, timezone.utc).isoformat()
+                    if timestamp is not None
+                    else None
+                )
+            except (TypeError, ValueError, OverflowError, OSError):
+                raise SourceFailure(
+                    "invalid_response", "hithink: invalid source timestamp"
+                ) from None
+            value = {
+                "data": data,
+                "retrieved_at": datetime.now(timezone.utc).isoformat(),
+                "data_as_of": data_time,
+                "source": "hithink",
+            }
+            if not _valid_value(value, path, params):
+                raise SourceFailure(
+                    "invalid_response", "hithink: invalid response schema or identity"
+                )
+            return value
+        reason = (
+            "authentication"
+            if status == 401 or code == 2001
+            else "permission"
+            if status == 403 or code == 2003
+            else "rate_limited"
+            if status == 429 or code == 4001
+            else "data_not_ready"
+            if code == 3002
+            else "transient"
+            if status >= 500 or isinstance(code, int) and code >= 5000
+            else "request_rejected"
+        )
+        raise SourceFailure(
+            reason,
+            "hithink: " + reason,
+            retry_after=retry_after(response.headers.get("Retry-After"))
+            if reason == "rate_limited"
+            else None,
+            scope="provider" if reason in ("authentication", "rate_limited") else "endpoint",
+        )
 
 
 def request(path, params, *, ttl=0):
-    with source_budget():
-        return _request(path, params, ttl=ttl)
-
-
-def _request(path, params, *, ttl=0):
     if not config.enabled():
         raise SourceError("hithink: disabled or key not configured")
     key = config.credential()[0]
-    root = cache_dir() / "api" / "hithink" / namespace(key)
-    state_root = state_dir() / "hithink" / namespace(key)
-    token = hashlib.sha256(json.dumps([2, path, params], sort_keys=True).encode()).hexdigest()
-    cache_path = root / (token + ".json")
-    state_path = state_root / "health.json"
-    deadline = time.monotonic() + remaining("queue_wait")
-    # One in-flight request per credential, across threads and local processes.
-    with _exclusive(state_root / "request.lock", deadline):
-        cached = config.read_json(cache_path)
-        if ttl and time.time() - cached.get("saved_at", 0) < ttl:
-            return cached["value"]
-        state = config.read_json(state_path)
-        until = max(state.get("cooldown", 0), state.get(path, 0))
-        if until > time.time():
-            raise SourceError("hithink: cooldown (%s)" % state.get("reason", "retry_later"))
-        with Session() as session:
-            session.headers.update({"X-api-key": key, "Accept": "application/json"})
-            for attempt in range(2):
-                wait = max(0, state.get("last_start", 0) + 1 - time.time())
-                pause(wait, "rate_wait")
-                state["last_start"] = time.time()
-                config.private_write(state_path, json.dumps(state))
-                try:
-                    response = session.get(
-                        BASE + path,
-                        params=params,
-                        timeout=(min(5, remaining()), min(20, remaining())),
-                        allow_redirects=False,
-                    )
-                    status = response.status_code
-                    try:
-                        payload = response.json()
-                    except ValueError:
-                        payload = {}
-                    code = payload.get("code") if isinstance(payload, dict) else None
-                except requests.RequestException:
-                    status, code, payload = 503, None, {}
-                if 200 <= status < 300 and type(code) is int and code == 0:
-                    data = payload.get("data")
-                    if not isinstance(data, dict) or not isinstance(data.get("item"), list):
-                        raise SourceError("hithink: invalid response schema")
-                    timestamp = data.get("timestamp")
-                    try:
-                        data_time = (
-                            datetime.fromtimestamp(timestamp / 1000, timezone.utc).isoformat()
-                            if timestamp is not None
-                            else None
-                        )
-                    except (TypeError, ValueError, OverflowError, OSError):
-                        raise SourceError("hithink: invalid source timestamp") from None
-                    value = {
-                        "data": data,
-                        "retrieved_at": datetime.now(timezone.utc).isoformat(),
-                        "data_as_of": data_time,
-                        "source": "hithink",
-                    }
-                    state.setdefault("verified_capabilities", {})[path] = value["retrieved_at"]
-                    config.private_write(state_path, json.dumps(state))
-                    if ttl:
-                        write_api_cache(
-                            cache_path, {"saved_at": time.time(), "value": value}, ttl=ttl
-                        )
-                    return value
-                reason = (
-                    "authentication"
-                    if status == 401 or code == 2001
-                    else "permission"
-                    if status == 403 or code == 2003
-                    else "rate_limited"
-                    if status == 429 or code == 4001
-                    else "data_not_ready"
-                    if code == 3002
-                    else "transient"
-                    if status >= 500 or isinstance(code, int) and code >= 5000
-                    else "request_rejected"
+    with source_budget():
+        try:
+            return execute(
+                "hithink",
+                path,
+                lambda: _transport(path, params, key),
+                parameters=params,
+                credential_scope=namespace(key),
+                route=network_identity(),
+                attempts=2,
+                cache=CacheSpec(
+                    ttl=ttl, version=3, validator=lambda value: _valid_value(value, path, params)
                 )
-                if reason in ("authentication", "permission", "rate_limited"):
-                    seconds = (
-                        retry_after(response.headers.get("Retry-After"))
-                        if reason == "rate_limited"
-                        else 300
-                    )
-                    state[path if reason == "permission" else "cooldown"] = time.time() + seconds
-                    state["reason"] = reason
-                    config.private_write(state_path, json.dumps(state))
-                if reason != "transient" or attempt == 1:
-                    raise SourceError("hithink: " + reason)
-                pause(0.5, "retry_wait")
-    raise SourceError("hithink: request failed")
+                if ttl
+                else None,
+            )
+        except SourceFailure as exc:
+            raise SourceError(str(exc)) from None
 
 
 def identity(code):
@@ -328,11 +353,7 @@ def financial_summary(code, report_type, num, period):
         ttl=3600,
     )
     items = []
-    fields = {
-        "lrb": "basic_eps operating_income operating_costs operating_expenses operating_profit profit_total net_profit parent_holder_net_profit income_tax_expense interest_expenses manage_fee sales_fee research_and_development_expenses",
-        "fzb": "total_current_assets non_current_nets_total assets_total total_debt holder_equity_total cash accounts_receivable",
-        "llb": "act_cash_flow_net invest_cash_flow_net financing_cash_flow_net cash_equivalents_net_addition pay_dividends_profits_interest_cash pay_fixed_assets_etc_cash",
-    }[report_type].split()
+    fields = _FINANCIAL_FIELDS[report_type]
     for row in response["data"]["item"]:
         if row.get("thscode") != meta["thscode"] or row.get("currency") != "CNY":
             raise SourceError("hithink: statement identity/currency mismatch")
