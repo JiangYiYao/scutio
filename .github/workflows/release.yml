@@ -1,67 +1,168 @@
 name: release
 
 on:
+  push:
+    tags: ["v*"]
   workflow_dispatch:
 
 permissions:
   contents: read
 
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  PYTHONUTF8: "1"
+  PYTHONDONTWRITEBYTECODE: "1"
+  SCUTIO_TEST_REPORT: "0"
+
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      PYTHONDONTWRITEBYTECODE: "1"
-      SCUTIO_TEST_REPORT: "0"
+    timeout-minutes: 20
+    outputs:
+      artifact-id: ${{ steps.upload.outputs.artifact-id }}
+      version: ${{ steps.build.outputs.version }}
+      revision: ${{ steps.build.outputs.revision }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
       - run: python -m pip install -r tests/requirements.txt
       - run: python -m ruff check scripts skills/scutio/scripts tests
       - run: python -m ruff format --check scripts skills/scutio/scripts tests
       - run: python -m pytest -q tests -m 'not live' -p no:cacheprovider
-      - name: Build clean preview
-        run: python scripts/build_release.py --output dist
-      - uses: actions/upload-artifact@v4
+      - name: Build clean preview and validate release tag
+        id: build
+        shell: python
+        run: |
+          import json, os, pathlib, subprocess, sys
+          command = [sys.executable, 'scripts/build_release.py', '--output', 'dist']
+          if os.environ['GITHUB_EVENT_NAME'] == 'push':
+              command += ['--tag', os.environ['GITHUB_REF_NAME']]
+          subprocess.run(command, check=True)
+          manifest_path, = pathlib.Path('dist').glob('scutio-*.manifest.json')
+          manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
+          with open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as output:
+              output.write(f'version={manifest["version"]}\nrevision={manifest["revision"]}\n')
+      - uses: actions/upload-artifact@v7
+        id: upload
         with:
           name: scutio-preview
-          path: dist/scutio-*
+          path: |
+            dist/scutio-*.zip
+            dist/scutio-*.zip.sha256
+            dist/scutio-*.manifest.json
           if-no-files-found: error
+          compression-level: 0
 
   package-smoke:
     needs: build
     runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
     strategy:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
     env:
-      PYTHONUTF8: "1"
-      PYTHONDONTWRITEBYTECODE: "1"
+      RELEASE_VERSION: ${{ needs.build.outputs.version }}
+      RELEASE_REVISION: ${{ needs.build.outputs.revision }}
     steps:
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v8
         with:
-          name: scutio-preview
+          artifact-ids: ${{ needs.build.outputs.artifact-id }}
           path: dist
+          merge-multiple: true
       - name: Verify and unpack archive
         shell: python
         run: |
-          import hashlib, pathlib, zipfile
+          import hashlib, json, os, pathlib, zipfile
           archive, = pathlib.Path('dist').glob('*.zip')
-          expected = archive.with_suffix('.zip.sha256').read_text().split()[0]
+          assert archive.name == f'scutio-{os.environ["RELEASE_VERSION"]}.zip'
+          expected, filename = archive.with_suffix('.zip.sha256').read_text().split()
+          assert filename == archive.name
           assert hashlib.sha256(archive.read_bytes()).hexdigest() == expected
+          manifest_bytes = archive.with_suffix('.manifest.json').read_bytes()
+          manifest = json.loads(manifest_bytes)
+          assert manifest['version'] == os.environ['RELEASE_VERSION']
+          assert manifest['revision'] == os.environ['RELEASE_REVISION']
+          assert manifest['dirty'] is False
           with zipfile.ZipFile(archive) as bundle:
+              names = bundle.namelist()
+              assert len(names) == len(set(names))
+              assert set(names) == set(manifest['files']) | {'scutio/release-manifest.json'}
+              assert bundle.read('scutio/release-manifest.json') == manifest_bytes
+              assert bundle.read('scutio/VERSION').decode().strip() == manifest['version']
+              for name, digest in manifest['files'].items():
+                  path = pathlib.PurePosixPath(name)
+                  assert path.parts[0] == 'scutio' and '..' not in path.parts and '\\' not in name
+                  assert hashlib.sha256(bundle.read(name)).hexdigest() == digest
               bundle.extractall('installed skills')
       - name: Install recorded dependencies
         run: python -m pip install -r "installed skills/scutio/requirements.txt" -c "installed skills/scutio/tested-constraints.txt"
-      - name: Probe unpacked skill
-        run: python -B "installed skills/scutio/scripts/runtime_probe.py"
+      - name: Probe unpacked skill and verify version
+        shell: python
+        run: |
+          import json, os, pathlib, subprocess, sys
+          result = subprocess.run(
+              [sys.executable, '-B', 'installed skills/scutio/scripts/runtime_probe.py'],
+              check=True, capture_output=True, text=True,
+          )
+          report = json.loads(result.stdout)
+          assert report['status'] == 'ready'
+          assert report['scutio_version'] == os.environ['RELEASE_VERSION']
+          assert pathlib.Path(report['scripts']).resolve() == pathlib.Path('installed skills/scutio/scripts').resolve()
+          print(result.stdout)
       - name: Check standalone entry points
         run: |
           python "installed skills/scutio/scripts/collectors/collect_research_base.py" --help
           python "installed skills/scutio/scripts/journal.py" --help
           python "installed skills/scutio/scripts/data_sources.py" --help
+
+  publish:
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
+    needs: [build, package-smoke]
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+      RELEASE_TAG: ${{ github.ref_name }}
+      RELEASE_VERSION: ${{ needs.build.outputs.version }}
+      RELEASE_REVISION: ${{ needs.build.outputs.revision }}
+    steps:
+      - uses: actions/download-artifact@v8
+        with:
+          artifact-ids: ${{ needs.build.outputs.artifact-id }}
+          path: dist
+          merge-multiple: true
+      - name: Publish verified prerelease assets
+        shell: bash
+        run: |
+          test "$RELEASE_TAG" = "v$RELEASE_VERSION"
+          remote_revision=$(gh api "repos/$GH_REPO/commits/$RELEASE_TAG" --jq '.sha')
+          test "$remote_revision" = "$RELEASE_REVISION"
+          cat > "$RUNNER_TEMP/release-notes.md" <<'NOTES'
+          Scutio 是面向 A 股、港股和美股的 AI 投资研究 Skill，结合行情、财务数据与公开信息，研究公司和产业变化、推演前景、复核投资判断。
+
+          **安装**：需要 Python 3.11+ 和支持 Skill 的 AI 工具。下载本页 `scutio-*.zip`，将包内 `scutio` 文件夹放入宿主的 skills 目录；按 [README](https://github.com/JiangYiYao/scutio#快速开始) 配置 Python 环境。默认使用免费数据，Financial API Key 可选。仓库安装脚本提供完整安装流程。
+
+          **验证版本**：同页 `.zip.sha256` 校验压缩包；`.manifest.json` 与包内 `release-manifest.json` 内容一致，记录版本、提交、文件 SHA-256 与构建依赖。包内 `VERSION` 标识此版本，`tested-constraints.txt` 记录测试所用依赖。此发布通过离线测试和 Linux、macOS、Windows 独立安装包检查；运行 `scripts/runtime_probe.py` 可确认本地版本和依赖就绪，网络数据源仍需实际调用确认。
+
+          **边界**：这是早期预览版。公开数据源可能限流、延迟、缺字段或停止更新，结果会标注来源与覆盖限制。研究结论依赖模型、检索和证据，不保证投资收益；现有行为评测尚未证明使用 Skill 比不使用具有稳定优势。不连接证券账户、不执行交易。
+          NOTES
+          gh release create "$RELEASE_TAG" \
+            "dist/scutio-$RELEASE_VERSION.zip" \
+            "dist/scutio-$RELEASE_VERSION.zip.sha256" \
+            "dist/scutio-$RELEASE_VERSION.manifest.json" \
+            --verify-tag --target "$RELEASE_REVISION" --prerelease --latest=false \
+            --title "Scutio $RELEASE_TAG" --notes-file "$RUNNER_TEMP/release-notes.md"

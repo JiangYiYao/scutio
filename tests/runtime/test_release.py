@@ -25,6 +25,9 @@ def test_archive_hashes_and_runtime_survive_standalone_extraction(tmp_path):
         names = bundle.namelist()
         assert all(name.startswith("scutio/") and ".." not in Path(name).parts for name in names)
         manifest = json.loads(bundle.read("scutio/release-manifest.json"))
+        assert archive.with_suffix(".manifest.json").read_bytes() == bundle.read(
+            "scutio/release-manifest.json"
+        )
         assert set(names) == set(manifest["files"]) | {"scutio/release-manifest.json"}
         for name, digest in manifest["files"].items():
             assert hashlib.sha256(bundle.read(name)).hexdigest() == digest
@@ -75,3 +78,25 @@ def test_public_scan_preserves_urls_and_reports_paths_without_leaking_values(tmp
         release.check_public_files(tmp_path, [Path("artifact.json")])
     assert "artifact.json: personal home path" in str(error.value)
     assert private_path not in str(error.value)
+
+
+def test_release_tag_matches_version_and_commit_for_lightweight_and_annotated_tags(tmp_path):
+    def git(*args):
+        return release.git(tmp_path, *args)
+
+    git("init")
+    git("config", "user.name", "Release test")
+    git("config", "user.email", "release-test@example.com")
+    git("commit", "--allow-empty", "-m", "Release inputs")
+    first = git("rev-parse", "HEAD")
+    git("tag", "v0.1.0-alpha.1")
+    git("tag", "-a", "v0.1.0-alpha.2", "-m", "Annotated release")
+    release.validate_tag(tmp_path, "0.1.0-alpha.1", first, "v0.1.0-alpha.1")
+    release.validate_tag(tmp_path, "0.1.0-alpha.2", first, "v0.1.0-alpha.2")
+    with pytest.raises(ValueError, match="exactly match"):
+        release.validate_tag(tmp_path, "0.1.0-alpha.2", first, "v0.1.0-alpha.1")
+    with pytest.raises(ValueError, match="missing"):
+        release.validate_tag(tmp_path, "0.1.0-alpha.3", first, "v0.1.0-alpha.3")
+    git("commit", "--allow-empty", "-m", "Later work")
+    with pytest.raises(ValueError, match="checked-out commit"):
+        release.validate_tag(tmp_path, "0.1.0-alpha.1", git("rev-parse", "HEAD"), "v0.1.0-alpha.1")

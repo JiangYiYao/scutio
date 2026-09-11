@@ -105,7 +105,19 @@ def check_public_files(root, files):
         )
 
 
-def build(root, output, *, allow_dirty=False):
+def validate_tag(root, version, revision, tag):
+    """A release tag must name this version and resolve to the checked-out commit."""
+    if not re.fullmatch(VERSION_PATTERN, version) or tag != f"v{version}":
+        raise ValueError("Release tag must exactly match v + skills/scutio/VERSION")
+    try:
+        target = git(root, "rev-parse", "--verify", f"refs/tags/{tag}^{{commit}}")
+    except subprocess.CalledProcessError as exc:
+        raise ValueError("Release tag is missing from the checkout") from exc
+    if target != revision:
+        raise ValueError("Release tag does not point to the checked-out commit")
+
+
+def build(root, output, *, allow_dirty=False, tag=None):
     revision = git(root, "rev-parse", "HEAD")
     dirty = bool(git(root, "status", "--porcelain"))
     if dirty and not allow_dirty:
@@ -118,6 +130,10 @@ def build(root, output, *, allow_dirty=False):
     version = (source / "VERSION").read_text(encoding="utf-8").strip()
     if not re.fullmatch(VERSION_PATTERN, version):
         raise ValueError("Invalid VERSION; expected X.Y.Z or X.Y.Z-alpha/beta/rc.N")
+    if tag is not None:
+        if dirty:
+            raise ValueError("Tagged releases require a clean working tree")
+        validate_tag(root, version, revision, tag)
     payload = {}
     for relative in files:
         if not relative.is_relative_to(SKILL):
@@ -175,12 +191,14 @@ def build(root, output, *, allow_dirty=False):
             bundle.writestr(info, value)
     checksum = hashlib.sha256(archive.read_bytes()).hexdigest()
     archive.with_suffix(".zip.sha256").write_text(f"{checksum}  {archive.name}\n", encoding="utf-8")
+    archive.with_suffix(".manifest.json").write_bytes(payload["scutio/release-manifest.json"])
     return archive
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", type=Path, default=ROOT / "dist")
+    parser.add_argument("--tag", help="Require this tag to match VERSION and the clean checkout")
     parser.add_argument(
         "--allow-dirty", action="store_true", help="Local preview only; records dirty=true"
     )
@@ -193,7 +211,7 @@ def main():
             check_public_files(ROOT, source_files(ROOT))
             print("Current public artifacts: checked (Git history not scanned)")
         else:
-            print(build(ROOT, args.output, allow_dirty=args.allow_dirty))
+            print(build(ROOT, args.output, allow_dirty=args.allow_dirty, tag=args.tag))
     except (ValueError, importlib.metadata.PackageNotFoundError) as exc:
         parser.exit(1, f"{exc}\n")
 

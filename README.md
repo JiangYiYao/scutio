@@ -4,9 +4,9 @@
 
 你可以带着一家公司、一条消息或一个尚不完整的想法来。Scutio 围绕影响未来价值的问题搜集证据，追踪资源投入、客户行为和竞争变化，推演收益归属与价格条件，并按需保留研究记录。
 
-**当前为 `0.1.0-alpha.1` 早期预览，仍在开发中。** 欢迎用真实问题测试，并指出遗漏的线索、错误数据和站不住的判断。研究质量依赖宿主模型及其工具，当前评测尚未证明相对不加载 skill 的稳定优势。
+**当前为 `0.1.0-alpha.1` 早期预览。** 欢迎用真实问题测试，反馈研究遗漏与错误数据。
 
-[快速开始](#快速开始) · [真实案例](#先看一次真实研究) · [数据覆盖](skills/scutio/references/toolkit/index.md) · [反馈](https://github.com/JiangYiYao/scutio/issues/new/choose)
+[快速开始](#快速开始) · [下载预览版](https://github.com/JiangYiYao/scutio/releases/tag/v0.1.0-alpha.1) · [真实案例](#先看一次真实研究) · [数据覆盖](skills/scutio/references/toolkit/index.md) · [反馈](https://github.com/JiangYiYao/scutio/issues/new/choose)
 
 ## 先看一次真实研究
 
@@ -18,7 +18,7 @@
 - **收入增长怎样转成股东收益。** 加盟收入增长与经营利润率改善值得跟进，还需拆分持续管理费、新店相关收入及加盟商回本周期。
 - **经营判断还没有完成价格判断。** 三年股东回报计划并非保证收益，正常化盈利和价格要求仍需进一步核对。
 
-这说明一次研究可以怎样推进问题。[完整回答、来源与对照评测](evals/reports/2026-09-10-discovery-comparison.md) 保留了执行记录；该轮酒店评测的两位评审均小幅偏好无 skill 的回答，不能把这段展示当作效果证明。
+这说明一次研究可以怎样推进问题。[完整回答、来源与对照评测](evals/reports/2026-09-10-discovery-comparison.md) 保留了执行记录和评审结论。
 
 ## 快速开始
 
@@ -69,8 +69,24 @@ $ScutioSkillsDir = "C:\path\to\agent\skills"
 - **选择 Python**：安装命令可追加 `--python python3.12` 或 `-Python 'C:\实际路径\python.exe'`。省略 `--with-venv` / `-WithVenv` 只复制文件，不准备依赖。
 - **更新**：在仓库执行 `git pull --ff-only`，再运行相同安装命令。复制安装不会自动更新；重装会覆盖目标中的 `scutio`，有自定义修改时先保存。
 - **依赖冲突**：追加 `--recreate-venv` / `-RecreateVenv` 备份重建环境；失败时恢复，成功后保留同级 `.backup-*` 供确认后删除。
-- **手动安装**：将 `skills/scutio` 或发行包中的 `scutio` 复制到宿主扫描目录，在技能目录之外创建 Python 3.11+ 环境，用其 `python -m pip install -r <技能目录>/requirements.txt` 安装依赖。发行包附带 `tested-constraints.txt` 时追加 `-c <技能目录>/tested-constraints.txt`，再运行上述检查。
+- **手动安装**：将 `skills/scutio` 或发行包中的 `scutio` 复制到宿主扫描目录，在技能目录之外创建 Python 3.11+ 环境，用其 `python -m pip install -r <技能目录>/requirements.txt` 安装依赖。发行包附带 `tested-constraints.txt` 时追加 `-c <技能目录>/tested-constraints.txt`，再用下方命令指定实际解释器并检查。
 - **卸载**：关闭宿主，删除其扫描目录下的 `scutio`；链接安装只删除链接或 Junction。用户目录 `~/.scutio` 单独保留，需要彻底清理时先保存所需记录，再删除该目录。
+
+手动安装或使用自定义环境时，设置 `SCUTIO_PYTHON` 为该环境的 Python 绝对路径；检查和实际取数使用同一个解释器：
+
+```bash
+# macOS / Linux：替换为已安装依赖的解释器
+export SCUTIO_PYTHON="/absolute/path/to/venv/bin/python"
+"$SCUTIO_PYTHON" -B "$SCUTIO_SKILLS_DIR/scutio/scripts/runtime_probe.py"
+```
+
+```powershell
+# Windows PowerShell：-Python 显式指定探针使用的解释器
+$env:SCUTIO_PYTHON = "C:\actual\venv\Scripts\python.exe"
+& "$ScutioSkillsDir\scutio\scripts\resolve_runtime.ps1" -Python $env:SCUTIO_PYTHON
+```
+
+上述变量设置只作用于当前终端及其启动的进程；独立启动的宿主也需要配置相同的 `SCUTIO_PYTHON`。
 
 自定义数据目录、解释器及失败排查见[运行时说明](skills/scutio/references/toolkit/01-runtime.md)。
 
@@ -120,6 +136,8 @@ Scutio 不连接券商账户、不执行交易，也不提供后台监控或主�
 欢迎通过 [Issues](https://github.com/JiangYiYao/scutio/issues/new/choose) 反馈使用问题、错误数据和研究遗漏。
 
 `skills/scutio/` 是唯一安装包；其中 `references/` 存放能力、共享方法与取数说明，`scripts/` 提供程序。代码测试在 `tests/`，行为用例和真实执行在 `evals/`；测试和评测不随 skill 安装。
+
+研究质量依赖宿主模型、检索工具和执行过程，当前评测尚未证明相对不加载 skill 的稳定优势。上方酒店案例所在的对照评测中，两位评审均小幅偏好无 skill 的回答；案例用于展示研究过程，效果应结合完整回答与评审结论判断。
 
 - [测试说明](tests/README.md)：离线回归、跨平台检查和数据源探针。
 - [行为评测](evals/README.md)：完整回答、研究遗漏、对照结果与局限。
