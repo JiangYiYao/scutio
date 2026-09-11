@@ -1,0 +1,9 @@
+target-version = "py311"
+line-length = 100
+
+[lint]
+select = ["E4", "E7", "E9", "F", "I"]
+
+[lint.per-file-ignores]
+# Standalone examples resolve their installed scripts directory before importing the package.
+"skills/scutio/scripts/examples/*.py" = ["E402"]

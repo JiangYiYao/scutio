@@ -1,0 +1,11 @@
+# Scutio 开发测试依赖（不进入 skill 安装 / install.sh --with-venv）
+#
+#   pip install -r skills/scutio/requirements.txt   # 运行时
+#   pip install -r tests/requirements.txt    # 测试
+#
+# 或一条装齐（相对本文件解析 -r）：
+#   pip install -r tests/requirements.txt
+
+-r ../skills/scutio/requirements.txt
+pytest>=7.0
+ruff==0.15.12

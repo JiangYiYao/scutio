@@ -1,0 +1,28 @@
+name: 安装或数据问题
+description: 报告安装、运行时、取数或记录错误
+title: "[问题] "
+body:
+  - type: markdown
+    attributes:
+      value: 请只提供最小复现。不要贴 Key、认证头或配置全文；诊断中的个人路径请替换为匿名路径。
+  - type: textarea
+    id: environment
+    attributes:
+      label: 运行环境
+      description: 系统、Agent 宿主、Scutio 版本/提交、Python 版本；可附 runtime_probe 的版本与 failures 字段。
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: 怎样复现
+      description: 最小命令或代码；取数问题注明证券代码、请求日期与模块。
+    validations:
+      required: true
+  - type: textarea
+    id: result
+    attributes:
+      label: 预期与实际结果
+      description: 错误类型、source、error_code、partial 等返回字段；有数据口径错误时请附可核对的公开来源。
+    validations:
+      required: true

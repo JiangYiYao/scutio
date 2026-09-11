@@ -1,0 +1,31 @@
+name: 研究质量反馈
+description: 指出遗漏线索、推理问题，或分享有帮助的真实使用
+title: "[研究反馈] "
+body:
+  - type: markdown
+    attributes:
+      value: 请保留足以理解问题的上下文，移除 Key、个人路径、任务标识及无关个人内容。
+  - type: textarea
+    id: question
+    attributes:
+      label: 原始问题与研究时点
+      description: 当时怎样提问、要求的时间范围、资料截止日期。
+    validations:
+      required: true
+  - type: textarea
+    id: answer
+    attributes:
+      label: 回答及你的判断
+      description: 贴出相关段落，说明哪里有帮助、哪里不成立或遗漏了什么，以及为什么影响结论。
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: 可核对的来源
+      description: 公开原文链接与相关段落；没有来源也可以说明推理问题。
+  - type: textarea
+    id: setup
+    attributes:
+      label: 执行条件（可选）
+      description: Scutio 版本、宿主和模型、是否能联网/调用脚本/派子任务，以及你设置的时间或预算限制。

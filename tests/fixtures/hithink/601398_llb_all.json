@@ -1,0 +1,74 @@
+{
+  "code": 0,
+  "message": "success",
+  "request_id": "53dba92926014aaeb58a049f5037c5c1",
+  "data": {
+    "timestamp": 1782748800000,
+    "item": [
+      {
+        "thscode": "601398.SH",
+        "ticker": "601398",
+        "period": "quarterly",
+        "fiscal_year": 2026,
+        "fiscal_period": "Q2",
+        "report_date_ms": 1787932800000,
+        "period_end_ms": 1782748800000,
+        "currency": "CNY",
+        "act_cash_flow_net": 1369013000000,
+        "invest_cash_flow_net": -1454367000000,
+        "financing_cash_flow_net": 213990000000,
+        "pay_fixed_assets_etc_cash": 13569000000,
+        "pay_dividends_profits_interest_cash": 117159000000,
+        "cash_equivalents_net_addition": 105285000000
+      },
+      {
+        "thscode": "601398.SH",
+        "ticker": "601398",
+        "period": "quarterly",
+        "fiscal_year": 2026,
+        "fiscal_period": "Q1",
+        "report_date_ms": 1777478400000,
+        "period_end_ms": 1774886400000,
+        "currency": "CNY",
+        "act_cash_flow_net": 1416276000000,
+        "invest_cash_flow_net": -776484000000,
+        "financing_cash_flow_net": -379279000000,
+        "pay_fixed_assets_etc_cash": 4504000000,
+        "pay_dividends_profits_interest_cash": 38971000000,
+        "cash_equivalents_net_addition": 247734000000
+      },
+      {
+        "thscode": "601398.SH",
+        "ticker": "601398",
+        "period": "quarterly",
+        "fiscal_year": 2025,
+        "fiscal_period": "Q4",
+        "report_date_ms": 1774627200000,
+        "period_end_ms": 1767110400000,
+        "currency": "CNY",
+        "act_cash_flow_net": 1890530000000,
+        "invest_cash_flow_net": -2417582000000,
+        "financing_cash_flow_net": 35005000000,
+        "pay_fixed_assets_etc_cash": 38239000000,
+        "pay_dividends_profits_interest_cash": 190922000000,
+        "cash_equivalents_net_addition": -521394000000
+      },
+      {
+        "thscode": "601398.SH",
+        "ticker": "601398",
+        "period": "quarterly",
+        "fiscal_year": 2025,
+        "fiscal_period": "Q3",
+        "report_date_ms": 1761840000000,
+        "period_end_ms": 1759161600000,
+        "currency": "CNY",
+        "act_cash_flow_net": 1549207000000,
+        "invest_cash_flow_net": -1978307000000,
+        "financing_cash_flow_net": 190094000000,
+        "pay_fixed_assets_etc_cash": 19149000000,
+        "pay_dividends_profits_interest_cash": 160474000000,
+        "cash_equivalents_net_addition": -246094000000
+      }
+    ]
+  }
+}

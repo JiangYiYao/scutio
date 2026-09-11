@@ -1,0 +1,18 @@
+{
+  "code": 0,
+  "message": "success",
+  "request_id": "4db12f3fb53d4c3f9243a53f78b5a25b",
+  "data": {
+    "timestamp": 1788942763223,
+    "item": [
+      {
+        "thscode": "600519.SH",
+        "ticker": "600519",
+        "name": "贵州茅台",
+        "exchange": "SH",
+        "asset_type": "a-share",
+        "currency": "CNY"
+      }
+    ]
+  }
+}

@@ -1,0 +1,11 @@
+# Scutio toolkit runtime (install into ~/.scutio/.venv)
+# 上界防止静默大版本破坏；如需升级请改约束并跑全量测试。
+akshare==1.18.94  # 免费源适配；Python 3.11+，升级必须经过字段契约回归
+requests>=2.28,<3
+pandas>=2,<3
+lxml>=4.9,<6          # eps_forecast / pd.read_html（同花顺一致预期）
+xlrd>=2,<3            # 中证指数官网 .xls 成分/权重
+exchange-calendars>=4.5,<5  # A/港/美交易日历（本地交易所规则）
+pypdf>=4.0,<6
+tzdata>=2024.1
+packaging>=23,<27  # AKShare 版本与 Python 兼容性检查

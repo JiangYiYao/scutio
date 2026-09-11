@@ -1,0 +1,114 @@
+name: tests
+
+on:
+  push:
+    branches: [main, master]
+  schedule:
+    - cron: "17 2 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  PYTHONUTF8: "1"
+  PYTHONDONTWRITEBYTECODE: "1"
+  SCUTIO_TEST_REPORT: "0"
+
+jobs:
+  offline:
+    if: github.event_name != 'schedule'
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install test dependencies
+        run: python -m pip install -r tests/requirements.txt
+      - name: Python style and public artifacts
+        run: |
+          python -m ruff check scripts skills/scutio/scripts tests
+          python -m ruff format --check scripts skills/scutio/scripts tests
+          python scripts/build_release.py --check-public
+      - name: Offline unit tests
+        run: python -m pytest -q tests -m 'not live' -p no:cacheprovider
+
+  platform-smoke:
+    if: github.event_name != 'schedule'
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-latest, windows-latest]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install -r tests/requirements.txt
+      - name: Installation, records, configuration and cancellation
+        run: >-
+          python -m pytest -q tests/runtime tests/journal
+          tests/data/test_request_timeouts.py tests/data/test_optional_sources.py
+          -m 'not live' -p no:cacheprovider
+
+  live-canary:
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install -r tests/requirements.txt
+      - name: Public HTTP canary
+        id: http
+        continue-on-error: true
+        run: python -m pytest -q tests/data/test_live_smoke.py --junitxml=artifacts/http.xml -p no:cacheprovider
+        env:
+          SCUTIO_LIVE: "1"
+          SCUTIO_EM_CROSS_PROCESS_RATE: "1"
+      - name: Market and fragile capability probes
+        id: sources
+        continue-on-error: true
+        run: >-
+          python tests/self_check.py
+          --only security_quote,security_bars,hk_us_quote,hk_us_bars,concept_blocks,stock_reports,periodic_reports_hk
+          --pace 1 --json -o artifacts/sources.json
+        env:
+          SCUTIO_EM_CROSS_PROCESS_RATE: "1"
+      - name: Write source health summary
+        if: always()
+        shell: python
+        env:
+          HTTP_OUTCOME: ${{ steps.http.outcome }}
+          SOURCES_OUTCOME: ${{ steps.sources.outcome }}
+        run: |
+          import json, os
+          from pathlib import Path
+          lines = ['## Public source canary', '',
+                   f'HTTP smoke: {os.environ["HTTP_OUTCOME"]}; source probes: {os.environ["SOURCES_OUTCOME"]}', '']
+          report = Path('artifacts/sources.json')
+          if report.exists():
+              data = json.loads(report.read_text(encoding='utf-8'))
+              lines += ['| Probe | Status |', '|---|---|']
+              lines += [f'| {item["id"]} | {item["status"]} |' for item in data['results']]
+          else:
+              lines += ['No source report produced; inspect the failed step.']
+          with open(os.environ['GITHUB_STEP_SUMMARY'], 'a', encoding='utf-8') as output:
+              output.write('\n'.join(lines) + '\n')
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: data-source-canary
+          path: artifacts/
+          if-no-files-found: warn
+      - name: Preserve failure status
+        if: always() && (steps.http.outcome != 'success' || steps.sources.outcome != 'success')
+        run: exit 1

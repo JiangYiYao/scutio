@@ -1,0 +1,27 @@
+.DS_Store
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+*.log
+.idea/
+.vscode/
+*.swp
+.cache/
+.codex-tmp/
+.pytest_cache/
+**/.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+# local analysis dumps
+**/tmp/
+**/out/
+**/*.local.md
+# 测试/自检报表默认写在 $SCUTIO_HOME/cache/（仓库外），勿再往 skill 里落报告
+# Reproducible release artifacts; build with scripts/build_release.py
+dist/
+artifacts/

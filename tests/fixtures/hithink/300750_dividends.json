@@ -1,0 +1,47 @@
+{
+  "code": 0,
+  "message": "success",
+  "request_id": "ce5994be8e7d455694cc50ba56d5c500",
+  "data": {
+    "thscode": "300750.SZ",
+    "ticker": "300750",
+    "item": [
+      {
+        "ticker": "300750",
+        "ex_date_ms": 1786291200000,
+        "dividend_per_share": 1.411,
+        "per_share_bonus": 0
+      },
+      {
+        "ticker": "300750",
+        "ex_date_ms": 1776787200000,
+        "dividend_per_share": 6.957,
+        "per_share_bonus": 0
+      },
+      {
+        "ticker": "300750",
+        "ex_date_ms": 1755619200000,
+        "dividend_per_share": 1.007,
+        "per_share_bonus": 0
+      },
+      {
+        "ticker": "300750",
+        "ex_date_ms": 1745251200000,
+        "dividend_per_share": 4.553,
+        "per_share_bonus": 0
+      },
+      {
+        "ticker": "300750",
+        "ex_date_ms": 1737648000000,
+        "dividend_per_share": 1.23,
+        "per_share_bonus": 0
+      },
+      {
+        "ticker": "300750",
+        "ex_date_ms": 1714406400000,
+        "dividend_per_share": 5.028,
+        "per_share_bonus": 0
+      }
+    ]
+  }
+}

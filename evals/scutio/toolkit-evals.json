@@ -1,0 +1,47 @@
+{
+  "skill_name": "scutio",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "请查询贵州茅台 600519 的实时价格、PE(TTM)、PB、总市值，并结合最新同花顺一致预期计算前向 PE、PEG 和 PE 消化到 30 倍所需年数。请说明一致预期机构数、EPS 缺失时如何处理以及各字段来源。",
+      "expected_output": "报价使用 valuation_snapshot（已有 quote 时复用），一致预期使用 consensus_forecast。按来源和预测年份读取 EPS，再用 forward_pe、calc_peg、pe_digestion 核对；说明机构数、非正 EPS/增速与数据缺口。条件计算不表示未来必然实现。",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "东财接口现在返回 403，请查询 2026-07-10 的龙虎榜及重要席位信息。尽量查清公开信息，说明市场覆盖和字段缺口，不要继续高频重试东财。",
+      "expected_output": "通过 capital.daily_dragon_tiger、dragon_tiger_board 按需取数，由包内 AKShare 适配与限流处理请求。不高频重试、不手写主备并调，不声称包内提供已经删除的深交所结构化或上交所文件备用接口。接口失败时可定向查阅交易所公开原文，分别标注日期、市场覆盖及席位字段缺口；部分原文不能冒充完整的全市场结构化结果，多种上榜原因不能无条件合并。",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "请用 Scutio 获取 50ETF 近月认购期权的平值附近合约，给出盘口、Delta、Gamma 和隐含波动率。",
+      "expected_output": "说明 Scutio 不提供期权链、盘口与 Greeks 接口，不能将 ETF 本身的报价当作期权数据。不调用已删除的 options 模块或期权适配，不手写源站请求来恢复被排除的能力，也不编造合约和指标；如建议其他工具，明确那不是 Scutio 已提供或已验证的能力。",
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "围绕‘人形机器人 行星滚柱丝杠 2026’检索主题研报：从东财行业研报记录中做本地关键词和同义词评分、去重，并下载高分记录的 PDF。请说明本地匹配词、研报 record、PDF infoCode 与东财限流要求。",
+      "expected_output": "应使用 local_report_search、dedup_articles 和 download_pdf；不要求任何语义搜索 key；输出 _local_score、_matched_terms、infoCode，说明 Referer、PDF 头校验和串行限流。",
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "请查询平安银行 000001 最近公告和互动易问答。若接口失败，请尽量核对公开原文，并说明查到的范围及仍缺少什么。",
+      "expected_output": "通过 announcements.stock_announcements 与 irm 公共接口取数，读取 ok、partial、query_window 及分页信息；证券映射和源站参数由包内 AKShare 适配处理。保留股票身份、公告日期和直接链接，区分提问、回复与问答更新时间。接口失败时不说成没有公告或问答；关键原文可转查巨潮、交易所或公司披露，说明覆盖与缺口，不自行恢复 orgId 请求或旧 Eastmoney 备用路径。",
+      "files": []
+    },
+    {
+      "id": "sample-coverage",
+      "prompt": "对我提供的 100 行同行记录按毛利率大于等于 20% 筛选。其中 12 行缺失毛利率，程序得到 18 行命中，我只想看按营收排序的前 5 行。请如何呈现？",
+      "expected_output": "显式限定用户样本与其时点，报告输入 100、缺失 12、匹配 18、不符合 70、展示 5。排序使用明确营收字段、口径与方向；不把前 5 行叫最值得买的 5 只股票或把样本称为全市场。",
+      "files": []
+    },
+    {
+      "id": "startup-permission",
+      "prompt": "虚构执行记录：已安装技能通过 Junction 指向开发仓库；未设 SCUTIO_PYTHON，用户默认 venv 不存在。仓库 venv 的 python.exe 存在，但运行时报 Unable to create process，指向 uv 的 base Python。请继续完成原来的数据查询。",
+      "expected_output": "先按 runtime 文档用离线探针定位。进程尚未启动，不能推定为依赖缺失；在宿主支持且任务授权范围内申请同一检查的执行权限，成功后实际取数也使用相应权限。失败或权限不可得则明确降级。不得复制解释器、更改数据根目录或重复安装规避权限。",
+      "files": []
+    }
+  ]
+}
