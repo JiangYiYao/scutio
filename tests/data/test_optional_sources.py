@@ -69,21 +69,27 @@ def test_private_configuration_and_hint(monkeypatch):
     assert "environment-test-key" not in json.dumps(data_sources.status())
 
 
-def test_agent_configuration_via_stdin_persists_without_echoing_key():
+@pytest.mark.parametrize("io_encoding", ["utf-8", "cp1252"])
+def test_agent_configuration_via_stdin_persists_without_echoing_key(io_encoding):
     """Agent stdin configuration survives a new process and respects public mode."""
     script = Path(__file__).parents[2] / "skills/scutio/scripts/data_sources.py"
     key = "stdin-test-credential"
+    env = dict(os.environ, PYTHONUTF8="0", PYTHONIOENCODING=io_encoding)
     data_sources.set_setting("mode", "public")
     configured = subprocess.run(
         [sys.executable, str(script), "configure", "--stdin"],
         input=key + "\n",
+        env=env,
         text=True,
+        encoding=io_encoding,
         capture_output=True,
         check=True,
     )
     checked = subprocess.run(
         [sys.executable, str(script), "status"],
+        env=env,
         text=True,
+        encoding=io_encoding,
         capture_output=True,
         check=True,
     )

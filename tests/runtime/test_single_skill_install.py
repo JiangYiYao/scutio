@@ -387,7 +387,7 @@ def test_invalid_data_directory_does_not_replace_existing_skill(tmp_path):
 
 
 def test_installer_exports_paths_that_survive_a_different_working_directory(tmp_path):
-    runtime = tmp_path / "runtime with spaces"
+    runtime = tmp_path / "runtime with spaces 中文"
     subprocess.run(
         [sys.executable, "-m", "venv", "--without-pip", str(runtime)],
         check=True,
@@ -396,12 +396,12 @@ def test_installer_exports_paths_that_survive_a_different_working_directory(tmp_
     )
     env = dict(
         os.environ,
-        SCUTIO_HOME="state roots/home",
-        SCUTIO_CONFIG_DIR="state roots/config",
+        SCUTIO_HOME="state roots 中文/home",
+        SCUTIO_CONFIG_DIR="state roots 中文/config",
     )
     options = ["-VenvDir" if sys.platform == "win32" else "--venv-dir", runtime.name]
     result = subprocess.run(
-        _installer(tmp_path / "installed skills") + options,
+        _installer(tmp_path / "installed skills 中文") + options,
         env=env,
         cwd=tmp_path,
         capture_output=True,
@@ -453,8 +453,8 @@ def test_installer_exports_paths_that_survive_a_different_working_directory(tmp_
     assert followup.returncode == 0, followup.stderr
     actual = json.loads(followup.stdout)
     expected = {
-        "SCUTIO_HOME": tmp_path / "state roots/home",
-        "SCUTIO_CONFIG_DIR": tmp_path / "state roots/config",
+        "SCUTIO_HOME": tmp_path / "state roots 中文/home",
+        "SCUTIO_CONFIG_DIR": tmp_path / "state roots 中文/config",
         "SCUTIO_VENV": runtime,
         "SCUTIO_PYTHON": runtime
         / ("Scripts/python.exe" if sys.platform == "win32" else "bin/python"),
@@ -463,4 +463,4 @@ def test_installer_exports_paths_that_survive_a_different_working_directory(tmp_
         assert Path(actual[name]).is_absolute()
         assert Path(actual[name]).resolve() == path.resolve()
     assert (expected["SCUTIO_HOME"] / "probe.txt").read_text(encoding="utf-8") == "correct root"
-    assert not (elsewhere / "state roots").exists()
+    assert not (elsewhere / "state roots 中文").exists()

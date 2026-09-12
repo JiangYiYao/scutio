@@ -221,9 +221,11 @@ if [[ "$WITH_VENV" -eq 0 ]]; then
 fi
 if [[ -n "$VENV_BACKUP" ]]; then echo "旧环境备份: $VENV_BACKUP（验证完成后可自行删除）"; fi
 echo "运行前可在宿主进程中设置："
-printf '  export SCUTIO_HOME=%q\n' "$SCUTIO_HOME"
-if [[ -n "$CONFIG_DIR" ]]; then printf '  export SCUTIO_CONFIG_DIR=%q\n' "$CONFIG_DIR"; fi
-printf '  export SCUTIO_VENV=%q\n' "$VENV_DIR"
-printf '  export SCUTIO_TOOLKIT_SCRIPTS=%q\n' "$DST/scripts"
-if [[ -x "$VENV_DIR/bin/python" ]]; then printf '  export SCUTIO_PYTHON=%q\n' "$VENV_DIR/bin/python"; fi
+# macOS Bash 3.2 can split multibyte characters in %q under a UTF-8 locale.
+# Byte-wise quoting emits ASCII shell escapes that preserve the original path.
+LC_ALL=C printf '  export SCUTIO_HOME=%q\n' "$SCUTIO_HOME"
+if [[ -n "$CONFIG_DIR" ]]; then LC_ALL=C printf '  export SCUTIO_CONFIG_DIR=%q\n' "$CONFIG_DIR"; fi
+LC_ALL=C printf '  export SCUTIO_VENV=%q\n' "$VENV_DIR"
+LC_ALL=C printf '  export SCUTIO_TOOLKIT_SCRIPTS=%q\n' "$DST/scripts"
+if [[ -x "$VENV_DIR/bin/python" ]]; then LC_ALL=C printf '  export SCUTIO_PYTHON=%q\n' "$VENV_DIR/bin/python"; fi
 echo '安装成功后在宿主中选择 Scutio；未发现时重启宿主。'

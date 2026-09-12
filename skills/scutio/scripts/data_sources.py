@@ -20,7 +20,7 @@ def main():
     if args.action == "check-akshare":
         from scutio_data._providers.akshare.maintenance import check_now
 
-        print(json.dumps(check_now(), ensure_ascii=False, indent=2))
+        print(json.dumps(check_now(), ensure_ascii=True, indent=2))
         return
     if args.action == "configure":
         if args.value:
@@ -35,9 +35,9 @@ def main():
     elif args.action == "dismiss-hint":
         config.set_setting("hint_seen", True)
     elif args.action == "hint":
-        print(json.dumps({"hint": config.hint(args.value)}, ensure_ascii=False))
+        print(json.dumps({"hint": config.hint(args.value)}, ensure_ascii=True))
         return
-    print(json.dumps(config.status(), ensure_ascii=False, indent=2))
+    print(json.dumps(config.status(), ensure_ascii=True, indent=2))
 
 
 if __name__ == "__main__":
