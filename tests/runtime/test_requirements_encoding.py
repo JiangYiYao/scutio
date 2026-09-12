@@ -14,12 +14,14 @@ def test_requirements_decode_under_non_utf8_pip(relative):
     script = """
 import locale, sys
 from pathlib import Path
-from pip._internal.utils.encoding import auto_decode
+from pip._internal.req.req_file import get_file_content
 # Also exercise the Windows locale fallback on UTF-8 CI hosts.
 locale.getpreferredencoding = lambda do_setlocale=True: 'cp936'
 path = Path(sys.argv[1])
 data = path.read_bytes()
-assert auto_decode(data) == data.decode('utf-8')
+# Exercise pip's requirements reader, not a decoder moved between pip versions.
+_, content = get_file_content(str(path), session=None)
+assert content == data.decode('utf-8')
 """
     result = subprocess.run(
         [sys.executable, "-c", script, str(requirements)],
