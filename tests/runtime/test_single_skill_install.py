@@ -387,7 +387,7 @@ def test_invalid_data_directory_does_not_replace_existing_skill(tmp_path):
 
 
 def test_installer_exports_paths_that_survive_a_different_working_directory(tmp_path):
-    runtime = tmp_path / "runtime with spaces 中文"
+    runtime = tmp_path / "runtime with spaces 中文 'quoted'"
     subprocess.run(
         [sys.executable, "-m", "venv", "--without-pip", str(runtime)],
         check=True,
