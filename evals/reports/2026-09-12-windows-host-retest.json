@@ -1,0 +1,2465 @@
+{
+  "date": "2026-09-12",
+  "base_commit": "400b52611350b5ae7eb47b7b2f8a1251ac4af610",
+  "working_tree_dirty": true,
+  "platform": "Windows-11-10.0.26200-SP0",
+  "python": "3.12.9",
+  "scope": "Windows offline regression, 32 live self-check probes, Grok and OpenCode small host acceptance; not a rerun of all 349 historical field cases",
+  "offline_tests": {
+    "before": {
+      "passed": 1052,
+      "failed": 3,
+      "skipped": 1,
+      "deselected_live": 13
+    },
+    "after": {
+      "passed": 1058,
+      "failed": 0,
+      "skipped": 1,
+      "deselected_live": 13,
+      "seconds": 66.54
+    }
+  },
+  "live_initial": {
+    "generated_at": "2026-09-12 13:47:02",
+    "code": "600519",
+    "total": 32,
+    "ok": 29,
+    "degraded": 2,
+    "fail": 1,
+    "skip": 0,
+    "critical_fail": 0,
+    "results": [
+      {
+        "id": "local_split_code",
+        "name": "代码/secid 本地契约",
+        "group": "core",
+        "entry": "core.split_code / em_secid",
+        "status": "ok",
+        "critical": true,
+        "elapsed_ms": 92.7,
+        "message": "local symbol helpers ok (A/HK/US)",
+        "structure_ok": true,
+        "sample": "",
+        "error": null,
+        "checks": [
+          "sh000001",
+          "600519",
+          "000001",
+          "hk00700",
+          "usAAPL",
+          "AAPL.US",
+          "em_secid",
+          "em_secid_hk",
+          "em_secid_us",
+          "bare_us_rejected"
+        ]
+      },
+      {
+        "id": "tencent_quote",
+        "name": "腾讯实时报价",
+        "group": "market",
+        "entry": "market.tencent_quote",
+        "status": "ok",
+        "critical": true,
+        "elapsed_ms": 545.7,
+        "message": "tencent quote ok",
+        "structure_ok": true,
+        "sample": "{'name': '贵州茅台', 'price': 1275.16, 'last_close': 1285.13, 'open': 1285.15, 'volume': 3480100.0, 'volume_unit': 'share', 'volume_raw': 34801.0, 'volume_raw_unit': 'lot', 'volume_precision': 100, 'change_amt': -9.97, 'change_pct': -0.78, 'high': 1286.15}",
+        "error": null,
+        "checks": [
+          "dict_non_empty",
+          "has_name",
+          "has_price",
+          "price_range"
+        ]
+      },
+      {
+        "id": "security_quote",
+        "name": "多源报价 fallback",
+        "group": "market",
+        "entry": "market.security_quote",
+        "status": "ok",
+        "critical": true,
+        "elapsed_ms": 530.5,
+        "message": "sources=['tencent']",
+        "structure_ok": true,
+        "sample": "{'sources_used': ['tencent'], 'sample': {'name': '贵州茅台', 'price': 1275.16, 'last_close': 1285.13, 'open': 1285.15, 'volume': 3480100.0, 'volume_unit': 'share', 'volume_raw': 34801.0, 'volume_raw_unit': 'lot', 'volume_precision': 100, 'change_amt': -9.97, 'change_pct': -0.78, '...",
+        "error": null,
+        "checks": [
+          "envelope_keys",
+          "quotes_non_empty",
+          "priced_row"
+        ]
+      },
+      {
+        "id": "security_bars",
+        "name": "日 K fallback",
+        "group": "market",
+        "entry": "market.security_bars",
+        "status": "ok",
+        "critical": true,
+        "elapsed_ms": 1500.5,
+        "message": "source=akshare_sina n=5",
+        "structure_ok": true,
+        "sample": "{'datetime': '2026-09-11', 'open': 1285.15, 'high': 1286.15, 'low': 1263.01, 'close': 1275.16, 'vol': 3480142.0, 'volume': 3480142.0, 'amount': 4430841445.0, 'source': 'akshare_sina', 'volume_unit': 'share', 'amount_unit': 'CNY', 'adapter': 'akshare'}",
+        "error": null,
+        "checks": [
+          "envelope_keys",
+          "bar_close",
+          "bar_open",
+          "bar_high",
+          "bar_low"
+        ]
+      },
+      {
+        "id": "security_bars_index",
+        "name": "指数日 K",
+        "group": "market",
+        "entry": "market.security_bars(index)",
+        "status": "ok",
+        "critical": true,
+        "elapsed_ms": 1620.3,
+        "message": "source=akshare_tencent",
+        "structure_ok": true,
+        "sample": "{'datetime': '2026-09-11', 'open': 3910.92, 'high': 3912.32, 'low': 3852.03, 'close': 3888.11, 'vol': 57912314500.0, 'volume': 57912314500.0, 'amount': 958186337000.0, 'source': 'akshare_tencent', 'volume_unit': 'share', 'amount_unit': 'CNY', 'adapter': 'akshare'}",
+        "error": null,
+        "checks": [
+          "index_bar"
+        ]
+      },
+      {
+        "id": "hk_us_quote",
+        "name": "港美多源报价",
+        "group": "market",
+        "entry": "market.security_quote(hk/us)",
+        "status": "ok",
+        "critical": true,
+        "elapsed_ms": 945.8,
+        "message": "sources=['tencent'] hk=428.4 us=332.27",
+        "structure_ok": true,
+        "sample": "{'hk': {'name': '腾讯控股', 'price': 428.4, 'last_close': 425.6, 'open': 419.4, 'volume': 15628379.0, 'volume_unit': 'share', 'volume_raw': 15628379.0, 'volume_raw_unit': 'share', 'volume_precision': 1, 'change_amt': 2.8, 'change_pct': 0.66, 'high': 430.8, 'low': 419.4, 'amount': ...",
+        "error": null,
+        "checks": [
+          "envelope_keys",
+          "hk_price",
+          "us_price"
+        ]
+      },
+      {
+        "id": "hk_us_bars",
+        "name": "港美日 K",
+        "group": "market",
+        "entry": "market.security_bars(hk/us)",
+        "status": "ok",
+        "critical": true,
+        "elapsed_ms": 14176.2,
+        "message": "hk+us bars ok",
+        "structure_ok": true,
+        "sample": "",
+        "error": null,
+        "checks": [
+          "hk00700_ok",
+          "src_hk00700=akshare_sina",
+          "usAAPL_ok",
+          "src_usAAPL=akshare_sina"
+        ]
+      },
+      {
+        "id": "hk_us_stock_info",
+        "name": "港美个股资料",
+        "group": "fundamentals",
+        "entry": "fundamentals.stock_info(hk/us)",
+        "status": "ok",
+        "critical": false,
+        "elapsed_ms": 1512.0,
+        "message": "hk+us stock_info ok",
+        "structure_ok": true,
+        "sample": "envelope(ok=True, source='akshare_hk_profile', n=?, error=None)",
+        "error": null,
+        "checks": [
+          "hk00700_name",
+          "usAAPL_name"
+        ]
+      },
+      {
+        "id": "stock_info",
+        "name": "个股资料",
+        "group": "fundamentals",
+        "entry": "fundamentals.stock_info",
+        "status": "degraded",
+        "critical": true,
+        "elapsed_ms": 3468.7,
+        "message": "using fallback source=tencent_quote_fallback",
+        "structure_ok": true,
+        "sample": "envelope(ok=True, source='tencent_quote_fallback', n=?, error=None)",
+        "error": null,
+        "checks": [
+          "source=tencent_quote_fallback"
+        ]
+      },
+      {
+        "id": "sina_financial",
+        "name": "三表利润表(A)",
+        "group": "fundamentals",
+        "entry": "fundamentals.financial_report",
+        "status": "ok",
+        "critical": false,
+        "elapsed_ms": 7079.5,
+        "message": "sina lrb dict keys=['ok', 'error', 'source', 'items', 'adapter', 'provider', 'report_type', 'period']",
+        "structure_ok": true,
+        "sample": "envelope(ok=True, source='financial_report_a', n=4, error=None) first={'SECUCODE': '600519.SH', 'SECURITY_CODE': '600519', 'SECURITY_NAME_ABBR': '贵州茅台', 'ORG_CODE': '10002602', 'ORG_TYPE': '通用', 'REPORT_DATE': '2025-12-31 00:00:00', 'REPORT_TYPE': '年报', 'REPORT_DATE_NAME': '20...",
+        "error": null,
+        "checks": [
+          "dict"
+        ]
+      },
+      {
+        "id": "valuation_snapshot",
+        "name": "估值快照",
+        "group": "valuation",
+        "entry": "valuation.valuation_snapshot",
+        "status": "ok",
+        "critical": true,
+        "elapsed_ms": 490.2,
+        "message": "quote-side valuation ok",
+        "structure_ok": true,
+        "sample": "envelope(ok=True, source='tencent', n=?, error=None)",
+        "error": null,
+        "checks": [
+          "price_name",
+          "pe_or_pb"
+        ]
+      },
+      {
+        "id": "stock_announcements",
+        "name": "巨潮公告",
+        "group": "announcements",
+        "entry": "announcements.stock_announcements",
+        "status": "ok",
+        "critical": true,
+        "elapsed_ms": 2997.2,
+        "message": "n=5",
+        "structure_ok": true,
+        "sample": "{'title': '贵州茅台2026年半年度报告', 'date': '2026-08-15', 'announcement_id': '1225475868', 'url': 'https://www.cninfo.com.cn/new/disclosure/detail?stockCode=600519&announcementId=1225475868&orgId=gssh0600519&announcementTime=2026-08-15', 'pdf_url': None, 'type': '', 'adjunct_type': ''...",
+        "error": null,
+        "checks": [
+          "title",
+          "url"
+        ]
+      },
+      {
+        "id": "periodic_reports_a",
+        "name": "A股定期报告列表",
+        "group": "announcements",
+        "entry": "announcements.periodic_reports(A)",
+        "status": "ok",
+        "critical": false,
+        "elapsed_ms": 1879.4,
+        "message": "n=3",
+        "structure_ok": true,
+        "sample": "{'title': '贵州茅台2025年年度报告', 'date': '2026-04-17', 'announcement_id': '1225114741', 'url': 'https://www.cninfo.com.cn/new/disclosure/detail?stockCode=600519&announcementId=1225114741&orgId=gssh0600519&announcementTime=2026-04-17 00:00:00', 'pdf_url': None, 'type': '', 'adjunct_t...",
+        "error": null,
+        "checks": [
+          "ok",
+          "item"
+        ]
+      },
+      {
+        "id": "periodic_reports_hk",
+        "name": "港股定期报告列表",
+        "group": "announcements",
+        "entry": "announcements.periodic_reports(hk)",
+        "status": "ok",
+        "critical": false,
+        "elapsed_ms": 11929.0,
+        "message": "n=2",
+        "structure_ok": true,
+        "sample": "{'title': '2025 年报', 'date': '2026-04-09', 'announcement_id': '1225088088', 'url': 'https://www.cninfo.com.cn/new/disclosure/detail?stockCode=00700&announcementId=1225088088&orgId=gshk0000700&announcementTime=2026-04-09 17:50:27', 'pdf_url': None, 'type': '', 'adjunct_type': '...",
+        "error": null,
+        "checks": [
+          "ok",
+          "fallback_hint",
+          "n=2"
+        ]
+      },
+      {
+        "id": "periodic_reports_us",
+        "name": "美股SEC定期报告列表",
+        "group": "announcements",
+        "entry": "announcements.periodic_reports(us)",
+        "status": "ok",
+        "critical": false,
+        "elapsed_ms": 3512.6,
+        "message": "n=2 form=10-K",
+        "structure_ok": true,
+        "sample": "{'title': '10-K 2025-10-31', 'type': '10-K', 'date': '2025-10-31', 'report_date': '2025-09-27', 'announcement_id': '0000320193-25-000079', 'url': 'https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000320193', 'pdf_url': '', 'file_url': 'https://www.sec.gov/Archiv...",
+        "error": null,
+        "checks": [
+          "ok",
+          "fallback_hint",
+          "file_url"
+        ]
+      },
+      {
+        "id": "irm",
+        "name": "互动易",
+        "group": "announcements",
+        "entry": "announcements.irm",
+        "status": "ok",
+        "critical": false,
+        "elapsed_ms": 1731.8,
+        "message": "code=000001 n=5",
+        "structure_ok": true,
+        "sample": "{'code': '000001', 'company': '平安银行', 'question': '想咨询请教，既然《上市公司监管指引第8号——上市公司资金往来、对外担保的监管要求》第二十八条规定金融类上市公司不适用本指引第三章、第四章规定，那么金融类上市公司对外担保应当适用那些监管规定？', 'answer': None, 'answerer': None, 'ask_time': '2026-09-10 20:12', 'question_id': '2356273830594031616'}",
+        "error": null,
+        "checks": [
+          "ok",
+          "content_field"
+        ]
+      },
+      {
+        "id": "stock_news",
+        "name": "东财个股新闻",
+        "group": "feeds",
+        "entry": "feeds.stock_news",
+        "status": "ok",
+        "critical": false,
+        "elapsed_ms": 820.0,
+        "message": "n=5",
+        "structure_ok": true,
+        "sample": "{'title': '深沪北百元股数量达200只，科创板股票占46%', 'content': '（数据宝） 高价股一览 代码 简称 最新收盘价（元） 今日涨跌（%） 换手率（%） 行业 688808 联讯仪器 2459.87 0.98 0.04 机械设备 688498 源杰科技 1701.00 -1.05 0.03 电子 600519 贵州茅台 1275.16 -0.78', 'time': '2026-09-11 16:37:00', 'source': '证券时报网', 'url': 'http://finance.eastmoney.com...",
+        "error": null,
+        "checks": [
+          "ok",
+          "title"
+        ]
+      },
+      {
+        "id": "telegraph",
+        "name": "财联社电报",
+        "group": "feeds",
+        "entry": "feeds.telegraph",
+        "status": "ok",
+        "critical": false,
+        "elapsed_ms": 994.4,
+        "message": "n=5",
+        "structure_ok": true,
+        "sample": "{'title': '京津冀四地携手发布共建太空算力产业长廊倡议', 'content': '【京津冀四地携手发布共建太空算力产业长廊倡议】财联社9月12日电，在2026中国算力大会上，北京经济技术开发区、天津经济技术开发区、河北雄安新区、廊坊市四地携手，发起共建京津冀太空算力产业长廊倡议：一是深化战略协同，争做下一代AI基础设施建设引领者。二是聚力研发创新，夯实技术根基。三是强化示范应用，拓展赋能边界。四是激发集群效应，建设产业高地。五是促进政策同频，护航企业成长。六是倡导开放合作，探索中国方案。', 'time': '2026-09-12 13...",
+        "error": null,
+        "checks": [
+          "content"
+        ]
+      },
+      {
+        "id": "global_news",
+        "name": "东财全球资讯",
+        "group": "feeds",
+        "entry": "feeds.global_news",
+        "status": "ok",
+        "critical": false,
+        "elapsed_ms": 1095.1,
+        "message": "n=5",
+        "structure_ok": true,
+        "sample": "{'title': '京津冀四地携手发布共建太空算力产业长廊倡议', 'summary': '【京津冀四地携手发布共建太空算力产业长廊倡议】据人民邮电报，9月12日，在2026中国算力大会上，北京经济技术开发区、天津经济技术开发区、河北雄安新区、廊坊市四地携手，发起共建京津冀太空算力产业长廊倡议：一是深化战略协同，争做下一代AI基础设施建设引领者。二是聚力研发创新，夯实技术根基。三是强化示范应用，拓展赋能边界。四是激发集群效应，建设产业高地。五是促进政策同频，护航企业成长。六是倡导开放合作', 'time': '2026-09-12 13:39:2...",
+        "error": null,
+        "checks": [
+          "title"
+        ]
+      },
+      {
+        "id": "southbound_daily",
+        "name": "南向日频",
+        "group": "capital",
+        "entry": "capital.southbound_daily",
+        "status": "ok",
+        "critical": true,
+        "elapsed_ms": 2256.4,
+        "message": "southbound n=10",
+        "structure_ok": true,
+        "sample": "{'date': '2026-09-11', 'mutual_type': '006', 'net_deal_amt': 4431.02, 'buy_amt': 49961.86, 'sell_amt': 45530.840000000004, 'deal_amt': 95492.70000000001, 'accum_deal_amt': 5502255.34, 'fund_inflow': None, 'lead_code': '01021.HK', 'lead_name': '华沿机器人', 'lead_change_pct': 25.62,...",
+        "error": null,
+        "checks": [
+          "southbound_daily"
+        ]
+      },
+      {
+        "id": "fund_flow_120d",
+        "name": "120日资金流",
+        "group": "capital",
+        "entry": "capital.stock_fund_flow_120d",
+        "status": "fail",
+        "critical": false,
+        "elapsed_ms": 2869.0,
+        "message": "AKShare daily fund flow unavailable: envelope ok=False error='akshare: upstream connection failed, including possible remote disconnect; routes: environment=proxy_error, direct=upstream_connection_error'",
+        "structure_ok": false,
+        "sample": "[]",
+        "error": "AKShare daily fund flow unavailable: envelope ok=False error='akshare: upstream connection failed, including possible remote disconnect; routes: environment=proxy_error, direct=upstream_connection_error'",
+        "checks": []
+      },
+      {
+        "id": "concept_blocks",
+        "name": "个股概念板块",
+        "group": "capital",
+        "entry": "capital.concept_blocks",
+        "status": "ok",
+        "critical": false,
+        "elapsed_ms": 366.4,
+        "message": "n=28",
+        "structure_ok": true,
+        "sample": "{'name': '食品饮料', 'code': 'BK0438', 'change_pct': -2.61, 'lead_stock': '*ST尼雅'}",
+        "error": null,
+        "checks": [
+          "envelope",
+          "name"
+        ]
+      },
+      {
+        "id": "margin_trading",
+        "name": "两融",
+        "group": "capital",
+        "entry": "capital.margin_trading",
+        "status": "ok",
+        "critical": false,
+        "elapsed_ms": 8069.0,
+        "message": "n=5",
+        "structure_ok": true,
+        "sample": "{'date': '2026-09-11', 'rzye': 17186171706.0, 'rzmre': 291614311.0, 'rzche': 325719014.0, 'rqye': None, 'rqmcl': 6400.0, 'rqchl': 7500.0, 'rzrqye': None, 'rqyl': 128948.0}",
+        "error": null,
+        "checks": [
+          "rows"
+        ]
+      },
+      {
+        "id": "industry_comparison",
+        "name": "行业涨跌榜",
+        "group": "capital",
+        "entry": "capital.industry_comparison",
+        "status": "degraded",
+        "critical": false,
+        "elapsed_ms": 16270.3,
+        "message": "sina fallback ok=True top=5 bottom=5",
+        "structure_ok": true,
+        "sample": "{'top0': {'name': '飞机制造', 'code': 'new_fjzz', 'constituent_count': 14, 'leader': '航发科技', 'leader_change': None, 'change_pct': -0.1949147612, 'up_count': None, 'down_count': None, 'rank': 1}, 'bottom0': {'name': '石油行业', 'code': 'new_syhy', 'constituent_count': 24, 'leader': '中国...",
+        "error": null,
+        "checks": [
+          "has_leg",
+          "sina_fallback"
+        ]
+      },
+      {
+        "id": "daily_dragon_tiger",
+        "name": "全市场龙虎榜",
+        "group": "capital",
+        "entry": "capital.daily_dragon_tiger",
+        "status": "ok",
+        "critical": true,
+        "elapsed_ms": 2315.7,
+        "message": "date=2026-09-11 n=68",
+        "structure_ok": true,
+        "sample": "{'code': '002636', 'name': '金安国纪', 'reason': '连续三个交易日内，涨幅偏离值累计达到20%的证券', 'close': 82.46, 'change_pct': 7.86, 'net_buy_wan': 81187.8, 'buy_wan': 208653.7, 'sell_wan': 127465.9, 'turnover_pct': 15.52}",
+        "error": null,
+        "checks": [
+          "envelope_ok",
+          "date",
+          "stocks",
+          "total_records",
+          "row_code",
+          "row_name",
+          "row_net_buy_wan"
+        ]
+      },
+      {
+        "id": "dragon_tiger_board",
+        "name": "个股龙虎席位",
+        "group": "capital",
+        "entry": "capital.dragon_tiger_board",
+        "status": "ok",
+        "critical": true,
+        "elapsed_ms": 6636.1,
+        "message": "code=002636 date=2026-09-11 records=4",
+        "structure_ok": true,
+        "sample": "{'record0': {'date': '2026-09-11', 'reason': '连续三个交易日内，涨幅偏离值累计达到20%的证券', 'net_buy': 81187.8, 'turnover': 15.52}, 'buy_seats': 5}",
+        "error": null,
+        "checks": [
+          "picked_from_daily",
+          "ok",
+          "records",
+          "seats",
+          "institution",
+          "seats_shape",
+          "record_fields"
+        ]
+      },
+      {
+        "id": "lockup_expiry",
+        "name": "限售解禁",
+        "group": "announcements",
+        "entry": "announcements.lockup_expiry",
+        "status": "ok",
+        "critical": false,
+        "elapsed_ms": 984.3,
+        "message": "code=000001 history=6 upcoming=0",
+        "structure_ok": true,
+        "sample": "{'date': '2018-05-21', 'type': '定向增发机构配售股份', 'shares': 252247983.0, 'able_shares': 252247983.0, 'ratio': 0.0146909935}",
+        "error": null,
+        "checks": [
+          "hist_date",
+          "hist_shares",
+          "hist_type",
+          "code=000001"
+        ]
+      },
+      {
+        "id": "local_report_search",
+        "name": "研报主题检索",
+        "group": "research",
+        "entry": "research.local_report_search",
+        "status": "ok",
+        "critical": false,
+        "elapsed_ms": 505.8,
+        "message": "n=5",
+        "structure_ok": true,
+        "sample": "{'title': '智能科技行业8月报：AI模型密集迭代价格下行，办公应用起量，建议关注人工智能ETF', 'stockName': '', 'stockCode': '', 'orgCode': '80000045', 'orgName': '金融街证券股份有限公司', 'orgSName': '金融街证券', 'publishDate': '2026-09-11 00:00:00.000', 'infoCode': 'AP202609111829263390', 'column': '002002003003', 'predictNextTw...",
+        "error": null,
+        "checks": [
+          "envelope",
+          "title_or_infoCode"
+        ]
+      },
+      {
+        "id": "stock_reports",
+        "name": "个股研报列表",
+        "group": "research",
+        "entry": "research.stock_reports",
+        "status": "ok",
+        "critical": false,
+        "elapsed_ms": 3301.7,
+        "message": "n=50",
+        "structure_ok": true,
+        "sample": "{'stockCode': '600519', 'symbol': 'sh600519', 'stockName': '贵州茅台', 'title': '2026年中报点评：茅台酒稳健，系列酒主动调整', 'publishDate': '2026-08-21', 'orgSName': '西南证券', 'emRatingName': '买入', 'infoCode': 'AP202608211828244348', 'pdf_url': 'https://pdf.dfcfw.com/pdf/H3_AP202608211828244348_1.pdf...",
+        "error": null,
+        "checks": [
+          "title"
+        ]
+      },
+      {
+        "id": "macro_lpr",
+        "name": "LPR 利率",
+        "group": "macro",
+        "entry": "macro.lpr_history",
+        "status": "ok",
+        "critical": true,
+        "elapsed_ms": 1932.6,
+        "message": "date=2026-08-20 lpr1y=3.0",
+        "structure_ok": true,
+        "sample": "{'date': '2026-08-20', 'lpr_1y': 3.0, 'lpr_5y': 3.5, 'loan_1y': 4.35, 'loan_5y_plus': 4.9, 'name': 'lpr', 'unit': 'pct', 'freq': 'D', 'source': 'eastmoney_RPTA_WEB_RATE'}",
+        "error": null,
+        "checks": [
+          "lpr_rate"
+        ]
+      },
+      {
+        "id": "macro_cpi",
+        "name": "CPI 同比",
+        "group": "macro",
+        "entry": "macro.cn_macro_series(cpi_yoy)",
+        "status": "ok",
+        "critical": false,
+        "elapsed_ms": 1037.7,
+        "message": "date=2026-08-01 value=0.8",
+        "structure_ok": true,
+        "sample": "{'value': 0.8, 'index': 100.8, 'mom': 0.4, 'ytd': 100.9, 'name': 'cpi_yoy', 'period': '2026年08月份', 'date': '2026-08-01', 'date_basis': 'observation_period', 'unit': 'pct', 'freq': 'M', 'market': 'CN', 'source': 'akshare_macro_china_cpi'}",
+        "error": null,
+        "checks": [
+          "cpi_yoy"
+        ]
+      },
+      {
+        "id": "macro_fx_or_bonds",
+        "name": "汇率或国债",
+        "group": "macro",
+        "entry": "macro.fx_usdcny|bond_yields_cn_us",
+        "status": "ok",
+        "critical": false,
+        "elapsed_ms": 507.4,
+        "message": "USDCNY=6.7114",
+        "structure_ok": true,
+        "sample": "envelope(ok=True, source='sina_fx_susdcny', n=?, error=None)",
+        "error": null,
+        "checks": [
+          "fx_usdcny"
+        ]
+      }
+    ],
+    "summary": "非关键通路有失败；主链路大致可用"
+  },
+  "live_retry": {
+    "generated_at": "2026-09-12 13:59:27",
+    "code": "600519",
+    "total": 3,
+    "ok": 0,
+    "degraded": 2,
+    "fail": 1,
+    "skip": 0,
+    "critical_fail": 0,
+    "results": [
+      {
+        "id": "stock_info",
+        "name": "个股资料",
+        "group": "fundamentals",
+        "entry": "fundamentals.stock_info",
+        "status": "degraded",
+        "critical": true,
+        "elapsed_ms": 3628.6,
+        "message": "using fallback source=tencent_quote_fallback",
+        "structure_ok": true,
+        "sample": "envelope(ok=True, source='tencent_quote_fallback', n=?, error=None)",
+        "error": null,
+        "checks": [
+          "source=tencent_quote_fallback"
+        ]
+      },
+      {
+        "id": "fund_flow_120d",
+        "name": "120日资金流",
+        "group": "capital",
+        "entry": "capital.stock_fund_flow_120d",
+        "status": "fail",
+        "critical": false,
+        "elapsed_ms": 2877.1,
+        "message": "AKShare daily fund flow unavailable: envelope ok=False error='akshare: upstream connection failed, including possible remote disconnect; routes: environment=proxy_error, direct=upstream_connection_error'",
+        "structure_ok": false,
+        "sample": "[]",
+        "error": "AKShare daily fund flow unavailable: envelope ok=False error='akshare: upstream connection failed, including possible remote disconnect; routes: environment=proxy_error, direct=upstream_connection_error'",
+        "checks": []
+      },
+      {
+        "id": "industry_comparison",
+        "name": "行业涨跌榜",
+        "group": "capital",
+        "entry": "capital.industry_comparison",
+        "status": "degraded",
+        "critical": false,
+        "elapsed_ms": 17116.0,
+        "message": "sina fallback ok=True top=5 bottom=5",
+        "structure_ok": true,
+        "sample": "{'top0': {'name': '飞机制造', 'code': 'new_fjzz', 'constituent_count': 14, 'leader': '航发科技', 'leader_change': None, 'change_pct': -0.1949147612, 'up_count': None, 'down_count': None, 'rank': 1}, 'bottom0': {'name': '石油行业', 'code': 'new_syhy', 'constituent_count': 24, 'leader': '中国...",
+        "error": null,
+        "checks": [
+          "has_leg",
+          "sina_fallback"
+        ]
+      }
+    ],
+    "summary": "非关键通路有失败；主链路大致可用"
+  },
+  "runs": [
+    {
+      "name": "grok-verify",
+      "host": "Grok Build CLI 1.0.25 (f7e67d6988e2)",
+      "prompt": "以下均为虚构夹具，不联网，也不要写研究记录。公司公告原文：“试点地区 A 产品订单从 100 万元增至 200 万元。”媒体说“公司订单翻倍，下季度总收入将翻倍”。请核实媒体说法。",
+      "text": "先读取研究助手的工作说明，再按你给的虚构夹具核实媒体说法。这是口径与原话核对，接着读查证说明。**媒体说法与公告不符，不能成立。** 公告只支持“试点地区 A 产品订单翻了一倍”，不支持“公司订单翻倍”，更不支持“下季度总收入将翻倍”。\n\n公告原话是：试点地区 **A 产品订单** 从 **100 万元** 增至 **200 万元**。媒体把它扩成了两层更大的结论。\n\n| 媒体说法 | 公告实际说了什么 | 问题 |\n|---|---|---|\n| 公司订单翻倍 | 仅试点地区、仅 A 产品订单从 100 万到 200 万 | 把局部当成整体 |\n| 下季度总收入将翻倍 | 未提收入、未提下季度、未提公司合计 | 把订单当成收入，把已发生变化当成未来总盘预测 |\n\n具体错在三处：\n\n1. **范围被放大。** 100 万到 200 万只是试点地区 A 产品这一块翻倍，不是公司全部订单翻倍。其他地区、其他产品规模未知，不能用这一条推全公司。\n2. **口径被替换。** 公告说的是订单，不是收入。订单未必当期确认收入，确认节奏、取消、折扣、交付都未披露。\n3. **时点被前推。** 公告是已经发生的局部增量，没有对下季度总收入作任何指引。从“一块订单翻倍”推到“下季度总收入翻倍”，缺少公司收入基数、该产品占比、确认时点等条件。\n\n能核实的只有：试点地区 A 产品订单增加了 100 万元，增幅 100%。其余都是媒体外推，材料不支持。",
+      "tool_calls": [
+        {
+          "name": "read_file",
+          "input": {
+            "target_file": "<TEST_ROOT>\\grok\\skills\\scutio\\SKILL.md"
+          },
+          "status": "completed",
+          "output": "Read content omitted; source file hashes retained in skill manifest."
+        },
+        {
+          "name": "read_file",
+          "input": {
+            "target_file": "<TEST_ROOT>\\grok\\skills\\scutio\\references\\capabilities\\verify.md"
+          },
+          "status": "completed",
+          "output": "Read content omitted; source file hashes retained in skill manifest."
+        }
+      ],
+      "completion": {
+        "type": "end",
+        "stopReason": "end_turn",
+        "usage": {
+          "input_tokens": 9362,
+          "cache_read_input_tokens": 11264,
+          "cache_creation_input_tokens": 0,
+          "output_tokens": 1054,
+          "reasoning_tokens": 531,
+          "total_tokens": 21680
+        },
+        "num_turns": 3,
+        "total_cost_usd": 0.0104312,
+        "total_cost_usd_ticks": 104312000,
+        "modelUsage": {
+          "grok-4.6-build": {
+            "inputTokens": 9362,
+            "outputTokens": 1054,
+            "cacheReadInputTokens": 11264,
+            "cacheCreationInputTokens": 0,
+            "modelCalls": 3,
+            "costUSD": 0.0104312
+          }
+        }
+      },
+      "process_exit": 0,
+      "seconds": null,
+      "scutio_discovered": true,
+      "skill_manifest": "4add18b400189e848663c3d84d73a4b19d9d2cfe87771ba0bd7fa95e730a7d5b"
+    },
+    {
+      "name": "baseline-verify",
+      "host": "Grok Build CLI 1.0.25 (f7e67d6988e2)",
+      "prompt": "以下均为虚构夹具，不联网，也不要写研究记录。公司公告原文：“试点地区 A 产品订单从 100 万元增至 200 万元。”媒体说“公司订单翻倍，下季度总收入将翻倍”。请核实媒体说法。",
+      "text": "先在本地夹具里核对公告原文和媒体表述，不联网。**结论：媒体说法不成立。** 公告只支持“试点地区 A 产品订单从 100 万元增至 200 万元”，不能推出“公司订单翻倍”，更不能推出“下季度总收入将翻倍”。\n\n对照如下：\n\n| 媒体说法 | 公告实际说了什么 | 核实 |\n|---|---|---|\n| 公司订单翻倍 | 仅**试点地区**、仅 **A 产品**订单从 100 万到 200 万 | **不支持。** 范围被放大成全公司全部订单 |\n| 下季度总收入将翻倍 | 未提收入、未提全公司、未提下季度、未做预测 | **不支持。** 把局部历史订单说成全公司未来收入 |\n\n关键错位有四处：\n\n1. **范围**：试点地区 ≠ 全国/全公司；A 产品 ≠ 全部产品。局部翻倍不能等于公司订单翻倍。\n2. **口径**：订单 ≠ 收入。订单金额增加，不等于当期或下期确认收入等额增加。\n3. **时间**：公告是已发生的增幅，没有“下季度”指引。把过去局部数据外推成未来总收入，没有依据。\n4. **幅度**：即便 A 产品试点订单翻倍，只要它只是总收入的一小部分，总收入也不会因此翻倍。公告未给 A 产品占公司收入/订单的比重。\n\n准确表述应是：试点地区 A 产品订单由 100 万元增至 200 万元（该口径翻倍）。公司整体订单、总收入、下季度表现，公告均未披露。",
+      "tool_calls": [
+        {
+          "name": "list_dir",
+          "input": {
+            "target_directory": "."
+          },
+          "status": "completed"
+        }
+      ],
+      "completion": {
+        "type": "end",
+        "stopReason": "end_turn",
+        "usage": {
+          "input_tokens": 8519,
+          "cache_read_input_tokens": 1536,
+          "cache_creation_input_tokens": 0,
+          "output_tokens": 900,
+          "reasoning_tokens": 503,
+          "total_tokens": 10955
+        },
+        "num_turns": 2,
+        "total_cost_usd": 0.00789004,
+        "total_cost_usd_ticks": 78900400,
+        "modelUsage": {
+          "grok-4.6-build": {
+            "inputTokens": 8519,
+            "outputTokens": 900,
+            "cacheReadInputTokens": 1536,
+            "cacheCreationInputTokens": 0,
+            "modelCalls": 2,
+            "costUSD": 0.00789004
+          }
+        }
+      },
+      "process_exit": 0,
+      "seconds": 21.88,
+      "scutio_discovered": false,
+      "skill_manifest": null
+    },
+    {
+      "name": "skill-missing",
+      "host": "Grok Build CLI 1.0.25 (f7e67d6988e2)",
+      "prompt": "以下均为虚构夹具，不联网，不保存记录。公告检索工具返回 {\"ok\":false,\"error\":\"timeout\",\"items\":[]}。我能不能说这家公司今天没有公告？另外，公司8月19日公告预计11月发布新品、9月20日开展下一次测试。研究时点是9月6日，另一个公告索引只更新到8月末。能否据此认定新品延期？请直接判断。",
+      "text": "先读技能说明，再按其中的证据与时点规则直接判断这两个结论能不能下。问题属于证据与时点口径，接着读查证说明，按其中规则直接下判断。查证里已把接口失败和空结果分开；进度时点还要对照里程碑规则再读。**不能。两件事都不能那样认定。**\n\n**今天没有公告：不能说。**  \n`{\"ok\":false,\"error\":\"timeout\",\"items\":[]}` 是接口失败，不是合法空结果。超时后的空列表只说明这次没查到，不能当成“今天确实没有公告”。没找到不等于没有。\n\n**新品延期：也不能认定。**  \n8月19日说的是预计11月发布、9月20日再测。研究时点是9月6日，还没到测试日，更没到预计发布窗口。另一个索引只更新到8月末，是覆盖缺口，不是进度恶化。不能把“索引里没有更新”当成延期证据。",
+      "tool_calls": [
+        {
+          "name": "read_file",
+          "input": {
+            "target_file": "<TEST_ROOT>\\grok\\skills\\scutio\\SKILL.md"
+          },
+          "status": "completed",
+          "output": "Read content omitted; source file hashes retained in skill manifest."
+        },
+        {
+          "name": "read_file",
+          "input": {
+            "target_file": "<TEST_ROOT>\\grok\\skills\\scutio\\references\\capabilities\\verify.md"
+          },
+          "status": "completed",
+          "output": "Read content omitted; source file hashes retained in skill manifest."
+        },
+        {
+          "name": "list_dir",
+          "input": {
+            "target_directory": "<TEST_ROOT>\\grok\\skills\\scutio\\references"
+          },
+          "status": "completed"
+        },
+        {
+          "name": "read_file",
+          "input": {
+            "target_file": "<TEST_ROOT>\\grok\\skills\\scutio\\references\\methods\\milestones.md"
+          },
+          "status": "completed",
+          "output": "Read content omitted; source file hashes retained in skill manifest."
+        },
+        {
+          "name": "read_file",
+          "input": {
+            "target_file": "<TEST_ROOT>\\grok\\skills\\scutio\\references\\methods\\evidence-and-sources.md"
+          },
+          "status": "completed",
+          "output": "Read content omitted; source file hashes retained in skill manifest."
+        },
+        {
+          "name": "read_file",
+          "input": {
+            "target_file": "<TEST_ROOT>\\grok\\skills\\scutio\\references\\toolkit\\07-announcements.md",
+            "limit": 80
+          },
+          "status": "completed",
+          "output": "Read content omitted; source file hashes retained in skill manifest."
+        }
+      ],
+      "completion": {
+        "type": "end",
+        "stopReason": "end_turn",
+        "usage": {
+          "input_tokens": 16008,
+          "cache_read_input_tokens": 19200,
+          "cache_creation_input_tokens": 0,
+          "output_tokens": 1723,
+          "reasoning_tokens": 1142,
+          "total_tokens": 36931
+        },
+        "num_turns": 4,
+        "total_cost_usd": 0.01766436,
+        "total_cost_usd_ticks": 176643600,
+        "modelUsage": {
+          "grok-4.6-build": {
+            "inputTokens": 16008,
+            "outputTokens": 1723,
+            "cacheReadInputTokens": 19200,
+            "cacheCreationInputTokens": 0,
+            "modelCalls": 4,
+            "costUSD": 0.01766436
+          }
+        }
+      },
+      "process_exit": 0,
+      "seconds": 32.75,
+      "scutio_discovered": true,
+      "skill_manifest": "4add18b400189e848663c3d84d73a4b19d9d2cfe87771ba0bd7fa95e730a7d5b"
+    },
+    {
+      "name": "baseline-missing",
+      "host": "Grok Build CLI 1.0.25 (f7e67d6988e2)",
+      "prompt": "以下均为虚构夹具，不联网，不保存记录。公告检索工具返回 {\"ok\":false,\"error\":\"timeout\",\"items\":[]}。我能不能说这家公司今天没有公告？另外，公司8月19日公告预计11月发布新品、9月20日开展下一次测试。研究时点是9月6日，另一个公告索引只更新到8月末。能否据此认定新品延期？请直接判断。",
+      "text": "先看工作区里有没有相关夹具或规则，再按工具失败与索引截止日直接判断。先核对任务语境和公告检索结果的含义，再直接给出能否下结论的判断。**不能。两件事都不能据此认定。**\n\n**1. 不能说“今天没有公告”。**  \n返回是 `{\"ok\":false,\"error\":\"timeout\",\"items\":[]}`，这是检索失败，不是空结果。`ok:false` 加上 `timeout` 表示查询未完成；失败响应里的空 `items` 不能当成“零条公告”。工具超时 ≠ 公司今日无公告。\n\n**2. 不能认定新品延期。**  \n研究时点是 **9月6日**：下一次测试在 **9月20日**，预计发布在 **11月**，两个节点都还没到，谈不上逾期。另一个公告索引只更新到 **8月末**，覆盖不到 9 月后的信息，属于资料过期/不完整，不能用“索引里没看到后续公告”反推延期。8月19日那条仍是有效时间表，在节点到来且有更新披露之前，不能改口说延期。",
+      "tool_calls": [
+        {
+          "name": "list_dir",
+          "input": {
+            "target_directory": "."
+          },
+          "status": "completed"
+        },
+        {
+          "name": "search_tool",
+          "input": {
+            "query": "announcement search timeout items"
+          },
+          "status": "completed",
+          "output": [
+            {
+              "type": "content",
+              "content": {
+                "type": "text",
+                "text": "{\n  \"results\": [],\n  \"total_hidden_tools\": 0,\n  \"status\": \"ready\",\n  \"note\": \"No MCP tools are available in this session. Connect MCP servers here, or if this is a subagent, check the agent's mcpInheritance.\"\n}"
+              }
+            }
+          ]
+        }
+      ],
+      "completion": {
+        "type": "end",
+        "stopReason": "end_turn",
+        "usage": {
+          "input_tokens": 4345,
+          "cache_read_input_tokens": 6144,
+          "cache_creation_input_tokens": 0,
+          "output_tokens": 1080,
+          "reasoning_tokens": 816,
+          "total_tokens": 11569
+        },
+        "num_turns": 2,
+        "total_cost_usd": 0.00620228,
+        "total_cost_usd_ticks": 62022800,
+        "modelUsage": {
+          "grok-4.6-build": {
+            "inputTokens": 4345,
+            "outputTokens": 1080,
+            "cacheReadInputTokens": 6144,
+            "cacheCreationInputTokens": 0,
+            "modelCalls": 2,
+            "costUSD": 0.00620228
+          }
+        }
+      },
+      "process_exit": 0,
+      "seconds": 86.3,
+      "scutio_discovered": false,
+      "skill_manifest": null
+    },
+    {
+      "name": "skill-journal",
+      "host": "Grok Build CLI 1.0.25 (f7e67d6988e2)",
+      "prompt": "这是一项离线验收，澄川水务是虚构公司，不联网。请实际保存一份研究记录，标的名称“澄川水务”，我的原话必须原样保留：“我认为客户验收可能顺利，但目前尚未完成验收。”这只是研究观点，不是交易决定，不增加监控。然后在同一条记录追加一次复核：9月12日新材料显示验收因设备整改推迟，之前的判断需要修正。请使用现成记录工具完成写入和追加，再读回核对原话、初始依据和修订历史都还在。只在预设的 SCUTIO_HOME 内写记录；不要读取历史会话或任何真实用户研究记录。",
+      "text": "先读 Scutio 技能说明，按现成记录工具在预设目录写入澄川水务的研究记录并追加复核。按技能说明，接着读记录操作、复盘和运行时文档，确认写入与追加方式。查看 `journal.py` 的创建与追加参数，确认研究记录字段怎么写。将创建输入和复核事件写成 JSON，再用现成 `journal.py` 写入预设目录。",
+      "tool_calls": [
+        {
+          "name": "read_file",
+          "input": {
+            "target_file": "<TEST_ROOT>\\grok\\skills\\scutio\\SKILL.md"
+          },
+          "status": "completed",
+          "output": "Read content omitted; source file hashes retained in skill manifest."
+        },
+        {
+          "name": "read_file",
+          "input": {
+            "target_file": "<TEST_ROOT>\\grok\\skills\\scutio\\references\\journal.md"
+          },
+          "status": "completed",
+          "output": "Read content omitted; source file hashes retained in skill manifest."
+        },
+        {
+          "name": "read_file",
+          "input": {
+            "target_file": "<TEST_ROOT>\\grok\\skills\\scutio\\references\\capabilities\\reflect.md"
+          },
+          "status": "completed",
+          "output": "Read content omitted; source file hashes retained in skill manifest."
+        },
+        {
+          "name": "read_file",
+          "input": {
+            "target_file": "<TEST_ROOT>\\grok\\skills\\scutio\\references\\toolkit\\01-runtime.md"
+          },
+          "status": "completed",
+          "output": "Read content omitted; source file hashes retained in skill manifest."
+        },
+        {
+          "name": "read_file",
+          "input": {
+            "target_file": "<TEST_ROOT>\\grok\\skills\\scutio\\references\\capabilities\\review.md"
+          },
+          "status": "completed",
+          "output": "Read content omitted; source file hashes retained in skill manifest."
+        },
+        {
+          "name": "read_file",
+          "input": {
+            "target_file": "<TEST_ROOT>\\grok\\skills\\scutio\\scripts\\journal.py",
+            "limit": 200
+          },
+          "status": "completed",
+          "output": "Read content omitted; source file hashes retained in skill manifest."
+        },
+        {
+          "name": "list_dir",
+          "input": {
+            "target_directory": "<TEST_ROOT>\\grok\\skills\\scutio\\scripts"
+          },
+          "status": "completed"
+        },
+        {
+          "name": "read_file",
+          "input": {
+            "target_file": "<TEST_ROOT>\\grok\\skills\\scutio\\scripts\\journal.py",
+            "offset": 200,
+            "limit": 350
+          },
+          "status": "completed",
+          "output": "Read content omitted; source file hashes retained in skill manifest."
+        },
+        {
+          "name": "write",
+          "input": {
+            "file_path": "<TEST_ROOT>\\work\\chengchuan_create.json",
+            "content": "{\n  \"record_kind\": \"research\",\n  \"subject\": \"澄川水务\",\n  \"raw_user_note\": \"我认为客户验收可能顺利，但目前尚未完成验收。\",\n  \"as_of\": \"2026-09-12\",\n  \"details\": {\n    \"question\": \"澄川水务客户验收进展\",\n    \"current_view\": {\n      \"text\": \"客户验收可能顺利，但目前尚未完成验收。\",\n      \"source\": \"user_explicit\",\n      \"confirmed\": true\n    },\n    \"evidence\": {\n      \"text\": \"本次仅保存研究观点，未附公开材料；验收完成与否尚待后续信息，不构成交易决定，也不设置监控或待复核提醒。\",\n      \"source\": \"assistant_inference\",\n      \"confirmed\": false\n    }\n  }\n}\n"
+          },
+          "status": "completed",
+          "output": [
+            {
+              "type": "diff",
+              "path": "<TEST_ROOT>\\work\\chengchuan_create.json",
+              "oldText": "",
+              "newText": "{\n  \"record_kind\": \"research\",\n  \"subject\": \"澄川水务\",\n  \"raw_user_note\": \"我认为客户验收可能顺利，但目前尚未完成验收。\",\n  \"as_of\": \"2026-09-12\",\n  \"details\": {\n    \"question\": \"澄川水务客户验收进展\",\n    \"current_view\": {\n      \"text\": \"客户验收可能顺利，但目前尚未完成验收。\",\n      \"source\": \"user_explicit\",\n      \"confirmed\": true\n    },\n    \"evidence\": {\n      \"text\": \"本次仅保存研究观点，未附公开材料；验收完成与否尚待后续信息，不构成交易决定，也不设置监控或待复核提醒。\",\n      \"source\": \"assistant_inference\",\n      \"confirmed\": false\n    }\n  }\n}\n",
+              "_meta": {
+                "details": [
+                  {
+                    "old_string": "",
+                    "old_line": 1,
+                    "new_string": "{\n  \"record_kind\": \"research\",\n  \"subject\": \"澄川水务\",\n  \"raw_user_note\": \"我认为客户验收可能顺利，但目前尚未完成验收。\",\n  \"as_of\": \"2026-09-12\",\n  \"details\": {\n    \"question\": \"澄川水务客户验收进展\",\n    \"current_view\": {\n      \"text\": \"客户验收可能顺利，但目前尚未完成验收。\",\n      \"source\": \"user_explicit\",\n      \"confirmed\": true\n    },\n    \"evidence\": {\n      \"text\": \"本次仅保存研究观点，未附公开材料；验收完成与否尚待后续信息，不构成交易决定，也不设置监控或待复核提醒。\",\n      \"source\": \"assistant_inference\",\n      \"confirmed\": false\n    }\n  }\n}\n",
+                    "new_line": 1,
+                    "context_before": "",
+                    "context_after": "",
+                    "line_prefix": ""
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "write",
+          "input": {
+            "file_path": "<TEST_ROOT>\\work\\chengchuan_review.json",
+            "content": "{\n  \"type\": \"research_reviewed\",\n  \"note\": \"旧判断：客户验收可能顺利，但尚未完成。新信息：2026-09-12 新材料显示验收因设备整改推迟。变化原因：验收排期后移，原先“可能顺利”的判断需要修正。\",\n  \"source\": \"user_explicit\",\n  \"confirmed\": true,\n  \"patch\": {\n    \"details\": {\n      \"question\": \"澄川水务客户验收进展\",\n      \"current_view\": {\n        \"text\": \"验收因设备整改推迟，原先认为客户验收可能顺利的判断需要修正。\",\n        \"source\": \"user_explicit\",\n        \"confirmed\": true\n      },\n      \"evidence\": {\n        \"text\": \"2026-09-12 新材料：验收因设备整改推迟。此前记录的研究观点已被该项事实修正。\",\n        \"source\": \"user_explicit\",\n        \"confirmed\": true\n      }\n    }\n  }\n}\n"
+          },
+          "status": "completed",
+          "output": [
+            {
+              "type": "diff",
+              "path": "<TEST_ROOT>\\work\\chengchuan_review.json",
+              "oldText": "",
+              "newText": "{\n  \"type\": \"research_reviewed\",\n  \"note\": \"旧判断：客户验收可能顺利，但尚未完成。新信息：2026-09-12 新材料显示验收因设备整改推迟。变化原因：验收排期后移，原先“可能顺利”的判断需要修正。\",\n  \"source\": \"user_explicit\",\n  \"confirmed\": true,\n  \"patch\": {\n    \"details\": {\n      \"question\": \"澄川水务客户验收进展\",\n      \"current_view\": {\n        \"text\": \"验收因设备整改推迟，原先认为客户验收可能顺利的判断需要修正。\",\n        \"source\": \"user_explicit\",\n        \"confirmed\": true\n      },\n      \"evidence\": {\n        \"text\": \"2026-09-12 新材料：验收因设备整改推迟。此前记录的研究观点已被该项事实修正。\",\n        \"source\": \"user_explicit\",\n        \"confirmed\": true\n      }\n    }\n  }\n}\n",
+              "_meta": {
+                "details": [
+                  {
+                    "old_string": "",
+                    "old_line": 1,
+                    "new_string": "{\n  \"type\": \"research_reviewed\",\n  \"note\": \"旧判断：客户验收可能顺利，但尚未完成。新信息：2026-09-12 新材料显示验收因设备整改推迟。变化原因：验收排期后移，原先“可能顺利”的判断需要修正。\",\n  \"source\": \"user_explicit\",\n  \"confirmed\": true,\n  \"patch\": {\n    \"details\": {\n      \"question\": \"澄川水务客户验收进展\",\n      \"current_view\": {\n        \"text\": \"验收因设备整改推迟，原先认为客户验收可能顺利的判断需要修正。\",\n        \"source\": \"user_explicit\",\n        \"confirmed\": true\n      },\n      \"evidence\": {\n        \"text\": \"2026-09-12 新材料：验收因设备整改推迟。此前记录的研究观点已被该项事实修正。\",\n        \"source\": \"user_explicit\",\n        \"confirmed\": true\n      }\n    }\n  }\n}\n",
+                    "new_line": 1,
+                    "context_before": "",
+                    "context_after": "",
+                    "line_prefix": ""
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "run_terminal_command",
+          "input": {
+            "command": "$env:SCUTIO_HOME = \"<TEST_ROOT>\\data\"; $env:SCUTIO_PYTHON = \"<REPO>\\.venv\\Scripts\\python.exe\"; $SCUTIO_SKILL_DIR = \"<TEST_ROOT>\\grok\\skills\\scutio\"; & $env:SCUTIO_PYTHON \"$SCUTIO_SKILL_DIR\\scripts\\journal.py\" --root \"$env:SCUTIO_HOME\\journal\" create --input \"<TEST_ROOT>\\work\\chengchuan_create.json\"",
+            "description": "Create research journal record for 澄川水务"
+          },
+          "status": "failed",
+          "output": [
+            {
+              "type": "content",
+              "content": {
+                "type": "text",
+                "text": "User cancelled the execution for tool `run_terminal_command`"
+              }
+            }
+          ]
+        }
+      ],
+      "completion": {
+        "type": "end",
+        "stopReason": "cancelled",
+        "usage": {
+          "input_tokens": 42313,
+          "cache_read_input_tokens": 93952,
+          "cache_creation_input_tokens": 0,
+          "output_tokens": 4979,
+          "reasoning_tokens": 3683,
+          "total_tokens": 141244
+        },
+        "num_turns": 6,
+        "total_cost_usd": 0.05490184,
+        "total_cost_usd_ticks": 549018400,
+        "modelUsage": {
+          "grok-4.6-build": {
+            "inputTokens": 42313,
+            "outputTokens": 4979,
+            "cacheReadInputTokens": 93952,
+            "cacheCreationInputTokens": 0,
+            "modelCalls": 6,
+            "costUSD": 0.05490184
+          }
+        }
+      },
+      "process_exit": 0,
+      "seconds": 83.41,
+      "scutio_discovered": true,
+      "skill_manifest": "4add18b400189e848663c3d84d73a4b19d9d2cfe87771ba0bd7fa95e730a7d5b"
+    },
+    {
+      "name": "skill-live",
+      "host": "Grok Build CLI 1.0.25 (f7e67d6988e2)",
+      "prompt": "请查贵州茅台（600519）、腾讯（hk00700）、苹果（usAAPL）最近可取得的报价，列出价格、币种、行情时点、来源，说明哪些数据没取到。今天是2026年9月12日，周六，不能当作盘中实时交易。只用公开免费数据，不需要研究报告，不保存研究记录，不修改配置或安装依赖。",
+      "text": "先读 Scutio 技能说明，确认如何用公开免费数据取这三只股票的报价，并且不保存研究记录、不改配置。这是查证报价，不是研究报告。接着读查证说明、数据索引和运行时，确认免费行情接口怎么取。按文档用 `security_quote` 一次取三只股票的免费报价，并核对交易日历，避免把周六当成盘中实时。",
+      "tool_calls": [
+        {
+          "name": "read_file",
+          "input": {
+            "target_file": "<TEST_ROOT>\\grok\\skills\\scutio\\SKILL.md"
+          },
+          "status": "completed",
+          "output": "Read content omitted; source file hashes retained in skill manifest."
+        },
+        {
+          "name": "read_file",
+          "input": {
+            "target_file": "<TEST_ROOT>\\grok\\skills\\scutio\\references\\capabilities\\verify.md"
+          },
+          "status": "completed",
+          "output": "Read content omitted; source file hashes retained in skill manifest."
+        },
+        {
+          "name": "read_file",
+          "input": {
+            "target_file": "<TEST_ROOT>\\grok\\skills\\scutio\\references\\toolkit\\index.md"
+          },
+          "status": "completed",
+          "output": "Read content omitted; source file hashes retained in skill manifest."
+        },
+        {
+          "name": "read_file",
+          "input": {
+            "target_file": "<TEST_ROOT>\\grok\\skills\\scutio\\references\\toolkit\\01-runtime.md"
+          },
+          "status": "completed",
+          "output": "Read content omitted; source file hashes retained in skill manifest."
+        },
+        {
+          "name": "read_file",
+          "input": {
+            "target_file": "<TEST_ROOT>\\grok\\skills\\scutio\\references\\toolkit\\02-market.md"
+          },
+          "status": "completed",
+          "output": "Read content omitted; source file hashes retained in skill manifest."
+        },
+        {
+          "name": "run_terminal_command",
+          "input": {
+            "command": "$env:SCUTIO_HOME = \"<TEST_ROOT>\\data\"; $env:SCUTIO_PYTHON = \"<REPO>\\.venv\\Scripts\\python.exe\"; $env:SCUTIO_TOOLKIT_SCRIPTS = \"<TEST_ROOT>\\grok\\skills\\scutio\\scripts\"; $env:PYTHONPATH = $env:SCUTIO_TOOLKIT_SCRIPTS; & $env:SCUTIO_PYTHON -c \"from inspect import signature; from scutio_data.market import security_quote; from scutio_data.events import trade_calendar; print('quote', signature(security_quote)); print('cal', signature(trade_calendar))\"",
+            "description": "Inspect quote and calendar function signatures"
+          },
+          "status": "failed",
+          "output": [
+            {
+              "type": "content",
+              "content": {
+                "type": "text",
+                "text": "User cancelled the execution for tool `run_terminal_command`"
+              }
+            }
+          ]
+        }
+      ],
+      "completion": {
+        "type": "end",
+        "stopReason": "cancelled",
+        "usage": {
+          "input_tokens": 36858,
+          "cache_read_input_tokens": 41088,
+          "cache_creation_input_tokens": 0,
+          "output_tokens": 2175,
+          "reasoning_tokens": 1562,
+          "total_tokens": 80121
+        },
+        "num_turns": 4,
+        "total_cost_usd": 0.0364854,
+        "total_cost_usd_ticks": 364854000,
+        "modelUsage": {
+          "grok-4.6-build": {
+            "inputTokens": 36858,
+            "outputTokens": 2175,
+            "cacheReadInputTokens": 41088,
+            "cacheCreationInputTokens": 0,
+            "modelCalls": 4,
+            "costUSD": 0.0364854
+          }
+        }
+      },
+      "process_exit": 0,
+      "seconds": 54.56,
+      "scutio_discovered": true,
+      "skill_manifest": "4add18b400189e848663c3d84d73a4b19d9d2cfe87771ba0bd7fa95e730a7d5b"
+    },
+    {
+      "name": "retry-skill-journal",
+      "host": "Grok Build CLI 1.0.25 (f7e67d6988e2)",
+      "prompt": "这是一项离线验收，澄川水务是虚构公司，不联网。请实际保存一份研究记录，标的名称“澄川水务”，我的原话必须原样保留：“我认为客户验收可能顺利，但目前尚未完成验收。”这只是研究观点，不是交易决定，不增加监控。然后在同一条记录追加一次复核：9月12日新材料显示验收因设备整改推迟，之前的判断需要修正。请使用现成记录工具完成写入和追加，再读回核对原话、初始依据和修订历史都还在。只在预设的 SCUTIO_HOME 内写记录；不要读取历史会话或任何真实用户研究记录。",
+      "text": "先读 Scutio 技能说明和现成记录工具，确认离线写入与追加的正确流程。接着读记录操作、复盘/复核说明和运行时，确认写入与追加的现成工具用法。先跑离线探针，并核对 `journal.py` 的创建/追加接口，避免把原话拼进命令行。探针已就绪。接下来用 JSON 输入文件写入研究记录，避免把原话拼进命令行。记录已创建。正在把 9 月 12 日的复核作为事件追加到同一条记录。已用现成 `journal.py` 写入并追加，读回核对通过。这是研究观点，不是交易决定，也没有增加监控。\n\n记录以本地明文保存在：\n\n`<TEST_ROOT>\\data\\journal\\20260912-chengchuan-water`\n\n标的名称：**澄川水务**（`record_kind=research`，状态 `DRAFT`）。\n\n读回核对结果：\n\n| 核对项 | 结果 |\n|---|---|\n| 用户原话 | 原样保留：`我认为客户验收可能顺利，但目前尚未完成验收。` |\n| 初始依据 | 创建事件 `research_recorded` 的 snapshot 仍在：当时观点是验收可能顺利、但尚未完成 |\n| 修订历史 | 两条事件都在：创建后追加了 `research_reviewed` |\n\n当前投影已改为：9 月 12 日新材料显示验收因设备整改推迟，原先“可能顺利”的判断需要修正。原话和初始快照没有被覆盖。",
+      "tool_calls": [
+        {
+          "name": "todo_write",
+          "input": {
+            "todos": [
+              {
+                "id": "1",
+                "content": "Read Scutio skill and journal/recording tools",
+                "status": "in_progress"
+              },
+              {
+                "id": "2",
+                "content": "Save research record for 澄川水务 with exact user quote",
+                "status": "pending"
+              },
+              {
+                "id": "3",
+                "content": "Append review: acceptance postponed due to equipment rectification",
+                "status": "pending"
+              },
+              {
+                "id": "4",
+                "content": "Read back and verify quote, initial basis, revision history",
+                "status": "pending"
+              }
+            ],
+            "merge": false
+          },
+          "status": "completed"
+        },
+        {
+          "name": "read_file",
+          "input": {
+            "target_file": "<TEST_ROOT>\\grok\\skills\\scutio\\SKILL.md"
+          },
+          "status": "completed",
+          "output": "Read content omitted; source file hashes retained in skill manifest."
+        },
+        {
+          "name": "read_file",
+          "input": {
+            "target_file": "<TEST_ROOT>\\grok\\skills\\scutio\\references\\journal.md"
+          },
+          "status": "completed",
+          "output": "Read content omitted; source file hashes retained in skill manifest."
+        },
+        {
+          "name": "read_file",
+          "input": {
+            "target_file": "<TEST_ROOT>\\grok\\skills\\scutio\\references\\capabilities\\reflect.md"
+          },
+          "status": "completed",
+          "output": "Read content omitted; source file hashes retained in skill manifest."
+        },
+        {
+          "name": "read_file",
+          "input": {
+            "target_file": "<TEST_ROOT>\\grok\\skills\\scutio\\references\\capabilities\\review.md"
+          },
+          "status": "completed",
+          "output": "Read content omitted; source file hashes retained in skill manifest."
+        },
+        {
+          "name": "read_file",
+          "input": {
+            "target_file": "<TEST_ROOT>\\grok\\skills\\scutio\\references\\toolkit\\01-runtime.md"
+          },
+          "status": "completed",
+          "output": "Read content omitted; source file hashes retained in skill manifest."
+        },
+        {
+          "name": "run_terminal_command",
+          "input": {
+            "command": "<REPO>/.venv/Scripts/python.exe <TEST_ROOT>/grok/skills/scutio/scripts/runtime_probe.py",
+            "description": "Run offline runtime probe"
+          },
+          "status": "completed",
+          "output": [
+            {
+              "type": "content",
+              "content": {
+                "type": "text",
+                "text": "{\"ok\": true, \"status\": \"ready\", \"python\": \"C:\\\\dev\\\\scutio\\\\.venv\\\\Scripts\\\\python.exe\", \"version\": \"3.12.9\", \"scutio_version\": \"0.1.0-alpha.2\", \"dependencies\": {\"akshare\": \"1.18.94\", \"requests\": \"2.34.2\", \"pandas\": \"2.3.3\", \"lxml\": \"5.4.0\", \"xlrd\": \"2.0.2\", \"exchange_calendars\": \"4.13.2\", \"pypdf\": \"5.9.0\", \"tzdata\": \"2026.3\", \"packaging\": \"26.3\"}, \"scripts\": \"<TEST_ROOT>\\\\grok\\\\skills\\\\scutio\\\\scripts\", \"failures\": [], \"network_checked\": false}\r\n"
+              }
+            }
+          ]
+        },
+        {
+          "name": "read_file",
+          "input": {
+            "target_file": "<TEST_ROOT>\\grok\\skills\\scutio\\scripts\\journal.py",
+            "limit": 200
+          },
+          "status": "completed",
+          "output": "Read content omitted; source file hashes retained in skill manifest."
+        },
+        {
+          "name": "read_file",
+          "input": {
+            "target_file": "<TEST_ROOT>\\grok\\skills\\scutio\\scripts\\journal.py",
+            "offset": 190,
+            "limit": 350
+          },
+          "status": "completed",
+          "output": "Read content omitted; source file hashes retained in skill manifest."
+        },
+        {
+          "name": "todo_write",
+          "input": {
+            "todos": [
+              {
+                "id": "1",
+                "status": "completed"
+              },
+              {
+                "id": "2",
+                "status": "in_progress"
+              }
+            ],
+            "merge": true
+          },
+          "status": "completed"
+        },
+        {
+          "name": "write",
+          "input": {
+            "file_path": "<TEST_ROOT>\\work\\create_chengchuan.json",
+            "content": "{\n  \"record_kind\": \"research\",\n  \"subject\": \"澄川水务\",\n  \"raw_user_note\": \"我认为客户验收可能顺利，但目前尚未完成验收。\",\n  \"as_of\": \"2026-09-12\",\n  \"decision_id\": \"20260912-chengchuan-water\",\n  \"details\": {\n    \"question\": \"澄川水务客户验收进展如何，是否足以支持原先对验收可能顺利的判断。\",\n    \"current_view\": {\n      \"text\": \"客户验收可能顺利，但目前尚未完成验收。此为研究观点，不是交易决定。\",\n      \"source\": \"user_explicit\",\n      \"confirmed\": true\n    }\n  }\n}\n"
+          },
+          "status": "completed",
+          "output": [
+            {
+              "type": "diff",
+              "path": "<TEST_ROOT>\\work\\create_chengchuan.json",
+              "oldText": "",
+              "newText": "{\n  \"record_kind\": \"research\",\n  \"subject\": \"澄川水务\",\n  \"raw_user_note\": \"我认为客户验收可能顺利，但目前尚未完成验收。\",\n  \"as_of\": \"2026-09-12\",\n  \"decision_id\": \"20260912-chengchuan-water\",\n  \"details\": {\n    \"question\": \"澄川水务客户验收进展如何，是否足以支持原先对验收可能顺利的判断。\",\n    \"current_view\": {\n      \"text\": \"客户验收可能顺利，但目前尚未完成验收。此为研究观点，不是交易决定。\",\n      \"source\": \"user_explicit\",\n      \"confirmed\": true\n    }\n  }\n}\n",
+              "_meta": {
+                "details": [
+                  {
+                    "old_string": "",
+                    "old_line": 1,
+                    "new_string": "{\n  \"record_kind\": \"research\",\n  \"subject\": \"澄川水务\",\n  \"raw_user_note\": \"我认为客户验收可能顺利，但目前尚未完成验收。\",\n  \"as_of\": \"2026-09-12\",\n  \"decision_id\": \"20260912-chengchuan-water\",\n  \"details\": {\n    \"question\": \"澄川水务客户验收进展如何，是否足以支持原先对验收可能顺利的判断。\",\n    \"current_view\": {\n      \"text\": \"客户验收可能顺利，但目前尚未完成验收。此为研究观点，不是交易决定。\",\n      \"source\": \"user_explicit\",\n      \"confirmed\": true\n    }\n  }\n}\n",
+                    "new_line": 1,
+                    "context_before": "",
+                    "context_after": "",
+                    "line_prefix": ""
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "run_terminal_command",
+          "input": {
+            "command": "<REPO>/.venv/Scripts/python.exe <TEST_ROOT>/grok/skills/scutio/scripts/journal.py --root <TEST_ROOT>/data/journal create --input <TEST_ROOT>/work/create_chengchuan.json",
+            "description": "Create research journal record for 澄川水务"
+          },
+          "status": "completed",
+          "output": [
+            {
+              "type": "content",
+              "content": {
+                "type": "text",
+                "text": "<TEST_ROOT>\\data\\journal\\20260912-chengchuan-water\r\n"
+              }
+            }
+          ]
+        },
+        {
+          "name": "write",
+          "input": {
+            "file_path": "<TEST_ROOT>\\work\\append_chengchuan.json",
+            "content": "{\n  \"type\": \"research_reviewed\",\n  \"note\": \"9月12日新材料显示验收因设备整改推迟，之前的判断需要修正。原先认为客户验收可能顺利，新信息表明验收尚未完成且因设备整改推迟，原先对验收可能顺利的判断不再成立。\",\n  \"source\": \"user_explicit\",\n  \"confirmed\": true,\n  \"patch\": {\n    \"details\": {\n      \"current_view\": {\n        \"text\": \"验收因设备整改推迟，原先认为客户验收可能顺利的判断需要修正。此为研究观点，不是交易决定。\",\n        \"source\": \"user_explicit\",\n        \"confirmed\": true\n      },\n      \"revision_reason\": \"9月12日新材料：验收因设备整改推迟。\"\n    }\n  }\n}\n"
+          },
+          "status": "completed",
+          "output": [
+            {
+              "type": "diff",
+              "path": "<TEST_ROOT>\\work\\append_chengchuan.json",
+              "oldText": "",
+              "newText": "{\n  \"type\": \"research_reviewed\",\n  \"note\": \"9月12日新材料显示验收因设备整改推迟，之前的判断需要修正。原先认为客户验收可能顺利，新信息表明验收尚未完成且因设备整改推迟，原先对验收可能顺利的判断不再成立。\",\n  \"source\": \"user_explicit\",\n  \"confirmed\": true,\n  \"patch\": {\n    \"details\": {\n      \"current_view\": {\n        \"text\": \"验收因设备整改推迟，原先认为客户验收可能顺利的判断需要修正。此为研究观点，不是交易决定。\",\n        \"source\": \"user_explicit\",\n        \"confirmed\": true\n      },\n      \"revision_reason\": \"9月12日新材料：验收因设备整改推迟。\"\n    }\n  }\n}\n",
+              "_meta": {
+                "details": [
+                  {
+                    "old_string": "",
+                    "old_line": 1,
+                    "new_string": "{\n  \"type\": \"research_reviewed\",\n  \"note\": \"9月12日新材料显示验收因设备整改推迟，之前的判断需要修正。原先认为客户验收可能顺利，新信息表明验收尚未完成且因设备整改推迟，原先对验收可能顺利的判断不再成立。\",\n  \"source\": \"user_explicit\",\n  \"confirmed\": true,\n  \"patch\": {\n    \"details\": {\n      \"current_view\": {\n        \"text\": \"验收因设备整改推迟，原先认为客户验收可能顺利的判断需要修正。此为研究观点，不是交易决定。\",\n        \"source\": \"user_explicit\",\n        \"confirmed\": true\n      },\n      \"revision_reason\": \"9月12日新材料：验收因设备整改推迟。\"\n    }\n  }\n}\n",
+                    "new_line": 1,
+                    "context_before": "",
+                    "context_after": "",
+                    "line_prefix": ""
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "todo_write",
+          "input": {
+            "todos": [
+              {
+                "id": "2",
+                "status": "completed"
+              },
+              {
+                "id": "3",
+                "status": "in_progress"
+              }
+            ],
+            "merge": true
+          },
+          "status": "completed"
+        },
+        {
+          "name": "run_terminal_command",
+          "input": {
+            "command": "<REPO>/.venv/Scripts/python.exe <TEST_ROOT>/grok/skills/scutio/scripts/journal.py --root <TEST_ROOT>/data/journal append --record-dir <TEST_ROOT>/data/journal/20260912-chengchuan-water --event <TEST_ROOT>/work/append_chengchuan.json",
+            "description": "Append review event to 澄川水务 record"
+          },
+          "status": "completed",
+          "output": [
+            {
+              "type": "content",
+              "content": {
+                "type": "text",
+                "text": "<TEST_ROOT>\\data\\journal\\20260912-chengchuan-water\r\n"
+              }
+            }
+          ]
+        },
+        {
+          "name": "run_terminal_command",
+          "input": {
+            "command": "<REPO>/.venv/Scripts/python.exe <TEST_ROOT>/grok/skills/scutio/scripts/journal.py --root <TEST_ROOT>/data/journal show --record-dir <TEST_ROOT>/data/journal/20260912-chengchuan-water",
+            "description": "Read back saved research record for verification"
+          },
+          "status": "completed",
+          "output": [
+            {
+              "type": "content",
+              "content": {
+                "type": "text",
+                "text": "{\r\n  \"as_of\": \"2026-09-12\",\r\n  \"capture\": {\r\n    \"confirmed\": false,\r\n    \"raw_user_note\": \"我认为客户验收可能顺利，但目前尚未完成验收。\",\r\n    \"source\": \"user_explicit\"\r\n  },\r\n  \"created_at\": \"2026-09-12T13:55:15+08:00\",\r\n  \"decision_id\": \"20260912-chengchuan-water\",\r\n  \"details\": {\r\n    \"current_view\": {\r\n      \"confirmed\": true,\r\n      \"source\": \"user_explicit\",\r\n      \"text\": \"验收因设备整改推迟，原先认为客户验收可能顺利的判断需要修正。此为研究观点，不是交易决定。\"\r\n    },\r\n    \"question\": \"澄川水务客户验收进展如何，是否足以支持原先对验收可能顺利的判断。\",\r\n    \"revision_reason\": \"9月12日新材料：验收因设备整改推迟。\"\r\n  },\r\n  \"events\": [\r\n    {\r\n      \"at\": \"2026-09-12T13:55:15+08:00\",\r\n      \"confirmed\": false,\r\n      \"note\": \"我认为客户验收可能顺利，但目前尚未完成验收。\",\r\n      \"patch\": {},\r\n      \"snapshot\": {\r\n        \"as_of\": \"2026-09-12\",\r\n        \"capture\": {\r\n          \"confirmed\": false,\r\n          \"raw_user_note\": \"我认为客户验收可能顺利，但目前尚未完成验收。\",\r\n          \"source\": \"user_explicit\"\r\n        },\r\n        \"created_at\": \"2026-09-12T13:55:15+08:00\",\r\n        \"details\": {\r\n          \"current_view\": {\r\n            \"confirmed\": true,\r\n            \"source\": \"user_explicit\",\r\n            \"text\": \"客户验收可能顺利，但目前尚未完成验收。此为研究观点，不是交易决定。\"\r\n          },\r\n          \"question\": \"澄川水务客户验收进展如何，是否足以支持原先对验收可能顺利的判断。\"\r\n        },\r\n        \"instrument\": null,\r\n        \"record_kind\": \"research\",\r\n        \"source_reports\": [],\r\n        \"state\": \"DRAFT\",\r\n        \"subject\": \"澄川水务\"\r\n      },\r\n      \"source\": \"user_explicit\",\r\n      \"type\": \"research_recorded\"\r\n    },\r\n    {\r\n      \"at\": \"2026-09-12T13:55:27+08:00\",\r\n      \"confirmed\": true,\r\n      \"note\": \"9月12日新材料显示验收因设备整改推迟，之前的判断需要修正。原先认为客户验收可能顺利，新信息表明验收尚未完成且因设备整改推迟，原先对验收可能顺利的判断不再成立。\",\r\n      \"patch\": {\r\n        \"details\": {\r\n          \"current_view\": {\r\n            \"confirmed\": true,\r\n            \"source\": \"user_explicit\",\r\n            \"text\": \"验收因设备整改推迟，原先认为客户验收可能顺利的判断需要修正。此为研究观点，不是交易决定。\"\r\n          },\r\n          \"revision_reason\": \"9月12日新材料：验收因设备整改推迟。\"\r\n        }\r\n      },\r\n      \"source\": \"user_explicit\",\r\n      \"type\": \"research_reviewed\"\r\n    }\r\n  ],\r\n  \"instrument\": null,\r\n  \"record_kind\": \"research\",\r\n  \"schema_version\": \"2.1\",\r\n  \"source_reports\": [],\r\n  \"state\": \"DRAFT\",\r\n  \"subject\": \"澄川水务\",\r\n  \"updated_at\": \"2026-09-12T13:55:27+08:00\"\r\n}\r\n"
+              }
+            }
+          ]
+        },
+        {
+          "name": "read_file",
+          "input": {
+            "target_file": "<TEST_ROOT>\\data\\journal\\20260912-chengchuan-water\\memo.md"
+          },
+          "status": "completed",
+          "output": "Read content omitted; source file hashes retained in skill manifest."
+        },
+        {
+          "name": "todo_write",
+          "input": {
+            "todos": [
+              {
+                "id": "3",
+                "status": "completed"
+              },
+              {
+                "id": "4",
+                "status": "completed"
+              }
+            ],
+            "merge": true
+          },
+          "status": "completed"
+        }
+      ],
+      "completion": {
+        "type": "end",
+        "stopReason": "end_turn",
+        "usage": {
+          "input_tokens": 33966,
+          "cache_read_input_tokens": 268160,
+          "cache_creation_input_tokens": 0,
+          "output_tokens": 5039,
+          "reasoning_tokens": 2829,
+          "total_tokens": 307165
+        },
+        "num_turns": 11,
+        "total_cost_usd": 0.07896364,
+        "total_cost_usd_ticks": 789636400,
+        "modelUsage": {
+          "grok-4.6-build": {
+            "inputTokens": 33966,
+            "outputTokens": 5039,
+            "cacheReadInputTokens": 268160,
+            "cacheCreationInputTokens": 0,
+            "modelCalls": 11,
+            "costUSD": 0.07896364
+          }
+        }
+      },
+      "process_exit": 0,
+      "seconds": 102.27,
+      "scutio_discovered": true,
+      "skill_manifest": "816016c3e252b929cfb8e0f0685f725016189a39e01eaa9826a07253de473346"
+    },
+    {
+      "name": "retry-skill-live",
+      "host": "Grok Build CLI 1.0.25 (f7e67d6988e2)",
+      "prompt": "请查贵州茅台（600519）、腾讯（hk00700）、苹果（usAAPL）最近可取得的报价，列出价格、币种、行情时点、来源，说明哪些数据没取到。今天是2026年9月12日，周六，不能当作盘中实时交易。只用公开免费数据，不需要研究报告，不保存研究记录，不修改配置或安装依赖。",
+      "text": "先按 scutio 技能读取用法，再用公开免费数据查三只标的最近可取得报价。用户只要公开免费报价、不要研究报告和记录。接着读数据索引、运行时和查证说明。接着读行情字段、数据服务说明和报价示例，确认只走公开免费接口。先做离线运行时检查，并确认报价接口可用的公开源参数。先跑离线探针，同时写一个只取公开报价、不改配置的临时脚本。离线探针已就绪。正在用公开免费源拉取三只标的报价。三只标的都取到了最近一笔公开免费报价。今天是 **2026-09-12 周六**，A/港/美均休市，下面是 **上一个交易时段（2026-09-11 周五）** 的源站报价，不是盘中实时成交。抓取时间是 2026-09-12 05:57:10 UTC。\n\n| 标的 | 价格 | 币种 | 行情时点（源字段 `time`） | 来源 |\n|---|---:|---|---|---|\n| 贵州茅台 `600519` / `sh600519` | **1275.16** | CNY | `20260911161500`（按腾讯口径，对应 2026-09-11 16:15:00，北京时间收盘后快照，不是 15:00 集合竞价时刻） | 腾讯财经 `qt.gtimg.cn`（`tencent`） |\n| 腾讯控股 `hk00700` | **428.40** | HKD | `2026/09/11 16:09:02`（港股常规收盘约 16:00，该时点略晚，属延迟/收盘快照） | 同上 |\n| 苹果 `usAAPL` | **332.27** | USD | `2026-09-11 16:00:01`（腾讯美股时点通常为美东时间，对应周五常规盘收盘） | 同上 |\n\n补充：茅台较前收 1285.13 跌 0.78%；腾讯较前收 425.60 涨 0.66%；苹果较前收 326.57 涨 1.75%。整批 `ok=true`、`partial=false`，未回退到新浪或东财。\n\n**没取到或不能当作交易时点的字段**\n\n- 三只都没有 `data_as_of`。按接口约定，不能把抓取时间 `retrieved_at` 当成成交时点。\n- 周六没有盘中实时成交；免费报价本身也可能延迟，尤其港股。\n- 未使用付费 Financial API，也没有改配置、装依赖或写研究记录。",
+      "tool_calls": [
+        {
+          "name": "read_file",
+          "input": {
+            "target_file": "<TEST_ROOT>\\grok\\skills\\scutio\\SKILL.md"
+          },
+          "status": "completed",
+          "output": "Read content omitted; source file hashes retained in skill manifest."
+        },
+        {
+          "name": "read_file",
+          "input": {
+            "target_file": "<TEST_ROOT>\\grok\\skills\\scutio\\references\\toolkit\\index.md"
+          },
+          "status": "completed",
+          "output": "Read content omitted; source file hashes retained in skill manifest."
+        },
+        {
+          "name": "read_file",
+          "input": {
+            "target_file": "<TEST_ROOT>\\grok\\skills\\scutio\\references\\toolkit\\01-runtime.md"
+          },
+          "status": "completed",
+          "output": "Read content omitted; source file hashes retained in skill manifest."
+        },
+        {
+          "name": "read_file",
+          "input": {
+            "target_file": "<TEST_ROOT>\\grok\\skills\\scutio\\references\\capabilities\\verify.md"
+          },
+          "status": "completed",
+          "output": "Read content omitted; source file hashes retained in skill manifest."
+        },
+        {
+          "name": "list_dir",
+          "input": {
+            "target_directory": "<TEST_ROOT>\\grok\\skills\\scutio"
+          },
+          "status": "completed"
+        },
+        {
+          "name": "read_file",
+          "input": {
+            "target_file": "<TEST_ROOT>\\grok\\skills\\scutio\\references\\toolkit\\02-market.md",
+            "limit": 200
+          },
+          "status": "completed",
+          "output": "Read content omitted; source file hashes retained in skill manifest."
+        },
+        {
+          "name": "read_file",
+          "input": {
+            "target_file": "<TEST_ROOT>\\grok\\skills\\scutio\\scripts\\examples\\01_quote_and_bars.py"
+          },
+          "status": "completed",
+          "output": "Read content omitted; source file hashes retained in skill manifest."
+        },
+        {
+          "name": "read_file",
+          "input": {
+            "target_file": "<TEST_ROOT>\\grok\\skills\\scutio\\scripts\\examples\\07_hk_us_quote_bars.py"
+          },
+          "status": "completed",
+          "output": "Read content omitted; source file hashes retained in skill manifest."
+        },
+        {
+          "name": "read_file",
+          "input": {
+            "target_file": "<TEST_ROOT>\\grok\\skills\\scutio\\references\\toolkit\\12-data-sources.md",
+            "limit": 80
+          },
+          "status": "completed",
+          "output": "Read content omitted; source file hashes retained in skill manifest."
+        },
+        {
+          "name": "read_file",
+          "input": {
+            "target_file": "<TEST_ROOT>\\grok\\skills\\scutio\\scripts\\scutio_data\\_providers\\quotes.py",
+            "limit": 150
+          },
+          "status": "completed",
+          "output": "Read content omitted; source file hashes retained in skill manifest."
+        },
+        {
+          "name": "grep",
+          "input": {
+            "pattern": "def security_quote",
+            "glob": "**/*.py"
+          },
+          "status": "completed",
+          "output": [
+            {
+              "type": "content",
+              "content": {
+                "type": "text",
+                "text": "found 0 matches"
+              }
+            }
+          ]
+        },
+        {
+          "name": "read_file",
+          "input": {
+            "target_file": "<TEST_ROOT>\\grok\\skills\\scutio\\scripts\\runtime_probe.py",
+            "limit": 80
+          },
+          "status": "completed",
+          "output": "Read content omitted; source file hashes retained in skill manifest."
+        },
+        {
+          "name": "grep",
+          "input": {
+            "pattern": "def security_quote",
+            "path": "<TEST_ROOT>\\grok\\skills\\scutio\\scripts"
+          },
+          "status": "completed",
+          "output": [
+            {
+              "type": "content",
+              "content": {
+                "type": "text",
+                "text": "found 1 matches"
+              }
+            }
+          ]
+        },
+        {
+          "name": "grep",
+          "input": {
+            "pattern": "sources=",
+            "path": "<TEST_ROOT>\\grok\\skills\\scutio\\scripts\\scutio_data\\market.py"
+          },
+          "status": "completed",
+          "output": [
+            {
+              "type": "content",
+              "content": {
+                "type": "text",
+                "text": "found 4 matches"
+              }
+            }
+          ]
+        },
+        {
+          "name": "read_file",
+          "input": {
+            "target_file": "<TEST_ROOT>\\grok\\skills\\scutio\\references\\toolkit\\11-fallback.md",
+            "limit": 80
+          },
+          "status": "completed",
+          "output": "Read content omitted; source file hashes retained in skill manifest."
+        },
+        {
+          "name": "run_terminal_command",
+          "input": {
+            "command": "<REPO>/.venv/Scripts/python.exe <TEST_ROOT>\\grok\\skills\\scutio\\scripts\\runtime_probe.py",
+            "description": "Run offline Scutio runtime probe"
+          },
+          "status": "completed",
+          "output": [
+            {
+              "type": "content",
+              "content": {
+                "type": "text",
+                "text": "{\"ok\": true, \"status\": \"ready\", \"python\": \"C:\\\\dev\\\\scutio\\\\.venv\\\\Scripts\\\\python.exe\", \"version\": \"3.12.9\", \"scutio_version\": \"0.1.0-alpha.2\", \"dependencies\": {\"akshare\": \"1.18.94\", \"requests\": \"2.34.2\", \"pandas\": \"2.3.3\", \"lxml\": \"5.4.0\", \"xlrd\": \"2.0.2\", \"exchange_calendars\": \"4.13.2\", \"pypdf\": \"5.9.0\", \"tzdata\": \"2026.3\", \"packaging\": \"26.3\"}, \"scripts\": \"<TEST_ROOT>\\\\grok\\\\skills\\\\scutio\\\\scripts\", \"failures\": [], \"network_checked\": false}\r\n"
+              }
+            }
+          ]
+        },
+        {
+          "name": "write",
+          "input": {
+            "file_path": "<TEST_ROOT>\\work\\fetch_quotes.py",
+            "content": "#!/usr/bin/env python3\n\"\"\"Fetch latest public quotes for 600519, hk00700, usAAPL. No config writes.\"\"\"\n\nfrom __future__ import annotations\n\nimport json\nfrom datetime import datetime, timezone\n\nfrom scutio_data.market import security_quote\n\nQUOTE_FIELDS = (\n    \"name\",\n    \"symbol\",\n    \"exchange\",\n    \"currency\",\n    \"price\",\n    \"last_close\",\n    \"open\",\n    \"high\",\n    \"low\",\n    \"change_amt\",\n    \"change_pct\",\n    \"time\",\n    \"data_as_of\",\n    \"retrieved_at\",\n    \"source\",\n    \"amount\",\n    \"amount_wan\",\n    \"volume\",\n    \"volume_unit\",\n    \"coverage\",\n    \"data_quality\",\n    \"partial\",\n)\n\n\ndef slim_row(row):\n    if not isinstance(row, dict):\n        return row\n    out = {key: row.get(key) for key in QUOTE_FIELDS}\n    extras = {\n        key: row[key]\n        for key in (\"missing_fields\", \"warning\", \"error\", \"fallback_reason\")\n        if key in row and row[key] not in (None, \"\", [], {})\n    }\n    out.update(extras)\n    return out\n\n\ndef main() -> int:\n    codes = [\"600519\", \"hk00700\", \"usAAPL\"]\n    # Public free chain only; do not use paid Financial API.\n    env = security_quote(codes, sources=[\"tencent\", \"sina\", \"eastmoney\"])\n    quotes = env.get(\"quotes\") or {}\n    slim_quotes = {}\n    for key, row in quotes.items():\n        slim_quotes[key] = slim_row(row)\n    payload = {\n        \"fetched_at_utc\": datetime.now(timezone.utc).isoformat(),\n        \"ok\": env.get(\"ok\"),\n        \"partial\": env.get(\"partial\"),\n        \"error\": env.get(\"error\"),\n        \"error_code\": env.get(\"error_code\"),\n        \"warning\": env.get(\"warning\"),\n        \"source\": env.get(\"source\"),\n        \"sources_used\": env.get(\"sources_used\"),\n        \"attempted_sources\": env.get(\"attempted_sources\"),\n        \"fallback_reason\": env.get(\"fallback_reason\"),\n        \"missing\": env.get(\"missing\"),\n        \"invalid\": env.get(\"invalid\"),\n        \"requested_count\": env.get(\"requested_count\"),\n        \"returned_count\": env.get(\"returned_count\"),\n        \"coverage\": env.get(\"coverage\"),\n        \"quotes\": slim_quotes,\n    }\n    print(json.dumps(payload, ensure_ascii=False, indent=2, default=str))\n    return 0 if env.get(\"ok\") else 1\n\n\nif __name__ == \"__main__\":\n    raise SystemExit(main())\n"
+          },
+          "status": "completed",
+          "output": [
+            {
+              "type": "diff",
+              "path": "<TEST_ROOT>\\work\\fetch_quotes.py",
+              "oldText": "",
+              "newText": "#!/usr/bin/env python3\n\"\"\"Fetch latest public quotes for 600519, hk00700, usAAPL. No config writes.\"\"\"\n\nfrom __future__ import annotations\n\nimport json\nfrom datetime import datetime, timezone\n\nfrom scutio_data.market import security_quote\n\nQUOTE_FIELDS = (\n    \"name\",\n    \"symbol\",\n    \"exchange\",\n    \"currency\",\n    \"price\",\n    \"last_close\",\n    \"open\",\n    \"high\",\n    \"low\",\n    \"change_amt\",\n    \"change_pct\",\n    \"time\",\n    \"data_as_of\",\n    \"retrieved_at\",\n    \"source\",\n    \"amount\",\n    \"amount_wan\",\n    \"volume\",\n    \"volume_unit\",\n    \"coverage\",\n    \"data_quality\",\n    \"partial\",\n)\n\n\ndef slim_row(row):\n    if not isinstance(row, dict):\n        return row\n    out = {key: row.get(key) for key in QUOTE_FIELDS}\n    extras = {\n        key: row[key]\n        for key in (\"missing_fields\", \"warning\", \"error\", \"fallback_reason\")\n        if key in row and row[key] not in (None, \"\", [], {})\n    }\n    out.update(extras)\n    return out\n\n\ndef main() -> int:\n    codes = [\"600519\", \"hk00700\", \"usAAPL\"]\n    # Public free chain only; do not use paid Financial API.\n    env = security_quote(codes, sources=[\"tencent\", \"sina\", \"eastmoney\"])\n    quotes = env.get(\"quotes\") or {}\n    slim_quotes = {}\n    for key, row in quotes.items():\n        slim_quotes[key] = slim_row(row)\n    payload = {\n        \"fetched_at_utc\": datetime.now(timezone.utc).isoformat(),\n        \"ok\": env.get(\"ok\"),\n        \"partial\": env.get(\"partial\"),\n        \"error\": env.get(\"error\"),\n        \"error_code\": env.get(\"error_code\"),\n        \"warning\": env.get(\"warning\"),\n        \"source\": env.get(\"source\"),\n        \"sources_used\": env.get(\"sources_used\"),\n        \"attempted_sources\": env.get(\"attempted_sources\"),\n        \"fallback_reason\": env.get(\"fallback_reason\"),\n        \"missing\": env.get(\"missing\"),\n        \"invalid\": env.get(\"invalid\"),\n        \"requested_count\": env.get(\"requested_count\"),\n        \"returned_count\": env.get(\"returned_count\"),\n        \"coverage\": env.get(\"coverage\"),\n        \"quotes\": slim_quotes,\n    }\n    print(json.dumps(payload, ensure_ascii=False, indent=2, default=str))\n    return 0 if env.get(\"ok\") else 1\n\n\nif __name__ == \"__main__\":\n    raise SystemExit(main())\n",
+              "_meta": {
+                "details": [
+                  {
+                    "old_string": "",
+                    "old_line": 1,
+                    "new_string": "#!/usr/bin/env python3\n\"\"\"Fetch latest public quotes for 600519, hk00700, usAAPL. No config writes.\"\"\"\n\nfrom __future__ import annotations\n\nimport json\nfrom datetime import datetime, timezone\n\nfrom scutio_data.market import security_quote\n\nQUOTE_FIELDS = (\n    \"name\",\n    \"symbol\",\n    \"exchange\",\n    \"currency\",\n    \"price\",\n    \"last_close\",\n    \"open\",\n    \"high\",\n    \"low\",\n    \"change_amt\",\n    \"change_pct\",\n    \"time\",\n    \"data_as_of\",\n    \"retrieved_at\",\n    \"source\",\n    \"amount\",\n    \"amount_wan\",\n    \"volume\",\n    \"volume_unit\",\n    \"coverage\",\n    \"data_quality\",\n    \"partial\",\n)\n\n\ndef slim_row(row):\n    if not isinstance(row, dict):\n        return row\n    out = {key: row.get(key) for key in QUOTE_FIELDS}\n    extras = {\n        key: row[key]\n        for key in (\"missing_fields\", \"warning\", \"error\", \"fallback_reason\")\n        if key in row and row[key] not in (None, \"\", [], {})\n    }\n    out.update(extras)\n    return out\n\n\ndef main() -> int:\n    codes = [\"600519\", \"hk00700\", \"usAAPL\"]\n    # Public free chain only; do not use paid Financial API.\n    env = security_quote(codes, sources=[\"tencent\", \"sina\", \"eastmoney\"])\n    quotes = env.get(\"quotes\") or {}\n    slim_quotes = {}\n    for key, row in quotes.items():\n        slim_quotes[key] = slim_row(row)\n    payload = {\n        \"fetched_at_utc\": datetime.now(timezone.utc).isoformat(),\n        \"ok\": env.get(\"ok\"),\n        \"partial\": env.get(\"partial\"),\n        \"error\": env.get(\"error\"),\n        \"error_code\": env.get(\"error_code\"),\n        \"warning\": env.get(\"warning\"),\n        \"source\": env.get(\"source\"),\n        \"sources_used\": env.get(\"sources_used\"),\n        \"attempted_sources\": env.get(\"attempted_sources\"),\n        \"fallback_reason\": env.get(\"fallback_reason\"),\n        \"missing\": env.get(\"missing\"),\n        \"invalid\": env.get(\"invalid\"),\n        \"requested_count\": env.get(\"requested_count\"),\n        \"returned_count\": env.get(\"returned_count\"),\n        \"coverage\": env.get(\"coverage\"),\n        \"quotes\": slim_quotes,\n    }\n    print(json.dumps(payload, ensure_ascii=False, indent=2, default=str))\n    return 0 if env.get(\"ok\") else 1\n\n\nif __name__ == \"__main__\":\n    raise SystemExit(main())\n",
+                    "new_line": 1,
+                    "context_before": "",
+                    "context_after": "",
+                    "line_prefix": ""
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "run_terminal_command",
+          "input": {
+            "command": "<REPO>/.venv/Scripts/python.exe <TEST_ROOT>\\work\\fetch_quotes.py",
+            "description": "Fetch public quotes for three tickers",
+            "timeout": 120000
+          },
+          "status": "completed",
+          "output": [
+            {
+              "type": "content",
+              "content": {
+                "type": "text",
+                "text": "{\r\n  \"fetched_at_utc\": \"2026-09-12T05:57:10.337860+00:00\",\r\n  \"ok\": true,\r\n  \"partial\": false,\r\n  \"error\": null,\r\n  \"error_code\": null,\r\n  \"warning\": null,\r\n  \"source\": \"tencent\",\r\n  \"sources_used\": [\r\n    \"tencent\"\r\n  ],\r\n  \"attempted_sources\": [\r\n    \"tencent\"\r\n  ],\r\n  \"fallback_reason\": null,\r\n  \"missing\": [],\r\n  \"invalid\": [],\r\n  \"requested_count\": 3,\r\n  \"returned_count\": 3,\r\n  \"coverage\": null,\r\n  \"quotes\": {\r\n    \"sh600519\": {\r\n      \"name\": \"贵州茅台\",\r\n      \"symbol\": \"sh600519\",\r\n      \"exchange\": \"sh\",\r\n      \"currency\": \"CNY\",\r\n      \"price\": 1275.16,\r\n      \"last_close\": 1285.13,\r\n      \"open\": 1285.15,\r\n      \"high\": 1286.15,\r\n      \"low\": 1263.01,\r\n      \"change_amt\": -9.97,\r\n      \"change_pct\": -0.78,\r\n      \"time\": \"20260911161500\",\r\n      \"data_as_of\": null,\r\n      \"retrieved_at\": \"2026-09-12T05:57:10.337860+00:00\",\r\n      \"source\": \"tencent\",\r\n      \"amount\": 4430840000.0,\r\n      \"amount_wan\": 443084.0,\r\n      \"volume\": 3480100.0,\r\n      \"volume_unit\": \"share\",\r\n      \"coverage\": null,\r\n      \"data_quality\": null,\r\n      \"partial\": null\r\n    },\r\n    \"600519\": {\r\n      \"name\": \"贵州茅台\",\r\n      \"symbol\": \"sh600519\",\r\n      \"exchange\": \"sh\",\r\n      \"currency\": \"CNY\",\r\n      \"price\": 1275.16,\r\n      \"last_close\": 1285.13,\r\n      \"open\": 1285.15,\r\n      \"high\": 1286.15,\r\n      \"low\": 1263.01,\r\n      \"change_amt\": -9.97,\r\n      \"change_pct\": -0.78,\r\n      \"time\": \"20260911161500\",\r\n      \"data_as_of\": null,\r\n      \"retrieved_at\": \"2026-09-12T05:57:10.337860+00:00\",\r\n      \"source\": \"tencent\",\r\n      \"amount\": 4430840000.0,\r\n      \"amount_wan\": 443084.0,\r\n      \"volume\": 3480100.0,\r\n      \"volume_unit\": \"share\",\r\n      \"coverage\": null,\r\n      \"data_quality\": null,\r\n      \"partial\": null\r\n    },\r\n    \"hk00700\": {\r\n      \"name\": \"腾讯控股\",\r\n      \"symbol\": \"hk00700\",\r\n      \"exchange\": \"hk\",\r\n      \"currency\": \"HKD\",\r\n      \"price\": 428.4,\r\n      \"last_close\": 425.6,\r\n      \"open\": 419.4,\r\n      \"high\": 430.8,\r\n      \"low\": 419.4,\r\n      \"change_amt\": 2.8,\r\n      \"change_pct\": 0.66,\r\n      \"time\": \"2026/09/11 16:09:02\",\r\n      \"data_as_of\": null,\r\n      \"retrieved_at\": \"2026-09-12T05:57:10.337860+00:00\",\r\n      \"source\": \"tencent\",\r\n      \"amount\": 6674835081.79,\r\n      \"amount_wan\": 667483.5082,\r\n      \"volume\": 15628379.0,\r\n      \"volume_unit\": \"share\",\r\n      \"coverage\": null,\r\n      \"data_quality\": null,\r\n      \"partial\": null\r\n    },\r\n    \"00700\": {\r\n      \"name\": \"腾讯控股\",\r\n      \"symbol\": \"hk00700\",\r\n      \"exchange\": \"hk\",\r\n      \"currency\": \"HKD\",\r\n      \"price\": 428.4,\r\n      \"last_close\": 425.6,\r\n      \"open\": 419.4,\r\n      \"high\": 430.8,\r\n      \"low\": 419.4,\r\n      \"change_amt\": 2.8,\r\n      \"change_pct\": 0.66,\r\n      \"time\": \"2026/09/11 16:09:02\",\r\n      \"data_as_of\": null,\r\n      \"retrieved_at\": \"2026-09-12T05:57:10.337860+00:00\",\r\n      \"source\": \"tencent\",\r\n      \"amount\": 6674835081.79,\r\n      \"amount_wan\": 667483.5082,\r\n      \"volume\": 15628379.0,\r\n      \"volume_unit\": \"share\",\r\n      \"coverage\": null,\r\n      \"data_quality\": null,\r\n      \"partial\": null\r\n    },\r\n    \"usAAPL\": {\r\n      \"name\": \"苹果\",\r\n      \"symbol\": \"usAAPL\",\r\n      \"exchange\": \"us\",\r\n      \"currency\": \"USD\",\r\n      \"price\": 332.27,\r\n      \"last_close\": 326.57,\r\n      \"open\": 327.45,\r\n      \"high\": 336.22,\r\n      \"low\": 326.3,\r\n      \"change_amt\": 5.7,\r\n      \"change_pct\": 1.75,\r\n      \"time\": \"2026-09-11 16:00:01\",\r\n      \"data_as_of\": null,\r\n      \"retrieved_at\": \"2026-09-12T05:57:10.337860+00:00\",\r\n      \"source\": \"tencent\",\r\n      \"amount\": 16896121407.0,\r\n      \"amount_wan\": 1689612.1407,\r\n      \"volume\": 50716865.0,\r\n      \"volume_unit\": \"share\",\r\n      \"coverage\": null,\r\n      \"data_quality\": null,\r\n      \"partial\": null\r\n    },\r\n    \"AAPL\": {\r\n      \"name\": \"苹果\",\r\n      \"symbol\": \"usAAPL\",\r\n      \"exchange\": \"us\",\r\n      \"currency\": \"USD\",\r\n      \"price\": 332.27,\r\n      \"last_close\": 326.57,\r\n      \"open\": 327.45,\r\n      \"high\": 336.22,\r\n      \"low\": 326.3,\r\n      \"change_amt\": 5.7,\r\n      \"change_pct\": 1.75,\r\n      \"time\": \"2026-09-11 16:00:01\",\r\n      \"data_as_of\": null,\r\n      \"retrieved_at\": \"2026-09-12T05:57:10.337860+00:00\",\r\n      \"source\": \"tencent\",\r\n      \"amount\": 16896121407.0,\r\n      \"amount_wan\": 1689612.1407,\r\n      \"volume\": 50716865.0,\r\n      \"volume_unit\": \"share\",\r\n      \"coverage\": null,\r\n      \"data_quality\": null,\r\n      \"partial\": null\r\n    }\r\n  }\r\n}\r\n"
+              }
+            }
+          ]
+        }
+      ],
+      "completion": {
+        "type": "end",
+        "stopReason": "end_turn",
+        "usage": {
+          "input_tokens": 52891,
+          "cache_read_input_tokens": 195584,
+          "cache_creation_input_tokens": 0,
+          "output_tokens": 5919,
+          "reasoning_tokens": 3472,
+          "total_tokens": 254394
+        },
+        "num_turns": 8,
+        "total_cost_usd": 0.08128992,
+        "total_cost_usd_ticks": 812899200,
+        "modelUsage": {
+          "grok-4.6-build": {
+            "inputTokens": 52891,
+            "outputTokens": 5919,
+            "cacheReadInputTokens": 195584,
+            "cacheCreationInputTokens": 0,
+            "modelCalls": 8,
+            "costUSD": 0.08128992
+          }
+        }
+      },
+      "process_exit": 0,
+      "seconds": 113.08,
+      "scutio_discovered": true,
+      "skill_manifest": "d39de7f5f850b6b885a0709d48c6d96a42d46772b3a6002456d138898db1c010"
+    },
+    {
+      "name": "opencode-skill-verify",
+      "host": "OpenCode Desktop 1.18.29 bundled server under Node; no desktop UI automation",
+      "model": "opencode/nemotron-3-ultra-free",
+      "prompt": "以下均为虚构夹具，不联网，也不要写研究记录。公司公告原文：“试点地区 A 产品订单从 100 万元增至 200 万元。”媒体说“公司订单翻倍，下季度总收入将翻倍”。请核实媒体说法。",
+      "text": "媒体说法**不成立**，存在三个关键逻辑跳跃：\n\n1. **以偏概全**：公告仅提「试点地区 A」，媒体却推断「公司」整体订单翻倍\n2. **订单≠收入**：订单是合同额，收入需交付/确认后才能计入，时间差可能跨季度\n3. **单季外推**：单一试点地区的单期数据，无法支撑「下季度总收入翻倍」的预测\n\n**结论**：媒体将「局部订单增长」夸大为「全公司收入确定性翻倍」，属于典型误读。",
+      "tool_calls": [],
+      "completion": {
+        "role": "assistant",
+        "mode": "build",
+        "agent": "build",
+        "path": {
+          "cwd": "<TEST_ROOT>\\work",
+          "root": "/"
+        },
+        "cost": 0,
+        "tokens": {
+          "total": 4410,
+          "input": 4058,
+          "output": 137,
+          "cache": {
+            "write": 0,
+            "read": 0
+          }
+        },
+        "modelID": "nemotron-3-ultra-free",
+        "providerID": "opencode",
+        "time": {
+          "created": 1789192192958,
+          "completed": 1789192264918
+        },
+        "finish": "stop"
+      }
+    },
+    {
+      "name": "opencode-skill-missing",
+      "host": "OpenCode Desktop 1.18.29 bundled server under Node; no desktop UI automation",
+      "model": "opencode/nemotron-3-ultra-free",
+      "prompt": "以下均为虚构夹具，不联网，不保存记录。公告检索工具返回 {\"ok\":false,\"error\":\"timeout\",\"items\":[]}。我能不能说这家公司今天没有公告？另外，公司8月19日公告预计11月发布新品、9月20日开展下一次测试。研究时点是9月6日，另一个公告索引只更新到8月末。能否据此认定新品延期？请直接判断。",
+      "text": "",
+      "tool_calls": [],
+      "completion": {
+        "role": "assistant",
+        "mode": "build",
+        "agent": "build",
+        "path": {
+          "cwd": "<TEST_ROOT>\\work",
+          "root": "/"
+        },
+        "cost": 0,
+        "tokens": {
+          "input": 0,
+          "output": 0,
+          "cache": {
+            "read": 0,
+            "write": 0
+          }
+        },
+        "modelID": "nemotron-3-ultra-free",
+        "providerID": "opencode",
+        "time": {
+          "created": 1789192264945,
+          "completed": 1789192389526
+        },
+        "error": {
+          "name": "APIError",
+          "data": {
+            "message": "Cannot connect to API: Connect Timeout Error (attempted address: opencode.ai:443, timeout: 10000ms)",
+            "isRetryable": true,
+            "metadata": {
+              "url": "https://opencode.ai/zen/v1/chat/completions"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "opencode-baseline-verify",
+      "host": "OpenCode Desktop 1.18.29 bundled server under Node; no desktop UI automation",
+      "model": "opencode/nemotron-3-ultra-free",
+      "prompt": "以下均为虚构夹具，不联网，也不要写研究记录。公司公告原文：“试点地区 A 产品订单从 100 万元增至 200 万元。”媒体说“公司订单翻倍，下季度总收入将翻倍”。请核实媒体说法。",
+      "text": "媒体说法**不准确**，存在三个逻辑跳跃：\n\n1. **范围扩大化**：公告仅提「试点地区A」，媒体推广为「公司」整体\n2. **指标偷换**：公告是「订单金额」，媒体说成「收入」（订单≠确认收入）\n3. **时间投射**：历史增幅不等于未来预测，且单季度数据无法支撑「下季度翻倍」结论",
+      "tool_calls": [],
+      "completion": {
+        "role": "assistant",
+        "mode": "build",
+        "agent": "build",
+        "path": {
+          "cwd": "<TEST_ROOT>\\work",
+          "root": "/"
+        },
+        "cost": 0,
+        "tokens": {
+          "total": 4172,
+          "input": 3891,
+          "output": 105,
+          "cache": {
+            "write": 0,
+            "read": 0
+          }
+        },
+        "modelID": "nemotron-3-ultra-free",
+        "providerID": "opencode",
+        "time": {
+          "created": 1789192458026,
+          "completed": 1789192473374
+        },
+        "finish": "stop"
+      }
+    },
+    {
+      "name": "opencode-baseline-missing",
+      "host": "OpenCode Desktop 1.18.29 bundled server under Node; no desktop UI automation",
+      "model": "opencode/nemotron-3-ultra-free",
+      "prompt": "以下均为虚构夹具，不联网，不保存记录。公告检索工具返回 {\"ok\":false,\"error\":\"timeout\",\"items\":[]}。我能不能说这家公司今天没有公告？另外，公司8月19日公告预计11月发布新品、9月20日开展下一次测试。研究时点是9月6日，另一个公告索引只更新到8月末。能否据此认定新品延期？请直接判断。",
+      "text": "**第一问：不能。** 工具超时或返回空仅说明该工具未获取到数据，不等于公司当天无公告（可能是工具故障、数据源延迟、权限不足等）。\n\n**第二问：不能。** 9月6日时点，9月20日测试尚未发生，11月发布预期仍在有效期内；另一索引仅更新至8月末仅说明该索引滞后，不构成延期证据。需等到9月20日测试后或出现修正公告才能判断。",
+      "tool_calls": [],
+      "completion": {
+        "role": "assistant",
+        "mode": "build",
+        "agent": "build",
+        "path": {
+          "cwd": "<TEST_ROOT>\\work",
+          "root": "/"
+        },
+        "cost": 0,
+        "tokens": {
+          "total": 4360,
+          "input": 3933,
+          "output": 132,
+          "cache": {
+            "write": 0,
+            "read": 0
+          }
+        },
+        "modelID": "nemotron-3-ultra-free",
+        "providerID": "opencode",
+        "time": {
+          "created": 1789192473399,
+          "completed": 1789192507076
+        },
+        "finish": "stop"
+      }
+    },
+    {
+      "name": "opencode-explicit-verify",
+      "host": "OpenCode Desktop 1.18.29 bundled server under Node; no desktop UI automation",
+      "model": "opencode/nemotron-3-ultra-free",
+      "prompt": "请使用 Scutio 技能。以下均为虚构夹具，不联网，也不要写研究记录。公司公告原文：“试点地区 A 产品订单从 100 万元增至 200 万元。”媒体说“公司订单翻倍，下季度总收入将翻倍”。请核实媒体说法。",
+      "text": "基于 Scutio 查证方法，核实媒体说法：\n\n**公司公告原文**：试点地区 A 产品订单从 100 万增至 200 万（单一产品、单一试点地区、订单金额翻倍）\n\n**媒体说法**：「公司订单翻倍，下季度总收入将翻倍」\n\n**核实结论**：**媒体说法严重失实、夸大**\n\n| 维度 | 公告事实 | 媒体说法 | 问题 |\n|------|---------|---------|------|\n| **范围** | 单一试点地区、单一产品 | 整个公司 | 概念偷换：局部≠整体 |\n| **指标** | 订单金额 | 订单、收入 | 订单≠收入（交付、确认、退货、定价均有变数） |\n| **时点** | 已发生增量 | 下季度预测 | 无法从单季度试点订单推断全公司下季度总收入 |\n| **因果** | 试点增长 | 全公司收入翻倍 | 缺乏机制支撑：试点能否推广、其他业务线表现、季节性等均未知 |\n\n**关键逻辑断层**：\n1. **样本偏差**——试点地区往往是精选的高潜力区域，不可外推全公司\n2. **指标混淆**——订单是合同额，收入需经交付/验收确认，中间有履约率、退货率、价格调整\n3. **时间错位**——订单增长已发生，收入确认跨期，且「下季度」仅 3 个月，全公司收入翻倍需所有业务线同步翻倍，概率极低\n\n**结论**：媒体将「单品试点订单翻倍」包装为「全公司收入将翻倍」，属于典型的**以偏概全、混淆指标、过度外推**。投资决策不应采信此类表述，需回溯公告原文、看财报收入确认政策、追问试点推广进度与全公司订单结构。",
+      "tool_calls": [
+        {
+          "name": "skill",
+          "state": {
+            "status": "completed",
+            "input": {
+              "name": "scutio"
+            },
+            "output": "<skill_content name=\"scutio\">\n# Skill: scutio\n\n# Scutio\r\n\r\n帮助用户从公开信息中发现重要变化，理解它们对未来经营与投资价值的影响，并形成可检查、可更新的判断。财务、经营、技术和产业证据按问题组合，研究可以主动发现用户尚未提出的机会。\r\n\r\n## 按问题选择能力\r\n\r\n| 需要解决什么 | 按需读取 |\r\n|---|---|\r\n| 数据、原话、消息真假、统计口径 | [查证](references/capabilities/verify.md) |\r\n| 公司前景、竞争与产业变化、发现和比较投资机会 | [研究](references/capabilities/research.md) |\r\n| 如果条件变化，会产生什么影响 | [推演](references/capabilities/simulate.md) |\r\n| 检验观点、比较选择、判断新信息是否改变原结论 | [复核](references/capabilities/review.md) |\r\n| 保存研究或个人决定，回看当时判断与后来变化 | [复盘](references/capabilities/reflect.md)；写入时再读 [记录操作](references/journal.md) |\r\n\r\n理念或概念问题可以直接讨论。只加载当前需要的说明，不把五种能力串成固定流程，也不对应五个固定 Agent。\r\n\r\n## 从问题到证据\r\n\r\n已有论点作为检验对象，没有论点则从对象与材料中提出值得调查的解释。能从上下文确定的内容不重复询问，只有影响对象、口径或目标的关键歧义才追问。\r\n\r\n接续旧讨论而当前会话缺少上下文时，查找其他会话须先征得用户同意；用户已明确要求查找相关历史时直接视为授权，无需重复确认。按需请其提供关键词、公司名或大致时间，不在每个新会话例行询问。宿主支持会话检索时，只读取与当前问题相关的历史；候选不明确时请用户选择。不支持时请用户提供相关片段，不假定能访问其他会话，也不另建本地记忆。\r\n\r\n引用历史讨论时简要说明会话时间、当时的关键判断与未解决问题，区分用户观点和 AI 推断；历史结论不作为当前事实，对影响本次判断的数据重新查证。\r\n\r\n按用户目标判断工作是否完成：事实问题查清事实即可；前景研究围绕未来价值的主要变化形成判断，有明确期限时推演届时可能达到的状态与路径；机会研究还需连接受益对象、价值归属与价格条件。复用身份、口径和时点合适的材料，沿最能改变判断的缺口补证。能够继续查明的关键问题在本轮推进，资料受阻或增量不足时说明判断已到哪一步；“无法判断”不自动变成“等待”动作。\r\n\r\n可以给出鲜明的局部判断，也可以确认原论点获得支持。复核不默认反对，研究不默认寻找利好。用户的期限和现实约束用于界定问题，成本和解套愿望不能改写公开事实；比较个人选择时保留事实与取舍的区别。\r\n\r\n重要或复杂的开放式研究按 [研究协作](references/methods/pipeline.md) 展开并行调查。用户要求发现机会时，可沿关键关系主动调查候选；调查范围由机制和证据约束，不以固定表格、证据条数或篇幅证明完整。\r\n\r\n## 共享工具与记录\r\n\r\n需要数据时按需读 [数据索引](references/toolkit/index.md) 和相关域说明；运行脚本前读 [运行时](references/toolkit/01-runtime.md)。以当前 `SKILL.md` 所在目录定位 `scripts/`，使用 `SCUTIO_PYTHON`。Windows 首次使用或启动失败时用内置离线探针定位和检查，不把权限造成的启动失败直接当成环境损坏。数据只通过公开领域接口获取，限流和切源由 `scutio_data` 处理。\r\n\r\n按实际问题选择公开领域接口；多个独立请求可用[运行时的批量调用](references/toolkit/01-runtime.md#批量调用)。`screen_records.py` 对明确范围的数据做条件筛选，披露范围和缺失项；结果不是投资排名。推演中的计算使用可检查的公式或脚本，假设的提供者与单位需明确。\r\n\r\n重要事实保留来源、时点和口径；区分事实、推断、用户假设与 AI 假设，不用来源数量或多 Agent 一致性代替论证。公开证据缺失不代表事实不存在。当前材料不能伪装成历史当时可得的信息。\r\n\r\n只有用户要求记录或更新时才写个人档案，首次写入说明实际目录和本地明文存储。研究记录不要求交易决定或退出条件；修订追加事件，不覆盖当时原话与初始依据。对用户和 AI 的判断都允许复盘。\r\n\r\n不连接券商账户、不执行交易，不把分析自动翻译成仓位或订单。可以保存下次复核事项，用户再次发起时读取记录继续研究；Scutio 不提供主动提醒或后台监控。权限不足时申请权限，不改写用户数据根目录规避。\r\n\r\n\r\n## 可选数据服务\r\n\r\n默认免费取数，不要求用户注册或配置 Key。首次成功获取 A 股相关数据后，可运行 `scripts/data_sources.py hint a`；仅当返回非空提示时，在回答末尾用一句话告知已有同花顺 Financial API Key 可启用该服务。工具记录提示状态，后续不重复；港美、纯概念问题不提示。\r\n\r\n用户说「配置同花顺数据」「只用免费数据」「看看数据源状态」时，按 [数据服务](references/toolkit/12-data-sources.md) 执行对应操作。用户提供 Key 并要求配置或使用同花顺服务时，先用一句话告知将保存到实际用户配置目录、采用本地明文存储以便后续复用，然后由 AI 执行保存并检查状态，无需让用户自己运行命令或重复确认。若只是提到已有 Key 而未提供，可以提示「我可以帮你保存到本机，后续自动使用」。用户明确仅临时测试或不要保存时，不持久化。具体保存与检查步骤见数据服务说明。Key 通过隐藏输入/受控进程标准输入或环境变量传入，不进入命令参数、研究记录及输出；不回显 Key，也不从历史对话自行挑选旧 Key 配置。`public` 模式及主动忽略提示的偏好持续生效。\n\nBase directory for this skill: <REPO>\\skills\\scutio\nRelative paths in this skill (e.g., scripts/, reference/) are relative to this base directory.\nNote: file list is sampled.\n\n<skill_files>\n<file><REPO>\\skills\\scutio\\VERSION</file>\n<file><REPO>\\skills\\scutio\\THIRD_PARTY.md</file>\n<file><REPO>\\skills\\scutio\\scripts\\scutio_data\\__init__.py</file>\n<file><REPO>\\skills\\scutio\\scripts\\scutio_data\\_runtime\\__init__.py</file>\n<file><REPO>\\skills\\scutio\\scripts\\scutio_data\\_runtime\\_http_worker.py</file>\n<file><REPO>\\skills\\scutio\\scripts\\scutio_data\\_runtime\\timeouts.py</file>\n<file><REPO>\\skills\\scutio\\scripts\\scutio_data\\_runtime\\symbols.py</file>\n<file><REPO>\\skills\\scutio\\scripts\\scutio_data\\_runtime\\storage.py</file>\n<file><REPO>\\skills\\scutio\\scripts\\scutio_data\\_runtime\\results.py</file>\n<file><REPO>\\skills\\scutio\\scripts\\scutio_data\\_runtime\\processes.py</file>\n</skill_files>\n</skill_content>",
+            "title": "Loaded skill: scutio",
+            "metadata": {
+              "name": "scutio",
+              "dir": "<REPO>\\skills\\scutio",
+              "truncated": false
+            },
+            "time": {
+              "start": 1789192616405,
+              "end": 1789192616573
+            }
+          }
+        },
+        {
+          "name": "read",
+          "state": {
+            "status": "error",
+            "input": {
+              "filePath": "<REPO>\\skills\\scutio\\references\\capabilities\\verify.md"
+            },
+            "error": "The user has specified a rule which prevents you from using this specific tool call. Here are some of the relevant rules [{\"permission\":\"*\",\"action\":\"allow\",\"pattern\":\"*\"},{\"permission\":\"external_directory\",\"pattern\":\"*\",\"action\":\"ask\"},{\"permission\":\"external_directory\",\"pattern\":\"<USER_HOME>\\\\AppData\\\\Local\\\\Temp\\\\scutio-opencode-eval-us989dqr\\\\data\\\\opencode\\\\tool-output\\\\*\",\"action\":\"allow\"},{\"permission\":\"external_directory\",\"pattern\":\"<USER_HOME>\\\\AppData\\\\Local\\\\Temp\\\\opencode\\\\*\",\"action\":\"allow\"},{\"permission\":\"external_directory\",\"pattern\":\"C:\\\\dev\\\\scutio\\\\skills\\\\scutio\\\\*\",\"action\":\"allow\"},{\"permission\":\"*\",\"action\":\"deny\",\"pattern\":\"*\"},{\"permission\":\"external_directory\",\"pattern\":\"<USER_HOME>\\\\AppData\\\\Local\\\\Temp\\\\scutio-opencode-eval-us989dqr\\\\data\\\\opencode\\\\tool-output\\\\*\",\"action\":\"allow\"}]",
+            "time": {
+              "start": 1789192632950,
+              "end": 1789192632953
+            }
+          }
+        }
+      ],
+      "completion": {
+        "role": "assistant",
+        "mode": "build",
+        "agent": "build",
+        "path": {
+          "cwd": "<TEST_ROOT>\\work",
+          "root": "/"
+        },
+        "cost": 0,
+        "tokens": {
+          "total": 7621,
+          "input": 6808,
+          "output": 520,
+          "cache": {
+            "write": 0,
+            "read": 0
+          }
+        },
+        "modelID": "nemotron-3-ultra-free",
+        "providerID": "opencode",
+        "time": {
+          "created": 1789192633014,
+          "completed": 1789192679215
+        },
+        "finish": "stop"
+      }
+    },
+    {
+      "name": "opencode-retry-explicit-verify",
+      "host": "OpenCode Desktop 1.18.29 bundled server under Node; no desktop UI automation",
+      "model": "opencode/nemotron-3-ultra-free",
+      "prompt": "请使用 Scutio 技能。以下均为虚构夹具，不联网，也不要写研究记录。公司公告原文：“试点地区 A 产品订单从 100 万元增至 200 万元。”媒体说“公司订单翻倍，下季度总收入将翻倍”。请核实媒体说法。",
+      "text": "根据 Scutio 的查证能力，媒体说法**与材料不符**，存在三个关键口径错位：\n\n| 维度 | 公司公告 | 媒体说法 | 问题 |\n|------|----------|----------|------|\n| **范围** | 试点地区 A 单一产品 | 公司整体订单 | 以偏概全 |\n| **指标** | 订单金额（100万→200万） | 总收入 | 订单≠收入，且未确认交付/确认收入时点 |\n| **时点** | 已发生的历史数据 | 下季度预测 | 过去翻倍≠未来翻倍，无滚动预测依据 |\n\n**核实结论**：媒体将「单一试点地区、单一产品、历史订单翻倍」夸大为「公司整体、总收入、下季度必翻倍」，属于典型的口径扩大与因果臆断。公司公告不支持该推断。",
+      "tool_calls": [
+        {
+          "name": "skill",
+          "state": {
+            "status": "completed",
+            "input": {
+              "name": "scutio"
+            },
+            "output": "<skill_content name=\"scutio\">\n# Skill: scutio\n\n# Scutio\r\n\r\n帮助用户从公开信息中发现重要变化，理解它们对未来经营与投资价值的影响，并形成可检查、可更新的判断。财务、经营、技术和产业证据按问题组合，研究可以主动发现用户尚未提出的机会。\r\n\r\n## 按问题选择能力\r\n\r\n| 需要解决什么 | 按需读取 |\r\n|---|---|\r\n| 数据、原话、消息真假、统计口径 | [查证](references/capabilities/verify.md) |\r\n| 公司前景、竞争与产业变化、发现和比较投资机会 | [研究](references/capabilities/research.md) |\r\n| 如果条件变化，会产生什么影响 | [推演](references/capabilities/simulate.md) |\r\n| 检验观点、比较选择、判断新信息是否改变原结论 | [复核](references/capabilities/review.md) |\r\n| 保存研究或个人决定，回看当时判断与后来变化 | [复盘](references/capabilities/reflect.md)；写入时再读 [记录操作](references/journal.md) |\r\n\r\n理念或概念问题可以直接讨论。只加载当前需要的说明，不把五种能力串成固定流程，也不对应五个固定 Agent。\r\n\r\n## 从问题到证据\r\n\r\n已有论点作为检验对象，没有论点则从对象与材料中提出值得调查的解释。能从上下文确定的内容不重复询问，只有影响对象、口径或目标的关键歧义才追问。\r\n\r\n接续旧讨论而当前会话缺少上下文时，查找其他会话须先征得用户同意；用户已明确要求查找相关历史时直接视为授权，无需重复确认。按需请其提供关键词、公司名或大致时间，不在每个新会话例行询问。宿主支持会话检索时，只读取与当前问题相关的历史；候选不明确时请用户选择。不支持时请用户提供相关片段，不假定能访问其他会话，也不另建本地记忆。\r\n\r\n引用历史讨论时简要说明会话时间、当时的关键判断与未解决问题，区分用户观点和 AI 推断；历史结论不作为当前事实，对影响本次判断的数据重新查证。\r\n\r\n按用户目标判断工作是否完成：事实问题查清事实即可；前景研究围绕未来价值的主要变化形成判断，有明确期限时推演届时可能达到的状态与路径；机会研究还需连接受益对象、价值归属与价格条件。复用身份、口径和时点合适的材料，沿最能改变判断的缺口补证。能够继续查明的关键问题在本轮推进，资料受阻或增量不足时说明判断已到哪一步；“无法判断”不自动变成“等待”动作。\r\n\r\n可以给出鲜明的局部判断，也可以确认原论点获得支持。复核不默认反对，研究不默认寻找利好。用户的期限和现实约束用于界定问题，成本和解套愿望不能改写公开事实；比较个人选择时保留事实与取舍的区别。\r\n\r\n重要或复杂的开放式研究按 [研究协作](references/methods/pipeline.md) 展开并行调查。用户要求发现机会时，可沿关键关系主动调查候选；调查范围由机制和证据约束，不以固定表格、证据条数或篇幅证明完整。\r\n\r\n## 共享工具与记录\r\n\r\n需要数据时按需读 [数据索引](references/toolkit/index.md) 和相关域说明；运行脚本前读 [运行时](references/toolkit/01-runtime.md)。以当前 `SKILL.md` 所在目录定位 `scripts/`，使用 `SCUTIO_PYTHON`。Windows 首次使用或启动失败时用内置离线探针定位和检查，不把权限造成的启动失败直接当成环境损坏。数据只通过公开领域接口获取，限流和切源由 `scutio_data` 处理。\r\n\r\n按实际问题选择公开领域接口；多个独立请求可用[运行时的批量调用](references/toolkit/01-runtime.md#批量调用)。`screen_records.py` 对明确范围的数据做条件筛选，披露范围和缺失项；结果不是投资排名。推演中的计算使用可检查的公式或脚本，假设的提供者与单位需明确。\r\n\r\n重要事实保留来源、时点和口径；区分事实、推断、用户假设与 AI 假设，不用来源数量或多 Agent 一致性代替论证。公开证据缺失不代表事实不存在。当前材料不能伪装成历史当时可得的信息。\r\n\r\n只有用户要求记录或更新时才写个人档案，首次写入说明实际目录和本地明文存储。研究记录不要求交易决定或退出条件；修订追加事件，不覆盖当时原话与初始依据。对用户和 AI 的判断都允许复盘。\r\n\r\n不连接券商账户、不执行交易，不把分析自动翻译成仓位或订单。可以保存下次复核事项，用户再次发起时读取记录继续研究；Scutio 不提供主动提醒或后台监控。权限不足时申请权限，不改写用户数据根目录规避。\r\n\r\n\r\n## 可选数据服务\r\n\r\n默认免费取数，不要求用户注册或配置 Key。首次成功获取 A 股相关数据后，可运行 `scripts/data_sources.py hint a`；仅当返回非空提示时，在回答末尾用一句话告知已有同花顺 Financial API Key 可启用该服务。工具记录提示状态，后续不重复；港美、纯概念问题不提示。\r\n\r\n用户说「配置同花顺数据」「只用免费数据」「看看数据源状态」时，按 [数据服务](references/toolkit/12-data-sources.md) 执行对应操作。用户提供 Key 并要求配置或使用同花顺服务时，先用一句话告知将保存到实际用户配置目录、采用本地明文存储以便后续复用，然后由 AI 执行保存并检查状态，无需让用户自己运行命令或重复确认。若只是提到已有 Key 而未提供，可以提示「我可以帮你保存到本机，后续自动使用」。用户明确仅临时测试或不要保存时，不持久化。具体保存与检查步骤见数据服务说明。Key 通过隐藏输入/受控进程标准输入或环境变量传入，不进入命令参数、研究记录及输出；不回显 Key，也不从历史对话自行挑选旧 Key 配置。`public` 模式及主动忽略提示的偏好持续生效。\n\nBase directory for this skill: <REPO>\\skills\\scutio\nRelative paths in this skill (e.g., scripts/, reference/) are relative to this base directory.\nNote: file list is sampled.\n\n<skill_files>\n<file><REPO>\\skills\\scutio\\VERSION</file>\n<file><REPO>\\skills\\scutio\\THIRD_PARTY.md</file>\n<file><REPO>\\skills\\scutio\\scripts\\scutio_data\\__init__.py</file>\n<file><REPO>\\skills\\scutio\\scripts\\scutio_data\\_runtime\\__init__.py</file>\n<file><REPO>\\skills\\scutio\\scripts\\scutio_data\\_runtime\\_http_worker.py</file>\n<file><REPO>\\skills\\scutio\\scripts\\scutio_data\\_runtime\\timeouts.py</file>\n<file><REPO>\\skills\\scutio\\scripts\\scutio_data\\_runtime\\symbols.py</file>\n<file><REPO>\\skills\\scutio\\scripts\\scutio_data\\_runtime\\storage.py</file>\n<file><REPO>\\skills\\scutio\\scripts\\scutio_data\\_runtime\\results.py</file>\n<file><REPO>\\skills\\scutio\\scripts\\scutio_data\\_runtime\\processes.py</file>\n</skill_files>\n</skill_content>",
+            "title": "Loaded skill: scutio",
+            "metadata": {
+              "name": "scutio",
+              "dir": "<REPO>\\skills\\scutio",
+              "truncated": false
+            },
+            "time": {
+              "start": 1789192999329,
+              "end": 1789192999506
+            }
+          }
+        },
+        {
+          "name": "read",
+          "state": {
+            "status": "completed",
+            "input": {
+              "filePath": "<REPO>\\skills\\scutio\\references\\capabilities\\verify.md"
+            },
+            "output": "<path><REPO>\\skills\\scutio\\references\\capabilities\\verify.md</path>\n<type>file</type>\n<content>\n1: # 查证\n2: \n3: 回答“这件事是真的吗，准确含义是什么”。可以独立完成，不必启动公司研究。\n4: \n5: 先确认要核实的命题、对象和时点。查结构化数字时按需使用 [数据索引](../toolkit/index.md)；核实公告原话、事件含义、分部或调整项时打开直接正文。已有资料能够回答时不重复抓取。\n6: \n7: 来源存在只证明材料存在，检查它是否支持正在讨论的说法。关注整体与分部、订单与收入、累计与单季、同比与环比、发生日与披露日、币种和调整口径。比如某地区订单翻倍，不应转写成公司整体收入翻倍。\n8: \n9: 结果说明已核实、部分支持、与材料不符或尚未查明，并给具体依据；这些是自然语言判断，不要求标签齐全。引用重要数字附时点与单位，引用原文给直接出处。不同来源有冲突时保留冲突并定向核查，不自动以域名、接口返回成功或多数意见判真。\n10: \n11: 接口失败与合法空结果分开；没找到消息不等于消息为假，没有可用现价不妨碍核对年报原话。需要补证时针对缺口换一种可支持的取证方式，底层源重试由数据包管理，不手写重复切源。\n12: \n13: ## 关键事项尚未查明时\n14: \n15: 先判断缺口来自检索覆盖，还是已经查到的事实本身存在疑点。需要核实审批、测试、定档或类似进度时，按 [进度与时间判断](../methods/milestones.md) 追查。搜索引擎的限定域名语法是 `site:example.com`，或使用工具的 domains 参数；写成 `site.example.com` 只是普通查询文本。若限定域名，检查返回结果是否来自目标站点。\n16: \n17: “搜索未找到”“打开的几页没有”“核对指定范围的官方记录未见匹配”对应不同覆盖程度。关键记录可查时，进入原始列表或公告，用产品别名、申报主体和相应期间核对；动态页、分页未加载、正文不可读都要说明，不能当成已经覆盖。官方入口仍不可得时停止于明确缺口，不用更多同义关键词搜索假装完成核查。\n18: \n19: 区分判断本身与对判断的把握程度：检索不完整通常降低把握，未必改变事件发生的预期。若据“未公告”下调预期，需要说明该阶段本来应当公开什么、已检查了什么，以及为何缺席有信息量；否则保留原有事实与条件分析。用户表达担忧可以帮助定位问题，不能替代新证据。\n\n(End of file - total 19 lines)\n</content>",
+            "title": "dev\\scutio\\skills\\scutio\\references\\capabilities\\verify.md",
+            "metadata": {
+              "preview": "# 查证\n\n回答“这件事是真的吗，准确含义是什么”。可以独立完成，不必启动公司研究。\n\n先确认要核实的命题、对象和时点。查结构化数字时按需使用 [数据索引](../toolkit/index.md)；核实公告原话、事件含义、分部或调整项时打开直接正文。已有资料能够回答时不重复抓取。\n\n来源存在只证明材料存在，检查它是否支持正在讨论的说法。关注整体与分部、订单与收入、累计与单季、同比与环比、发生日与披露日、币种和调整口径。比如某地区订单翻倍，不应转写成公司整体收入翻倍。\n\n结果说明已核实、部分支持、与材料不符或尚未查明，并给具体依据；这些是自然语言判断，不要求标签齐全。引用重要数字附时点与单位，引用原文给直接出处。不同来源有冲突时保留冲突并定向核查，不自动以域名、接口返回成功或多数意见判真。\n\n接口失败与合法空结果分开；没找到消息不等于消息为假，没有可用现价不妨碍核对年报原话。需要补证时针对缺口换一种可支持的取证方式，底层源重试由数据包管理，不手写重复切源。\n\n## 关键事项尚未查明时\n\n先判断缺口来自检索覆盖，还是已经查到的事实本身存在疑点。需要核实审批、测试、定档或类似进度时，按 [进度与时间判断](../methods/milestones.md) 追查。搜索引擎的限定域名语法是 `site:example.com`，或使用工具的 domains 参数；写成 `site.example.com` 只是普通查询文本。若限定域名，检查返回结果是否来自目标站点。\n\n“搜索未找到”“打开的几页没有”“核对指定范围的官方记录未见匹配”对应不同覆盖程度。关键记录可查时，进入原始列表或公告，用产品别名、申报主体和相应期间核对；动态页、分页未加载、正文不可读都要说明，不能当成已经覆盖。官方入口仍不可得时停止于明确缺口，不用更多同义关键词搜索假装完成核查。\n\n区分判断本身与对判断的把握程度：检索不完整通常降低把握，未必改变事件发生的预期。若据“未公告”下调预期，需要说明该阶段本来应当公开什么、已检查了什么，以及为何缺席有信息量；否则保留原有事实与条件分析。用户表达担忧可以帮助定位问题，不能替代新证据。",
+              "truncated": false,
+              "loaded": [],
+              "display": {
+                "type": "file",
+                "path": "<REPO>\\skills\\scutio\\references\\capabilities\\verify.md",
+                "text": "# 查证\n\n回答“这件事是真的吗，准确含义是什么”。可以独立完成，不必启动公司研究。\n\n先确认要核实的命题、对象和时点。查结构化数字时按需使用 [数据索引](../toolkit/index.md)；核实公告原话、事件含义、分部或调整项时打开直接正文。已有资料能够回答时不重复抓取。\n\n来源存在只证明材料存在，检查它是否支持正在讨论的说法。关注整体与分部、订单与收入、累计与单季、同比与环比、发生日与披露日、币种和调整口径。比如某地区订单翻倍，不应转写成公司整体收入翻倍。\n\n结果说明已核实、部分支持、与材料不符或尚未查明，并给具体依据；这些是自然语言判断，不要求标签齐全。引用重要数字附时点与单位，引用原文给直接出处。不同来源有冲突时保留冲突并定向核查，不自动以域名、接口返回成功或多数意见判真。\n\n接口失败与合法空结果分开；没找到消息不等于消息为假，没有可用现价不妨碍核对年报原话。需要补证时针对缺口换一种可支持的取证方式，底层源重试由数据包管理，不手写重复切源。\n\n## 关键事项尚未查明时\n\n先判断缺口来自检索覆盖，还是已经查到的事实本身存在疑点。需要核实审批、测试、定档或类似进度时，按 [进度与时间判断](../methods/milestones.md) 追查。搜索引擎的限定域名语法是 `site:example.com`，或使用工具的 domains 参数；写成 `site.example.com` 只是普通查询文本。若限定域名，检查返回结果是否来自目标站点。\n\n“搜索未找到”“打开的几页没有”“核对指定范围的官方记录未见匹配”对应不同覆盖程度。关键记录可查时，进入原始列表或公告，用产品别名、申报主体和相应期间核对；动态页、分页未加载、正文不可读都要说明，不能当成已经覆盖。官方入口仍不可得时停止于明确缺口，不用更多同义关键词搜索假装完成核查。\n\n区分判断本身与对判断的把握程度：检索不完整通常降低把握，未必改变事件发生的预期。若据“未公告”下调预期，需要说明该阶段本来应当公开什么、已检查了什么，以及为何缺席有信息量；否则保留原有事实与条件分析。用户表达担忧可以帮助定位问题，不能替代新证据。",
+                "lineStart": 1,
+                "lineEnd": 19,
+                "totalLines": 19,
+                "truncated": false
+              }
+            },
+            "time": {
+              "start": 1789193021421,
+              "end": 1789193021427
+            }
+          }
+        }
+      ],
+      "completion": {
+        "role": "assistant",
+        "mode": "build",
+        "agent": "build",
+        "path": {
+          "cwd": "<TEST_ROOT>\\work",
+          "root": "/"
+        },
+        "cost": 0,
+        "tokens": {
+          "total": 8015,
+          "input": 7540,
+          "output": 226,
+          "cache": {
+            "write": 0,
+            "read": 0
+          }
+        },
+        "modelID": "nemotron-3-ultra-free",
+        "providerID": "opencode",
+        "time": {
+          "created": 1789193021550,
+          "completed": 1789193041269
+        },
+        "finish": "stop"
+      }
+    }
+  ],
+  "journal_final_artifact": {
+    "as_of": "2026-09-12",
+    "capture": {
+      "confirmed": false,
+      "raw_user_note": "我认为客户验收可能顺利，但目前尚未完成验收。",
+      "source": "user_explicit"
+    },
+    "created_at": "2026-09-12T13:55:15+08:00",
+    "decision_id": "20260912-chengchuan-water",
+    "details": {
+      "current_view": {
+        "confirmed": true,
+        "source": "user_explicit",
+        "text": "验收因设备整改推迟，原先认为客户验收可能顺利的判断需要修正。此为研究观点，不是交易决定。"
+      },
+      "question": "澄川水务客户验收进展如何，是否足以支持原先对验收可能顺利的判断。",
+      "revision_reason": "9月12日新材料：验收因设备整改推迟。"
+    },
+    "events": [
+      {
+        "at": "2026-09-12T13:55:15+08:00",
+        "confirmed": false,
+        "note": "我认为客户验收可能顺利，但目前尚未完成验收。",
+        "patch": {},
+        "snapshot": {
+          "as_of": "2026-09-12",
+          "capture": {
+            "confirmed": false,
+            "raw_user_note": "我认为客户验收可能顺利，但目前尚未完成验收。",
+            "source": "user_explicit"
+          },
+          "created_at": "2026-09-12T13:55:15+08:00",
+          "details": {
+            "current_view": {
+              "confirmed": true,
+              "source": "user_explicit",
+              "text": "客户验收可能顺利，但目前尚未完成验收。此为研究观点，不是交易决定。"
+            },
+            "question": "澄川水务客户验收进展如何，是否足以支持原先对验收可能顺利的判断。"
+          },
+          "instrument": null,
+          "record_kind": "research",
+          "source_reports": [],
+          "state": "DRAFT",
+          "subject": "澄川水务"
+        },
+        "source": "user_explicit",
+        "type": "research_recorded"
+      },
+      {
+        "at": "2026-09-12T13:55:27+08:00",
+        "confirmed": true,
+        "note": "9月12日新材料显示验收因设备整改推迟，之前的判断需要修正。原先认为客户验收可能顺利，新信息表明验收尚未完成且因设备整改推迟，原先对验收可能顺利的判断不再成立。",
+        "patch": {
+          "details": {
+            "current_view": {
+              "confirmed": true,
+              "source": "user_explicit",
+              "text": "验收因设备整改推迟，原先认为客户验收可能顺利的判断需要修正。此为研究观点，不是交易决定。"
+            },
+            "revision_reason": "9月12日新材料：验收因设备整改推迟。"
+          }
+        },
+        "source": "user_explicit",
+        "type": "research_reviewed"
+      }
+    ],
+    "instrument": null,
+    "record_kind": "research",
+    "schema_version": "2.1",
+    "source_reports": [],
+    "state": "DRAFT",
+    "subject": "澄川水务",
+    "updated_at": "2026-09-12T13:55:27+08:00"
+  },
+  "final_skill_manifest": "d39de7f5f850b6b885a0709d48c6d96a42d46772b3a6002456d138898db1c010",
+  "skill_manifests": {
+    "4add18b400189e848663c3d84d73a4b19d9d2cfe87771ba0bd7fa95e730a7d5b": {
+      "method": "SHA-256 after CRLF to LF normalization; manifest digest over sorted JSON",
+      "files": {
+        "LICENSE": "4a08cf02e3331c96e750f34184e9c9f0ff4013152a913215cb06e11305348e8e",
+        "references/capabilities/reflect.md": "addacb07d7185999eff5089ee5a32ce4655993f6b83f3e57c61d4de3b1a4dab7",
+        "references/capabilities/research.md": "533776e1a748ab954c0662166736d7226df443b0a2ed9f5a7234bd7288650879",
+        "references/capabilities/review.md": "7f995a5a8d43183f2f2ae6a547080140caa238c006ed085eb4754589654462cb",
+        "references/capabilities/simulate.md": "1e309c603f623c17795f367cee3c307aa1f1c52dab01ca31a5092828790f4425",
+        "references/capabilities/verify.md": "a4e388ba8dedcce26bc68c2e38ef01f12aee402568e31c285939771b482fd26e",
+        "references/journal.md": "322ab234db750878cf2fcea5d7c338359e8457af21bcbf3f2e04ac3b4d7311d7",
+        "references/methods/evidence-and-sources.md": "cece07a06196d44f951c61a37ac4ee6be581c380e340d78c91d9329e33123921",
+        "references/methods/financial-analysis.md": "6484755e89cd967bdff3c61592aaf4c74cebc845a17866ba703226f91314f345",
+        "references/methods/milestones.md": "be661ff5ee8a97082f413d36943ae1de2b7a767494b4ed813bfac49666864594",
+        "references/methods/pipeline.md": "edbdb60255464f1ffe620e4920b08c1315c3864fa4140b31bb014e6fe8b6eea3",
+        "references/toolkit/01-runtime.md": "26d676d14b95434e9a86b1af3c2bc508b0072e34e33f16d8cef26d2afbec73f4",
+        "references/toolkit/02-market.md": "86f68db10f178bec8b54dce7b56c85d446960412dd1e81ae77f64a9e5b9c5d33",
+        "references/toolkit/03-fundamentals.md": "88e34fe51b5e071243ac3eca7380f0b6c924389d111b8ba1137271c20037a886",
+        "references/toolkit/04-research.md": "5f426450c02a510b8647c57ee61370cab77db53388068e53e8875da644da0119",
+        "references/toolkit/05-capital.md": "ff45b278124b415e35179099a591b2f2a00426a86fbbaf39718c32f562d452fe",
+        "references/toolkit/06-feeds.md": "a26f873dc62cf62d07353458c22acaa828e4de7ffb9fd4ad0ed8dbeaf28b8e81",
+        "references/toolkit/07-announcements.md": "e4f35cc97f637f946cd36410a841c7feaff24b36ec0d72164bfc39ea70e3c19f",
+        "references/toolkit/10-macro.md": "ed052ac5452e533ac7365a7842e8a6a94e82315e761563de5a68be01676d7ba4",
+        "references/toolkit/11-fallback.md": "2895ea301cc6969673e00bb686bc197774cf3a81cb436f71b1f79fbe516928ce",
+        "references/toolkit/12-data-sources.md": "a743eeb9146a83f7334e6ebcbe8378c212cab49ede84063a9882147f06d9db53",
+        "references/toolkit/index.md": "ca80716715ef036c764d9bbf159475bd4e73f04198c96b78aedaccc77aa5f6b9",
+        "references/toolkit/screening.md": "756bbccba6e197f5c9bd68542ab3a172dd39e8b87c9f797b8a80cd10b3a814e9",
+        "requirements.txt": "f0c51ea319a4ece0b771d8f9c6f7f625cc717b5ab2c566a566bb42f44c7f3780",
+        "scripts/data_sources.py": "96a77abc34cd95e585b57c52f86663fdcc6ae0d5e9743668649ebc83aee32f4d",
+        "scripts/examples/01_quote_and_bars.py": "b106f65be8c7c54d7e727e4f53c15967b342ba13ecbf5ff2baacedcd6d8ed64f",
+        "scripts/examples/02_valuation_snapshot.py": "f23b9d9de6420032d8e86b489edca96334c38ecdbc48a95f80890610b34acc92",
+        "scripts/examples/03_reports_local.py": "e22754c3c8e1b66f4a0ad32c22eefb555f18fbc2bead2e30d9a894edb675566f",
+        "scripts/examples/04_dragon_tiger.py": "b413736ae3c1c858986cbb833a006373b1cc0346981560035f861433a190c802",
+        "scripts/examples/06_macro_snapshot.py": "6bd2d2ac6d17ac2476643959690a65d2ac794c3e936fc2e7df52514558857715",
+        "scripts/examples/07_hk_us_quote_bars.py": "e8dc45bfccead7b38a77683eb0f1855b05cdbba9ec7c4ab44549402e3d0aa2e4",
+        "scripts/examples/_bootstrap.py": "82b17a963ebdf97082ec2b84b28f4fe9ddcddde6b6a6d207d80842c7ae672f2a",
+        "scripts/examples/README.md": "3ec7c27b2118b4da2fac3cb7086734e1514b5a7941e907ceb9efeb688e4d0e4e",
+        "scripts/journal.py": "444ad33a8f3ecba5046ef167f47c0cf6f7993674eea5810e4e09fb6a1d4945f0",
+        "scripts/local_storage.py": "01d0dbd221f44cc8ea36086586eb7134263985341ef2cf933df9f5ee393ee6ad",
+        "scripts/resolve_runtime.ps1": "6001f56cf156f0aa08757d8920064740c80190568b602fe5b2e0bc78341585fc",
+        "scripts/runtime_probe.py": "33a4b6c976657f50eb5de1f6dd03fb72af8365c1b38c011e759bb320eb490d51",
+        "scripts/screen_records.py": "0674f4d36e5356a263c23232b82a6ec84b70d1ba7131f935f5963de1a9d24879",
+        "scripts/scutio_data/__init__.py": "f47402591d20111a0fe1978ab64e7631df4ac5c552ad376ced00858b2fb3fc0c",
+        "scripts/scutio_data/_documents/__init__.py": "ab25b7e4778ad552357ee4bac4b0c49135ed1437e45ea1c9cbe27e18eb53eaa2",
+        "scripts/scutio_data/_documents/filings.py": "1d7043c9eadf053791d4eee7fe2b48289c66d5a3011efce1b982dce57f49678b",
+        "scripts/scutio_data/_documents/hints.py": "1143a97a1c738ab9b918685ab4268566e6625012372cf4ce33903d6b2b228eb1",
+        "scripts/scutio_data/_documents/report_paths.py": "0c1862c28cc13bd249052dbd79fa63fa16a2be55098115bec4f08e44ae3dde99",
+        "scripts/scutio_data/_documents/reports.py": "37fe2bb36a0b045fb166ecfdd332ed92a6bc49d8039dd3d399c7f50240ffeaec",
+        "scripts/scutio_data/_documents/text.py": "150043be8ee0d8132f3c076916b282b0717abba28bf78b75e63318fd20e9e071",
+        "scripts/scutio_data/_providers/__init__.py": "1eb74a27caf074ab08b6c200068f11342f075d35c481ac14766650fc81708940",
+        "scripts/scutio_data/_providers/akshare/__init__.py": "dbd7d95455a8ae3c580628f856943d8366d083d0660993969f46b69c66d405e0",
+        "scripts/scutio_data/_providers/akshare/_akshare_worker.py": "21183fd42c88131359813b9705fb577dc736ba17100a50128ab769f27dcae213",
+        "scripts/scutio_data/_providers/akshare/client.py": "7db5cabcbcdff582939f602180e253cd04c42601369ce7506a756f8c90d32f2d",
+        "scripts/scutio_data/_providers/akshare/economic_calendar.py": "36e156aced7ea0276fa1072af06de62ebb76746f315d002fcb82f757e6c354bd",
+        "scripts/scutio_data/_providers/akshare/errors.py": "99f4e257967e20be90ca99e37fe04224cb07089d25ace1b554a04a7e6babaa71",
+        "scripts/scutio_data/_providers/akshare/macro.py": "e7bd0716dba5761d964438f866e8034d0e445ee401ffa57f63123a4ce1f80323",
+        "scripts/scutio_data/_providers/akshare/maintenance.py": "fd3ae4aa66816fed8696629e4cfbe66d7d2734e16d434cb841115917f25bb50e",
+        "scripts/scutio_data/_providers/akshare/market.py": "43226a26b6f932c8b4f9db912ae551f30108d33a4bcc24c7a19c49bbc9c68bd7",
+        "scripts/scutio_data/_providers/akshare/network.py": "cc48698772f187a75207e1f2cb900e77273495a342fc2ce970468517bfe4b1cf",
+        "scripts/scutio_data/_providers/akshare/registry.py": "d4b49db8b8587dc34ac25e7fc5cad18e5491219c40fbd4ec633909a4f80ed709",
+        "scripts/scutio_data/_providers/akshare/snapshots.py": "cb0ce97ede550b7effdbc1d09ae9cf2a8f83ee94c224bbcd3b58a296a3276b0d",
+        "scripts/scutio_data/_providers/capabilities.py": "09799f4f902499c42d814f65ff8bbd81651a12531aebec223ec0c802a748a0f9",
+        "scripts/scutio_data/_providers/cninfo.py": "83cac47a9e107d2c10e6780bd01429b5f06ed7068c36967ed161661696cc7275",
+        "scripts/scutio_data/_providers/eastmoney.py": "f304323198c513dcac9159bfba545f6b04e831a52e85b437dfa3823b1a0f812f",
+        "scripts/scutio_data/_providers/eastmoney_capital.py": "b718af238702d01074f3f8de8f8c2248c20ba90ed6e69120123e4e97e6098432",
+        "scripts/scutio_data/_providers/eastmoney_events.py": "18c74989f0b45bff3ce29e0107e46414ea9984997ffdbbc38198d30f88cadd60",
+        "scripts/scutio_data/_providers/eastmoney_research.py": "babb889a3d904ffa76ef75313e3c10d3e986f68cdc6004d12de97797e61d5328",
+        "scripts/scutio_data/_providers/eastmoney_special.py": "13407d79e6679c7c3134386e3a9af2c9feee21fa8f9ff94b7f14089a51292a2b",
+        "scripts/scutio_data/_providers/hithink/__init__.py": "6cee4c386020dc374f1ad9ee6626a50f0ca8f56ce11a432c80c04d1ed5d1ab6b",
+        "scripts/scutio_data/_providers/hithink/client.py": "7dcaf7e29a531643d5f1a2bf30aa7426113de2344aa6d33c5b9b7b0cd71c266c",
+        "scripts/scutio_data/_providers/hithink/parse.py": "201500ca7a9adc610308f631e93df5a3b786ad471563ff24fae1935d42dce2d7",
+        "scripts/scutio_data/_providers/quote_parse.py": "f20ebabf8241df29d4fd04e4dd737bc3c3291d33d60c2f8f505c6218fc52f196",
+        "scripts/scutio_data/_providers/quotes.py": "a06f2d86a5da2624116adbc531a2c202c62ef90f30000f3b2b88ba0144a56eaa",
+        "scripts/scutio_data/_providers/sec.py": "bb2304ac87c0dfca6685613135c07276c15a314067e187c0f4f470abc045384f",
+        "scripts/scutio_data/_providers/sina_fx.py": "46762dde978a4198d02cc684762ed83df3b86c0b28eace7cdea391ea62de6c95",
+        "scripts/scutio_data/_runtime/__init__.py": "a03f1606346a690466eab663041bab968e47f9b51c2eb7a8481149c9b930ea7b",
+        "scripts/scutio_data/_runtime/_http_worker.py": "67ead16c5b1385790282c2039e98d0282171a4e6cf4ae34a3dbe6e30c55ab2a2",
+        "scripts/scutio_data/_runtime/arguments.py": "7e72aead30daa407f924220487097b638c57f30bba67e85ec077073e3b747ac7",
+        "scripts/scutio_data/_runtime/cache.py": "f38e07db478f11bb6cb24417c2e30f0a14f75d11a42f8cb94932d497f50e0d3a",
+        "scripts/scutio_data/_runtime/config.py": "d8937ef18068084321aa04cb199a44c30cac208b88f70f6e284455102fe52d77",
+        "scripts/scutio_data/_runtime/coordination.py": "165e78e4902b8acd8e7d83e254f9841c383295321062e1f554256ee34da2a3d3",
+        "scripts/scutio_data/_runtime/dates.py": "d55d60b5ff0a76a8c1a483f9e292357908beb8330c808b48ac8dedd7e4b746e2",
+        "scripts/scutio_data/_runtime/environment.py": "2bf94058186116c955fbca04f51d1b0598c991ff828e3adaad5c73650bf01d66",
+        "scripts/scutio_data/_runtime/execution.py": "77c40a83f1b8fa3a904f1c6d7d8925a85c44d35f064618208cb0c41acf96f2f5",
+        "scripts/scutio_data/_runtime/http.py": "71b75d6ee7adc77c5ecbaa509a41b81e24a44f7e9279906642b5c9a83be81cd5",
+        "scripts/scutio_data/_runtime/parsing.py": "3a4a454b20a9f3df78f67d2d47f6bd912c9f640c1c650ea0dd98756bd19c9fa3",
+        "scripts/scutio_data/_runtime/processes.py": "38aa543ad42f4e390243fcc5c4c1587c1120b0dcebe8a11fe7aa1ce90b04152f",
+        "scripts/scutio_data/_runtime/results.py": "9dca8dc221375a7cec1fbdf017212532f766b0d3722a8ee1f1434a690e8f10fa",
+        "scripts/scutio_data/_runtime/storage.py": "7ca779549bae17a4ecf2e9024ebc434e896e7910767e6d82a324ac5059fb20e7",
+        "scripts/scutio_data/_runtime/symbols.py": "5681b885ed3dd13697a1531b2c8204778353dbc34e5ff8239374ceec11d614b9",
+        "scripts/scutio_data/_runtime/timeouts.py": "4ba795da003d5bd0324413adc4f64b7d1ffd85ed9991592946431410d3c5ce78",
+        "scripts/scutio_data/announcements.py": "0200e6fad8af24ed736f5241a0719357dc40ee036555019cf7ddc457c2c2aa67",
+        "scripts/scutio_data/batch.py": "ede8614941fac3d891c5499732bd0cbf292e487f3c1fd8ec77d2de8471171e41",
+        "scripts/scutio_data/breadth.py": "6bca1894f1bcd5eeb81c12db1deb824ad1b221901f97ad67dede26070df4dd6e",
+        "scripts/scutio_data/capital/__init__.py": "f6b8a6f1ba041d8087e5028bc669761ad1761cee5050a33de10894fdfeb9f6cb",
+        "scripts/scutio_data/capital/dividends.py": "ebffc2e55297fdbbf94eaf93eb7b21f9cad6f24ed0ab883a46aa891e0f7d8db6",
+        "scripts/scutio_data/capital/dragon_tiger.py": "c6d1b4ec07ef91304635ba7d4ba9c1098ece0533467922a5d461388403d6f916",
+        "scripts/scutio_data/capital/flows.py": "b658b48157fa4abc9eff9ece83f62d994724571167d3f4bfd31bd5a6a1d83996",
+        "scripts/scutio_data/capital/history.py": "8f1d2f5b4b7c278bef47957dcb3d322f276d234a844ab22ede9ed0ba1f3cf095",
+        "scripts/scutio_data/core.py": "cab4072d827143feed0f71b9fb4fa5e440d82910d332def71068ed3a02717524",
+        "scripts/scutio_data/data_sources.py": "bc0195bb1ef1d2e17b4a09d0868ab970bf72f5a4f1da0c0f1852ebc0a81559dd",
+        "scripts/scutio_data/events.py": "29a90af93e9794199fab15f94031e2cc34cea121ecf3b536388b448a60d6787f",
+        "scripts/scutio_data/feeds.py": "e90f6383f40a8f4f528249890131c80d8a57cbfbeebd29969ea8583fcc0d8c1b",
+        "scripts/scutio_data/fundamentals.py": "c7eb492c4bb6f3a609c51a2a9c2f4609f528bae0f4f270fb92e7334becd622fe",
+        "scripts/scutio_data/macro/__init__.py": "c97734c56319d7e6d29ee62f07dabf5edd1aab72f3443fd109bd1cb7a187f0d7",
+        "scripts/scutio_data/macro/quotes.py": "61d66284fed9fbc777d4a7fd82bb0608d9fa192f9d89872925103571e7c35b01",
+        "scripts/scutio_data/macro/series.py": "ad245ea152ae340e849603a5e771e69e5ce3818c453653146d1e39fc35fe908d",
+        "scripts/scutio_data/market.py": "54ab01c7086aa1ce8cc63238f5154d5169b4b67602fe7ac251b8ada8400fc597",
+        "scripts/scutio_data/paths.py": "417fec09508d5a0d66446cc3ace6c09d47bfae352aaa25d2e824983e24729d82",
+        "scripts/scutio_data/research/__init__.py": "f4fcd5ce34060ffb1caf07769350e8ebb9291645a8caaeb8ecd7104f29ffe040",
+        "scripts/scutio_data/research/consensus.py": "937faf3d00fc0208990dea6f73acfcb74fbc9be4847f66d21f57666e18c5f501",
+        "scripts/scutio_data/research/discovery.py": "1fef132184021cd99818e7e9304852e9eea4824b82a8eada7136a140e7548b0b",
+        "scripts/scutio_data/research/local.py": "f4ef020c3f76d187b61d1c68e2b0d81ffc5343fe441c5514a222852ab3a22a8f",
+        "scripts/scutio_data/valuation.py": "c5f6ac1a2c0938699494612bfcc6c2978bbc1e16b02db8974f887babcfa2cd78",
+        "SKILL.md": "a5728d59ca65de60b3eb8200177128667a341a8785316a109dabc152b1aa051d",
+        "THIRD_PARTY.md": "a720ad5e353683e0a549cdb431d3d59724437348a21ed7483f76c2ee9cccb365",
+        "VERSION": "d6786e528559282abdc85379c00255d2bce04358365e10cc74d08162440e006c"
+      }
+    },
+    "816016c3e252b929cfb8e0f0685f725016189a39e01eaa9826a07253de473346": {
+      "method": "SHA-256 after CRLF to LF normalization; manifest digest over sorted JSON",
+      "files": {
+        "LICENSE": "4a08cf02e3331c96e750f34184e9c9f0ff4013152a913215cb06e11305348e8e",
+        "references/capabilities/reflect.md": "addacb07d7185999eff5089ee5a32ce4655993f6b83f3e57c61d4de3b1a4dab7",
+        "references/capabilities/research.md": "533776e1a748ab954c0662166736d7226df443b0a2ed9f5a7234bd7288650879",
+        "references/capabilities/review.md": "7f995a5a8d43183f2f2ae6a547080140caa238c006ed085eb4754589654462cb",
+        "references/capabilities/simulate.md": "1e309c603f623c17795f367cee3c307aa1f1c52dab01ca31a5092828790f4425",
+        "references/capabilities/verify.md": "a4e388ba8dedcce26bc68c2e38ef01f12aee402568e31c285939771b482fd26e",
+        "references/journal.md": "322ab234db750878cf2fcea5d7c338359e8457af21bcbf3f2e04ac3b4d7311d7",
+        "references/methods/evidence-and-sources.md": "cece07a06196d44f951c61a37ac4ee6be581c380e340d78c91d9329e33123921",
+        "references/methods/financial-analysis.md": "6484755e89cd967bdff3c61592aaf4c74cebc845a17866ba703226f91314f345",
+        "references/methods/milestones.md": "be661ff5ee8a97082f413d36943ae1de2b7a767494b4ed813bfac49666864594",
+        "references/methods/pipeline.md": "edbdb60255464f1ffe620e4920b08c1315c3864fa4140b31bb014e6fe8b6eea3",
+        "references/toolkit/01-runtime.md": "26d676d14b95434e9a86b1af3c2bc508b0072e34e33f16d8cef26d2afbec73f4",
+        "references/toolkit/02-market.md": "86f68db10f178bec8b54dce7b56c85d446960412dd1e81ae77f64a9e5b9c5d33",
+        "references/toolkit/03-fundamentals.md": "88e34fe51b5e071243ac3eca7380f0b6c924389d111b8ba1137271c20037a886",
+        "references/toolkit/04-research.md": "5f426450c02a510b8647c57ee61370cab77db53388068e53e8875da644da0119",
+        "references/toolkit/05-capital.md": "ff45b278124b415e35179099a591b2f2a00426a86fbbaf39718c32f562d452fe",
+        "references/toolkit/06-feeds.md": "a26f873dc62cf62d07353458c22acaa828e4de7ffb9fd4ad0ed8dbeaf28b8e81",
+        "references/toolkit/07-announcements.md": "e4f35cc97f637f946cd36410a841c7feaff24b36ec0d72164bfc39ea70e3c19f",
+        "references/toolkit/10-macro.md": "ed052ac5452e533ac7365a7842e8a6a94e82315e761563de5a68be01676d7ba4",
+        "references/toolkit/11-fallback.md": "2895ea301cc6969673e00bb686bc197774cf3a81cb436f71b1f79fbe516928ce",
+        "references/toolkit/12-data-sources.md": "a743eeb9146a83f7334e6ebcbe8378c212cab49ede84063a9882147f06d9db53",
+        "references/toolkit/index.md": "ca80716715ef036c764d9bbf159475bd4e73f04198c96b78aedaccc77aa5f6b9",
+        "references/toolkit/screening.md": "756bbccba6e197f5c9bd68542ab3a172dd39e8b87c9f797b8a80cd10b3a814e9",
+        "requirements.txt": "f0c51ea319a4ece0b771d8f9c6f7f625cc717b5ab2c566a566bb42f44c7f3780",
+        "scripts/data_sources.py": "96a77abc34cd95e585b57c52f86663fdcc6ae0d5e9743668649ebc83aee32f4d",
+        "scripts/examples/01_quote_and_bars.py": "b106f65be8c7c54d7e727e4f53c15967b342ba13ecbf5ff2baacedcd6d8ed64f",
+        "scripts/examples/02_valuation_snapshot.py": "f23b9d9de6420032d8e86b489edca96334c38ecdbc48a95f80890610b34acc92",
+        "scripts/examples/03_reports_local.py": "e22754c3c8e1b66f4a0ad32c22eefb555f18fbc2bead2e30d9a894edb675566f",
+        "scripts/examples/04_dragon_tiger.py": "b413736ae3c1c858986cbb833a006373b1cc0346981560035f861433a190c802",
+        "scripts/examples/06_macro_snapshot.py": "6bd2d2ac6d17ac2476643959690a65d2ac794c3e936fc2e7df52514558857715",
+        "scripts/examples/07_hk_us_quote_bars.py": "e8dc45bfccead7b38a77683eb0f1855b05cdbba9ec7c4ab44549402e3d0aa2e4",
+        "scripts/examples/_bootstrap.py": "82b17a963ebdf97082ec2b84b28f4fe9ddcddde6b6a6d207d80842c7ae672f2a",
+        "scripts/examples/README.md": "3ec7c27b2118b4da2fac3cb7086734e1514b5a7941e907ceb9efeb688e4d0e4e",
+        "scripts/journal.py": "1b259e018459a2443c325b4a20baf006dc930ccaa7f2d4f15dcc466d7d0fafc0",
+        "scripts/local_storage.py": "01d0dbd221f44cc8ea36086586eb7134263985341ef2cf933df9f5ee393ee6ad",
+        "scripts/resolve_runtime.ps1": "6001f56cf156f0aa08757d8920064740c80190568b602fe5b2e0bc78341585fc",
+        "scripts/runtime_probe.py": "33a4b6c976657f50eb5de1f6dd03fb72af8365c1b38c011e759bb320eb490d51",
+        "scripts/screen_records.py": "0674f4d36e5356a263c23232b82a6ec84b70d1ba7131f935f5963de1a9d24879",
+        "scripts/scutio_data/__init__.py": "f47402591d20111a0fe1978ab64e7631df4ac5c552ad376ced00858b2fb3fc0c",
+        "scripts/scutio_data/_documents/__init__.py": "ab25b7e4778ad552357ee4bac4b0c49135ed1437e45ea1c9cbe27e18eb53eaa2",
+        "scripts/scutio_data/_documents/filings.py": "1d7043c9eadf053791d4eee7fe2b48289c66d5a3011efce1b982dce57f49678b",
+        "scripts/scutio_data/_documents/hints.py": "1143a97a1c738ab9b918685ab4268566e6625012372cf4ce33903d6b2b228eb1",
+        "scripts/scutio_data/_documents/report_paths.py": "0c1862c28cc13bd249052dbd79fa63fa16a2be55098115bec4f08e44ae3dde99",
+        "scripts/scutio_data/_documents/reports.py": "37fe2bb36a0b045fb166ecfdd332ed92a6bc49d8039dd3d399c7f50240ffeaec",
+        "scripts/scutio_data/_documents/text.py": "150043be8ee0d8132f3c076916b282b0717abba28bf78b75e63318fd20e9e071",
+        "scripts/scutio_data/_providers/__init__.py": "1eb74a27caf074ab08b6c200068f11342f075d35c481ac14766650fc81708940",
+        "scripts/scutio_data/_providers/akshare/__init__.py": "dbd7d95455a8ae3c580628f856943d8366d083d0660993969f46b69c66d405e0",
+        "scripts/scutio_data/_providers/akshare/_akshare_worker.py": "21183fd42c88131359813b9705fb577dc736ba17100a50128ab769f27dcae213",
+        "scripts/scutio_data/_providers/akshare/client.py": "7db5cabcbcdff582939f602180e253cd04c42601369ce7506a756f8c90d32f2d",
+        "scripts/scutio_data/_providers/akshare/economic_calendar.py": "36e156aced7ea0276fa1072af06de62ebb76746f315d002fcb82f757e6c354bd",
+        "scripts/scutio_data/_providers/akshare/errors.py": "99f4e257967e20be90ca99e37fe04224cb07089d25ace1b554a04a7e6babaa71",
+        "scripts/scutio_data/_providers/akshare/macro.py": "e7bd0716dba5761d964438f866e8034d0e445ee401ffa57f63123a4ce1f80323",
+        "scripts/scutio_data/_providers/akshare/maintenance.py": "fd3ae4aa66816fed8696629e4cfbe66d7d2734e16d434cb841115917f25bb50e",
+        "scripts/scutio_data/_providers/akshare/market.py": "43226a26b6f932c8b4f9db912ae551f30108d33a4bcc24c7a19c49bbc9c68bd7",
+        "scripts/scutio_data/_providers/akshare/network.py": "cc48698772f187a75207e1f2cb900e77273495a342fc2ce970468517bfe4b1cf",
+        "scripts/scutio_data/_providers/akshare/registry.py": "d4b49db8b8587dc34ac25e7fc5cad18e5491219c40fbd4ec633909a4f80ed709",
+        "scripts/scutio_data/_providers/akshare/snapshots.py": "cb0ce97ede550b7effdbc1d09ae9cf2a8f83ee94c224bbcd3b58a296a3276b0d",
+        "scripts/scutio_data/_providers/capabilities.py": "09799f4f902499c42d814f65ff8bbd81651a12531aebec223ec0c802a748a0f9",
+        "scripts/scutio_data/_providers/cninfo.py": "83cac47a9e107d2c10e6780bd01429b5f06ed7068c36967ed161661696cc7275",
+        "scripts/scutio_data/_providers/eastmoney.py": "f304323198c513dcac9159bfba545f6b04e831a52e85b437dfa3823b1a0f812f",
+        "scripts/scutio_data/_providers/eastmoney_capital.py": "b718af238702d01074f3f8de8f8c2248c20ba90ed6e69120123e4e97e6098432",
+        "scripts/scutio_data/_providers/eastmoney_events.py": "18c74989f0b45bff3ce29e0107e46414ea9984997ffdbbc38198d30f88cadd60",
+        "scripts/scutio_data/_providers/eastmoney_research.py": "babb889a3d904ffa76ef75313e3c10d3e986f68cdc6004d12de97797e61d5328",
+        "scripts/scutio_data/_providers/eastmoney_special.py": "13407d79e6679c7c3134386e3a9af2c9feee21fa8f9ff94b7f14089a51292a2b",
+        "scripts/scutio_data/_providers/hithink/__init__.py": "6cee4c386020dc374f1ad9ee6626a50f0ca8f56ce11a432c80c04d1ed5d1ab6b",
+        "scripts/scutio_data/_providers/hithink/client.py": "7dcaf7e29a531643d5f1a2bf30aa7426113de2344aa6d33c5b9b7b0cd71c266c",
+        "scripts/scutio_data/_providers/hithink/parse.py": "201500ca7a9adc610308f631e93df5a3b786ad471563ff24fae1935d42dce2d7",
+        "scripts/scutio_data/_providers/quote_parse.py": "f20ebabf8241df29d4fd04e4dd737bc3c3291d33d60c2f8f505c6218fc52f196",
+        "scripts/scutio_data/_providers/quotes.py": "a06f2d86a5da2624116adbc531a2c202c62ef90f30000f3b2b88ba0144a56eaa",
+        "scripts/scutio_data/_providers/sec.py": "bb2304ac87c0dfca6685613135c07276c15a314067e187c0f4f470abc045384f",
+        "scripts/scutio_data/_providers/sina_fx.py": "46762dde978a4198d02cc684762ed83df3b86c0b28eace7cdea391ea62de6c95",
+        "scripts/scutio_data/_runtime/__init__.py": "a03f1606346a690466eab663041bab968e47f9b51c2eb7a8481149c9b930ea7b",
+        "scripts/scutio_data/_runtime/_http_worker.py": "67ead16c5b1385790282c2039e98d0282171a4e6cf4ae34a3dbe6e30c55ab2a2",
+        "scripts/scutio_data/_runtime/arguments.py": "7e72aead30daa407f924220487097b638c57f30bba67e85ec077073e3b747ac7",
+        "scripts/scutio_data/_runtime/cache.py": "f38e07db478f11bb6cb24417c2e30f0a14f75d11a42f8cb94932d497f50e0d3a",
+        "scripts/scutio_data/_runtime/config.py": "d8937ef18068084321aa04cb199a44c30cac208b88f70f6e284455102fe52d77",
+        "scripts/scutio_data/_runtime/coordination.py": "165e78e4902b8acd8e7d83e254f9841c383295321062e1f554256ee34da2a3d3",
+        "scripts/scutio_data/_runtime/dates.py": "d55d60b5ff0a76a8c1a483f9e292357908beb8330c808b48ac8dedd7e4b746e2",
+        "scripts/scutio_data/_runtime/environment.py": "2bf94058186116c955fbca04f51d1b0598c991ff828e3adaad5c73650bf01d66",
+        "scripts/scutio_data/_runtime/execution.py": "77c40a83f1b8fa3a904f1c6d7d8925a85c44d35f064618208cb0c41acf96f2f5",
+        "scripts/scutio_data/_runtime/http.py": "71b75d6ee7adc77c5ecbaa509a41b81e24a44f7e9279906642b5c9a83be81cd5",
+        "scripts/scutio_data/_runtime/parsing.py": "3a4a454b20a9f3df78f67d2d47f6bd912c9f640c1c650ea0dd98756bd19c9fa3",
+        "scripts/scutio_data/_runtime/processes.py": "38aa543ad42f4e390243fcc5c4c1587c1120b0dcebe8a11fe7aa1ce90b04152f",
+        "scripts/scutio_data/_runtime/results.py": "9dca8dc221375a7cec1fbdf017212532f766b0d3722a8ee1f1434a690e8f10fa",
+        "scripts/scutio_data/_runtime/storage.py": "7ca779549bae17a4ecf2e9024ebc434e896e7910767e6d82a324ac5059fb20e7",
+        "scripts/scutio_data/_runtime/symbols.py": "5681b885ed3dd13697a1531b2c8204778353dbc34e5ff8239374ceec11d614b9",
+        "scripts/scutio_data/_runtime/timeouts.py": "4ba795da003d5bd0324413adc4f64b7d1ffd85ed9991592946431410d3c5ce78",
+        "scripts/scutio_data/announcements.py": "0200e6fad8af24ed736f5241a0719357dc40ee036555019cf7ddc457c2c2aa67",
+        "scripts/scutio_data/batch.py": "ede8614941fac3d891c5499732bd0cbf292e487f3c1fd8ec77d2de8471171e41",
+        "scripts/scutio_data/breadth.py": "6bca1894f1bcd5eeb81c12db1deb824ad1b221901f97ad67dede26070df4dd6e",
+        "scripts/scutio_data/capital/__init__.py": "f6b8a6f1ba041d8087e5028bc669761ad1761cee5050a33de10894fdfeb9f6cb",
+        "scripts/scutio_data/capital/dividends.py": "ebffc2e55297fdbbf94eaf93eb7b21f9cad6f24ed0ab883a46aa891e0f7d8db6",
+        "scripts/scutio_data/capital/dragon_tiger.py": "c6d1b4ec07ef91304635ba7d4ba9c1098ece0533467922a5d461388403d6f916",
+        "scripts/scutio_data/capital/flows.py": "b658b48157fa4abc9eff9ece83f62d994724571167d3f4bfd31bd5a6a1d83996",
+        "scripts/scutio_data/capital/history.py": "8f1d2f5b4b7c278bef47957dcb3d322f276d234a844ab22ede9ed0ba1f3cf095",
+        "scripts/scutio_data/core.py": "cab4072d827143feed0f71b9fb4fa5e440d82910d332def71068ed3a02717524",
+        "scripts/scutio_data/data_sources.py": "bc0195bb1ef1d2e17b4a09d0868ab970bf72f5a4f1da0c0f1852ebc0a81559dd",
+        "scripts/scutio_data/events.py": "29a90af93e9794199fab15f94031e2cc34cea121ecf3b536388b448a60d6787f",
+        "scripts/scutio_data/feeds.py": "e90f6383f40a8f4f528249890131c80d8a57cbfbeebd29969ea8583fcc0d8c1b",
+        "scripts/scutio_data/fundamentals.py": "c7eb492c4bb6f3a609c51a2a9c2f4609f528bae0f4f270fb92e7334becd622fe",
+        "scripts/scutio_data/macro/__init__.py": "c97734c56319d7e6d29ee62f07dabf5edd1aab72f3443fd109bd1cb7a187f0d7",
+        "scripts/scutio_data/macro/quotes.py": "61d66284fed9fbc777d4a7fd82bb0608d9fa192f9d89872925103571e7c35b01",
+        "scripts/scutio_data/macro/series.py": "ad245ea152ae340e849603a5e771e69e5ce3818c453653146d1e39fc35fe908d",
+        "scripts/scutio_data/market.py": "54ab01c7086aa1ce8cc63238f5154d5169b4b67602fe7ac251b8ada8400fc597",
+        "scripts/scutio_data/paths.py": "417fec09508d5a0d66446cc3ace6c09d47bfae352aaa25d2e824983e24729d82",
+        "scripts/scutio_data/research/__init__.py": "f4fcd5ce34060ffb1caf07769350e8ebb9291645a8caaeb8ecd7104f29ffe040",
+        "scripts/scutio_data/research/consensus.py": "937faf3d00fc0208990dea6f73acfcb74fbc9be4847f66d21f57666e18c5f501",
+        "scripts/scutio_data/research/discovery.py": "1fef132184021cd99818e7e9304852e9eea4824b82a8eada7136a140e7548b0b",
+        "scripts/scutio_data/research/local.py": "f4ef020c3f76d187b61d1c68e2b0d81ffc5343fe441c5514a222852ab3a22a8f",
+        "scripts/scutio_data/valuation.py": "c5f6ac1a2c0938699494612bfcc6c2978bbc1e16b02db8974f887babcfa2cd78",
+        "SKILL.md": "a5728d59ca65de60b3eb8200177128667a341a8785316a109dabc152b1aa051d",
+        "THIRD_PARTY.md": "a720ad5e353683e0a549cdb431d3d59724437348a21ed7483f76c2ee9cccb365",
+        "VERSION": "d6786e528559282abdc85379c00255d2bce04358365e10cc74d08162440e006c"
+      }
+    },
+    "d39de7f5f850b6b885a0709d48c6d96a42d46772b3a6002456d138898db1c010": {
+      "method": "SHA-256 after CRLF to LF normalization; manifest digest over sorted JSON",
+      "files": {
+        "LICENSE": "4a08cf02e3331c96e750f34184e9c9f0ff4013152a913215cb06e11305348e8e",
+        "references/capabilities/reflect.md": "addacb07d7185999eff5089ee5a32ce4655993f6b83f3e57c61d4de3b1a4dab7",
+        "references/capabilities/research.md": "533776e1a748ab954c0662166736d7226df443b0a2ed9f5a7234bd7288650879",
+        "references/capabilities/review.md": "7f995a5a8d43183f2f2ae6a547080140caa238c006ed085eb4754589654462cb",
+        "references/capabilities/simulate.md": "1e309c603f623c17795f367cee3c307aa1f1c52dab01ca31a5092828790f4425",
+        "references/capabilities/verify.md": "a4e388ba8dedcce26bc68c2e38ef01f12aee402568e31c285939771b482fd26e",
+        "references/journal.md": "322ab234db750878cf2fcea5d7c338359e8457af21bcbf3f2e04ac3b4d7311d7",
+        "references/methods/evidence-and-sources.md": "cece07a06196d44f951c61a37ac4ee6be581c380e340d78c91d9329e33123921",
+        "references/methods/financial-analysis.md": "6484755e89cd967bdff3c61592aaf4c74cebc845a17866ba703226f91314f345",
+        "references/methods/milestones.md": "be661ff5ee8a97082f413d36943ae1de2b7a767494b4ed813bfac49666864594",
+        "references/methods/pipeline.md": "edbdb60255464f1ffe620e4920b08c1315c3864fa4140b31bb014e6fe8b6eea3",
+        "references/toolkit/01-runtime.md": "26d676d14b95434e9a86b1af3c2bc508b0072e34e33f16d8cef26d2afbec73f4",
+        "references/toolkit/02-market.md": "86f68db10f178bec8b54dce7b56c85d446960412dd1e81ae77f64a9e5b9c5d33",
+        "references/toolkit/03-fundamentals.md": "88e34fe51b5e071243ac3eca7380f0b6c924389d111b8ba1137271c20037a886",
+        "references/toolkit/04-research.md": "5f426450c02a510b8647c57ee61370cab77db53388068e53e8875da644da0119",
+        "references/toolkit/05-capital.md": "ff45b278124b415e35179099a591b2f2a00426a86fbbaf39718c32f562d452fe",
+        "references/toolkit/06-feeds.md": "a26f873dc62cf62d07353458c22acaa828e4de7ffb9fd4ad0ed8dbeaf28b8e81",
+        "references/toolkit/07-announcements.md": "e4f35cc97f637f946cd36410a841c7feaff24b36ec0d72164bfc39ea70e3c19f",
+        "references/toolkit/10-macro.md": "ed052ac5452e533ac7365a7842e8a6a94e82315e761563de5a68be01676d7ba4",
+        "references/toolkit/11-fallback.md": "2895ea301cc6969673e00bb686bc197774cf3a81cb436f71b1f79fbe516928ce",
+        "references/toolkit/12-data-sources.md": "a743eeb9146a83f7334e6ebcbe8378c212cab49ede84063a9882147f06d9db53",
+        "references/toolkit/index.md": "ca80716715ef036c764d9bbf159475bd4e73f04198c96b78aedaccc77aa5f6b9",
+        "references/toolkit/screening.md": "756bbccba6e197f5c9bd68542ab3a172dd39e8b87c9f797b8a80cd10b3a814e9",
+        "requirements.txt": "f0c51ea319a4ece0b771d8f9c6f7f625cc717b5ab2c566a566bb42f44c7f3780",
+        "scripts/data_sources.py": "96a77abc34cd95e585b57c52f86663fdcc6ae0d5e9743668649ebc83aee32f4d",
+        "scripts/examples/01_quote_and_bars.py": "b106f65be8c7c54d7e727e4f53c15967b342ba13ecbf5ff2baacedcd6d8ed64f",
+        "scripts/examples/02_valuation_snapshot.py": "f23b9d9de6420032d8e86b489edca96334c38ecdbc48a95f80890610b34acc92",
+        "scripts/examples/03_reports_local.py": "e22754c3c8e1b66f4a0ad32c22eefb555f18fbc2bead2e30d9a894edb675566f",
+        "scripts/examples/04_dragon_tiger.py": "b413736ae3c1c858986cbb833a006373b1cc0346981560035f861433a190c802",
+        "scripts/examples/06_macro_snapshot.py": "6bd2d2ac6d17ac2476643959690a65d2ac794c3e936fc2e7df52514558857715",
+        "scripts/examples/07_hk_us_quote_bars.py": "e8dc45bfccead7b38a77683eb0f1855b05cdbba9ec7c4ab44549402e3d0aa2e4",
+        "scripts/examples/_bootstrap.py": "82b17a963ebdf97082ec2b84b28f4fe9ddcddde6b6a6d207d80842c7ae672f2a",
+        "scripts/examples/README.md": "3ec7c27b2118b4da2fac3cb7086734e1514b5a7941e907ceb9efeb688e4d0e4e",
+        "scripts/journal.py": "1b259e018459a2443c325b4a20baf006dc930ccaa7f2d4f15dcc466d7d0fafc0",
+        "scripts/local_storage.py": "01d0dbd221f44cc8ea36086586eb7134263985341ef2cf933df9f5ee393ee6ad",
+        "scripts/resolve_runtime.ps1": "6001f56cf156f0aa08757d8920064740c80190568b602fe5b2e0bc78341585fc",
+        "scripts/runtime_probe.py": "33a4b6c976657f50eb5de1f6dd03fb72af8365c1b38c011e759bb320eb490d51",
+        "scripts/screen_records.py": "0674f4d36e5356a263c23232b82a6ec84b70d1ba7131f935f5963de1a9d24879",
+        "scripts/scutio_data/__init__.py": "f47402591d20111a0fe1978ab64e7631df4ac5c552ad376ced00858b2fb3fc0c",
+        "scripts/scutio_data/_documents/__init__.py": "ab25b7e4778ad552357ee4bac4b0c49135ed1437e45ea1c9cbe27e18eb53eaa2",
+        "scripts/scutio_data/_documents/filings.py": "1d7043c9eadf053791d4eee7fe2b48289c66d5a3011efce1b982dce57f49678b",
+        "scripts/scutio_data/_documents/hints.py": "1143a97a1c738ab9b918685ab4268566e6625012372cf4ce33903d6b2b228eb1",
+        "scripts/scutio_data/_documents/report_paths.py": "0c1862c28cc13bd249052dbd79fa63fa16a2be55098115bec4f08e44ae3dde99",
+        "scripts/scutio_data/_documents/reports.py": "37fe2bb36a0b045fb166ecfdd332ed92a6bc49d8039dd3d399c7f50240ffeaec",
+        "scripts/scutio_data/_documents/text.py": "150043be8ee0d8132f3c076916b282b0717abba28bf78b75e63318fd20e9e071",
+        "scripts/scutio_data/_providers/__init__.py": "1eb74a27caf074ab08b6c200068f11342f075d35c481ac14766650fc81708940",
+        "scripts/scutio_data/_providers/akshare/__init__.py": "dbd7d95455a8ae3c580628f856943d8366d083d0660993969f46b69c66d405e0",
+        "scripts/scutio_data/_providers/akshare/_akshare_worker.py": "21183fd42c88131359813b9705fb577dc736ba17100a50128ab769f27dcae213",
+        "scripts/scutio_data/_providers/akshare/client.py": "7db5cabcbcdff582939f602180e253cd04c42601369ce7506a756f8c90d32f2d",
+        "scripts/scutio_data/_providers/akshare/economic_calendar.py": "36e156aced7ea0276fa1072af06de62ebb76746f315d002fcb82f757e6c354bd",
+        "scripts/scutio_data/_providers/akshare/errors.py": "99f4e257967e20be90ca99e37fe04224cb07089d25ace1b554a04a7e6babaa71",
+        "scripts/scutio_data/_providers/akshare/macro.py": "e7bd0716dba5761d964438f866e8034d0e445ee401ffa57f63123a4ce1f80323",
+        "scripts/scutio_data/_providers/akshare/maintenance.py": "2346dbdf6f848fd5b38c36dde9b8402a3e37c8980afac1c520e006ae20430243",
+        "scripts/scutio_data/_providers/akshare/market.py": "43226a26b6f932c8b4f9db912ae551f30108d33a4bcc24c7a19c49bbc9c68bd7",
+        "scripts/scutio_data/_providers/akshare/network.py": "cc48698772f187a75207e1f2cb900e77273495a342fc2ce970468517bfe4b1cf",
+        "scripts/scutio_data/_providers/akshare/registry.py": "d4b49db8b8587dc34ac25e7fc5cad18e5491219c40fbd4ec633909a4f80ed709",
+        "scripts/scutio_data/_providers/akshare/snapshots.py": "cb0ce97ede550b7effdbc1d09ae9cf2a8f83ee94c224bbcd3b58a296a3276b0d",
+        "scripts/scutio_data/_providers/capabilities.py": "09799f4f902499c42d814f65ff8bbd81651a12531aebec223ec0c802a748a0f9",
+        "scripts/scutio_data/_providers/cninfo.py": "83cac47a9e107d2c10e6780bd01429b5f06ed7068c36967ed161661696cc7275",
+        "scripts/scutio_data/_providers/eastmoney.py": "f304323198c513dcac9159bfba545f6b04e831a52e85b437dfa3823b1a0f812f",
+        "scripts/scutio_data/_providers/eastmoney_capital.py": "b718af238702d01074f3f8de8f8c2248c20ba90ed6e69120123e4e97e6098432",
+        "scripts/scutio_data/_providers/eastmoney_events.py": "18c74989f0b45bff3ce29e0107e46414ea9984997ffdbbc38198d30f88cadd60",
+        "scripts/scutio_data/_providers/eastmoney_research.py": "babb889a3d904ffa76ef75313e3c10d3e986f68cdc6004d12de97797e61d5328",
+        "scripts/scutio_data/_providers/eastmoney_special.py": "13407d79e6679c7c3134386e3a9af2c9feee21fa8f9ff94b7f14089a51292a2b",
+        "scripts/scutio_data/_providers/hithink/__init__.py": "6cee4c386020dc374f1ad9ee6626a50f0ca8f56ce11a432c80c04d1ed5d1ab6b",
+        "scripts/scutio_data/_providers/hithink/client.py": "7dcaf7e29a531643d5f1a2bf30aa7426113de2344aa6d33c5b9b7b0cd71c266c",
+        "scripts/scutio_data/_providers/hithink/parse.py": "201500ca7a9adc610308f631e93df5a3b786ad471563ff24fae1935d42dce2d7",
+        "scripts/scutio_data/_providers/quote_parse.py": "f20ebabf8241df29d4fd04e4dd737bc3c3291d33d60c2f8f505c6218fc52f196",
+        "scripts/scutio_data/_providers/quotes.py": "a06f2d86a5da2624116adbc531a2c202c62ef90f30000f3b2b88ba0144a56eaa",
+        "scripts/scutio_data/_providers/sec.py": "bb2304ac87c0dfca6685613135c07276c15a314067e187c0f4f470abc045384f",
+        "scripts/scutio_data/_providers/sina_fx.py": "46762dde978a4198d02cc684762ed83df3b86c0b28eace7cdea391ea62de6c95",
+        "scripts/scutio_data/_runtime/__init__.py": "a03f1606346a690466eab663041bab968e47f9b51c2eb7a8481149c9b930ea7b",
+        "scripts/scutio_data/_runtime/_http_worker.py": "67ead16c5b1385790282c2039e98d0282171a4e6cf4ae34a3dbe6e30c55ab2a2",
+        "scripts/scutio_data/_runtime/arguments.py": "7e72aead30daa407f924220487097b638c57f30bba67e85ec077073e3b747ac7",
+        "scripts/scutio_data/_runtime/cache.py": "f38e07db478f11bb6cb24417c2e30f0a14f75d11a42f8cb94932d497f50e0d3a",
+        "scripts/scutio_data/_runtime/config.py": "d8937ef18068084321aa04cb199a44c30cac208b88f70f6e284455102fe52d77",
+        "scripts/scutio_data/_runtime/coordination.py": "165e78e4902b8acd8e7d83e254f9841c383295321062e1f554256ee34da2a3d3",
+        "scripts/scutio_data/_runtime/dates.py": "d55d60b5ff0a76a8c1a483f9e292357908beb8330c808b48ac8dedd7e4b746e2",
+        "scripts/scutio_data/_runtime/environment.py": "2bf94058186116c955fbca04f51d1b0598c991ff828e3adaad5c73650bf01d66",
+        "scripts/scutio_data/_runtime/execution.py": "77c40a83f1b8fa3a904f1c6d7d8925a85c44d35f064618208cb0c41acf96f2f5",
+        "scripts/scutio_data/_runtime/http.py": "71b75d6ee7adc77c5ecbaa509a41b81e24a44f7e9279906642b5c9a83be81cd5",
+        "scripts/scutio_data/_runtime/parsing.py": "3a4a454b20a9f3df78f67d2d47f6bd912c9f640c1c650ea0dd98756bd19c9fa3",
+        "scripts/scutio_data/_runtime/processes.py": "38aa543ad42f4e390243fcc5c4c1587c1120b0dcebe8a11fe7aa1ce90b04152f",
+        "scripts/scutio_data/_runtime/results.py": "9dca8dc221375a7cec1fbdf017212532f766b0d3722a8ee1f1434a690e8f10fa",
+        "scripts/scutio_data/_runtime/storage.py": "97d825ef4b56fe8f56bba161112060e37993c05972d5856ddf2f12dd49336c59",
+        "scripts/scutio_data/_runtime/symbols.py": "5681b885ed3dd13697a1531b2c8204778353dbc34e5ff8239374ceec11d614b9",
+        "scripts/scutio_data/_runtime/timeouts.py": "4ba795da003d5bd0324413adc4f64b7d1ffd85ed9991592946431410d3c5ce78",
+        "scripts/scutio_data/announcements.py": "0200e6fad8af24ed736f5241a0719357dc40ee036555019cf7ddc457c2c2aa67",
+        "scripts/scutio_data/batch.py": "ede8614941fac3d891c5499732bd0cbf292e487f3c1fd8ec77d2de8471171e41",
+        "scripts/scutio_data/breadth.py": "6bca1894f1bcd5eeb81c12db1deb824ad1b221901f97ad67dede26070df4dd6e",
+        "scripts/scutio_data/capital/__init__.py": "f6b8a6f1ba041d8087e5028bc669761ad1761cee5050a33de10894fdfeb9f6cb",
+        "scripts/scutio_data/capital/dividends.py": "ebffc2e55297fdbbf94eaf93eb7b21f9cad6f24ed0ab883a46aa891e0f7d8db6",
+        "scripts/scutio_data/capital/dragon_tiger.py": "c6d1b4ec07ef91304635ba7d4ba9c1098ece0533467922a5d461388403d6f916",
+        "scripts/scutio_data/capital/flows.py": "b658b48157fa4abc9eff9ece83f62d994724571167d3f4bfd31bd5a6a1d83996",
+        "scripts/scutio_data/capital/history.py": "8f1d2f5b4b7c278bef47957dcb3d322f276d234a844ab22ede9ed0ba1f3cf095",
+        "scripts/scutio_data/core.py": "cab4072d827143feed0f71b9fb4fa5e440d82910d332def71068ed3a02717524",
+        "scripts/scutio_data/data_sources.py": "bc0195bb1ef1d2e17b4a09d0868ab970bf72f5a4f1da0c0f1852ebc0a81559dd",
+        "scripts/scutio_data/events.py": "29a90af93e9794199fab15f94031e2cc34cea121ecf3b536388b448a60d6787f",
+        "scripts/scutio_data/feeds.py": "e90f6383f40a8f4f528249890131c80d8a57cbfbeebd29969ea8583fcc0d8c1b",
+        "scripts/scutio_data/fundamentals.py": "c7eb492c4bb6f3a609c51a2a9c2f4609f528bae0f4f270fb92e7334becd622fe",
+        "scripts/scutio_data/macro/__init__.py": "c97734c56319d7e6d29ee62f07dabf5edd1aab72f3443fd109bd1cb7a187f0d7",
+        "scripts/scutio_data/macro/quotes.py": "61d66284fed9fbc777d4a7fd82bb0608d9fa192f9d89872925103571e7c35b01",
+        "scripts/scutio_data/macro/series.py": "ad245ea152ae340e849603a5e771e69e5ce3818c453653146d1e39fc35fe908d",
+        "scripts/scutio_data/market.py": "54ab01c7086aa1ce8cc63238f5154d5169b4b67602fe7ac251b8ada8400fc597",
+        "scripts/scutio_data/paths.py": "417fec09508d5a0d66446cc3ace6c09d47bfae352aaa25d2e824983e24729d82",
+        "scripts/scutio_data/research/__init__.py": "f4fcd5ce34060ffb1caf07769350e8ebb9291645a8caaeb8ecd7104f29ffe040",
+        "scripts/scutio_data/research/consensus.py": "937faf3d00fc0208990dea6f73acfcb74fbc9be4847f66d21f57666e18c5f501",
+        "scripts/scutio_data/research/discovery.py": "1fef132184021cd99818e7e9304852e9eea4824b82a8eada7136a140e7548b0b",
+        "scripts/scutio_data/research/local.py": "f4ef020c3f76d187b61d1c68e2b0d81ffc5343fe441c5514a222852ab3a22a8f",
+        "scripts/scutio_data/valuation.py": "c5f6ac1a2c0938699494612bfcc6c2978bbc1e16b02db8974f887babcfa2cd78",
+        "SKILL.md": "a5728d59ca65de60b3eb8200177128667a341a8785316a109dabc152b1aa051d",
+        "THIRD_PARTY.md": "a720ad5e353683e0a549cdb431d3d59724437348a21ed7483f76c2ee9cccb365",
+        "VERSION": "d6786e528559282abdc85379c00255d2bce04358365e10cc74d08162440e006c"
+      }
+    }
+  },
+  "redaction": "Published audit copy; no hidden reasoning, signatures, credentials or real user sessions. Local paths and runtime IDs removed. Read-file output is represented by source manifest; command/write results preserved. Hashes in manifests refer to LF-normalized source files, not raw conversation logs."
+}

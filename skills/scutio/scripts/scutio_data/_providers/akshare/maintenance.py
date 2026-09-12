@@ -56,10 +56,7 @@ def _locked():
         if sys.platform == "win32":
             import msvcrt
 
-            stream.seek(0, 2)
-            if stream.tell() == 0:
-                stream.write(b"0")
-                stream.flush()
+            # Windows byte-range locks also work on an empty file.
             stream.seek(0)
 
             def acquire():

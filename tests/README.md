@@ -17,6 +17,10 @@
 
 最近一次实际结果见 [2026-09-11 取数与字段验收](../evals/reports/2026-09-11-data-acceptance.md)，保留 62 个公开入口的覆盖关系及逐例检查；临时执行器、凭据和原始批量响应不进入仓库。
 
+[2026-09-12 Windows 与宿主复测](../evals/reports/2026-09-12-windows-host-retest.md)补充非 UTF-8 环境全量离线回归、32 个真实通路探针和 Grok/OpenCode 小规模验收；不替代上述 349 项字段验收。
+
+[2026-09-12 Windows 升级验收](../evals/reports/2026-09-12-windows-upgrade.md)补充 alpha.1 → alpha.2 → 当前候选、重复安装、依赖解析失败保护及 venv 重建的实际结果。`runtime/test_upgrade.py` 覆盖外置数据与配置保留及旧记录继续追加；`runtime/test_requirements_encoding.py` 防止 pip 误解码带中文注释的依赖文件。
+
 AKShare 升级后需重新检查源字段和单位，特别是已有本地修正的腾讯指数/深市成交量；固定 fixture 只能防止本地回归，不能证明上游仍维持旧行为。真实凭据只通过内存环境提供，使用临时配置与缓存目录；不把 Key、用户记录或批量第三方原文提交到仓库。
 
 `self_check` 回答的是「当前环境哪些源还能用」，**不**修代码、**不**记「上次跑过」、**不**改业务结论。  
@@ -90,6 +94,8 @@ export PYTHONPATH="skills/scutio/scripts:${PYTHONPATH:-}"
 
 `runtime/test_single_skill_install.py` 验证安装目标与源码、数据及配置目录重叠时拒绝覆盖，以及链接/复制替换、相对路径安装后换目录运行；`journal/test_journal.py` 覆盖类别股记录创建和追加、路径约束，以及不同 `SCUTIO_HOME` 共用记录根的并发更新。慢响应测试使用本地 socketpair，不访问外部服务。
 
+`runtime/test_windows_locks.py` 用另一进程已持有的空锁文件验证记录锁、配置锁会等待并随后成功，维护锁会返回忙；防止首次初始化锁文件时发生未受保护的写入。
+
 `runtime/test_examples.py` 离线调用示例，验证身份、公开入口和失败退出码；`runtime/test_documented_api.py` 检查调用文档的 Python 导入/参数名称、示例入口和测试目录有效性。它们不验证源站实时可用性。
 
 报表中的逐条说明由 `case_catalog.py` 的 `CASES` 提供；其余用例按 `CASE_GROUPS` 或测试层归组，保留完整 nodeid，输入和精确断言以测试源码为准。新增数据测试文件需补充分组，重命名/删除用例需同步逐条说明，避免把分组覆盖范围当成单个用例的断言。
@@ -114,6 +120,8 @@ export PYTHONPATH="skills/scutio/scripts:${PYTHONPATH:-}"
 
 CI 在 Linux/Python 3.11–3.13 运行全量离线测试；macOS/Windows/Python 3.12 运行安装、运行时、记录、可选源配置与请求取消用例。手动或每周 canary 将 HTTP JUnit 和源探针 JSON 保存为 `data-source-canary` artifact，并把成功/降级/失败显示在摘要中。探针失败会让该次 canary 失败，普通 push 不触发公网检查。
 
-`release` 工作流另验证压缩包在三个系统上的依赖安装和独立启动，仅产出 artifact，不发布 Release。运行状态以实际 Actions 结果为准，流程存在不代表所有平台已经通过。
+Windows 另以 `PYTHONUTF8=0` 运行安装、记录及含中文数据夹具的回归，避免 CI 默认 UTF-8 模式掩盖隐式编码。仓库文本和 JSON 显式按 UTF-8 读写；Python 子进程需要 UTF-8 文本通信时，发送端与接收端同时指定编码。
+
+`release` 工作流另验证压缩包在三个系统上的依赖安装和独立启动。手动运行仅产出 artifact；推送匹配 `VERSION` 的 `v*` 标签时，检查通过后发布 GitHub Release。正式版本设为 latest，带 alpha/beta/rc 后缀的版本标记为 prerelease。运行状态以实际 Actions 结果为准，流程存在不代表所有平台已经通过。
 
 本地存储回归覆盖配置与状态分离、默认与自定义记录根迁移后继续追加、冲突预检与失败回滚、保留记录字节与证据引用，以及 API 缓存过期和容量淘汰；清理不得触及 Key、限流状态、文档或用户记录。

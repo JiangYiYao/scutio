@@ -168,7 +168,7 @@ def build(root, output, *, allow_dirty=False, tag=None):
             raise ValueError(f"Missing release input: {required}")
     versions = dependency_snapshot(payload["scutio/requirements.txt"].decode("utf-8"))
     payload["scutio/tested-constraints.txt"] = (
-        "# Resolved runtime environment used to build this preview; see release-manifest.json.\n"
+        "# Resolved runtime environment used for this build; see release-manifest.json.\n"
         + "\n".join(f"{name}=={version}" for name, version in versions.items())
         + "\n"
     ).encode("utf-8")

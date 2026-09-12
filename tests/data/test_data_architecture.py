@@ -76,7 +76,7 @@ def test_hk_default_download_extracts_official_pdf_without_removed_content_adapt
     )
     assert result["ok"], result
     assert Path(result["path"]).read_bytes().startswith(b"%PDF")
-    assert Path(result["text_path"]).read_text() == "verified report text"
+    assert Path(result["text_path"]).read_text(encoding="utf-8") == "verified report text"
 
 
 def test_importing_result_contracts_does_not_load_source_transports():

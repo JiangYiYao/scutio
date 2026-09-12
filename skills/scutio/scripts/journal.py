@@ -89,9 +89,8 @@ def record_lock(target: Path):
         if os.name == "nt":
             import msvcrt
 
-            if os.fstat(stream.fileno()).st_size == 0:
-                stream.write(b"0")
-                stream.flush()
+            # Windows can lock past EOF. Initializing this byte before acquiring
+            # the lock races with another process that has already locked it.
 
             def acquire():
                 stream.seek(0)

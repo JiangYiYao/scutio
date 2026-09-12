@@ -22,7 +22,7 @@ FIXTURES = Path(__file__).parents[1] / "fixtures/hithink"
 
 
 def raw(name):
-    return json.loads((FIXTURES / (name + ".json")).read_text())
+    return json.loads((FIXTURES / (name + ".json")).read_text(encoding="utf-8"))
 
 
 def response(data=None, *, code=0, status=200, headers=None):
@@ -178,7 +178,7 @@ def test_cache_preserves_timestamp_and_separates_adjustments(monkeypatch):
     hithink.request("/api/test", {"adjust": "forward"}, ttl=30)
     assert session.get.call_count == 2
     for path in (cache_dir() / "api" / "responses" / "hithink").rglob("*.json"):
-        assert "test-credential" not in path.read_text()
+        assert "test-credential" not in path.read_text(encoding="utf-8")
 
 
 def test_transient_retry_limit_and_malformed_schema(monkeypatch):
@@ -449,7 +449,7 @@ config.set_setting('mode', 'public')
         while not contention.exists():
             assert second.poll() is None and time.monotonic() < deadline
             time.sleep(0.01)
-        assert contention.read_text() == "blocked"
+        assert contention.read_text(encoding="utf-8") == "blocked"
         release.write_text("continue")
         assert first.wait(timeout=5) == second.wait(timeout=5) == 0
         assert data_sources.settings() == {"hint_seen": True, "mode": "public"}

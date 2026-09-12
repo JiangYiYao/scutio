@@ -1,3 +1,4 @@
+# coding: utf-8
 # Scutio toolkit runtime (install into ~/.scutio/.venv)
 # 上界防止静默大版本破坏；如需升级请改约束并跑全量测试。
 akshare==1.18.94  # 免费源适配；Python 3.11+，升级必须经过字段契约回归

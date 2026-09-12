@@ -1,3 +1,4 @@
+# coding: utf-8
 # Scutio 开发测试依赖（不进入 skill 安装 / install.sh --with-venv）
 #
 #   pip install -r skills/scutio/requirements.txt   # 运行时

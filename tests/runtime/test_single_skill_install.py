@@ -406,6 +406,7 @@ def test_installer_exports_paths_that_survive_a_different_working_directory(tmp_
         cwd=tmp_path,
         capture_output=True,
         text=True,
+        encoding="utf-8",
         timeout=30,
     )
     assert result.returncode == 0, result.stderr
@@ -446,6 +447,7 @@ def test_installer_exports_paths_that_survive_a_different_working_directory(tmp_
         env=dict(env, SCUTIO_INSTALL_TEST_SCRIPT=str(script)),
         capture_output=True,
         text=True,
+        encoding="utf-8",
         timeout=30,
     )
     assert followup.returncode == 0, followup.stderr
@@ -460,5 +462,5 @@ def test_installer_exports_paths_that_survive_a_different_working_directory(tmp_
     for name, path in expected.items():
         assert Path(actual[name]).is_absolute()
         assert Path(actual[name]).resolve() == path.resolve()
-    assert (expected["SCUTIO_HOME"] / "probe.txt").read_text() == "correct root"
+    assert (expected["SCUTIO_HOME"] / "probe.txt").read_text(encoding="utf-8") == "correct root"
     assert not (elsewhere / "state roots").exists()

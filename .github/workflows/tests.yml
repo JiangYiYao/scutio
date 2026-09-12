@@ -58,6 +58,16 @@ jobs:
           tests/data/test_execution.py tests/data/test_batch.py tests/data/test_batch_domains.py
           -m 'not live' -p no:cacheprovider
 
+      - name: Windows locale encoding regression
+        if: runner.os == 'Windows'
+        env:
+          PYTHONUTF8: "0"
+        run: >-
+          python -m pytest -q tests/runtime tests/journal
+          tests/data/test_data_audit_regressions.py tests/data/test_evidence_reuse.py
+          tests/data/test_api_contracts.py tests/data/test_optional_sources.py
+          -m 'not live' -p no:cacheprovider
+
   live-canary:
     if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest

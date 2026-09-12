@@ -822,11 +822,11 @@ def test_pdf_unreadable_font_mapping_is_reported_and_cached_text_invalidated(tmp
     monkeypatch.setattr(document_text.shutil, "which", lambda _: None)
     path = tmp_path / "annual.pdf"
     path.write_bytes(b"%PDF-original-preserved")
-    path.with_suffix(".txt").write_text(garbled)
+    path.with_suffix(".txt").write_text(garbled, encoding="utf-8")
     text_path, error = write_text_sidecar(path)
     assert error.startswith("suspect_pdf_text_encoding:")
-    assert "text extraction unreadable" in Path(text_path).read_text()
-    assert garbled not in Path(text_path).read_text()
+    assert "text extraction unreadable" in Path(text_path).read_text(encoding="utf-8")
+    assert garbled not in Path(text_path).read_text(encoding="utf-8")
     assert path.read_bytes() == b"%PDF-original-preserved"
     with pytest.raises(ValueError, match="suspect_pdf_text_encoding"):
         document_text.extract_text_from_path(path)

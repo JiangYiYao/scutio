@@ -377,8 +377,8 @@ def test_text_only_filings_preserve_distinct_content(tmp_path):
         {**row, "notice_content": "更正公告内容"}, target_dir=tmp_path
     )
     assert a["ok"] and b["ok"] and a["text_path"] != b["text_path"]
-    assert Path(a["text_path"]).read_text() == "原公告内容"
-    assert Path(b["text_path"]).read_text() == "更正公告内容"
+    assert Path(a["text_path"]).read_text(encoding="utf-8") == "原公告内容"
+    assert Path(b["text_path"]).read_text(encoding="utf-8") == "更正公告内容"
 
 
 def test_filing_notice_update_preserves_previous_sidecar(monkeypatch, tmp_path):
@@ -398,8 +398,8 @@ def test_filing_notice_update_preserves_previous_sidecar(monkeypatch, tmp_path):
         {**row, "notice_content": "更正公告内容"}, target_dir=tmp_path
     )
     assert a["ok"] and b["ok"] and a["text_path"] != b["text_path"]
-    assert Path(a["text_path"]).read_text() == "原公告内容"
-    assert Path(b["text_path"]).read_text() == "更正公告内容"
+    assert Path(a["text_path"]).read_text(encoding="utf-8") == "原公告内容"
+    assert Path(b["text_path"]).read_text(encoding="utf-8") == "更正公告内容"
 
 
 def test_revision_does_not_choose_arbitrary_same_day_baseline():

@@ -19,6 +19,8 @@ def run_journal(*args: str) -> subprocess.CompletedProcess[str]:
         check=False,
         capture_output=True,
         text=True,
+        encoding="utf-8",
+        env=dict(os.environ, PYTHONIOENCODING="utf-8"),
     )
 
 
@@ -396,7 +398,8 @@ def run_concurrent_journal(tmp_path, commands, *, separate_homes=False):
                 stdout=subprocess.PIPE,
                 stderr=subprocess.PIPE,
                 text=True,
-                env=env,
+                encoding="utf-8",
+                env=dict(env, PYTHONIOENCODING="utf-8"),
             )
             processes.append((process, ready))
         deadline = time.monotonic() + 10
@@ -446,10 +449,10 @@ def test_concurrent_appends_keep_both_events_and_matching_memo(tmp_path, separat
         )
     results = run_concurrent_journal(tmp_path, commands, separate_homes=separate_homes)
     assert all(code == 0 for code, _, _ in results), results
-    decision = json.loads((target / "record.json").read_text())
+    decision = json.loads((target / "record.json").read_text(encoding="utf-8"))
     assert len(decision["events"]) == 3
     assert decision["details"]["update1"] and decision["details"]["update2"]
-    memo = (target / "memo.md").read_text()
+    memo = (target / "memo.md").read_text(encoding="utf-8")
     assert "parallel-note-1" in memo and "parallel-note-2" in memo
     # Rendering from the final source of truth must produce identical content.
     assert (
@@ -458,7 +461,7 @@ def test_concurrent_appends_keep_both_events_and_matching_memo(tmp_path, separat
         ).returncode
         == 0
     )
-    assert (target / "memo.md").read_text() == memo
+    assert (target / "memo.md").read_text(encoding="utf-8") == memo
 
 
 @pytest.mark.parametrize("separate_homes", [False, True])
@@ -477,7 +480,7 @@ def test_concurrent_create_cannot_overwrite_same_record(tmp_path, separate_homes
     command = ["--root", str(tmp_path / "journal"), "create", "--input", str(payload)]
     results = run_concurrent_journal(tmp_path, [command, command], separate_homes=separate_homes)
     assert sorted(code for code, _, _ in results) == [0, 2], results
-    assert any("already exists" in err for _, _, err in results)
+    assert any("already exists" in err for _, _, err in results), results
 
 
 @pytest.mark.parametrize("code", ["usBRK.B", "BRK.B.US", "hk00700", "600519"])
@@ -488,7 +491,7 @@ def test_journal_accepts_supported_security_codes_and_can_append(tmp_path, code)
     result = run_journal("--root", str(tmp_path / "journal"), "create", "--input", str(input_path))
     assert result.returncode == 0, result.stderr
     target = Path(result.stdout.strip())
-    record = json.loads((target / "record.json").read_text())
+    record = json.loads((target / "record.json").read_text(encoding="utf-8"))
     assert record["instrument"]["code"] == code
     assert "." not in record["decision_id"]
     event = tmp_path / "event.json"

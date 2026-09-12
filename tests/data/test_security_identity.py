@@ -267,7 +267,7 @@ def test_eastmoney_quote_rejects_a_different_security(monkeypatch, code, wrong_c
 def _tencent_wire(symbol, payload_code):
     lines = (
         (Path(__file__).parents[1] / "fixtures/data_audit/tencent_quotes.txt")
-        .read_text()
+        .read_text(encoding="utf-8")
         .splitlines()
     )
     source_symbol = (

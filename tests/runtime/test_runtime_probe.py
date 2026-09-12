@@ -39,6 +39,7 @@ def test_python_probe_runs_from_unrelated_directory(tmp_path):
         cwd=tmp_path,
         capture_output=True,
         text=True,
+        encoding="utf-8",
         timeout=30,
     )
     assert result.returncode == 0, (result.stdout, result.stderr)
@@ -62,6 +63,7 @@ def run_resolver(script, tmp_path, *, extra=(), configured_python=None):
         env=env,
         capture_output=True,
         text=True,
+        encoding="utf-8",
         timeout=30,
     )
     report = json.loads(result.stdout)

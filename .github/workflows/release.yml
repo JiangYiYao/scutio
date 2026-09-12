@@ -36,7 +36,7 @@ jobs:
       - run: python -m ruff check scripts skills/scutio/scripts tests
       - run: python -m ruff format --check scripts skills/scutio/scripts tests
       - run: python -m pytest -q tests -m 'not live' -p no:cacheprovider
-      - name: Build clean preview and validate release tag
+      - name: Build clean package and validate release tag
         id: build
         shell: python
         run: |
@@ -52,7 +52,7 @@ jobs:
       - uses: actions/upload-artifact@v7
         id: upload
         with:
-          name: scutio-preview
+          name: scutio-release
           path: |
             dist/scutio-*.zip
             dist/scutio-*.zip.sha256
@@ -152,12 +152,16 @@ jobs:
           artifact-ids: ${{ needs.build.outputs.artifact-id }}
           path: dist
           merge-multiple: true
-      - name: Publish verified prerelease assets
+      - name: Publish verified release assets
         shell: bash
         run: |
           test "$RELEASE_TAG" = "v$RELEASE_VERSION"
           remote_revision=$(gh api "repos/$GH_REPO/commits/$RELEASE_TAG" --jq '.sha')
           test "$remote_revision" = "$RELEASE_REVISION"
+          release_flags=(--latest=true)
+          if [[ "$RELEASE_VERSION" == *-* ]]; then
+            release_flags=(--prerelease --latest=false)
+          fi
           cat > "$RUNNER_TEMP/release-notes.md" <<'NOTES'
           Scutio 是面向 A 股、港股和美股的 AI 投资研究 Skill，结合行情、财务数据与公开信息，研究公司和产业变化、推演前景、复核投资判断。
 
@@ -165,11 +169,13 @@ jobs:
 
           **验证版本**：同页 `.zip.sha256` 校验压缩包；`.manifest.json` 与包内 `release-manifest.json` 内容一致，记录版本、提交、文件 SHA-256 与构建依赖。包内 `VERSION` 标识此版本，`tested-constraints.txt` 记录测试所用依赖。此发布通过离线测试和 Linux、macOS、Windows 独立安装包检查；运行 `scripts/runtime_probe.py` 可确认本地版本和依赖就绪，网络数据源仍需实际调用确认。
 
-          **边界**：这是早期预览版。公开数据源可能限流、延迟、缺字段或停止更新，结果会标注来源与覆盖限制。研究结论依赖模型、检索和证据，不保证投资收益；现有行为评测尚未证明使用 Skill 比不使用具有稳定优势。不连接证券账户、不执行交易。
+          **升级**：仓库安装用户切换到本次发布标签后重跑原安装命令；ZIP 用户替换完整 `scutio` 目录，并按新包的 requirements 和 tested-constraints 更新依赖。结束正在运行的 Scutio 任务后再升级，完成后重新加载技能或重启宿主。独立用户数据目录中的研究记录与配置保留。
+
+          **边界**：公开数据源可能限流、延迟、缺字段或停止更新，结果会标注来源与覆盖限制；具体已知问题见 README 与验证报告。研究结论依赖模型、检索和证据，不保证投资收益；现有行为评测尚未证明使用 Skill 比不使用具有稳定优势。不连接证券账户、不执行交易，不提供后台监控或主动提醒。
           NOTES
           gh release create "$RELEASE_TAG" \
             "dist/scutio-$RELEASE_VERSION.zip" \
             "dist/scutio-$RELEASE_VERSION.zip.sha256" \
             "dist/scutio-$RELEASE_VERSION.manifest.json" \
-            --verify-tag --target "$RELEASE_REVISION" --prerelease --latest=false \
+            --verify-tag --target "$RELEASE_REVISION" "${release_flags[@]}" \
             --title "Scutio $RELEASE_TAG" --notes-file "$RUNNER_TEMP/release-notes.md"

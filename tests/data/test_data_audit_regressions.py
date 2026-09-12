@@ -87,7 +87,9 @@ def test_income_native_fields_preserve_distinct_interest_accounts(monkeypatch):
     ],
 )
 def test_quote_volume_units_across_boards_and_markets(symbol, expected, precision):
-    row = parse_tencent_quote_raw((FIXTURES / "tencent_quotes.txt").read_text())[symbol]
+    row = parse_tencent_quote_raw((FIXTURES / "tencent_quotes.txt").read_text(encoding="utf-8"))[
+        symbol
+    ]
     assert row["volume"] == expected
     assert row["volume_unit"] == "share"
     assert row["volume_precision"] == precision
@@ -119,7 +121,7 @@ def test_eastmoney_star_quote_is_lots_unlike_tencent(monkeypatch):
 def test_special_dividends_replace_daily_summary_without_double_counting(monkeypatch):
     from scutio_data._providers.akshare import client as akshare_source
 
-    sample = json.loads((FIXTURES / "catl_dividends_cninfo.json").read_text())
+    sample = json.loads((FIXTURES / "catl_dividends_cninfo.json").read_text(encoding="utf-8"))
 
     def fetch(function, **params):
         assert function == "stock_dividend_cninfo" and params["symbol"] == "300750"

@@ -111,14 +111,14 @@ def test_cache_identity_preserves_period_key_and_never_persists_parameters():
         )
     assert len(calls) == 3
     for path in [*cache_dir().rglob("*.json"), *state_dir().rglob("*.json")]:
-        assert "private-fixture-param" not in path.read_text()
+        assert "private-fixture-param" not in path.read_text(encoding="utf-8")
 
 
 def test_invalid_cached_fields_are_refetched():
     spec = CacheSpec(60, validator=lambda value: isinstance(value.get("rows"), list))
     execute("fixture", "rows", lambda: {"rows": [1]}, cache=spec)
     path = next((cache_dir() / "api/responses/fixture").glob("*.json"))
-    cached = json.loads(path.read_text())
+    cached = json.loads(path.read_text(encoding="utf-8"))
     cached["value"] = {"rows": "wrong shape"}
     path.write_text(json.dumps(cached))
     assert execute("fixture", "rows", lambda: {"rows": [2]}, cache=spec) == {"rows": [2]}
@@ -227,7 +227,7 @@ def test_only_one_recovery_probe_can_use_an_expired_cooldown():
     with pytest.raises(SourceFailure):
         execute("fixture", "a", failure)
     path = next((state_dir() / "execution-v1/fixture").glob("*/health.json"))
-    state = json.loads(path.read_text())
+    state = json.loads(path.read_text(encoding="utf-8"))
     for entry in state["failures"].values():
         entry["until"] = time.time() - 1
     path.write_text(json.dumps(state))
@@ -332,7 +332,7 @@ def test_processes_share_actual_slots_start_rate_and_exact_cache(tmp_path, same)
                 child.kill()
             child.wait()
     events = sorted(
-        (json.loads(row) for row in (tmp_path / "events").read_text().splitlines()),
+        (json.loads(row) for row in (tmp_path / "events").read_text(encoding="utf-8").splitlines()),
         key=lambda row: row[1],
     )
     starts = [stamp for kind, stamp, _ in events if kind == "start"]

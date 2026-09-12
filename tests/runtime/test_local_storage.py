@@ -62,7 +62,9 @@ def test_migration_preserves_config_record_bytes_and_referenced_evidence(monkeyp
     assert not record.exists() and not secret.exists()
     assert config.credential() == ("test-token", "credentials_file")
     assert config.mode() == "public"
-    assert json.loads((state_dir() / "akshare/health.json").read_text()) == {"last_check_at": 100}
+    assert json.loads((state_dir() / "akshare/health.json").read_text(encoding="utf-8")) == {
+        "last_check_at": 100
+    }
     if os.name != "nt":
         assert (config_dir() / "credentials.env").stat().st_mode & 0o777 == 0o600
     # Execution caches and health schemas are not user data and cannot be migrated as valid responses.
@@ -71,7 +73,7 @@ def test_migration_preserves_config_record_bytes_and_referenced_evidence(monkeyp
     assert (old / "akshare_snapshots/snapshot.json").exists()
     assert not (state_dir() / "hithink").exists()
     assert not (cache_dir() / "api").exists()
-    assert evidence.read_text() == "source evidence" and export.exists()
+    assert evidence.read_text(encoding="utf-8") == "source evidence" and export.exists()
     assert not report.exists() and (cache_dir() / "documents/reports/report.pdf").exists()
     assert local_storage.migrate(apply=True)["moves"] == []
     event = write(
@@ -84,7 +86,7 @@ def test_migration_preserves_config_record_bytes_and_referenced_evidence(monkeyp
         },
     )
     assert journal.main(["append", "--record-dir", str(moved), "--event", str(event)]) == 0
-    revised = json.loads((moved / "record.json").read_text())
+    revised = json.loads((moved / "record.json").read_text(encoding="utf-8"))
     original = json.loads(before)
     assert (
         revised["capture"] == original["capture"] and revised["events"][0] == original["events"][0]
@@ -177,7 +179,9 @@ def test_custom_journal_root_migrates_without_rewriting_history(tmp_path, capsys
     assert local_storage.main(["migrate", "--journal-root", str(root), "--apply"]) == 0
     moved = root / record.name
     assert (moved / "record.json").read_bytes() == before
-    assert (moved / "attachments" / attachment.name).read_text() == "original evidence"
+    assert (moved / "attachments" / attachment.name).read_text(
+        encoding="utf-8"
+    ) == "original evidence"
     assert not (root / "decisions").exists()
     assert journal.main(["--root", str(root), "list"]) == 0
     assert local_storage.migrate(apply=True, journal_root=root)["moves"] == []
@@ -225,7 +229,7 @@ def test_cache_write_prunes_on_interval_and_survives_readonly_state(monkeypatch)
     monkeypatch.setattr(cache.time, "time", lambda: clock[0])
     target = cache_dir() / "api/akshare/example.json"
     cache.write_api_cache(target, {"items": []}, ttl=1)
-    assert json.loads(target.read_text())["expires_at"] == 1001
+    assert json.loads(target.read_text(encoding="utf-8"))["expires_at"] == 1001
     first_sweep = (state_dir() / "api_cache.json").read_bytes()
     clock[0] += 5
     another = cache_dir() / "api/akshare/another.json"
@@ -244,7 +248,11 @@ def test_storage_cli_preview_does_not_create_local_directories(tmp_path, monkeyp
     script = Path(local_storage.__file__)
     for command in ("migrate", "clean-cache"):
         result = subprocess.run(
-            [sys.executable, str(script), command], capture_output=True, text=True
+            [sys.executable, str(script), command],
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+            env=dict(os.environ, PYTHONIOENCODING="utf-8"),
         )
         assert result.returncode == 0, result.stderr
         assert json.loads(result.stdout)["applied"] is False

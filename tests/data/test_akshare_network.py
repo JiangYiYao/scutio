@@ -41,8 +41,9 @@ def test_proxy_recovery_is_confined_to_worker_and_shares_deadline(monkeypatch, f
     first, second = runner.call_args_list
     assert first.kwargs["timeout"] == pytest.approx(budget, abs=0.1)
     assert second.kwargs["timeout"] == pytest.approx(budget - 8, abs=0.1)
-    assert "https_proxy" in first.kwargs["env"]
-    assert "https_proxy" not in second.kwargs["env"]
+    # Windows normalizes os.environ keys to uppercase.
+    assert "https_proxy" in {key.lower() for key in first.kwargs["env"]}
+    assert "https_proxy" not in {key.lower() for key in second.kwargs["env"]}
     assert second.kwargs["env"]["NO_PROXY"] == second.kwargs["env"]["no_proxy"] == "*"
     assert "HITHINK_FINANCE_API_KEY" not in first.kwargs["env"]
     assert "HITHINK_FINANCE_API_KEY" not in second.kwargs["env"]

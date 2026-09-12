@@ -19,7 +19,7 @@ _spec.loader.exec_module(release)
 
 def test_archive_hashes_and_runtime_survive_standalone_extraction(tmp_path):
     archive = release.build(ROOT, tmp_path / "dist", allow_dirty=True)
-    expected = archive.with_suffix(".zip.sha256").read_text().split()[0]
+    expected = archive.with_suffix(".zip.sha256").read_text(encoding="utf-8").split()[0]
     assert hashlib.sha256(archive.read_bytes()).hexdigest() == expected
     with zipfile.ZipFile(archive) as bundle:
         names = bundle.namelist()
@@ -91,8 +91,10 @@ def test_release_tag_matches_version_and_commit_for_lightweight_and_annotated_ta
     first = git("rev-parse", "HEAD")
     git("tag", "v0.1.0-alpha.1")
     git("tag", "-a", "v0.1.0-alpha.2", "-m", "Annotated release")
+    git("tag", "-a", "v0.1.0", "-m", "Stable release")
     release.validate_tag(tmp_path, "0.1.0-alpha.1", first, "v0.1.0-alpha.1")
     release.validate_tag(tmp_path, "0.1.0-alpha.2", first, "v0.1.0-alpha.2")
+    release.validate_tag(tmp_path, "0.1.0", first, "v0.1.0")
     with pytest.raises(ValueError, match="exactly match"):
         release.validate_tag(tmp_path, "0.1.0-alpha.2", first, "v0.1.0-alpha.1")
     with pytest.raises(ValueError, match="missing"):

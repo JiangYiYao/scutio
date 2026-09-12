@@ -19,9 +19,8 @@ def file_lock(path: str | Path, timeout_seconds=30):
         if os.name == "nt":
             import msvcrt
 
-            if os.fstat(stream.fileno()).st_size == 0:
-                stream.write(b"0")
-                stream.flush()
+            # Locking past EOF avoids an unprotected initialization write racing
+            # with another process that has already acquired the byte range.
 
             def acquire():
                 stream.seek(0)

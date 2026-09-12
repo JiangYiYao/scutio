@@ -19,7 +19,7 @@ EXAMPLES = SKILL / "scripts/examples"
 
 @pytest.mark.parametrize("path", REFERENCES, ids=lambda path: path.stem)
 def test_documented_python_imports_and_call_signatures(path):
-    for snippet in re.findall(r"```python\n(.*?)```", path.read_text(), re.S):
+    for snippet in re.findall(r"```python\n(.*?)```", path.read_text(encoding="utf-8"), re.S):
         tree = ast.parse(snippet, filename=str(path))
         imported = {}
         for node in ast.walk(tree):
@@ -48,11 +48,13 @@ def test_documented_python_imports_and_call_signatures(path):
 
 
 def test_documented_examples_exist_and_use_public_domain_imports():
-    listed = set(re.findall(r"`(\d{2}_[\w]+\.py)`", (EXAMPLES / "README.md").read_text()))
+    listed = set(
+        re.findall(r"`(\d{2}_[\w]+\.py)`", (EXAMPLES / "README.md").read_text(encoding="utf-8"))
+    )
     shipped = {path.name for path in EXAMPLES.glob("[0-9]*.py")}
     assert listed == shipped
     for name in shipped:
-        tree = ast.parse((EXAMPLES / name).read_text())
+        tree = ast.parse((EXAMPLES / name).read_text(encoding="utf-8"))
         for node in ast.walk(tree):
             if isinstance(node, ast.ImportFrom) and (node.module or "").startswith("scutio_data"):
                 assert len(node.module.split(".")) == 2, f"{name}: {node.module}"
@@ -66,7 +68,7 @@ def test_catalog_entries_and_groups_reference_existing_tests():
     functions = {}
     for path in (ROOT / "tests").rglob("test_*.py"):
         relative = path.relative_to(ROOT / "tests").as_posix()
-        for node in ast.walk(ast.parse(path.read_text())):
+        for node in ast.walk(ast.parse(path.read_text(encoding="utf-8"))):
             if isinstance(node, ast.FunctionDef) and node.name.startswith("test_"):
                 functions.setdefault(node.name, []).append(relative)
                 assert lookup(f"{relative}::{node.name}")["module"] != "未分类"
@@ -90,7 +92,7 @@ def test_workflow_probe_ids_exist(monkeypatch):
     monkeypatch.syspath_prepend(str(ROOT / "tests"))
     probes = importlib.import_module("self_check")
     registered = {probe.id for probe in probes.PROBES}
-    workflow = (ROOT / ".github/workflows/tests.yml").read_text()
+    workflow = (ROOT / ".github/workflows/tests.yml").read_text(encoding="utf-8")
     selections = re.findall(r"--only\s+([\w,]+)", workflow)
     assert selections
     for selection in selections:
