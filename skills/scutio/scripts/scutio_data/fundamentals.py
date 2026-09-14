@@ -287,11 +287,13 @@ def _financial_report_a(code, report_type="lrb", num=8, period="annual"):
     from scutio_data._providers.akshare.client import fetch
 
     _, prefix, pure = require_a_share(code, "financial_report")
-    function = {
-        "lrb": "stock_profit_sheet_by_report_em",
-        "fzb": "stock_balance_sheet_by_report_em",
-        "llb": "stock_cash_flow_sheet_by_report_em",
+    annual = _normalize_period(period) == "annual"
+    functions = {
+        "lrb": ("stock_profit_sheet_by_yearly_em", "stock_profit_sheet_by_report_em"),
+        "fzb": ("stock_balance_sheet_by_yearly_em", "stock_balance_sheet_by_report_em"),
+        "llb": ("stock_cash_flow_sheet_by_yearly_em", "stock_cash_flow_sheet_by_report_em"),
     }[_normalize_report_type(report_type)]
+    function = functions[0 if annual else 1]
     rows = fetch(function, symbol=(prefix + pure).upper())
     output = []
     for raw in rows:
@@ -302,7 +304,7 @@ def _financial_report_a(code, report_type="lrb", num=8, period="annual"):
         from datetime import date
 
         date.fromisoformat(day)
-        if _normalize_period(period) == "annual" and not day.endswith("-12-31"):
+        if annual and not day.endswith("-12-31"):
             continue
         record = dict(raw)
         record["报告期"] = day

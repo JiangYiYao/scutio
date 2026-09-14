@@ -227,6 +227,7 @@ def test_bar_parent_identity_and_adjustment_checked(monkeypatch):
         return_value={
             "source": "hithink",
             "retrieved_at": "original",
+            "provider_timestamp": "2026-09-14T00:00:00+00:00",
             "data_as_of": None,
             "data": payload,
         }
@@ -234,6 +235,8 @@ def test_bar_parent_identity_and_adjustment_checked(monkeypatch):
     monkeypatch.setattr(hithink, "request", request)
     rows = hithink.bars("600519", count=5)
     assert len(rows) == 5 and rows[-1]["volume_unit"] == "share"
+    assert rows[-1]["datetime"] == "2026-09-09"
+    assert rows[-1]["provider_timestamp"] == "2026-09-14T00:00:00+00:00"
     assert request.call_args.args[1]["adjust"] == "none"
     with pytest.raises(hithink.SourceError, match="adjustment"):
         hithink.bars("600519", count=5, adjust="qfq")
@@ -283,6 +286,7 @@ def test_financial_summary_preserves_bank_native_scope(monkeypatch):
             "data": payload["data"],
             "source": "hithink",
             "retrieved_at": "original",
+            "provider_timestamp": "2026-09-14T00:00:00+00:00",
             "data_as_of": None,
         },
     )
@@ -347,7 +351,8 @@ def test_valuation_keeps_separate_quote_and_metric_sources(monkeypatch):
             "ps_ttm": 3,
             "pcf_ttm": -4,
             "retrieved_at": "metric-time",
-            "data_as_of": 123,
+            "provider_timestamp": "response-time",
+            "data_as_of": None,
             "source": "hithink",
         },
     )
@@ -360,6 +365,9 @@ def test_valuation_keeps_separate_quote_and_metric_sources(monkeypatch):
     result = valuation.valuation_snapshot("600519", quote_env=env)
     assert result["retrieved_at"] == "metric-time"
     assert result["input_quote_retrieved_at"] == "quote-time"
+    assert result["field_timestamps"]["pb"]["provider_timestamp"] == "response-time"
+    assert result["field_timestamps"]["pb"]["data_as_of"] is None
+    assert result["field_timestamps"]["price"]["provider_timestamp"] is None
     assert result["field_sources"]["price"] == "tencent"
     assert result["field_sources"]["pb"] == "hithink"
     assert result["pe_mrq"] == -5 and "pe_static" not in result
@@ -520,3 +528,88 @@ def test_hithink_transient_retry_can_return_success(monkeypatch):
     monkeypatch.setattr(Session, "_transport_request", transfer)
     assert hithink.request("/api/test", {})["data"]["item"] == []
     assert calls == [True, True]
+
+
+def test_response_timestamp_is_not_quote_or_metric_time(monkeypatch):
+    meta = {"thscode": "600519.SH", "name": "贵州茅台"}
+    monkeypatch.setattr(hithink, "identity", lambda code: meta)
+    session = transport(
+        monkeypatch,
+        [
+            response(
+                {
+                    "timestamp": 1789344000000,
+                    "item": [{"thscode": "600519.SH", "last_price": 100, "volume": 123}],
+                }
+            ),
+            response(
+                {"timestamp": 1789344060000, "item": [{"thscode": "600519.SH", "pe_ttm": 10}]}
+            ),
+        ],
+    )
+    quote = hithink.quotes(["600519"])["sh600519"]
+    assert quote["time"] is None and quote["data_as_of"] is None
+    assert quote["provider_timestamp"] == "2026-09-14T00:00:00+00:00"
+    assert quote["partial"] and not quote["coverage"]["timestamp"]
+    assert "provider_timestamp" in quote["warning"]
+    assert hithink.quotes(["600519"])["sh600519"] == quote
+    metrics = hithink.valuation("600519")
+    assert metrics["provider_timestamp"] == "2026-09-14T00:01:00+00:00"
+    assert metrics["data_as_of"] is None
+    assert "unknown" in metrics["timestamp_basis"]
+    assert session.get.call_count == 2
+
+
+def test_old_timestamp_cache_is_not_reused(monkeypatch):
+    from scutio_data._runtime.execution import CacheSpec, execute, network_identity
+
+    transport(monkeypatch, [response({"timestamp": 1789344000000, "item": []})])
+    old = {"source": "hithink", "retrieved_at": "old", "data_as_of": "old", "data": {"item": []}}
+    execute(
+        "hithink",
+        "/api/test",
+        lambda: old,
+        parameters={},
+        credential_scope=hithink.namespace("test-credential"),
+        route=network_identity(),
+        cache=CacheSpec(ttl=30, version=3),
+    )
+    assert not hithink._valid_value(old, "/api/test", {})
+    current = hithink.request("/api/test", {}, ttl=30)
+    assert current["retrieved_at"] != "old"
+    assert current["data_as_of"] is None
+    assert current["provider_timestamp"] == "2026-09-14T00:00:00+00:00"
+
+
+@pytest.mark.parametrize(
+    "report_type,stem",
+    [
+        ("lrb", "stock_profit_sheet"),
+        ("fzb", "stock_balance_sheet"),
+        ("llb", "stock_cash_flow_sheet"),
+    ],
+)
+def test_annual_statement_route_preserves_native_fields(monkeypatch, report_type, stem):
+    rows = [
+        {
+            "SECURITY_CODE": "000001",
+            "REPORT_DATE": day,
+            "INTEREST_NI": value,
+            "INTEREST_NI_YOY": 5,
+            "INTEREST_INCOME": 20,
+            "EMPTY": None,
+        }
+        for day, value in [("2023-12-31", 8), ("2025-09-30", 9), ("2024-12-31", 10)]
+    ]
+    fetch = Mock(return_value=rows)
+    monkeypatch.setattr(akshare_source, "fetch", fetch)
+    annual = fundamentals._financial_report_a("000001", report_type, num=1)
+    fetch.assert_called_with(stem + "_by_yearly_em", symbol="SZ000001")
+    all_rows = fundamentals._financial_report_a("000001", report_type, num=3, period="all")
+    fetch.assert_called_with(stem + "_by_report_em", symbol="SZ000001")
+    assert annual == [row for row in all_rows if row["报告期"].endswith("-12-31")][:1]
+    assert annual[0]["EMPTY"] is None
+    items = {item["field_id"]: item for item in annual[0]["_line_items"]}
+    assert items["INTEREST_NI"]["value"] == 10
+    assert items["INTEREST_NI"]["yoy"] == 5
+    assert items["INTEREST_INCOME"]["value"] == 20

@@ -15,6 +15,7 @@ from scutio_data._runtime.symbols import split_code
 from scutio_data._runtime.timeouts import source, source_budget
 
 BASE = "https://fuyao.aicubes.cn"
+CACHE_VERSION = 4
 
 
 _FINANCIAL_FIELDS = {
@@ -69,6 +70,9 @@ def _valid_value(value, path, params):
         if any(row.get("thscode") not in expected for row in rows):
             return False
     if not isinstance(value.get("retrieved_at"), str):
+        return False
+    # The response-level timestamp does not establish a business data time.
+    if value.get("data_as_of") is not None:
         return False
     from scutio_data._providers.hithink import parse
 
@@ -134,7 +138,7 @@ def _transport(path, params, key):
             try:
                 if isinstance(timestamp, bool):
                     raise ValueError("invalid timestamp")
-                data_time = (
+                provider_timestamp = (
                     datetime.fromtimestamp(timestamp / 1000, timezone.utc).isoformat()
                     if timestamp is not None
                     else None
@@ -146,7 +150,8 @@ def _transport(path, params, key):
             value = {
                 "data": data,
                 "retrieved_at": datetime.now(timezone.utc).isoformat(),
-                "data_as_of": data_time,
+                "provider_timestamp": provider_timestamp,
+                "data_as_of": None,
                 "source": "hithink",
             }
             if not _valid_value(value, path, params):
@@ -192,7 +197,9 @@ def request(path, params, *, ttl=0):
                 route=network_identity(),
                 attempts=2,
                 cache=CacheSpec(
-                    ttl=ttl, version=3, validator=lambda value: _valid_value(value, path, params)
+                    ttl=ttl,
+                    version=CACHE_VERSION,
+                    validator=lambda value: _valid_value(value, path, params),
                 )
                 if ttl
                 else None,
@@ -214,7 +221,10 @@ def identity(code):
 
 
 def provenance(response):
-    return {key: response[key] for key in ("source", "retrieved_at", "data_as_of")}
+    return {
+        key: response.get(key)
+        for key in ("source", "retrieved_at", "data_as_of", "provider_timestamp")
+    }
 
 
 @source("query")
@@ -309,7 +319,7 @@ def valuation(code):
                 "pb": values["pb_mrq"],
                 "pb_basis": "MRQ",
                 **provenance(response),
-                "timestamp_basis": "latest metric update; individual metrics may differ",
+                "timestamp_basis": "provider response timestamp; metric update times unknown",
             }
     raise SourceError("hithink: valuation missing")
 

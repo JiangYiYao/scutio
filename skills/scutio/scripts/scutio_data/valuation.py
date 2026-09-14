@@ -342,6 +342,7 @@ def _quote_valuation_snapshot(code, quote_env=None):
         or (env.get("retrieved_at") if len(env["quotes"]) == 1 else None),
         data_as_of=q.get("data_as_of"),
         time=q.get("time"),
+        provider_timestamp=q.get("provider_timestamp"),
         partial=bool(q.get("partial")),
         warning=q.get("warning"),
     )
@@ -381,7 +382,9 @@ def valuation_snapshot(code, quote_env=None, *, sources=None):
         quote_env = security_quote([code], sources=("hithink",))
     quote = _quote_valuation_snapshot(code, quote_env=quote_env)
     stamp = datetime.now(timezone.utc).isoformat()
-    quote_time = {key: quote.get(key) for key in ("retrieved_at", "data_as_of", "time")}
+    quote_time = {
+        key: quote.get(key) for key in ("retrieved_at", "data_as_of", "time", "provider_timestamp")
+    }
     quote_fields = ("price", "name", "mcap_yi", "change_pct", "last_close", "pe_ttm", "pb")
     quote["field_timestamps"] = {key: dict(quote_time) for key in quote_fields}
     quote["input_quote_retrieved_at"] = quote.get("retrieved_at")
@@ -437,7 +440,9 @@ def valuation_snapshot(code, quote_env=None, *, sources=None):
     )
     result["computed_at"] = stamp
     result["input_quote_retrieved_at"] = quote.get("retrieved_at")
-    metric_time = {key: metrics.get(key) for key in ("retrieved_at", "data_as_of")}
+    metric_time = {
+        key: metrics.get(key) for key in ("retrieved_at", "data_as_of", "provider_timestamp")
+    }
     result["field_timestamps"] = {
         **quote["field_timestamps"],
         **{

@@ -49,7 +49,7 @@
 
 `sources=` 可限制候选源，单独指定 `hithink` 失败时不回退。财报完整视图不接受用 Hithink 摘要冒充；摘要回退返回完整源视图，必须读取 `detail` / `field_schema`。
 
-`retrieved_at` 是取得数据的时间，`data_as_of` 是源数据时点，可能为空。估值 timestamp 仅代表最近指标更新，不代表全部指标同时更新。`fallback_reason` 与数据缺口分开，成功回退本身不导致 `partial`。缺失成交额、登记日期等保持 `None`。
+`retrieved_at` 是取得数据的时间，`data_as_of` 是源数据时点，可能为空。Financial API 响应顶层时间保留为 `provider_timestamp`；未确认报价或指标的业务时间时，`data_as_of` 留空，不能把该时间解释为最近指标更新。K 线日期、财报报告期仍使用各自明确的业务日期字段。`fallback_reason` 与数据缺口分开，成功回退本身不导致 `partial`。缺失成交额、登记日期等保持 `None`。
 
 ## 请求控制
 

@@ -105,7 +105,7 @@ def test_valid_company_codes_keep_exchange_in_company_requests(monkeypatch, code
     monkeypatch.setattr(client, "fetch", fetch)
     result = fundamentals.financial_report(code)
     assert result["ok"]
-    fetch.assert_called_once_with("stock_profit_sheet_by_report_em", symbol=symbol.upper())
+    fetch.assert_called_once_with("stock_profit_sheet_by_yearly_em", symbol=symbol.upper())
 
 
 @pytest.mark.parametrize(

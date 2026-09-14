@@ -135,7 +135,7 @@ from scutio_data.breadth import market_breadth, index_constituents
 
 ## 数据覆盖
 
-有 Key 的 A 股报价/日线优先 Financial API；报价不包含 PE/PB，估值请调用 `valuation_snapshot`。源未提供时间时 `data_as_of=None`，不能把 `retrieved_at` 当作交易时点。
+有 Key 的 A 股报价/日线优先 Financial API；报价不包含 PE/PB，估值请调用 `valuation_snapshot`。响应顶层时间仅保留为 `provider_timestamp`，其业务含义未经确认，不能当作报价时间。报价 `time` / `data_as_of` 留空，`coverage.timestamp=False` 并标记 `partial`；`retrieved_at` 也不能当作交易时点。
 
 免费 A 股不复权日线走 AKShare 新浪 → 腾讯 → 东财；港美日线走 AKShare 东财 → 新浪。指数和 ETF 使用对应的 AKShare 接口，新浪 ETF 专用接口仅提供不复权日线，周/月线走 AKShare 东财。A 股、美股市场宽度和指数成分/权重同样经 AKShare 获取；港股宽度因东财港股快照停用而暂不可用。报价已尝试 AKShare 全市场及盘口候选，字段/时点与可用性尚未满足；直接报价适配登记为 `status=retained`，详见数据源状态。
 

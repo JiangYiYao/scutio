@@ -79,7 +79,7 @@ A 股完整报表使用 AKShare 东财原生字段 ID。每行保留全部源字
 
 美股资产负债表是时点表：`period=quarter` 会按实际 `REPORT_DATE` 取最近披露点，并纳入上游标为 Q6/Q9/FY 的半年、九个月和年末时点；不会退化成历年 Q1 对比。
 
-`num` 按所选报告类型计数；A 股 `annual, num=8` 请求最近 8 个年报。信封含 `requested_count`、`returned_count`；上游可得期数不足时 `partial=True` 并给出 `warning`。上游错误响应返回 `ok=False`，不能视为成功的空报表。
+`num` 按所选报告类型计数；A 股 `annual, num=8` 返回最近 8 个年报。完整年报走 AKShare 年度接口，`all` 走全部报告期接口；两者仍由上游获取全部可用的相应报告期后本地截取，`num` 不限制网络请求条数。信封含 `requested_count`、`returned_count`；上游可得期数不足时 `partial=True` 并给出 `warning`。上游错误响应返回 `ok=False`，不能视为成功的空报表。
 
 ### 资料长文 `stock_materials`
 
@@ -159,4 +159,4 @@ history = valuation_history("600519", include_series=False)  # 紧凑历史分�
 
 ### 估值复用的身份与时点
 
-`valuation_snapshot(quote_env=...)` 只接受完整证券身份一致的报价；纯代码键也必须由行内 `symbol` 或 `exchange/code` 确认身份，不按代码后缀匹配。复用报价保留 `retrieved_at/data_as_of/time`；`computed_at` 单独表示本次派生时间，未知源时点保持空值。`input_quote_retrieved_at` 指向实际复用行的获取时间。混合 Financial API 指标或免费源补充 PE/PB 时，`field_timestamps` 分别记录价格、估值指标的原始时间，不能把新指标时间当作旧价格的时间。
+`valuation_snapshot(quote_env=...)` 只接受完整证券身份一致的报价；纯代码键也必须由行内 `symbol` 或 `exchange/code` 确认身份，不按代码后缀匹配。复用报价保留 `retrieved_at/data_as_of/time/provider_timestamp`；`computed_at` 单独表示本次派生时间，未知源时点保持空值。`input_quote_retrieved_at` 指向实际复用行的获取时间。混合 Financial API 指标或免费源补充 PE/PB 时，`field_timestamps` 分别记录价格、估值指标的原始时间，不能把新指标时间当作旧价格的时间；`provider_timestamp` 仅为响应顶层时间，不证明指标或价格的业务时点。

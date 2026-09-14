@@ -235,7 +235,7 @@ def test_fundamental_and_flow_contracts(monkeypatch):
     assert len(fundamentals.financial_report("600000", period="all")["items"]) == 2
     fundamentals.financial_report("600000", report_type="zcfzb")
     fundamentals.financial_report("600000", report_type="资产负债表")
-    assert seen[-2:] == ["stock_balance_sheet_by_report_em"] * 2
+    assert seen[-2:] == ["stock_balance_sheet_by_yearly_em"] * 2
 
     from scutio_data._providers.akshare import snapshots as akshare_snapshots
 

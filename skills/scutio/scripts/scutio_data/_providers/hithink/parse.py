@@ -58,9 +58,12 @@ def quote(row, meta, provenance):
         "pb": None,
         "mcap_yi": None,
         "float_mcap_yi": None,
-        "time": provenance.get("data_as_of"),
-        "coverage": {"timestamp": provenance.get("data_as_of") is not None, "valuation": False},
         **provenance,
+        "time": None,
+        "data_as_of": None,
+        "coverage": {"timestamp": False, "valuation": False},
+        "partial": True,
+        "warning": "quote time unavailable; provider_timestamp is not a verified quote time",
     }
 
 
