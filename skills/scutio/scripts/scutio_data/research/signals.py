@@ -15,31 +15,33 @@ def _day(value):
     return date.fromisoformat(value)
 
 
+def _parse_availability(value, endpoint):
+    if len(str(value)) == 10:
+        parsed = _day(value)
+        return parsed, parsed < endpoint
+    cutoff = datetime.combine(endpoint, time(15), ZoneInfo("Asia/Shanghai"))
+    parsed = datetime.fromisoformat(str(value).replace("Z", "+00:00"))
+    if parsed.tzinfo is None:
+        raise ValueError("publication timestamps require a timezone")
+    return parsed.astimezone(cutoff.tzinfo).date(), parsed <= cutoff
+
+
 def _available(row, endpoint):
     """Date-only material is eligible after its date, never at that day's close."""
     display = _day(row["date"])
-    cutoff = datetime.combine(endpoint, time(15), ZoneInfo("Asia/Shanghai"))
     explicit = []
     publication = display
     for key in ("published_at", "available_at"):
         value = row.get(key)
         if value in (None, ""):
             continue
-        if len(str(value)) == 10:
-            parsed = _day(value)
-            explicit.append((parsed, parsed < endpoint))
-            if key == "published_at":
-                publication = parsed
-        else:
-            parsed = datetime.fromisoformat(str(value).replace("Z", "+00:00"))
-            if parsed.tzinfo is None:
-                raise ValueError("publication timestamps require a timezone")
-            explicit.append((parsed.astimezone(cutoff.tzinfo).date(), parsed <= cutoff))
-            if key == "published_at":
-                publication = parsed.astimezone(cutoff.tzinfo).date()
+        day, allowed = _parse_availability(value, endpoint)
+        explicit.append(allowed)
+        if key == "published_at":
+            publication = day
     if explicit:
         # A later platform listing cannot establish earlier public availability.
-        return display <= endpoint and all(allowed for _, allowed in explicit), publication
+        return display <= endpoint and all(explicit), publication
     return display < endpoint, display
 
 
@@ -256,6 +258,27 @@ def _pair(
     return result
 
 
+def _skip_availability(row, endpoint):
+    """Keep usable exclusion bounds even when another timestamp is invalid."""
+    try:
+        if _day(row.get("date")) > endpoint:
+            return False, None
+        return _available(row, endpoint)
+    except (TypeError, ValueError):
+        # Any valid explicit time can independently rule out endpoint availability.
+        for key in ("published_at", "available_at"):
+            value = row.get(key)
+            if value in (None, ""):
+                continue
+            try:
+                if not _parse_availability(value, endpoint)[1]:
+                    return False, None
+            except (TypeError, ValueError):
+                continue
+        # An earlier source date alone cannot establish when a report was published.
+        return None, None
+
+
 def _relevant_skip(row, fiscal_year, end):
     years = row.get("forecast_years")
     if (
@@ -265,21 +288,12 @@ def _relevant_skip(row, fiscal_year, end):
         and str(fiscal_year) not in {str(year) for year in years}
     ):
         return False
-    if row.get("date"):
-        try:
-            if not _available(row, end)[0]:
-                return False
-        except (TypeError, ValueError):
-            pass
-    return True
+    return _skip_availability(row, end)[0] is not False
 
 
 def _blocks_endpoint(row, endpoint, snapshot):
-    if not row.get("date"):
-        return True
-    try:
-        allowed, published = _available(row, endpoint)
-    except (TypeError, ValueError):
+    allowed, published = _skip_availability(row, endpoint)
+    if allowed is None:
         return True
     return allowed and (snapshot is None or published >= _day(snapshot["date"]))
 
@@ -362,24 +376,32 @@ def forecast_price_changes(
         for observation in forecasts["items"]:
             if observation["fiscal_year"] != fiscal_year:
                 continue
-            group = groups.setdefault(observation["organization"], [])
             try:
                 _available(observation, end)
-            except (TypeError, ValueError):
+            except (TypeError, ValueError) as exc:
                 temporal_errors.append(
                     {
-                        "organization": observation["organization"],
+                        **{
+                            key: observation.get(key)
+                            for key in (
+                                "organization",
+                                "info_code",
+                                "date",
+                                "source_date",
+                                "published_at",
+                                "available_at",
+                            )
+                        },
+                        "forecast_years": [observation["fiscal_year"]],
                         "reason": "invalid_availability",
-                        "info_code": observation.get("info_code"),
+                        "error": str(exc),
                     }
                 )
             else:
-                group.append(observation)
-        skipped = [
-            row
-            for row in (forecasts.get("skipped_reports") or [])
-            if _relevant_skip(row, fiscal_year, end)
-        ] + temporal_errors
+                groups.setdefault(observation["organization"], []).append(observation)
+        input_skipped = list(forecasts.get("skipped_reports") or []) + temporal_errors
+        forecast_partial = bool(forecasts.get("partial") or input_skipped)
+        skipped = [row for row in input_skipped if _relevant_skip(row, fiscal_year, end)]
         for item in skipped:
             if isinstance(item.get("organization"), str) and item["organization"].strip():
                 groups.setdefault(item["organization"], [])
@@ -417,9 +439,8 @@ def forecast_price_changes(
             }
         displayed = items if limit is None else items[:limit]
         incomplete = bool(
-            forecasts.get("partial")
+            forecast_partial
             or bars.get("partial")
-            or skipped
             or price_issues
             or basis_issues
             or any(item["reasons"] for item in items)
@@ -476,8 +497,12 @@ def forecast_price_changes(
             conflicts=forecasts.get("conflicts", []),
             input_provenance={
                 "forecasts": {
-                    key: forecasts.get(key)
-                    for key in ("input_source", "input_retrieved_at", "errors", "partial")
+                    **{
+                        key: forecasts.get(key)
+                        for key in ("input_source", "input_retrieved_at", "errors")
+                    },
+                    "partial": forecast_partial,
+                    "skipped_reports": input_skipped,
                 },
                 "bars": {
                     key: bars.get(key) for key in ("source", "retrieved_at", "errors", "partial")

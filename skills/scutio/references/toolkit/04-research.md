@@ -133,6 +133,8 @@ comparison = forecast_price_changes(
 
 端点冲突只在当时可用的材料内判定，盘后记录不会阻断收盘前已有预测；同日多条已可用记录仍不按时间自动消歧。顶层 `conflicts` 保留全部输入的冲突，端点的 `conflict_scope=endpoint_available_materials` 标明其取舍范围。
 
+顶层 `skipped_reports` 只保留可能影响目标财年和窗口的无效记录；`input_provenance.forecasts.skipped_reports` 保留完整输入的跳过原因，包括其他财年或窗口之后的记录。时间戳无效时保留源日期、财年和原时间值；源日期明确晚于端点，或另一个合法发布时间/首次可用时间已证明端点不可用的记录，不会阻断该端点。时间仍无法判断的相关记录继续阻断计算。输入存在缺口时保留 `partial=True`，即使当前窗口可计算或命中；可从输入诊断区分外围缺口与机构 `reasons` 中的计算阻断原因。
+
 | 输出 | 如何解读 |
 |---|---|
 | `items` | 全部已覆盖机构的端点预测/原文引用、端点价格、可比性与 `reasons`；不是只返回命中机构 |

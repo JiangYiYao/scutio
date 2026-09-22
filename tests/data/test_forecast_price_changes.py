@@ -269,14 +269,27 @@ def test_other_fiscal_year_is_not_used_as_missing_endpoint():
     assert row["matched"] is None and env["summary"]["paired"] == 0
 
 
-def test_invalid_prediction_in_other_year_does_not_block_valid_target_year():
-    env = run(
-        reports(
-            report("2026-06-01", 2, forecast_years=[2027, 2028], predictNextYearEps=None),
-            report("2026-08-01", 2.4, forecast_years=[2027, 2028], predictNextYearEps=None),
-        )
+@pytest.mark.parametrize("reuse_normalized", [False, True])
+def test_invalid_prediction_in_other_year_does_not_block_valid_target_year(reuse_normalized):
+    raw = reports(
+        report("2026-06-01", 2, forecast_years=[2027, 2028], predictNextYearEps=None),
+        report("2026-08-01", 2.4, forecast_years=[2027, 2028], predictNextYearEps=None),
     )
+    env = run(research.consensus_revisions("600519", reports=raw) if reuse_normalized else raw)
     assert env["items"][0]["matched"] is True
+    assert not env["items"][0]["reasons"] and not env["skipped_reports"]
+    assert env["partial"] and env["coverage"]["companies"]["missing"] == 1
+    provenance = env["input_provenance"]["forecasts"]
+    assert provenance["partial"]
+    assert len(provenance["skipped_reports"]) == 2
+    assert {row["date"] for row in provenance["skipped_reports"]} == {
+        "2026-06-01",
+        "2026-08-01",
+    }
+    assert all(
+        row["forecast_years"] == [2028] and row["reason"] == "eps_missing_or_invalid"
+        for row in provenance["skipped_reports"]
+    )
 
 
 def test_invalid_report_after_end_does_not_block_existing_window_pair():
@@ -288,6 +301,69 @@ def test_invalid_report_after_end_does_not_block_existing_window_pair():
         )
     )
     assert env["items"][0]["matched"] is True
+
+
+@pytest.mark.parametrize("time_field", ["published_at", "available_at"])
+@pytest.mark.parametrize("organization", ["甲机构", "仅未来覆盖"])
+@pytest.mark.parametrize("eps", [3, None])
+def test_future_invalid_timestamp_is_audited_without_blocking_window(time_field, organization, eps):
+    timestamp = "2026-10-01T10:00:00"
+    raw = reports(
+        report("2026-06-01", 2),
+        report("2026-08-01", 2.4),
+        report("2026-10-01", eps, organization, **{time_field: timestamp}),
+    )
+    original = deepcopy(raw)
+    env = run(raw)
+    assert raw == original
+    assert env["ok"] and env["partial"] and env["matched"] is True
+    assert env["summary"]["organizations"] == env["summary"]["computable"] == 1
+    assert not env["items"][0]["reasons"] and not env["skipped_reports"]
+    provenance = env["input_provenance"]["forecasts"]
+    assert provenance["partial"]
+    assert len(provenance["skipped_reports"]) == 1
+    skipped = provenance["skipped_reports"][0]
+    assert skipped["date"] == "2026-10-01" and skipped["forecast_years"] == [2027]
+    assert skipped[time_field] == timestamp and skipped["organization"] == organization
+    assert skipped["info_code"] == organization + "2026-10-01"
+    assert skipped["reason"] == (
+        "invalid_availability" if eps is not None else "eps_missing_or_invalid"
+    )
+
+
+@pytest.mark.parametrize("known_field", ["published_at", "available_at"])
+@pytest.mark.parametrize(
+    "known_time,expected_match",
+    [
+        ("2026-10-01T10:00:00+08:00", True),
+        (END, True),
+        (END + "T08:00:00Z", True),  # 16:00 in Shanghai, after the endpoint close.
+        (END + "T06:00:00Z", None),  # Before close cannot rule out the malformed record.
+    ],
+)
+@pytest.mark.parametrize("eps", [3, None])
+@pytest.mark.parametrize("reuse_normalized", [False, True])
+def test_known_availability_bounds_survive_another_invalid_timestamp(
+    known_field, known_time, expected_match, eps, reuse_normalized
+):
+    invalid_field = "available_at" if known_field == "published_at" else "published_at"
+    raw = reports(
+        report("2026-06-01", 2),
+        report("2026-08-01", 2.4),
+        report(
+            "2026-08-15",
+            eps,
+            **{known_field: known_time, invalid_field: "2026-08-15T10:00:00"},
+        ),
+    )
+    env = run(research.consensus_revisions("600519", reports=raw) if reuse_normalized else raw)
+    assert env["ok"] and env["partial"] and env["matched"] is expected_match
+    assert len(env["input_provenance"]["forecasts"]["skipped_reports"]) == 1
+    if expected_match is True:
+        assert not env["skipped_reports"] and not env["items"][0]["reasons"]
+    else:
+        assert len(env["skipped_reports"]) == 1
+        assert "unusable_forecast_records" in env["items"][0]["reasons"]
 
 
 def test_qualified_company_hit_is_not_assembled_from_different_brokers():
@@ -404,7 +480,24 @@ def test_bad_publication_time_does_not_allow_stale_fallback_signal():
         )
     )
     assert env["partial"] and env["items"][0]["matched"] is None
-    assert any(row["reason"] == "invalid_availability" for row in env["skipped_reports"])
+    skipped = env["skipped_reports"][0]
+    assert skipped["reason"] == "invalid_availability"
+    assert skipped["date"] == skipped["source_date"] == "2026-08-01"
+    assert skipped["forecast_years"] == [2027]
+    assert skipped["published_at"] == "2026-08-01T10:00:00"
+    assert env["input_provenance"]["forecasts"]["skipped_reports"] == [skipped]
+
+
+def test_earlier_source_date_does_not_make_invalid_publication_safe():
+    env = run(
+        reports(
+            report("2026-05-01", 3, published_at="2026-08-01T10:00:00"),
+            report("2026-06-01", 2),
+            report("2026-08-01", 2.4),
+        )
+    )
+    assert env["matched"] is None
+    assert "unusable_forecast_records" in env["items"][0]["reasons"]
 
 
 @pytest.mark.parametrize(

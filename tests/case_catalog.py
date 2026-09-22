@@ -691,7 +691,7 @@ CASE_GROUPS: dict[str, tuple[str, str]] = {
     "data/test_forecast_observations.py": ("预测观测", "机构、财年、日期、重复记录和同日冲突"),
     "data/test_forecast_price_changes.py": (
         "预测与价格",
-        "固定窗口、机构配对、每股口径、价格和覆盖缺口",
+        "固定窗口、机构配对、每股口径、价格、时间戳和输入缺口范围",
     ),
     "data/test_ths_eps_and_valuation.py": ("估值与一致预期", "EPS 原生字段、历史估值与报价复用"),
     "data/test_live_smoke.py": ("公网通路", "公开数据门面可用性；需显式启用网络"),
