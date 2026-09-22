@@ -2,10 +2,162 @@
 
 from __future__ import annotations
 
+from types import SimpleNamespace
+
 import pytest
 import scutio_data._providers.eastmoney as providers_eastmoney
 from scutio_data._providers import quotes as quote_source
 from scutio_data._providers.akshare import market as akshare_market
+
+
+def _eastmoney_payload(code="00700", **updates):
+    return {
+        "f57": code,
+        "f58": "Example",
+        "f43": 12,
+        "f60": 10,
+        "f46": 11,
+        "f44": 13,
+        "f45": 10,
+        "f47": 100,
+        "f48": 1200,
+        "f169": 2,
+        "f170": 20,
+        **updates,
+    }
+
+
+def _mock_eastmoney_payloads(monkeypatch, payloads):
+    def get(url, *, params, **kwargs):
+        payload = payloads[params["secid"].split(".", 1)[1]]
+        if isinstance(payload, Exception):
+            raise payload
+        return SimpleNamespace(json=lambda: {"data": payload})
+
+    monkeypatch.setattr(providers_eastmoney, "em_get", get)
+
+
+@pytest.mark.parametrize("price", [None, "", "-", "invalid", "NaN", "inf", 0, -1])
+def test_eastmoney_missing_price_preserves_last_close_as_partial(monkeypatch, price):
+    from scutio_data import market
+
+    _mock_eastmoney_payloads(monkeypatch, {"00700": _eastmoney_payload(f43=price)})
+    result = market.security_quote(["hk00700"], sources=("eastmoney",))
+    row = result["quotes"]["hk00700"]
+    assert result["ok"] and result["partial"]
+    assert row["price"] is None and row["last_close"] == 10
+    assert row["missing_fields"] == ["price"]
+    assert row["coverage"]["price"] is False and "price" in result["warning"]
+
+
+def test_eastmoney_missing_numeric_fields_stay_unknown(monkeypatch):
+    fields = (
+        "f60",
+        "f46",
+        "f44",
+        "f45",
+        "f47",
+        "f48",
+        "f169",
+        "f170",
+        "f168",
+        "f50",
+        "f116",
+        "f117",
+    )
+    payload = _eastmoney_payload(**dict.fromkeys(fields, "-"))
+    _mock_eastmoney_payloads(monkeypatch, {"00700": payload})
+    row = quote_source.eastmoney_quote(["hk00700"])["hk00700"]
+    assert row["price"] == 12 and row["partial"]
+    for field in (
+        "last_close",
+        "open",
+        "high",
+        "low",
+        "volume",
+        "amount",
+        "amount_wan",
+        "change_amt",
+        "change_pct",
+        "turnover_pct",
+        "vol_ratio",
+        "mcap_yi",
+        "float_mcap_yi",
+        "amplitude_pct",
+    ):
+        assert row[field] is None, field
+
+
+def test_eastmoney_real_zero_turnover_and_change_are_preserved(monkeypatch):
+    from scutio_data import market
+
+    payload = _eastmoney_payload(f47=0, f48=0, f169=0, f170=0, f168=0, f50=0)
+    _mock_eastmoney_payloads(monkeypatch, {"00700": payload})
+    result = market.security_quote(["hk00700"], sources=("eastmoney",))
+    row = result["quotes"]["hk00700"]
+    assert result["ok"] and not result["partial"]
+    for field in (
+        "volume",
+        "amount",
+        "amount_wan",
+        "change_amt",
+        "change_pct",
+        "turnover_pct",
+        "vol_ratio",
+    ):
+        assert row[field] == 0
+
+
+@pytest.mark.parametrize("reverse", [False, True])
+@pytest.mark.parametrize("bad", ["missing_price", "malformed_payload", "request_error"])
+def test_eastmoney_bad_security_does_not_discard_good_rows(monkeypatch, reverse, bad):
+    from scutio_data import market
+
+    payload = {
+        "missing_price": _eastmoney_payload("00941", f43="-", f60=None),
+        "malformed_payload": ["invalid"],
+        "request_error": RuntimeError("synthetic request failure"),
+    }[bad]
+    _mock_eastmoney_payloads(monkeypatch, {"00700": _eastmoney_payload(), "00941": payload})
+    codes = ["hk00700", "hk00941"]
+    result = market.security_quote(codes[::-1] if reverse else codes, sources=("eastmoney",))
+    assert result["ok"] and result["partial"]
+    assert result["quotes"]["hk00700"]["price"] == 12
+    assert result["returned_count"] == 1 and result["missing"] == ["hk00941"]
+    assert "eastmoney:hk00941" in result["errors"]
+
+
+def test_eastmoney_failed_security_alone_uses_next_source(monkeypatch):
+    from scutio_data import market
+
+    _mock_eastmoney_payloads(
+        monkeypatch,
+        {
+            "00700": _eastmoney_payload(),
+            "00941": _eastmoney_payload("00941", f43="-", f60="-"),
+        },
+    )
+    requested = []
+
+    def fallback(codes):
+        requested.extend(codes)
+        return {"hk00941": {"symbol": "hk00941", "code": "00941", "price": 20}}
+
+    monkeypatch.setattr(quote_source, "tencent_quote", fallback)
+    result = market.security_quote(["hk00700", "hk00941"], sources=("eastmoney", "tencent"))
+    assert result["ok"] and not result["partial"]
+    assert result["returned_count"] == 2 and requested == ["hk00941"]
+    assert result["quotes"]["hk00700"]["source"] == "eastmoney"
+    assert result["quotes"]["hk00941"]["source"] == "tencent"
+
+
+def test_eastmoney_total_failure_retains_request_error(monkeypatch):
+    from scutio_data import market
+
+    _mock_eastmoney_payloads(monkeypatch, {"00700": RuntimeError("synthetic request failure")})
+    result = market.security_quote(["hk00700"], sources=("eastmoney",))
+    assert not result["ok"]
+    assert "synthetic request failure" in result["error"]
 
 
 @pytest.mark.parametrize("code,currency", [("hk00700", "CNY"), ("usAAPL", "USD")])

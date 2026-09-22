@@ -11,6 +11,7 @@ from scutio_data._runtime.symbols import get_prefix
 
 __all__ = [
     "amount_pair",
+    "parse_eastmoney_quote",
     "parse_tencent_quote_raw",
     "parse_sina_quote_raw",
     "index_quote_rows",
@@ -175,6 +176,71 @@ def index_quote_rows(by_symbol):
         if code_hits[row["code"]] == 1:
             out[row["code"]] = row
     return out
+
+
+def parse_eastmoney_quote(data, *, prefix, pure):
+    """Normalize one verified push2 quote without turning missing values into zero."""
+    values = {
+        key: finite_number(data.get(field))
+        for key, field in {
+            "price": "f43",
+            "last_close": "f60",
+            "open": "f46",
+            "high": "f44",
+            "low": "f45",
+            "amount": "f48",
+            "change_amt": "f169",
+            "change_pct": "f170",
+            "turnover_pct": "f168",
+            "vol_ratio": "f50",
+            "mcap_yi": "f116",
+            "float_mcap_yi": "f117",
+        }.items()
+    }
+    for key in ("price", "last_close", "open", "high", "low"):
+        if values[key] is not None and values[key] <= 0:
+            values[key] = None
+    if values["price"] is None and values["last_close"] is None:
+        return None
+    for key in ("amount", "mcap_yi", "float_mcap_yi"):
+        if values[key] is not None and values[key] < 0:
+            values[key] = None
+    for key in ("mcap_yi", "float_mcap_yi"):
+        if values[key] is not None:
+            values[key] = round(values[key] / 1e8, 4)
+    amount = values["amount"]
+    last, high, low = (values[key] for key in ("last_close", "high", "low"))
+    row = {
+        **values,
+        "name": data.get("f58") or "",
+        **quote_volume(
+            finite_number(data.get("f47")), "share" if prefix in ("hk", "us") else "lot"
+        ),
+        "amount_wan": round(amount / 10000, 4) if amount is not None else None,
+        "amplitude_pct": round((high - low) / last * 100, 4)
+        if last is not None and high is not None and low is not None
+        else None,
+        "pe_ttm": None,
+        "pe_static": None,
+        "pb": None,
+        "limit_up": None,
+        "limit_down": None,
+        "currency": {"hk": "HKD", "us": "USD"}.get(prefix, "CNY"),
+        "exchange": prefix,
+        "symbol": prefix + pure,
+        "code": pure,
+        "source": "eastmoney",
+        "time": "",
+    }
+    fields = ("price", "last_close", "open", "high", "low", "volume", "amount")
+    missing = [key for key in fields if row[key] is None]
+    row.update(
+        coverage={key: row[key] is not None for key in fields},
+        missing_fields=missing,
+        partial=bool(missing),
+        warning="quote fields unavailable: " + ", ".join(missing) if missing else None,
+    )
+    return row
 
 
 def normalize_bar(bar, source):

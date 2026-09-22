@@ -66,6 +66,8 @@ from scutio_data.research import consensus_forecast  # 标准化一致预期
 
 A 股完整报表使用 AKShare 东财原生字段 ID。每行保留全部源字段，`_line_items` 提供 `field_id`、`key`、`value`、`yoy`、`yoy_unit`，空值保留为 `None`。例如银行净利息收入、利息收入与财务费用下的利息收入各自保留，不合并同名科目，也不生成源表没有的中文标题或层级。
 
+港美完整报表同样要求每条源记录提供与请求一致的 `SECURITY_CODE`，缺失或不匹配返回 `ok=False`。每期保留科目名字段，并提供 `_line_items` 的 `field_id`（源 `STD_ITEM_CODE`，缺失为 `None`）、`key`、`value`。同一科目的相同记录可去重；同名不同 ID、同 ID 不同名称、金额或币种及会计口径冲突会报错，不按返回顺序覆盖。
+
 未知 `report_type` / `period` 会返回 `ok=False`，不会静默换成利润表或年报。
 
 ### `period`
@@ -73,11 +75,13 @@ A 股完整报表使用 AKShare 东财原生字段 ID。每行保留全部源字
 | 值 | A | 港 | 美 |
 |----|---|----|----|
 | `annual`（默认） | 年报 | 年报 | 年报 |
-| `all` / `报告期` | 全部报告期 | 全部报告期 | 按年报处理 |
+| `all` / `报告期` | 全部报告期 | 全部报告期 | 不支持，返回 `ok=False` |
 | `quarter` | — | — | 单季 |
 | `cumulative` | — | — | 累计季报 |
 
 美股资产负债表是时点表：`period=quarter` 会按实际 `REPORT_DATE` 取最近披露点，并纳入上游标为 Q6/Q9/FY 的半年、九个月和年末时点；不会退化成历年 Q1 对比。
+
+同一时点有多种报告标签时，`_source_reports` 保留各源标签；`报告标签` / `报告类型` 仅在各自取值唯一时提供。同科目金额仍须一致，不能把不同金额拼成一张表。美股须显式选择 `annual`、`quarter` 或 `cumulative`，不会将 `all` 改写成年报。
 
 `num` 按所选报告类型计数；A 股 `annual, num=8` 返回最近 8 个年报。完整年报走 AKShare 年度接口，`all` 走全部报告期接口；两者仍由上游获取全部可用的相应报告期后本地截取，`num` 不限制网络请求条数。信封含 `requested_count`、`returned_count`；上游可得期数不足时 `partial=True` 并给出 `warning`。上游错误响应返回 `ok=False`，不能视为成功的空报表。
 
@@ -99,7 +103,9 @@ A 股完整报表使用 AKShare 东财原生字段 ID。每行保留全部源字
 
 | 字段 | 含义 |
 |------|------|
-| `source` / `quote_source` | 实际报价源 |
+| `source` | 有价格时为实际报价源；仅估值指标成功时为指标源 |
+| `quote_source` | 实际报价源；报价失败时为 `None` |
+| `field_sources` / `sources_used` | 实际有值字段的来源 / 对结果有贡献的数据源 |
 | `name` / `price` / `mcap_yi` / `pe_ttm` / `pb` | 行情侧估值相关 |
 | `change_pct` / `last_close` / `currency` | 有则填 |
 
@@ -151,7 +157,7 @@ history = valuation_history("600519", include_series=False)  # 紧凑历史分�
 
 港美完整表保留源科目名，源未提供币种时不猜填，并标记 `partial=True, missing_fields=['currency']` 与 `warning`；金额比较前需查明报表币种，不能从上市市场推断。跨市场金额、现金流支出符号及收入分类需查原文：例如腾讯「营运收入」与「营业额」不同，Apple 购买固定资产为负现金流，不能与 A 股支付项目直接比较符号。
 
-`valuation_snapshot(code, quote_env=...)` 复用传入报价，独立请求估值；`pe_mrq` 不是静态 PE，`pb` 的 Financial API 别名基准为 MRQ。价格和指标来源在 `field_sources` 中分别记录，源时间未知保持空。未提供市值等字段时返回 `missing_fields`。
+`valuation_snapshot(code, quote_env=...)` 复用传入报价，独立请求估值；`pe_mrq` 不是静态 PE，`pb` 的 Financial API 别名基准为 MRQ。补充指标不会改写价格来源；价格和实际取得的指标来源在 `field_sources` 中分别记录，缺失指标不覆盖原有值或归入补充源。源时间未知保持空。未提供市值等字段时返回 `missing_fields`。
 
 `stock_materials` 支持巨潮的「公司概况」「主营业务」「经营范围」。其他分类明确返回不支持；公司简介不能替代最新年报原文。
 

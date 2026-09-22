@@ -348,9 +348,25 @@ def _quote_valuation_snapshot(code, quote_env=None):
     )
 
 
+def _merge_snapshot_fields(snapshot, supplement, fields, source):
+    """Merge available fields together with their actual source and original timestamps."""
+    timestamps = {
+        key: supplement.get(key)
+        for key in ("retrieved_at", "data_as_of", "time", "provider_timestamp")
+    }
+    field_sources = snapshot.setdefault("field_sources", {})
+    field_timestamps = snapshot.setdefault("field_timestamps", {})
+    for field in fields:
+        if supplement.get(field) is not None:
+            snapshot[field] = supplement[field]
+            field_sources[field] = source
+            field_timestamps[field] = dict(timestamps)
+    snapshot["sources_used"] = list(dict.fromkeys(field_sources.values()))
+
+
 @operation("query")
 def valuation_snapshot(code, quote_env=None, *, sources=None):
-    """Independent valuation metrics, preserving provenance of reused quote fields."""
+    """Preserve the price source; track supplementary metrics by field."""
     from datetime import datetime, timezone
 
     from scutio_data._providers.hithink import client as hithink
@@ -382,11 +398,17 @@ def valuation_snapshot(code, quote_env=None, *, sources=None):
         quote_env = security_quote([code], sources=("hithink",))
     quote = _quote_valuation_snapshot(code, quote_env=quote_env)
     stamp = datetime.now(timezone.utc).isoformat()
-    quote_time = {
-        key: quote.get(key) for key in ("retrieved_at", "data_as_of", "time", "provider_timestamp")
-    }
-    quote_fields = ("price", "name", "mcap_yi", "change_pct", "last_close", "pe_ttm", "pb")
-    quote["field_timestamps"] = {key: dict(quote_time) for key in quote_fields}
+    quote_fields = (
+        "price",
+        "name",
+        "mcap_yi",
+        "change_pct",
+        "last_close",
+        "pe_ttm",
+        "pb",
+        "currency",
+    )
+    _merge_snapshot_fields(quote, quote, quote_fields, quote.get("quote_source"))
     quote["input_quote_retrieved_at"] = quote.get("retrieved_at")
     if metrics is None:
         if (
@@ -398,20 +420,7 @@ def valuation_snapshot(code, quote_env=None, *, sources=None):
             free_env = security_quote([code], sources=("tencent", "sina", "eastmoney"))
             free = _quote_valuation_snapshot(code, quote_env=free_env)
             if free.get("ok"):
-                quote.update(
-                    pe_ttm=free.get("pe_ttm"),
-                    pb=free.get("pb"),
-                    field_sources={
-                        "price": quote.get("quote_source"),
-                        "pe_ttm": free.get("source"),
-                        "pb": free.get("source"),
-                    },
-                )
-                quote["source"] = free.get("source")
-                for field in ("pe_ttm", "pb"):
-                    quote["field_timestamps"][field] = {
-                        key: free.get(key) for key in ("retrieved_at", "data_as_of", "time")
-                    }
+                _merge_snapshot_fields(quote, free, ("pe_ttm", "pb"), free.get("source"))
         if quote.get("ok") and quote.get("pe_ttm") is None and quote.get("pb") is None:
             quote.update(partial=True, warning="valuation metrics unavailable")
         quote.update(fallback_reason=errors or None, computed_at=stamp)
@@ -421,35 +430,23 @@ def valuation_snapshot(code, quote_env=None, *, sources=None):
         if quote.get("ok")
         else {"code": str(code), "partial": True, "warning": "quote fields unavailable"}
     )
-    quote_source = quote.get("source") if quote.get("ok") else None
-    result.update(metrics)
+    quote_source = quote.get("quote_source") if quote.get("ok") else None
+    metric_fields = ("pe_ttm", "pe_mrq", "pb", "pb_mrq", "ps_ttm", "pcf_ttm")
+    result.update(
+        {key: value for key, value in metrics.items() if key not in (*metric_fields, "pb_basis")}
+    )
+    _merge_snapshot_fields(result, metrics, metric_fields, "hithink")
+    if metrics.get("pb") is not None and metrics.get("pb_basis") is not None:
+        result["pb_basis"] = metrics["pb_basis"]
     result.update(
         ok=True,
         error=None,
-        source="hithink",
+        source=quote_source or "hithink",
         quote_source=quote_source,
-        field_sources={
-            **{
-                key: quote_source
-                for key in ("price", "name", "mcap_yi", "change_pct", "last_close")
-            },
-            **{key: "hithink" for key in ("pe_ttm", "pe_mrq", "pb", "pb_mrq", "ps_ttm", "pcf_ttm")},
-        },
-        sources_used=list(dict.fromkeys(src for src in ("hithink", quote_source) if src)),
         fallback_reason=errors or None,
     )
     result["computed_at"] = stamp
     result["input_quote_retrieved_at"] = quote.get("retrieved_at")
-    metric_time = {
-        key: metrics.get(key) for key in ("retrieved_at", "data_as_of", "provider_timestamp")
-    }
-    result["field_timestamps"] = {
-        **quote["field_timestamps"],
-        **{
-            key: dict(metric_time)
-            for key in ("pe_ttm", "pe_mrq", "pb", "pb_mrq", "ps_ttm", "pcf_ttm")
-        },
-    }
     result["missing_fields"] = [
         key
         for key in ("price", "mcap_yi", "pe_ttm", "pe_mrq", "pb", "ps_ttm", "pcf_ttm")

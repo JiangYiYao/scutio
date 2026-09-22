@@ -71,14 +71,51 @@ def test_valuation_keeps_reused_quote_time_and_partial():
 
 def test_free_metric_refresh_preserves_old_price_time(monkeypatch):
     monkeypatch.setattr(
-        valuation, "security_quote", lambda *a, **k: quote_env(retrieved_at=NEW, data_as_of=NEW)
+        valuation,
+        "security_quote",
+        lambda *a, **k: quote_env(source="sina", price=20, retrieved_at=NEW, data_as_of=NEW),
     )
     env = valuation.valuation_snapshot(
         "000001", quote_env=quote_env(pe_ttm=None, pb=None), sources=["quote"]
     )
+    assert env["source"] == env["quote_source"] == "tencent"
+    assert env["price"] == 10
+    assert env["field_sources"] == {"price": "tencent", "pe_ttm": "sina", "pb": "sina"}
+    assert env["sources_used"] == ["tencent", "sina"]
     assert env["field_timestamps"]["price"]["retrieved_at"] == OLD
     assert env["field_timestamps"]["pe_ttm"]["retrieved_at"] == NEW
     assert env["retrieved_at"] == OLD
+
+
+@pytest.mark.parametrize("pe,pb", [(8, None), (None, 2), (None, None)])
+def test_free_metrics_only_attribute_available_fields(monkeypatch, pe, pb):
+    monkeypatch.setattr(
+        valuation,
+        "security_quote",
+        lambda *a, **k: quote_env(source="sina", pe_ttm=pe, pb=pb, retrieved_at=NEW),
+    )
+    env = valuation.valuation_snapshot(
+        "000001",
+        quote_env=quote_env(
+            pe_ttm=None,
+            pb=None,
+            name="Original",
+            mcap_yi=1,
+            change_pct=0,
+            last_close=10,
+            currency="CNY",
+        ),
+        sources=["quote"],
+    )
+    quote_fields = {"price", "name", "mcap_yi", "change_pct", "last_close", "currency"}
+    contributed = {key for key, value in (("pe_ttm", pe), ("pb", pb)) if value is not None}
+    assert env["source"] == env["quote_source"] == "tencent"
+    assert env["field_sources"] == {
+        **dict.fromkeys(quote_fields, "tencent"),
+        **dict.fromkeys(contributed, "sina"),
+    }
+    assert env["sources_used"] == (["tencent", "sina"] if contributed else ["tencent"])
+    assert set(env["field_timestamps"]) == quote_fields | contributed
 
 
 def test_paid_metrics_keep_separate_input_quote_time(monkeypatch):
@@ -94,10 +131,65 @@ def test_paid_metrics_keep_separate_input_quote_time(monkeypatch):
         },
     )
     env = valuation.valuation_snapshot("000001", quote_env=quote_env(), sources=["hithink"])
+    assert env["source"] == env["quote_source"] == "tencent"
+    assert env["field_sources"] == {"price": "tencent", "pe_ttm": "hithink", "pb": "hithink"}
+    assert env["sources_used"] == ["tencent", "hithink"]
     assert env["retrieved_at"] == NEW
     assert env["input_quote_retrieved_at"] == OLD
     assert env["field_timestamps"]["price"]["data_as_of"] == OLD
     assert env["field_timestamps"]["pe_ttm"]["data_as_of"] == NEW
+
+
+def test_paid_missing_metrics_keep_quote_values_and_provenance(monkeypatch):
+    monkeypatch.setattr(
+        hithink,
+        "valuation",
+        lambda code: {
+            "pe_ttm": None,
+            "pb": None,
+            "pb_mrq": None,
+            "pb_basis": "MRQ",
+            "ps_ttm": 3,
+            "retrieved_at": NEW,
+        },
+    )
+    env = valuation.valuation_snapshot("000001", quote_env=quote_env(), sources=["hithink"])
+    assert env["source"] == env["quote_source"] == "tencent"
+    assert env["pe_ttm"] == 5 and env["pb"] == 1 and env["ps_ttm"] == 3
+    assert "pb_basis" not in env
+    assert env["field_sources"] == {
+        "price": "tencent",
+        "pe_ttm": "tencent",
+        "pb": "tencent",
+        "ps_ttm": "hithink",
+    }
+    assert env["field_timestamps"]["pe_ttm"]["retrieved_at"] == OLD
+    assert env["field_timestamps"]["ps_ttm"]["retrieved_at"] == NEW
+    assert env["sources_used"] == ["tencent", "hithink"]
+
+
+def test_paid_metrics_without_quote_do_not_claim_price_provenance(monkeypatch):
+    monkeypatch.setattr(
+        hithink,
+        "valuation",
+        lambda code: {"pe_ttm": 8, "pb": None, "retrieved_at": NEW, "data_as_of": None},
+    )
+    monkeypatch.setattr(
+        valuation,
+        "security_quote",
+        lambda *a, **k: pytest.fail("a supplied failed quote must not be fetched again"),
+    )
+    env = valuation.valuation_snapshot(
+        "000001", quote_env={"ok": False, "error": "quote unavailable"}, sources=["hithink"]
+    )
+    assert env["ok"] and env["partial"]
+    assert env["source"] == "hithink" and env["quote_source"] is None
+    assert env.get("price") is None and "price" in env["missing_fields"]
+    assert env["field_sources"] == {"pe_ttm": "hithink"}
+    assert env["sources_used"] == ["hithink"]
+    assert set(env["field_timestamps"]) == {"pe_ttm"}
+    assert env["field_timestamps"]["pe_ttm"]["retrieved_at"] == NEW
+    assert env["input_quote_retrieved_at"] is None
 
 
 def report(**extra):

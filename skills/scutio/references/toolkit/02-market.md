@@ -96,6 +96,7 @@ from scutio_data.breadth import market_breadth, index_constituents
 - 字典键：**始终**含完整代码（`sh000001`、`hk00700`、`usAAPL`）；裸码不冲突时额外提供裸码键。
 - 同一批次若出现相同裸码（如 `sh000001` 与 `sz000001`），不会提供歧义裸键 `000001`；必须读完整代码键。
 - PE/PB/市值等上游未提供时为 `None`，不得把未知解释成 0。
+- 东财报价中的缺失、占位或非有限数值保留为 `None`，真实的零成交量、零成交额及零涨跌保留为 `0`。仅昨收可用时 `price=None`，返回 `partial=True`、`missing_fields` 和 `coverage`，不能把昨收当现价；现价与昨收均不可用或单票响应失败时，由报价门面对该证券尝试备用源，保留同批其他正常证券。
 - 指数不适用的涨跌停价为 `None`；不能把源站的 `-1` 占位值当作价格。
 - 腾讯普通 A 股报价成交量按手换算，科创板及港美股按股；东财 A 股（含科创板）按手换算。Financial API 报价成交量为股。日线成交量使用各自的解析规则。
 - K 线行字段为 `datetime/open/high/low/close/volume`，日期读 `bar["datetime"]`；`date` 与报价的 `time` 不是 K 线日期字段。`adjust` 默认 `none`；可显式 `qfq` / `hfq`（视源能力）。返回顶层 `quality.status=ok|partial`、请求/返回条数、最大日期间隔与问题列表；极少样本跨超长时间断层会拒绝该源，不能用来计算“单日”涨跌。

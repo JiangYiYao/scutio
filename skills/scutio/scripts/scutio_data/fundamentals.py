@@ -241,9 +241,18 @@ def _normalize_period(period):
 
 
 def _pivot_line_items(rows, *, date_key, name_key, amount_key, num, extra_keys=None):
-    """长表科目行 → 按报告期宽表 list[dict]（与 A 股 financial_report 形态对齐）。"""
+    """长表转宽表，保留原生科目 ID，并拒绝同一报告期的歧义。"""
     by_date = {}
     meta = {}
+    source_reports = {}
+    report_keys = ("REPORT", "REPORT_TYPE", "DATE_TYPE_CODE", "FISCAL_YEAR")
+    scope_keys = tuple(
+        key
+        for key in dict.fromkeys(
+            (*(extra_keys or ()), "START_DATE", "ACCOUNT_STANDARD", "ACCOUNT_STANDARD_NAME")
+        )
+        if key not in report_keys
+    )
     for r in rows or []:
         if not isinstance(r, dict):
             continue
@@ -254,15 +263,30 @@ def _pivot_line_items(rows, *, date_key, name_key, amount_key, num, extra_keys=N
         name = r.get(name_key)
         if not name:
             continue
+        name = str(name)
+        field_id = r.get("STD_ITEM_CODE")
+        field_id = str(field_id) if field_id not in (None, "") else None
+        item = {"field_id": field_id, "key": name, "value": r.get(amount_key)}
         bucket = by_date.setdefault(d, {})
-        bucket[str(name)] = r.get(amount_key)
-        if d not in meta:
-            m = {}
-            for k in extra_keys or ():
-                if r.get(k) not in (None, ""):
-                    m[k] = r.get(k)
-            if m:
-                meta[d] = m
+        if name in bucket and bucket[name] != item:
+            raise ValueError("ambiguous financial statement line item: %s / %s" % (d, name))
+        if field_id is not None and any(
+            old["field_id"] == field_id and old["key"] != name for old in bucket.values()
+        ):
+            raise ValueError("ambiguous financial statement field ID: %s / %s" % (d, field_id))
+        bucket[name] = item
+        m = meta.setdefault(d, {})
+        for key in scope_keys:
+            value = r.get(key)
+            if value in (None, ""):
+                continue
+            if key in m and m[key] != value:
+                raise ValueError("conflicting financial statement metadata: %s / %s" % (d, key))
+            m[key] = value
+        report = {key: r[key] for key in report_keys if r.get(key) not in (None, "")}
+        reports = source_reports.setdefault(d, [])
+        if report and report not in reports:
+            reports.append(report)
     periods = sorted(by_date.keys(), reverse=True)[: max(1, int(num or 8))]
     out = []
     for d in periods:
@@ -273,11 +297,15 @@ def _pivot_line_items(rows, *, date_key, name_key, amount_key, num, extra_keys=N
                 rec["币种"] = meta[d]["CURRENCY"]
             if meta[d].get("SECURITY_NAME_ABBR"):
                 rec["名称"] = meta[d]["SECURITY_NAME_ABBR"]
-            if meta[d].get("REPORT_TYPE"):
-                rec["报告类型"] = meta[d]["REPORT_TYPE"]
-            if meta[d].get("REPORT"):
-                rec["报告标签"] = meta[d]["REPORT"]
-        rec.update(by_date[d])
+        reports = source_reports[d]
+        if reports:
+            rec["_source_reports"] = reports
+        for key, title in (("REPORT_TYPE", "报告类型"), ("REPORT", "报告标签")):
+            values = {report[key] for report in reports if key in report}
+            if len(values) == 1:
+                rec[title] = next(iter(values))
+        rec.update({name: item["value"] for name, item in by_date[d].items()})
+        rec["_line_items"] = list(by_date[d].values())
         out.append(rec)
     return out
 
@@ -336,8 +364,10 @@ def _financial_report_hk(pure, report_type="lrb", num=8, period="annual"):
         symbol=_HK_REPORT_NAME[report_type],
         indicator="年度" if period == "annual" else "报告期",
     )
-    if any(str(row.get("SECURITY_CODE", pure)).zfill(5) != pure for row in rows):
-        raise ValueError("HK financial statement identity mismatch")
+    for row in rows:
+        code = str(row.get("SECURITY_CODE") or "").strip()
+        if not code or code.zfill(5) != pure:
+            raise ValueError("HK financial statement identity mismatch")
     return _pivot_line_items(
         rows,
         date_key="REPORT_DATE",
@@ -353,7 +383,6 @@ def _financial_report_us(pure, report_type="lrb", num=8, period="annual"):
 
     indicators = {
         "annual": ["年报"],
-        "all": ["年报"],
         "quarter": ["单季报"],
         "cumulative": ["累计季报"],
     }[period]
@@ -370,11 +399,10 @@ def _financial_report_us(pure, report_type="lrb", num=8, period="annual"):
                 indicator=indicator,
             )
         )
-    if any(
-        str(row.get("SECURITY_CODE", pure)).replace("_", ".") != pure.replace("_", ".")
-        for row in rows
-    ):
-        raise ValueError("US financial statement identity mismatch")
+    for row in rows:
+        code = str(row.get("SECURITY_CODE") or "").strip().upper().replace("_", ".")
+        if not code or code != pure.upper().replace("_", "."):
+            raise ValueError("US financial statement identity mismatch")
     if period == "quarter" and report_type != "fzb":
         rows = [
             row
@@ -446,8 +474,6 @@ def financial_report(
             )
             src = "financial_report_hk"
         elif prefix == "us" or mkt == "us":
-            if period_norm == "all":
-                period_norm = "annual"
             if period_norm not in ("annual", "quarter", "cumulative"):
                 raise ValueError("period %r is unsupported for US financial_report" % period)
             items = _financial_report_us(
