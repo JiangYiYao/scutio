@@ -1,0 +1,183 @@
+{
+  "review_scope": {
+    "files": [
+      "skills/scutio/scripts/scutio_data/research/signals.py",
+      "skills/scutio/scripts/scutio_data/research/consensus.py",
+      "skills/scutio/scripts/scutio_data/market.py"
+    ],
+    "reference": "skills/scutio/references/toolkit/04-research.md",
+    "review_stage": "Current uncommitted implementation before root follow-up fixes",
+    "blind_judgment_saved_first": true,
+    "network_used": false,
+    "source_files_modified": false,
+    "path_policy": "Paths are repository-relative; runtime is recorded using <SCUTIO_VENV> rather than personal paths."
+  },
+  "verdict": "changes_required",
+  "must_fix": true,
+  "findings": [
+    {
+      "id": "CR1",
+      "priority": "P2",
+      "must_fix": true,
+      "title": "不可用的同日预测污染端点冲突判断",
+      "location": {
+        "file": "skills/scutio/scripts/scutio_data/research/signals.py",
+        "start_line": 64,
+        "end_line": 65
+      },
+      "supporting_location": "skills/scutio/scripts/scutio_data/research/consensus.py:300-312",
+      "problem": "预处理按整个输入的 source date 标记 conflict，_endpoint 在过滤显式可用时间后仍使用该全局标记。只在收盘后才公开的不同 EPS 会使收盘前唯一可用预测失效。该问题并非要求在两个已可用冲突版本间按时间择优，而是不能让尚不可用的记录改变历史端点。",
+      "reproduction": "import importlib.util\ns=importlib.util.spec_from_file_location('fixture','tests/data/test_forecast_price_changes.py')\nf=importlib.util.module_from_spec(s); s.loader.exec_module(f)\nbefore=f.report(f.END,2.4,published_at=f.END+'T14:00:00+08:00',infoCode='before')\na=f.run(f.reports(f.report('2026-06-01',2),before))\nafter=f.report(f.END,1.8,published_at=f.END+'T16:00:00+08:00',infoCode='after')\nb=f.run(f.reports(f.report('2026-06-01',2),before,after))\nprint(a['matched'], b['matched'], b['items'][0]['reasons'])\nprint([r['info_code'] for r in b['items'][0]['end_forecast']['observations']])",
+      "observed": {
+        "before_adding_future_record": {
+          "matched": true,
+          "reasons": []
+        },
+        "after_adding_future_record": {
+          "matched": null,
+          "reasons": [
+            "end_forecast_conflict"
+          ],
+          "eligible_endpoint_info_codes": [
+            "before"
+          ]
+        }
+      },
+      "expected": "端点冲突只由在该端点可用的记录决定；仍可在全输入元数据披露总体冲突。",
+      "consequence": "同一历史窗口的可计算性与命中会被窗口之后信息改变，漏掉原本合格的研究线索。",
+      "status_at_handoff": "Root acknowledged and is implementing a fix."
+    },
+    {
+      "id": "CR2",
+      "priority": "P2",
+      "must_fix": true,
+      "title": "未更新报告计数被错误依赖于经济口径可比性",
+      "location": {
+        "file": "skills/scutio/scripts/scutio_data/research/signals.py",
+        "start_line": 209,
+        "end_line": 213
+      },
+      "problem": "unchanged_report 的相等判断只在 eps_comparable=True 内执行；未知 share_basis、currency、eps_basis 或 eps_definition 时，即使两端 observations 完全相同，仍返回 False，summary.not_updated 也为 0。",
+      "reproduction": "import importlib.util\ns=importlib.util.spec_from_file_location('fixture','tests/data/test_forecast_price_changes.py')\nf=importlib.util.module_from_spec(s); s.loader.exec_module(f)\nr=f.run(f.reports(f.report('2026-06-01',2)),share_basis=None)\nx=r['items'][0]\nprint(x['start_forecast']['observations']==x['end_forecast']['observations'])\nprint(x['unchanged_report'], r['summary']['not_updated'])",
+      "observed": {
+        "identical_endpoint_observations": true,
+        "unchanged_report": false,
+        "summary.not_updated": 0
+      },
+      "expected": "是否同一份旧报告是覆盖/更新事实，与是否能计算经济意义的 EPS 修订分开；该例应报告 unchanged_report=True、not_updated=1，同时保持 matched=None。",
+      "consequence": "原始来源通常未提供完整口径元数据，常规材料下旧报告沿用数量被报成 0，误导用户把未更新覆盖当作近期信息。",
+      "status_at_handoff": "Root acknowledged and is implementing a fix."
+    },
+    {
+      "id": "CR3",
+      "priority": "P1",
+      "must_fix": true,
+      "title": "新增日线身份信封可把上游明示错票包装成请求证券并形成命中",
+      "location": {
+        "file": "skills/scutio/scripts/scutio_data/market.py",
+        "start_line": 294,
+        "end_line": 299
+      },
+      "supporting_locations": [
+        "skills/scutio/scripts/scutio_data/market.py:344",
+        "skills/scutio/scripts/scutio_data/_providers/akshare/market.py:123-143",
+        "skills/scutio/scripts/scutio_data/_providers/quote_parse.py:246-261"
+      ],
+      "problem": "security_bars 新增请求证券身份，但 AKShare 的真实 normalize_bar 路径会先丢弃上游 symbol/stockCode，且丢弃前没有校验。后续 _prices 只看到正确的请求信封与无身份行，因此身份校验通过。",
+      "reproduction": "import importlib.util\ns=importlib.util.spec_from_file_location('fixture','tests/data/test_forecast_price_changes.py')\nf=importlib.util.module_from_spec(s); s.loader.exec_module(f)\nfrom unittest.mock import patch\nfrom scutio_data import market\nfrom scutio_data._providers.akshare import client\nraw=[{'date':f.START,'open':20,'high':20,'low':20,'close':20,'symbol':'sz000001','stockCode':'000001'}, {'date':f.END,'open':22,'high':22,'low':22,'close':22,'symbol':'sz000001','stockCode':'000001'}]\nwith patch.object(client,'fetch',return_value=raw):\n    b=market.security_bars('600519',count=2,sources=['akshare_sina'])\n    r=f.run(bar_env=b)\n    print(b['ok'],b['symbol'],[x.get('symbol') for x in b['bars']],r['ok'],r['matched'],r['items'][0]['reasons'])",
+      "observed": {
+        "bar_ok": true,
+        "envelope_symbol": "sh600519",
+        "returned_bar_symbols": [
+          null,
+          null
+        ],
+        "calculation_ok": true,
+        "matched": true,
+        "reasons": []
+      },
+      "expected": "有上游原生身份声明时，在归一化丢弃字段前校验全部声明；冲突必须拒绝该源或 fallback，不能把请求代码补成数据已核实的身份。",
+      "consequence": "另一只证券的价格能与请求证券盈利预测组合成无缺口的命中。该复现通过真实 AKShare 适配、归一化、security_bars 与 forecast_price_changes 调用链，只有网络返回用本地 fixture 替代。",
+      "limitation": "未联网观察到供应商实际返回错票；验证的是显式错误身份出现时的确定性处理错误。",
+      "status_at_handoff": "Root notified with minimal reproduction; no files modified by reviewer."
+    },
+    {
+      "id": "CR4",
+      "priority": "P3",
+      "must_fix": false,
+      "title": "有限单项值的中位数仍可溢出为 Infinity",
+      "location": {
+        "file": "skills/scutio/scripts/scutio_data/research/signals.py",
+        "start_line": 391,
+        "end_line": 391
+      },
+      "problem": "各机构 eps_change_pct 已用 finite_number 校验，但 statistics.median 在偶数样本上先求两数之和。两个有限 1e308 会得到无限中位数。",
+      "reproduction": "import importlib.util\ns=importlib.util.spec_from_file_location('fixture','tests/data/test_forecast_price_changes.py')\nf=importlib.util.module_from_spec(s); s.loader.exec_module(f)\nimport json\nr=f.run(f.reports(f.report('2026-06-01',1,'A'),f.report('2026-08-01',1e306,'A'),f.report('2026-06-01',1,'B'),f.report('2026-08-01',1e306,'B')),eps_floor=0)\nprint(r['summary']['metrics']['eps_change_pct'])\njson.dumps(r,allow_nan=False)",
+      "observed": {
+        "eps_change_pct_values": [
+          1e+308,
+          1e+308
+        ],
+        "median": "Infinity",
+        "strict_json_serialization": "ValueError: Out of range float values are not JSON compliant"
+      },
+      "expected": "汇总统计也应遵守有限数值契约，不能让已通过单项校验的数据生成非标准 JSON 数字。",
+      "consequence": "严格 JSON 输出或消费方会拒绝该结果。",
+      "limitation": "需要远超实际 EPS 范围的有限输入，属于已承诺数值边界而非正常市场数据下的投资误判；因此不列为本次主要必须修复项。"
+    }
+  ],
+  "validation": {
+    "command": "PYTHONPATH=skills/scutio/scripts SCUTIO_TEST_REPORT=0 <SCUTIO_VENV>/bin/python -m pytest -q tests/data/test_forecast_observations.py tests/data/test_forecast_price_changes.py tests/data/test_research_local.py tests/data/test_hk_us_market.py tests/data/test_akshare_market_contracts.py",
+    "result": "216 passed in 0.67s",
+    "additional_checks": "Each finding reproduced locally using existing fixture constructors; network disabled/unused. Wrong-identity check mocked only provider fetch and retained actual adapter, normalization, facade and signal code.",
+    "scope_limit": "No production or external state changed; existing tests passing does not cover the reported boundary cases."
+  },
+  "nonfindings": [
+    "已测同日多个已可用冲突保持阻断、错币种/复权价/缺端点阻断、180/120 天陈旧度逻辑、按机构独立配对与展示 limit 不改变总命中均有现有测试覆盖并通过。",
+    "consensus_revisions 的未知经济口径仍可产生原始 EPS 字段修订是既有接口语义，不能直接等同于新窗口 API 的自动经济可比性，未据此报告回归。"
+  ],
+  "limitations": [
+    "本报告描述 reviewer 实际读取并复现时的代码；根 agent 收到通知后可能已开始修复，修复后须跑针对性测试确认。",
+    "没有把更保守、字段更多或未实现期望功能当成缺陷。",
+    "第四项显式标为极端数值边界，其现实市场影响弱于前三项。"
+  ],
+  "followup_validation": {
+    "status": "All four reported reproductions resolved in the shared working tree.",
+    "remaining_must_fix_findings": [],
+    "reviewer_implemented": [
+      "CR3"
+    ],
+    "root_implemented": [
+      "CR1",
+      "CR2",
+      "CR4"
+    ],
+    "reviewer_modified_files": [
+      "skills/scutio/scripts/scutio_data/_providers/akshare/market.py",
+      "skills/scutio/scripts/scutio_data/market.py",
+      "tests/data/test_akshare_market_contracts.py"
+    ],
+    "CR3_fix": "Validate native symbol/code/ticker and recognized Chinese/security-code aliases before AKShare normalization; normalize ordinary zero-padded numeric identities and case-insensitive US bare tickers; reject contradictory claims before caching an Eastmoney secid; facade checks remaining normalized row claims; envelope explicitly marks identity_provenance=request. Rows without native identity remain usable and are not marked independently identity-verified.",
+    "tests": "239 passed in 0.37s across the five original targeted files after all four fixes; targeted A/HK/US native identity acceptance, conflicting-claim rejection, source fallback, no-native-identity compatibility and normalized-provider checks are included.",
+    "reproductions_after_fix": {
+      "CR1": {
+        "matched": true,
+        "endpoint_reasons": []
+      },
+      "CR2": {
+        "unchanged_report": true,
+        "not_updated": 1
+      },
+      "CR3": {
+        "bar_ok": false,
+        "error": "akshare_sina: bar identity mismatch"
+      },
+      "CR4": {
+        "median": 1e+308,
+        "strict_json": "passed"
+      }
+    },
+    "checks": "git diff --check passed for reviewer-modified code/tests. Ruff module and command were unavailable in the configured local runtime; no dependencies installed.",
+    "artifact_policy": "Original anonymous quant judgment and original experiment results were not modified by remediation."
+  }
+}

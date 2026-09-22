@@ -1,0 +1,14 @@
+{
+  "reason": "Method self-description in limitations exposed condition labels; earlier packet cleaning used word boundaries which did not remove labels adjoining Chinese text.",
+  "original_packet_sha256": {
+    "market.json": "a23553bfb6dd2d0d89a9cfd33005aa61f61435f81bdc209af06b4c93b4a9f8f2",
+    "packaging.json": "3cfbcd7697553bc87b606512203857877d3bc4b41f4aacb01d3b628e9cec9cbe",
+    "grid.json": "79ec02396ceb1afe9cb51e881ba7b77217536987cfface9363804e673daf7881"
+  },
+  "excluded_reviews": [
+    "judge-one-excluded.json",
+    "second reviewer interrupted before delivering a result"
+  ],
+  "replacement": "Remove method-loading/setup logs and condition limitations; keep answers, web/calculation trajectory, sources, unresolved and uniform resource counts. Restart both reviewers in fresh contexts.",
+  "effect_on_research_runs": "None; original nine answers and research logs remain unchanged."
+}

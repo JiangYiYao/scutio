@@ -1,0 +1,644 @@
+{
+  "id": "r07",
+  "case": "packaging",
+  "condition": "baseline",
+  "question": "如何寻找 A 股包装行业未来两年的投资机会？请研究具体对象、经济机制与价格，可以得出没有合适机会的结论，不要求新技术或转型故事。研究截止日为 2026-09-21。",
+  "started_at": "2026-09-22T07:10:28Z",
+  "completed_at": "2026-09-22 07:18:05 UTC",
+  "tools_log": [
+    {
+      "tool": "functions.exec",
+      "time": "2026-09-22T07:10:28Z",
+      "parameters": {
+        "discovery": "ALL_TOOLS filtered by /web.*run$/",
+        "read": "cat <repo>/evals/reports/2026-09-22-discovery/methods/baseline/SKILL.md",
+        "clock": "clock__curr_time({})"
+      },
+      "result_summary": "Found callable web__run; baseline skill read successfully.",
+      "counts": {
+        "web": 0,
+        "search": 0,
+        "local_calculation": 0
+      },
+      "errors": []
+    },
+    {
+      "tool": "exec_command",
+      "time": "2026-09-22 07:10:57 UTC",
+      "parameters": {
+        "cmd": "cat <repo>/evals/reports/2026-09-22-discovery/methods/baseline/references/capabilities/research.md <repo>/evals/reports/2026-09-22-discovery/methods/baseline/references/capabilities/verify.md <repo>/evals/reports/2026-09-22-discovery/methods/baseline/references/capabilities/simulate.md <repo>/evals/reports/2026-09-22-discovery/methods/baseline/references/methods/pipeline.md",
+        "max_output_tokens": 18000
+      },
+      "result_summary": "Read baseline research, verify, simulate, pipeline references. No subagents per experiment instruction.",
+      "errors": [],
+      "counts": {
+        "web": 0,
+        "search": 0,
+        "local_calculation": 0
+      }
+    },
+    {
+      "tool": "exec_command",
+      "time": "2026-09-22 07:10:57 UTC",
+      "parameters": {
+        "cmd": "cat <repo>/evals/reports/2026-09-22-discovery/methods/baseline/references/methods/financial-analysis.md <repo>/evals/reports/2026-09-22-discovery/methods/baseline/references/methods/milestones.md <repo>/evals/reports/2026-09-22-discovery/methods/baseline/references/methods/evidence-and-sources.md",
+        "max_output_tokens": 15000
+      },
+      "result_summary": "Read baseline financial-analysis, milestones, evidence-and-sources.",
+      "errors": [],
+      "counts": {
+        "web": 0,
+        "search": 0,
+        "local_calculation": 0
+      }
+    },
+    {
+      "tool": "web__run",
+      "time": "2026-09-22 07:11:00 UTC",
+      "parameters": {
+        "search_query": [
+          {
+            "q": "包装行业 2026 半年报 奥瑞金 裕同科技 昇兴股份 合兴包装 利润"
+          },
+          {
+            "q": "奥瑞金 2026 半年度报告 中粮包装 整合"
+          },
+          {
+            "q": "裕同科技 2026 半年度报告 营业收入 现金流"
+          },
+          {
+            "q": "昇兴股份 2026 半年度报告"
+          }
+        ],
+        "response_length": "long"
+      },
+      "result_summary": "Initial four searches identified 2026 interim reports for ORG, Yuto and Shengxing, HeXing earnings coverage, and packaging consolidation. Search results also returned old reports, which were not treated as current facts.",
+      "counts": {
+        "web": 4,
+        "search": 4,
+        "local_calculation": 0
+      },
+      "errors": [],
+      "time_basis": "Clock sampled after tool completion; timestamp acquisition is bookkeeping.",
+      "sources": [
+        "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12569742&stockid=002701",
+        "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12548870&stockid=002831",
+        "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12544924&stockid=002752",
+        "https://stock.stockstar.com/notice/SN2026082800052403.shtml",
+        "https://finance.sina.com.cn/stock/bxjj/2026-08-29/doc-inipwxpp9821661.shtml"
+      ]
+    },
+    {
+      "tool": "web__run",
+      "time": "2026-09-22 07:11:11 UTC",
+      "parameters": {
+        "open": [
+          {
+            "ref_id": "turn425search2"
+          },
+          {
+            "ref_id": "turn425search1"
+          },
+          {
+            "ref_id": "turn425search0"
+          },
+          {
+            "ref_id": "turn425search9"
+          }
+        ],
+        "response_length": "long"
+      },
+      "result_summary": "Opened three company interim-report reproductions. ORG discussion disclosed acquisition integration and financial data; Yuto excerpt showed same-control consolidation and operating cash flow context; Shengxing report accessible. HeXing Stockstar open returned Internal Error.",
+      "counts": {
+        "web": 8,
+        "search": 4,
+        "local_calculation": 0
+      },
+      "errors": [
+        "open turn425search9 returned Internal Error"
+      ],
+      "time_basis": "Clock sampled after tool completion; timestamp acquisition is bookkeeping.",
+      "sources": [
+        "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12569742&stockid=002701",
+        "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12548870&stockid=002831",
+        "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12544924&stockid=002752",
+        "https://stock.stockstar.com/notice/SN2026082800052403.shtml"
+      ]
+    },
+    {
+      "tool": "web__run",
+      "time": "2026-09-22 07:11:26 UTC",
+      "parameters": {
+        "open": [
+          {
+            "ref_id": "turn426view0",
+            "lineno": 75
+          },
+          {
+            "ref_id": "turn426view1",
+            "lineno": 75
+          },
+          {
+            "ref_id": "turn426view2",
+            "lineno": 100
+          }
+        ],
+        "search_query": [
+          {
+            "q": "奥瑞金 2026年9月21日 收盘价"
+          },
+          {
+            "q": "裕同科技 2026年9月21日 收盘价"
+          },
+          {
+            "q": "昇兴股份 2026年9月21日 收盘价"
+          }
+        ],
+        "response_length": "long"
+      },
+      "result_summary": "Three line opens mostly returned company definitions rather than desired financial tables. Three price searches found Yuto dated 2026-09-21 close 28.31, but did not establish ORG or Shengxing cutoff closes. Irrelevant gold results were discarded.",
+      "counts": {
+        "web": 14,
+        "search": 7,
+        "local_calculation": 0
+      },
+      "errors": [],
+      "time_basis": "Clock sampled after tool completion; timestamp acquisition is bookkeeping.",
+      "sources": [
+        "https://cn.investing.com/equities/shenzhen-yuto-packaging-historical-data",
+        "https://www.dabanke.com/index.php/gupiao-002831.html",
+        "https://data.agoer.com/cms/Index/detail?id=002701",
+        "https://dabanke.com/hangqing-002752.html"
+      ]
+    },
+    {
+      "tool": "web__run",
+      "time": "2026-09-22 07:11:43 UTC",
+      "parameters": {
+        "find": [
+          {
+            "ref_id": "turn426view0",
+            "pattern": "经营活动产生的现金流量净额"
+          },
+          {
+            "ref_id": "turn426view1",
+            "pattern": "归属于上市公司股东的净利润"
+          },
+          {
+            "ref_id": "turn426view2",
+            "pattern": "归属于上市公司股东的净利润"
+          }
+        ],
+        "search_query": [
+          {
+            "q": "奥瑞金 002701 股票 历史数据 2026-09-21"
+          },
+          {
+            "q": "昇兴股份 002752 股票 历史数据 2026-09-21"
+          }
+        ],
+        "response_length": "long"
+      },
+      "result_summary": "Targeted finds obtained ORG H1 core profit, CFO and financial expenses, Yuto restated H1 headline earnings, and Shengxing H1 earnings. Two price searches obtained ORG 4.41 and Shengxing historical row 6.21 for 2026-09-21. Shengxing header showed delayed intraday timestamp, retained as unresolved.",
+      "counts": {
+        "web": 19,
+        "search": 9,
+        "local_calculation": 0
+      },
+      "errors": [],
+      "time_basis": "Clock sampled after tool completion; timestamp acquisition is bookkeeping.",
+      "sources": [
+        "https://cn.investing.com/equities/org-packaging-a-historical-data",
+        "https://hk.investing.com/equities/shengxing-group-co-ltd-historical-data",
+        "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12569742&stockid=002701",
+        "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12548870&stockid=002831",
+        "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12544924&stockid=002752"
+      ]
+    },
+    {
+      "tool": "web__run",
+      "time": "2026-09-22 07:12:03 UTC",
+      "parameters": {
+        "find": [
+          {
+            "ref_id": "turn426view2",
+            "pattern": "主要财务数据同比变动情况"
+          },
+          {
+            "ref_id": "turn426view1",
+            "pattern": "经营活动产生的现金流量净额"
+          },
+          {
+            "ref_id": "turn426view2",
+            "pattern": "定价"
+          }
+        ],
+        "search_query": [
+          {
+            "q": "昇兴股份 2026 向特定对象 发行 太平洋 36亿 扩产 募集资金"
+          },
+          {
+            "q": "裕同科技 2025 年度报告 每股收益 分红 2026"
+          }
+        ],
+        "response_length": "long"
+      },
+      "result_summary": "Search found current Shengxing financing prospectus and Yuto 2025 earnings, distribution and capitalisation. Two finds returned no matching text. Yuto CFO find returned parent-company table rather than consolidated table; not used as consolidated CFO.",
+      "counts": {
+        "web": 24,
+        "search": 11,
+        "local_calculation": 0
+      },
+      "errors": [
+        "find 主要财务数据同比变动情况 and 定价 returned no matching text; this is search absence, not evidence of missing disclosures"
+      ],
+      "time_basis": "Clock sampled after tool completion; timestamp acquisition is bookkeeping.",
+      "sources": [
+        "https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12595303&stockid=002752",
+        "https://finance.eastmoney.com/a/202604283721724473.html",
+        "https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12211325",
+        "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12548870&stockid=002831"
+      ]
+    },
+    {
+      "tool": "web__run",
+      "time": "2026-09-22 07:12:30 UTC",
+      "parameters": {
+        "open": [
+          {
+            "ref_id": "turn426view2",
+            "lineno": 135
+          },
+          {
+            "ref_id": "turn426view1",
+            "lineno": 160
+          },
+          {
+            "ref_id": "turn433search8"
+          }
+        ],
+        "find": [
+          {
+            "ref_id": "turn426view0",
+            "pattern": "短期借款"
+          }
+        ],
+        "response_length": "long"
+      },
+      "result_summary": "Line opens obtained Shengxing H1 CFO/EPS, Yuto H1 consolidated CFO/core profits. Prospectus open returned previous fundraising history, not current deal terms. ORG borrowing find returned undiscounted maturity table; no net-debt calculation made from it.",
+      "counts": {
+        "web": 28,
+        "search": 11,
+        "local_calculation": 0
+      },
+      "errors": [],
+      "time_basis": "Clock sampled after tool completion; timestamp acquisition is bookkeeping.",
+      "sources": [
+        "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12544924&stockid=002752",
+        "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12548870&stockid=002831",
+        "https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12595303&stockid=002752",
+        "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12569742&stockid=002701"
+      ]
+    },
+    {
+      "tool": "web__run",
+      "time": "2026-09-22 07:12:44 UTC",
+      "parameters": {
+        "find": [
+          {
+            "ref_id": "turn426view0",
+            "pattern": "股本"
+          },
+          {
+            "ref_id": "turn426view1",
+            "pattern": "1,288"
+          },
+          {
+            "ref_id": "turn434view2",
+            "pattern": "本次发行"
+          },
+          {
+            "ref_id": "turn426view2",
+            "pattern": "毛利率"
+          }
+        ],
+        "response_length": "long"
+      },
+      "result_summary": "Four finds verified ORG shares 2,559,760,469 and Yuto post-capitalisation shares 1,288,331,029. Current-issuance find mainly returned definition. Shengxing margin find returned revenue composition without margin values.",
+      "counts": {
+        "web": 32,
+        "search": 11,
+        "local_calculation": 0
+      },
+      "errors": [],
+      "time_basis": "Clock sampled after tool completion; timestamp acquisition is bookkeeping.",
+      "sources": [
+        "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12569742&stockid=002701",
+        "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12548870&stockid=002831",
+        "https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12595303&stockid=002752",
+        "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12544924&stockid=002752"
+      ]
+    },
+    {
+      "tool": "web__run",
+      "time": "2026-09-22 07:13:04 UTC",
+      "parameters": {
+        "find": [
+          {
+            "ref_id": "turn434view2",
+            "pattern": "募集资金总额"
+          },
+          {
+            "ref_id": "turn426view0",
+            "pattern": "购建固定资产"
+          }
+        ],
+        "open": [
+          {
+            "ref_id": "turn426view2",
+            "lineno": 152
+          },
+          {
+            "ref_id": "turn426view2",
+            "lineno": 183
+          }
+        ],
+        "response_length": "long"
+      },
+      "result_summary": "Final four entries obtained Shengxing management discussion: domestic pricing, client recovery, Cambodia volume, July Indonesia launch and Shenyang integration milestone. Adjacent open did not expose margin row. Prospectus find returned 2021 previous fundraising 746 million RMB, explicitly not used for current deal. ORG capex 304,380,978 RMB found. Web budget reached 36 items.",
+      "counts": {
+        "web": 36,
+        "search": 11,
+        "local_calculation": 0
+      },
+      "errors": [],
+      "time_basis": "Clock sampled after tool completion; timestamp acquisition is bookkeeping.",
+      "sources": [
+        "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12544924&stockid=002752",
+        "https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12595303&stockid=002752",
+        "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12569742&stockid=002701"
+      ]
+    },
+    {
+      "tool": "functions.exec JavaScript deterministic calculation",
+      "time": "2026-09-22 07:14:03 UTC",
+      "parameters": {
+        "input": {
+          "org": {
+            "price": 4.41,
+            "shares": 2559760469,
+            "half_revenue": 13881155811,
+            "half_core_profit": 544113894,
+            "half_reported_profit": 763084564,
+            "cfo": 349678048,
+            "capex": 304380978,
+            "net_assets": 10143187013
+          },
+          "shengxing": {
+            "price": 6.21,
+            "half_eps": 0.2493,
+            "half_core_profit": 242550424.65,
+            "half_profit": 243533802.2,
+            "half_revenue": 3749895887.53,
+            "base_revenue_2028": 9000000000,
+            "dilution_sensitivity": 0.2
+          },
+          "yutong": {
+            "price": 28.31,
+            "shares": 1288331029,
+            "reported_profit_2025": 1592354000,
+            "core_profit_2025": 1525000000,
+            "half_core_profit_2026": 551184161.68,
+            "half_core_profit_2025": 559594628.34
+          },
+          "annual_required_return": 0.12,
+          "horizon_years": 2
+        },
+        "formulas": [
+          "market_cap=price*shares",
+          "annualized_core_pe=market_cap/(H1_core_profit*2), used as sensitivity only, not annual forecast",
+          "required_terminal_price=price*(1+0.12)^2",
+          "required_terminal_profit=market_cap*(1+0.12)^2/terminal_PE",
+          "required_margin=required_profit/assumed_2028_annual_revenue",
+          "shengxing_shares=H1_reported_profit/rounded_H1_EPS; approximate only"
+        ]
+      },
+      "result_summary": {
+        "org": {
+          "market_cap": 11288543668.29,
+          "annualized_core_pe": 10.373327894003383,
+          "annualized_reported_pe": 7.3966531370499595,
+          "pb": 1.1129188147494526,
+          "cfo_minus_capex": 45297070,
+          "half_core_margin": 0.03919802510744975,
+          "profit_required_for_12pct_return_at_12pe": 1180029098.1252482,
+          "profit_required_for_12pct_return_at_10pe": 1416034917.750298
+        },
+        "shengxing": {
+          "annualized_eps": 0.4986,
+          "proxy_pe": 12.454873646209386,
+          "shares_inferred_from_rounded_eps": 976870446.048937,
+          "half_core_margin": 0.06468190902488344,
+          "price_for_12pct_return": 7.789824000000001,
+          "eps_needed_at_12pe": 0.6491520000000001,
+          "profit_needed_at_12pe": 634137403.7935596,
+          "margin_needed_on_90yi": 0.07045971153261772,
+          "margin_needed_with_20pct_dilution": 0.08455165383914127,
+          "downside_price_at_eps_040_pe10": 4,
+          "price_at_eps_065_pe12": 7.800000000000001
+        },
+        "yutong": {
+          "market_cap": 36472651430.99,
+          "pe_on_2025_core": 23.916492741632787,
+          "pe_on_2025_reported": 22.90486376207175,
+          "core_profit_required_for_12pct_return_at_18pe": 2541738553.0574365,
+          "required_growth_vs_2025_core": 0.6667138052835648,
+          "price_at_2028_profit_18yi_pe18": 25.148816003561457
+        }
+      },
+      "counts": {
+        "web": 36,
+        "search": 11,
+        "local_calculation": 1
+      },
+      "errors": []
+    },
+    {
+      "tool": "functions.exec JavaScript deterministic calculation",
+      "time": "2026-09-22 07:16:05 UTC",
+      "parameters": {
+        "org_revenue_assumption_yi": 280,
+        "org_required_profit_12pe_yi": 11.800290981252482,
+        "org_required_profit_10pe_yi": 14.16034917750298,
+        "shengxing_base_eps": 0.4986,
+        "shengxing_required_eps": 0.6491520000000001
+      },
+      "result_summary": {
+        "org_required_margin_12pe": 0.04214389636161601,
+        "org_required_margin_10pe": 0.05057267563393921,
+        "shengxing_eps_growth": 0.30194945848375476
+      },
+      "counts": {
+        "web": 36,
+        "search": 11,
+        "local_calculation": 2
+      },
+      "errors": []
+    },
+    {
+      "tool": "clock__curr_time",
+      "time": "2026-09-22 07:18:05 UTC",
+      "parameters": {},
+      "result_summary": "Completion timestamp sampled; prior per-call timestamp reads also use clock__curr_time({}).",
+      "counts": {
+        "web": 36,
+        "search": 11,
+        "local_calculation": 2
+      },
+      "errors": []
+    },
+    {
+      "tool": "apply_patch",
+      "time": "2026-09-22 07:18:05 UTC",
+      "parameters": {
+        "operation": "Add File",
+        "path": "<repo>/evals/reports/2026-09-22-discovery/runs/r07.json",
+        "content": "This JSON research record. Full embedded artifact content is not recursively duplicated in its own tools_log."
+      },
+      "result_summary": "Artifact write requested with complete research answer, sources, actual execution summaries and calculation inputs/results.",
+      "counts": {
+        "web": 36,
+        "search": 11,
+        "local_calculation": 2
+      },
+      "errors": []
+    }
+  ],
+  "operation_counts": {
+    "web_items": 36,
+    "search_items": 11,
+    "open_items": 12,
+    "find_items": 13,
+    "click_items": 0,
+    "web_calls": 8,
+    "local_calculations": 2,
+    "limits": {
+      "web_items": 36,
+      "search_items": 12,
+      "local_calculations": 8
+    },
+    "excluded": "Method reads, tool discovery, timestamps, artifact composition and logging"
+  },
+  "answer": "截至 2026 年 9 月 21 日，我会把 A 股包装机会集中在两条普通生意逻辑：金属罐行业提价、规模与运输效率能否留下利润，以及并购之后能否真正把利润收成现金。本轮优先候选是奥瑞金和昇兴股份；裕同科技当前价格对成熟包装业务要求偏高，合兴包装暂不优先。现有证据还不足以给出无条件买入结论，但也不能据此说整个行业没有机会。这里研究的是四家有限样本，期限到 2028 年 9 月。\n\n先把“经营改善”和“股票便宜”分开看：\n\n| 对象 | 已核实的经营事实 | 截止日价格与初步估值 | 本轮倾向 |\n|---|---|---|---|\n| 奥瑞金，002701.SZ | 2026 上半年收入 138.81 亿元，扣非归母净利 5.44 亿元、同比增 35.70%；报表归母净利 7.63 亿元 | 9 月 21 日历史收盘 4.41 元；按半年末 25.598 亿股估市值 112.89 亿元 | 价格较低，核心在现金回收与整合 |\n| 昇兴股份，002752.SZ | 上半年收入 37.50 亿元、增 16.28%；扣非归母净利 2.43 亿元、增 81.41% | 历史表 9 月 21 日列价 6.21 元，但网页页首显示延迟盘中时间，收盘口径仍待第二来源确认 | 经营改善证据较强，融资稀释尚未核清 |\n| 裕同科技，002831.SZ | 上半年收入 82.14 亿元，追溯调整后同比基本持平；扣非归母净利 5.51 亿元、降 1.50% | 历史收盘 28.31 元；转增后 12.883 亿股，对应市值约 364.73 亿元 | 现价缺少成熟包装业务的明显安全边际 |\n| 合兴包装，002228.SZ | 上半年收入 55.22 亿元、增 7.26%，扣非归母净利约 0.83 亿元、降 26.23% | 本轮未取得截止日价格 | 增收未增利，未推进到价格结论 |\n\n财报来源：[奥瑞金半年报](https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12569742&stockid=002701)、[昇兴半年报](https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12544924&stockid=002752)、[裕同半年报](https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12548870&stockid=002831)。合兴数字来自[半年报报道](https://finance.sina.com.cn/stock/bxjj/2026-08-29/doc-inipwxpp9821661.shtml)，全文打开失败，证据层级较低。报价来源：[奥瑞金历史行情](https://cn.investing.com/equities/org-packaging-a-historical-data)、[昇兴历史行情](https://hk.investing.com/equities/shengxing-group-co-ltd-historical-data)、[裕同历史行情](https://cn.investing.com/equities/shenzhen-yuto-packaging-historical-data)。\n\n**奥瑞金：较低价格提供了调查价值，现金却还没有证明便宜。**\n\n收购原中粮包装已在 2025 年完成，因此两年内应观察采购、产能调配、客户服务与管理费用的协同；规模扩大本身不能当作新增需求。海外业务还有利润率改善的可能，但公司所述海外定价优势不等于永远存在。下游大客户也有议价能力，成本节约可能部分被客户取得。这是对公司披露的经济解释，尚没有客户合同和单罐利润数据独立证明收益归属。\n\n最重要的反证是，上半年经营现金流只有 3.50 亿元，同比下降 61.48%，公司解释为阶段性回款减少；扣除购建长期资产现金 3.04 亿元，仅剩约 0.45 亿元。这只是现金余额简算，并非股东自由现金流。财务费用升至 2.88 亿元，公司主要归因于汇兑损益。不能因扣非增长就忽略回款和资金占用。[奥瑞金半年报](https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12569742&stockid=002701)\n\n价格检验全部是我的条件计算：按“上半年扣非×2”，4.41 元对应约 10.37 倍；若误用报表净利则只有 7.40 倍，容易把非经常收益当成持续盈利。这两个数都不是全年预测，半年存在季节性。\n\n若希望两年取得年化 12% 的价格回报，不计分红，2028 年退出按 12 倍可持续归母利润估值，需要年盈利约 11.80 亿元；按 10 倍则需要 14.16 亿元。相对于半年扣非年化约 10.88 亿元，要求并非离谱，却必须由整合收益与现金兑现支持。假设届时年收入维持约 280 亿元，分别要求约 4.2% 与 5.1% 的归母净利率，当前半年扣非净利率约 3.92%。这些是判断门槛，不是利润预测或目标价。\n\n因此，奥瑞金可作为“现金回收修复”的候选。若回款恢复且新增资本开支受控，现价有吸引力；若应收与融资压力持续吞掉利润，低倍数可能合理。未来两年不应再为并购规模本身付额外溢价。\n\n**昇兴：盈利改善更具体，但需要把新股东分走的收益算进去。**\n\n公司将国内增长解释为植物蛋白饮料客户恢复和二片罐价格改善，海外增长主要来自金边工厂销量；半年经营现金流 7.11 亿元。它同时承认行业仍供大于求。这支持“已有经营改善”，还不能证明行业永久进入卖方市场。披露的印尼工厂 7 月全线投产、沈阳直连项目预计年底达到设计目标，提供了 2027—2028 年的具体路径：新产能爬坡、缩短运输、提高产能利用率。项目投产不是马上满产盈利。[昇兴半年报](https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12544924&stockid=002752)\n\n按暂用价格 6.21 元、半年 EPS 0.2493 元计算，半年年化倍数约 12.45 倍。假设两年后仍给 12 倍、希望年化价格回报 12%，需要 EPS 约 0.649 元，较半年年化 0.4986 元高约三成。\n\n用圆整模型解释怎样达到：假设届时年收入达到 90 亿元、股数不变，要求可持续归母利润约 6.34 亿元、净利率约 7.05%；对照当前半年扣非净利率约 6.47%，需要收入规模增加和利润率继续改善共同实现。若股数增加 20%，同样每股收益要求利润约 7.61 亿元、净利率约 8.46%。20% 只是稀释敏感性，并非已核实的发行比例。\n\n截至截止日前已检索到[更新半年财务数据的定增募集说明书](https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12595303&stockid=002752)，但本轮正文定位没有取得当前发行数量、发行价与项目完整收益条件；检索命中的 7.46 亿元是前次募资，不能错当本次金额。因此不能用未稀释的盈利改善直接宣布买入。若 EPS 回落至 0.40 元、估值降至 10 倍，模型价格只有 4 元；若达到 0.65 元并给 12 倍，则约 7.8 元。回报依赖持续提价、爬坡与融资条款，并非只有上行情景。\n\n**裕同与合兴为何排在后面。**\n\n裕同 2025 年归母利润约 15.92 亿元、扣非约 15.25 亿元。用已实施转增后的股数和当前价格计算，分别约 22.90 倍、23.92 倍；不能直接拿转增前 EPS 1.75 元计算便宜程度。这里使用的是“当前市值/原披露 2025 利润”，不是追溯调整后的 TTM。上半年经营现金流较强，但成熟主业扣非利润没有同步增长。[2025 年业绩](https://finance.eastmoney.com/a/202604283721724473.html)、[半年报股本及调整口径](https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12548870&stockid=002831)\n\n在我的 18 倍终值假设下，两年年化价格回报 12% 需要可持续利润约 25.42 亿元，比原披露 2025 扣非利润高约 67%。现有包装证据尚不足以支撑；即便利润达到 18 亿元，18 倍对应价格也仅约 25.15 元。该估值选择是要求回报的分析假设，并非行业公允倍数。公司新增业务和收购未得到完整估值，所以结论限于“现价不能仅靠成熟包装业务证明便宜”，不等于已证明整家公司高估。\n\n合兴的收入增长与利润下降提醒我们：包装需求增长可能被价格竞争、原纸成本和费用增加吃掉。由于全文与价格未核齐，本轮只降低研究优先级，不下“没有任何价格机会”的结论。\n\n实际寻找顺序应是：先查提价后扣非利润与回款是否同步，再查扩产和融资后每股收益能增加多少，最后把价格代入。下一个有用观察点是两家金属包装公司的后续财报、年度客户定价和已披露项目爬坡，而不是给所有包装公司统一套“消费复苏”。当前我更愿意保留奥瑞金与昇兴这两个有具体条件的候选，暂不把证据不足包装成确定性机会。\n\n限制：资料截止 2026-09-21，实际检索于 2026-09-22；只使用截止日前已披露的研究事实。未独立核验客户需求、原料合同传导、完整债务现值、定增条款与各公司截止日全部股本变动；昇兴报价还存在盘中页首与历史表的冲突。计算不计未来分红、交易成本和税，也未赋予情景概率。本次是单次有限资源诊断，不能宣称任何方法具有统计优越性。",
+  "sources": [
+    {
+      "id": "org_h1",
+      "title": "奥瑞金2026年半年度报告（公司公告全文，新浪转载）",
+      "url": "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12569742&stockid=002701",
+      "period": "2026H1",
+      "used_for": [
+        "扣非及报表利润、CFO、CAPEX、股本、整合与海外业务",
+        "借款到期表只用于风险提示，未当作债务账面值"
+      ],
+      "limitation": "主要披露来自发行人，未与客户原始订单独立核对"
+    },
+    {
+      "id": "shengxing_h1",
+      "title": "昇兴股份2026年半年度报告（公司公告全文，新浪转载）",
+      "url": "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12544924&stockid=002752",
+      "publication_date": "2026-08-27",
+      "period": "2026H1",
+      "used_for": [
+        "收入、归母和扣非利润、CFO、EPS",
+        "价格改善、海外销量和项目进展"
+      ],
+      "limitation": "原材料传导、产能利用率及后续现金再投资未全面核验"
+    },
+    {
+      "id": "yutong_h1",
+      "title": "裕同科技2026年半年度报告（公司公告全文，新浪转载）",
+      "url": "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12548870&stockid=002831",
+      "period": "2026H1",
+      "used_for": [
+        "追溯调整、扣非利润、合并CFO、转增后股本"
+      ],
+      "limitation": "新业务及收购没有完成整体估值"
+    },
+    {
+      "id": "hexing_earnings",
+      "title": "合兴包装2026半年报业绩报道",
+      "url": "https://finance.sina.com.cn/stock/bxjj/2026-08-29/doc-inipwxpp9821661.shtml",
+      "publication_date": "2026-08-29",
+      "used_for": [
+        "收入、归母与扣非利润变化"
+      ],
+      "limitation": "二手报道；另一个全文入口打开失败，未形成价格结论"
+    },
+    {
+      "id": "org_price",
+      "title": "奥瑞金历史行情",
+      "url": "https://cn.investing.com/equities/org-packaging-a-historical-data",
+      "as_of": "2026-09-21",
+      "used_for": [
+        "历史收盘4.41元"
+      ],
+      "limitation": "第三方行情，未以交易所数据独立复核"
+    },
+    {
+      "id": "shengxing_price",
+      "title": "昇兴股份历史行情",
+      "url": "https://hk.investing.com/equities/shengxing-group-co-ltd-historical-data",
+      "as_of": "2026-09-21",
+      "used_for": [
+        "历史表6.21元作为暂用价格"
+      ],
+      "limitation": "页面顶端显示11:29:45延迟数据，与历史收盘表口径存在冲突"
+    },
+    {
+      "id": "yutong_price",
+      "title": "裕同科技历史行情",
+      "url": "https://cn.investing.com/equities/shenzhen-yuto-packaging-historical-data",
+      "as_of": "2026-09-21",
+      "used_for": [
+        "历史收盘28.31元"
+      ],
+      "limitation": "非交易所历史行情；另一个第三方页面同报28.31元"
+    },
+    {
+      "id": "yutong_2025",
+      "title": "裕同科技2025年业绩与分配方案报道",
+      "url": "https://finance.eastmoney.com/a/202604283721724473.html",
+      "publication_date": "2026-04-28",
+      "period": "2025FY",
+      "used_for": [
+        "原披露归母15.92亿元、扣非15.25亿元"
+      ],
+      "limitation": "未替换成2026同控追溯调整后的全年利润，故估值不标TTM"
+    },
+    {
+      "id": "shengxing_prospectus",
+      "title": "昇兴2025年度定增募集说明书，2026半年数据更新版",
+      "url": "https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12595303&stockid=002752",
+      "used_for": [
+        "确认更新版融资文件存在、前次募资历史"
+      ],
+      "limitation": "关键当前发行条款未取得；检索到7.46亿元属前次募资"
+    }
+  ],
+  "unresolved": [
+    "昇兴截至2026-09-21的正式收盘价，历史表与盘中页首冲突未交叉解决。",
+    "昇兴当前定增股数、发行价、募集投向和项目每股回报未核清。",
+    "奥瑞金回款下降是阶段性时点还是持续占用；客户合同、整合节约分配和有机增速未独立验证。",
+    "裕同收购及其他业务整体价值未完成估值；2025利润只使用原披露口径。",
+    "合兴原始半年报正文打开失败，截止日价格未查；其他包装公司未覆盖。",
+    "公司半年末至截止日全部股本变化没有逐一核验。"
+  ],
+  "limitations": [
+    "单次诊断、有限公司样本，不宣称统计优越或全市场无机会。",
+    "事实截止2026-09-21；检索在2026-09-22完成；网页抓取时刻不是披露时刻。",
+    "36个web条目资源上限用尽，包含11个search，未使用项目取数脚本、量化信号工具、私人账户或子agent。",
+    "所有情景、退出倍数和12%要求回报均为分析者假设，不是公司指引；半年年化仅为敏感性锚，不是全年预测。",
+    "工具日志记录实际执行摘要；web请求参数原样保留。仅本地路径脱敏为<repo>/<home>/<tmp>，未保存凭证或任务标识；没有把原始网页整段输出复制入日志。",
+    "来源主要为发行人公告转载及第三方行情，未取得全部客户、竞争者和原料合同一手资料。"
+  ]
+}

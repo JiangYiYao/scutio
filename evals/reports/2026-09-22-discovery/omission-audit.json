@@ -1,0 +1,237 @@
+{
+  "frozen_at": "2026-09-22T07:11:19.992893+00:00",
+  "purpose": "Independent small omission probe; not market recall or verified opportunities",
+  "selected_before_reading_main_answers": true,
+  "cutoff": "2026-09-21",
+  "sample": [
+    {
+      "symbol": "sz000333",
+      "name": "美的集团",
+      "reason": "Large established household appliance and diversified industrial company, outside grid/packaging specialist prompts"
+    },
+    {
+      "symbol": "sz002032",
+      "name": "苏泊尔",
+      "reason": "Established consumer appliance company; tests stable cash economics rather than technology narrative"
+    },
+    {
+      "symbol": "sh605007",
+      "name": "五洲特纸",
+      "reason": "Smaller packaging-paper upstream producer; tests candidate direction beyond finished packaging"
+    }
+  ],
+  "scope": "One recent primary filing per object where accessible; inspect business/cash/capital facts and valuation limitations. Does not establish investment attractiveness. Compare named coverage after main answers finish.",
+  "tools_log": [
+    {
+      "tool": "web.run",
+      "args": {
+        "search_query": [
+          {
+            "q": "site.cninfo.com.cn 美的集团 2026 半年度报告 000333"
+          },
+          {
+            "q": "site.cninfo.com.cn 苏泊尔 2026 半年度报告 002032"
+          },
+          {
+            "q": "site.cninfo.com.cn 五洲特纸 2026 半年度报告 605007"
+          }
+        ],
+        "response_length": "long"
+      }
+    },
+    {
+      "tool": "web.run",
+      "args": {
+        "open": [
+          {
+            "ref_id": "https://static.cninfo.com.cn/finalpage/2026-08-29/1225531403.PDF"
+          },
+          {
+            "ref_id": "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12482881&stockid=605007"
+          }
+        ],
+        "search_query": [
+          {
+            "q": "\"苏泊尔\" \"2026年半年度报告\" \"归属于\""
+          }
+        ],
+        "response_length": "long"
+      }
+    },
+    {
+      "tool": "web.run",
+      "args": {
+        "open": [
+          {
+            "ref_id": "turn429view0",
+            "lineno": 40
+          },
+          {
+            "ref_id": "turn429view1",
+            "lineno": 25
+          },
+          {
+            "ref_id": "https://static.cninfo.com.cn/finalpage/2026-08-28/1225522987.PDF"
+          }
+        ],
+        "response_length": "long"
+      }
+    },
+    {
+      "tool": "web.run",
+      "args": {
+        "click": [
+          {
+            "ref_id": "turn429view1",
+            "id": 32
+          }
+        ],
+        "find": [
+          {
+            "ref_id": "turn430view2",
+            "pattern": "经营活动产生的现金流量净额"
+          }
+        ],
+        "response_length": "short"
+      }
+    }
+  ],
+  "findings": [
+    {
+      "symbol": "sz000333",
+      "source": "https://static.cninfo.com.cn/finalpage/2026-08-29/1225531403.PDF",
+      "page": 2,
+      "facts": "2026H1 归母净利264.46037亿元，同比增长1.66%；扣非195.95179亿元，下降25.31%。公司解释外币货币性项目汇损计经常损益、套保衍生工具收益计非经常损益。",
+      "research_implication": "成熟经营也存在需连接项目口径的研究问题，不能仅凭扣非跌幅认定恶化；尚未核对相关头寸、可持续盈利和目标日报价，不构成机会结论。"
+    },
+    {
+      "symbol": "sz002032",
+      "source": "https://static.cninfo.com.cn/finalpage/2026-08-28/1225522987.PDF",
+      "pages": [
+        7,
+        45
+      ],
+      "facts": "2026H1 收入114.0977亿元、归母净利8.67546亿元，分别同比下降0.59%、7.70%；经营现金净流入4.84244亿元，购建长期资产现金支出0.767795亿元。",
+      "research_implication": "稳定主营并非静态现金机器；应核对现金季节性、内外销与分红融资路径，再连接价格。没有据此机械年化或认定便宜。"
+    },
+    {
+      "symbol": "sh605007",
+      "source": "https://file.finance.sina.com.cn/211.154.219.97:9494/MRGG/CNSESH_STOCK/2026/2026-8/2026-08-08/12482881.PDF",
+      "html_mirror": "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12482881&stockid=605007",
+      "facts": "2026H1 收入48.947亿元、归母净利2.29895亿元，分别增长18.76%、88.95%；经营现金净流入1.05934亿元。",
+      "research_implication": "包装上游有经营变化可查，应补查纸种供需、成本、资本开支与营运资金；利润增速不证明投资吸引力，未核对目标日价格。"
+    }
+  ],
+  "operation_counts": {
+    "web_entries": 11,
+    "search_entries": 4
+  },
+  "completed_at": "2026-09-22T07:12:17.670076+00:00",
+  "limitations": [
+    "These three probes are not a validated missed-opportunity set or recall denominator.",
+    "Sector/size diversity was selected qualitatively; no quantitative news-attention classification.",
+    "Only recent financial summaries/selected source sections checked; not complete company research.",
+    "Named coverage is only a text check; absence does not prove a missed attractive investment."
+  ],
+  "named_coverage": {
+    "r01": {
+      "sz000333": {
+        "named_in_answer": false
+      },
+      "sz002032": {
+        "named_in_answer": false
+      },
+      "sh605007": {
+        "named_in_answer": false
+      }
+    },
+    "r02": {
+      "sz000333": {
+        "named_in_answer": false
+      },
+      "sz002032": {
+        "named_in_answer": false
+      },
+      "sh605007": {
+        "named_in_answer": false
+      }
+    },
+    "r03": {
+      "sz000333": {
+        "named_in_answer": true
+      },
+      "sz002032": {
+        "named_in_answer": false
+      },
+      "sh605007": {
+        "named_in_answer": false
+      }
+    },
+    "r04": {
+      "sz000333": {
+        "named_in_answer": false
+      },
+      "sz002032": {
+        "named_in_answer": false
+      },
+      "sh605007": {
+        "named_in_answer": false
+      }
+    },
+    "r05": {
+      "sz000333": {
+        "named_in_answer": false
+      },
+      "sz002032": {
+        "named_in_answer": false
+      },
+      "sh605007": {
+        "named_in_answer": false
+      }
+    },
+    "r06": {
+      "sz000333": {
+        "named_in_answer": false
+      },
+      "sz002032": {
+        "named_in_answer": false
+      },
+      "sh605007": {
+        "named_in_answer": false
+      }
+    },
+    "r07": {
+      "sz000333": {
+        "named_in_answer": false
+      },
+      "sz002032": {
+        "named_in_answer": false
+      },
+      "sh605007": {
+        "named_in_answer": false
+      }
+    },
+    "r08": {
+      "sz000333": {
+        "named_in_answer": false
+      },
+      "sz002032": {
+        "named_in_answer": false
+      },
+      "sh605007": {
+        "named_in_answer": false
+      }
+    },
+    "r09": {
+      "sz000333": {
+        "named_in_answer": false
+      },
+      "sz002032": {
+        "named_in_answer": false
+      },
+      "sh605007": {
+        "named_in_answer": false
+      }
+    }
+  }
+}

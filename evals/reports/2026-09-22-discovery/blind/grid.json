@@ -1,0 +1,2005 @@
+{
+  "case": "grid",
+  "question": "电网投资与电力系统结构正在变化，A 股未来三年有哪些值得考虑的投资机会？请自行核实变化、受益关系和价格条件，不把产业相关公司名单直接当成投资机会。研究截止日为 2026-09-21。",
+  "answers": [
+    {
+      "label": "A",
+      "answer": "截至 2026 年 9 月 21 日，我会把国电南瑞（600406.SH）作为未来三年的首要研究对象，把思源电气（002028.SZ）作为需要更好价格或更强盈利兑现的成长机会；许继电气（000400.SZ）暂时只保留为直流项目兑现线索。现有证据支持电网设备需求增长，但还不足以支持“整个板块现价都便宜”。\n\n这次实际深入比较三家公司，覆盖调度与控制、一次设备及海外业务、直流设备三个传导路径，未进行 A 股全市场扫描。判断期为 2026 年 9 月至 2029 年 9 月；下面的收益率是我为比较机会设定的假设，不是公司的业绩承诺。\n\n电网正在发生什么变化\n\n国家电网公布“十五五”固定资产投资预计 4 万亿元，较“十四五”增长 40%，明确投向跨区输电、配电网、微电网和数字基础设施。这是五年投资总量比较，不是每年增长 40%，也不是设备采购额。国家能源局西北监管局转载的中电联材料还提出全国电网投资超过 5 万亿元、约 15 回特高压直流通道；两者主体与统计口径不同，不能把金额或增速直接相加。[国资委：国家电网投资规划](https://www.sasac.gov.cn/n2588025/n2588124/c35325777/content.html)、[国家能源局西北监管局：电网投资与通道规划](https://xbj.nea.gov.cn/dtyw/hyxx/202607/t20260722_305231.html)\n\n结构变化比总额更重要：官方披露 2026 年上半年可再生能源装机占比已达 60.7%，风光装机约 19.5 亿千瓦；同时陕北—安徽特高压已投产，省间现货市场按日连续运行。装机占比不是发电量占比，但它说明系统需要处理更多波动性电源与跨区调度。[国家能源局：可再生能源调度会议](https://prpq.nea.gov.cn/jnyw/14376.html)、[国家能源局：2026 年上半年能源形势发布会](https://www.nea.gov.cn/20260730/3ce671c387574eeeb120fc3825be0399/c.html)\n\n我的推断是，未来三年有两类经济价值较清楚：一是增加输配容量的设备交付；二是让现有容量更可靠地运行、协调新能源和负荷的控制系统。受益能否留在上市公司，取决于产品竞争力、中标价格、交付验收、回款和新增投入。规划不能直接换算成供应商利润。\n\n为什么先看南瑞\n\n南瑞已有调度、现货市场、配电自动化及直流控制产品部署，承接的不是尚无商业落地的抽象“电网 AI”故事。上市公司可以通过设备、软件与系统交付取得收入；已有系统经验和运行可靠性有助于后续采购，但这不等于所有新增电网投资都会流向它。2026 年上半年收入增长 14.54%，归母利润仅增长 4.08%；经营现金流 5.91 亿元，同比下降 78.95%，说明收入增长还没有同幅度转化为股东收益。[南瑞 2026 年半年报，第 9、12—13 页](https://static.cninfo.com.cn/finalpage/2026-08-27/1225508099.PDF)\n\n其 2025 年归母利润 82.79 亿元、经营现金流 127.69 亿元；结合半年报，最近十二个月归母利润约 83.99 亿元，经营现金流约 105.51 亿元。因此中期现金流下降值得跟踪，但不能只凭一个半年报判定现金创造能力已失效。年报四季度回款明显集中，也不宜用半年盈利简单乘二。[南瑞 2025 年年报：财务数据及分季度表](https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12278691&stockid=600406)\n\n在三年路径上，我更看重现有调度与控制产品随采购、更新和验收逐步增长，不给 AI 试点单独加估值。若未来利润增速回到 8% 左右，属于稳健经营情景；若要支持现价下更高的回报，则需要利润率、产品组合或交付效率进一步改善。若后续收入继续两位数增长而利润与全年回款持续落后，这一改善假设就应下调。\n\n思源有经营质量，但价格要求更高\n\n思源 2026 年上半年归母利润增长 13.23%；开关、变压器毛利率分别为 39.06%、36.36%。海外收入增长 11.22%，低于总收入增长 27.05%，海外毛利率还下降 2.30 个百分点。储能收入增长很快，但毛利率只有 10.50%；存货较年初约增加 47%，现金回收仍需跟上交付。[思源 2026 年半年报，第 6、10—12 页](https://disc.static.szse.cn/download/disc/disk03/finalpage/2026-08-15/ef9f19b9-f0eb-48cf-8eef-05c2c8d8f6cc.PDF)\n\n这些数据支持“高端设备能保留一定利润”，却不支持“所有增长都来自高毛利海外订单”。我的三年投资逻辑是高端设备持续交付、海外渠道逐步扩大和产品组合改善；限制条件是扩产及备货占用资金、汇率、招标竞争和低毛利业务扩张。公司现有年报口径下 2025 年基本 EPS 为 4.04 元、经营现金流约 22.34 亿元，现金流低于 31.50 亿元归母利润，不能把净利润全部视为可自由分配现金。[思源 2025 年年报摘要](https://static.cninfo.com.cn/finalpage/2026-04-18/1225117828.PDF)\n\n价格条件：把“能增长”与“值得付多少钱”分开\n\n9 月 21 日收盘价分别为南瑞 22.10 元、思源 138.89 元。这是同一家公开行情服务的历史日线记录，未取得第二家独立报价核对。[南瑞历史行情](https://cn.investing.com/equities/nari-tech-historical-data)、[思源历史行情](https://cn.investing.com/equities/sieyuan-electric-a-historical-data)\n\n计算口径如下：\n\n- 南瑞：最近十二个月归母利润 = 2025 年全年 + 2026 年上半年 − 2025 年上半年；除以半年末总股本，得到每股约 1.046 元，现价约 21.1 倍。这与用加权平均股数计算的报表 EPS 略有差异。\n- 思源：采用已披露基本 EPS 的滚动近似，4.04 + 1.87 − 1.66 = 4.25 元，现价约 32.7 倍。该近似没有重新计算滚动加权股数，不能作为精确交易定价。\n- 三年后价格 = 当前滚动 EPS ×（1 + 盈利年增速）³ × 期末 PE。假设无重大股本变化，忽略股息、税费；使用 20 倍南瑞、25 倍思源的期末 PE，是我的估值假设，并非历史估值分位或市场共识。\n\n| 对象 | 盈利年增长假设 | 三年后条件价格 | 按现价年化股价回报 | 达到年化 10% 所对应的当下价格 |\n|---|---:|---:|---:|---:|\n| 南瑞 | 4% | 23.53 元 | 2.1% | 17.68 元 |\n| 南瑞 | 8% | 26.35 元 | 6.0% | 19.80 元 |\n| 南瑞 | 12% | 29.38 元 | 10.0% | 22.08 元 |\n| 思源 | 10% | 141.42 元 | 0.6% | 106.25 元 |\n| 思源 | 15% | 161.59 元 | 5.2% | 121.41 元 |\n| 思源 | 20% | 183.60 元 | 9.7% | 137.94 元 |\n\n这些情景刻意不将行业投资额直接当作盈利增速。南瑞 8% 的情景接近其 2025 年盈利增速，但高于 2026 年上半年；思源 15% 的情景略高于当前半年利润增速。更高的情景需要具体经营改善，现有材料没有证明它们必然发生。\n\n据此，南瑞约 19—20 元是“盈利年增约 8%、期末 20 倍、争取约 10% 年化股价回报”下较有吸引力的条件范围；22.10 元仍值得考虑，但更接近接受中等回报，或押注盈利增速回升至约 12%。思源约 120 元对应“盈利年增约 15%、期末 25 倍”的条件；138.89 元需要约 20.3% 的盈利年增速才能达到同一回报门槛，目前证据还不够强。\n\n估值假设本身会变：即使南瑞盈利年增 8%，期末只有 15 倍 PE，三年后股价仍可能较现价低约 10.6%；思源盈利年增 15% 而期末降至 20 倍，对应约下跌 6.9%。股息会增加总回报，但这里没有用未核实的未来分红抵消风险。上述范围是重新评估机会的条件，不是精确目标价或自动买入指令。\n\n为什么不把许继一起列为已确认机会\n\n许继已披露中标闽赣、湘粤等项目，并有换流阀及直流控制保护业务，受益关系成立。但其半年报显示收入仅增 1.21%，扣非利润下降 34.73%，经营现金流为负 3.11 亿元。公司对现金流下降的解释包括上年预收较多及本年供应商付款增加。[许继 2026 年半年报公告正文](https://stock.stockstar.com/notice/SN2026082000000668.shtml)\n\n这意味着订单到利润的传导尚不顺畅。我未核实其截至截止日的有效报价，也未完成利润下降的分产品归因，因此不据此认定它一定贵或没有机会；本轮只能确认经营线索，尚未完成投资价值判断。类似地，虚拟电厂、微电网和构网型储能存在系统需求，但本轮没有查清其他上市主体的持续收费、利润归属与价格，不能把相关公司名称补进投资清单。\n\n未来三年真正需要兑现的是：已有需求进入采购，设备与系统验收形成可持续利润，再通过回款支持研发、扩产与股东回报。下一份财报应检验南瑞利润与现金能否追上收入、思源高毛利业务能否支撑整体盈利；直流项目则须核对具体合同交付与验收，不能统一假定所有“十五五”项目都在 2029 年前贡献利润。\n\n本次研究使用截止日前已公布的材料，但实际检索日在 2026 年 9 月 22 日，不是当时的网页存档。国资委网页直接打开失败，投资规划依据其搜索可见正文及能源局材料交叉确认；最新月度投资统计未成功定位，未用返回的 2024 年数据代替 2026 年。检索额度限制了对招标份额、竞争者扩产及全部候选的进一步核查。结论是南瑞的价格与经营要求相对更容易匹配，思源需要更高增长或更低价格；并未证明市场尚未定价这些变化。",
+      "sources": [
+        {
+          "title": "国家电网“十五五”计划投资4万亿元建设新型电力系统",
+          "url": "https://www.sasac.gov.cn/n2588025/n2588124/c35325777/content.html",
+          "published_at": "2026-01-19",
+          "access": "搜索可见正文；直接 open 返回 Internal Error",
+          "supports": "国网投资总量、40%五年总额增幅、输电配网与数智方向"
+        },
+        {
+          "title": "“十五五”电网投资将达5万亿以上",
+          "url": "https://xbj.nea.gov.cn/dtyw/hyxx/202607/t20260722_305231.html",
+          "published_at": "2026-07-22",
+          "access": "搜索及打开",
+          "supports": "中电联全国投资与15回左右直流通道规划；口径区别"
+        },
+        {
+          "title": "国家能源局2026年上半年能源形势发布会",
+          "url": "https://www.nea.gov.cn/20260730/3ce671c387574eeeb120fc3825be0399/c.html",
+          "published_at": "2026-07-30",
+          "access": "搜索及打开",
+          "supports": "陕北安徽投产、跨区电力、省间现货市场运行"
+        },
+        {
+          "title": "全国可再生能源电力开发建设月度（7月）调度视频会",
+          "url": "https://prpq.nea.gov.cn/jnyw/14376.html",
+          "published_at": null,
+          "access": "搜索可见正文",
+          "supports": "2026H1可再生能源装机及风光规模"
+        },
+        {
+          "title": "国电南瑞2026年半年度报告",
+          "url": "https://static.cninfo.com.cn/finalpage/2026-08-27/1225508099.PDF",
+          "published_at": "2026-08-27",
+          "access": "搜索及分段打开PDF；新签关键词未匹配",
+          "supports": "2026H1可比财务、股本、调度及控制产品部署"
+        },
+        {
+          "title": "国电南瑞2025年年度报告公告转载",
+          "url": "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12278691&stockid=600406",
+          "published_at": null,
+          "access": "打开、查找及分段读取；董事会批准报送日期为2026-04-29，未独立核对公告页发布日期",
+          "supports": "2025归母利润、股本、EPS及CFO、季度现金季节性"
+        },
+        {
+          "title": "思源电气2026年半年度报告",
+          "url": "https://disc.static.szse.cn/download/disc/disk03/finalpage/2026-08-15/ef9f19b9-f0eb-48cf-8eef-05c2c8d8f6cc.PDF",
+          "published_at": "2026-08-15",
+          "access": "搜索及分段打开PDF；扩建变压器关键词未匹配",
+          "supports": "中期财务、产品及地域利润率、EPS、存货、现金流"
+        },
+        {
+          "title": "思源电气2025年年度报告摘要",
+          "url": "https://static.cninfo.com.cn/finalpage/2026-04-18/1225117828.PDF",
+          "published_at": "2026-04-18",
+          "access": "从搜索结果引用链接进入PDF",
+          "supports": "2025净利润、EPS、CFO与业务模式"
+        },
+        {
+          "title": "许继电气2026年半年度报告公告转载",
+          "url": "https://stock.stockstar.com/notice/SN2026082000000668.shtml",
+          "published_at": "2026-08-20",
+          "access": "搜索及分段打开；部分表格排版丢失故未使用丢失归母金额",
+          "supports": "中标项目、业务归属、扣非利润、现金与解释"
+        },
+        {
+          "title": "国电南瑞历史行情",
+          "url": "https://cn.investing.com/equities/nari-tech-historical-data",
+          "published_at": null,
+          "access": "搜索及打开",
+          "supports": "2026-09-21收盘22.10元"
+        },
+        {
+          "title": "思源电气历史行情",
+          "url": "https://cn.investing.com/equities/sieyuan-electric-a-historical-data",
+          "published_at": null,
+          "access": "搜索及打开",
+          "supports": "2026-09-21收盘138.89元"
+        }
+      ],
+      "tools_log": [
+        {
+          "time": "2026-09-22T07:07:44.443Z",
+          "completed_at": "2026-09-22T07:07:47.175Z",
+          "tool": "web__run",
+          "parameters": {
+            "search_query": [
+              {
+                "q": "国家电网 2026 固定资产投资 4万亿 配电网 十五五"
+              },
+              {
+                "q": "2026年 8月 全国电力工业统计数据 电网工程 完成投资 国家能源局"
+              },
+              {
+                "q": "国电南瑞 2026 半年度报告 归属于 经营活动 2026年9月21日"
+              },
+              {
+                "q": "思源电气 2026 半年度报告 变压器 海外 归属于"
+              }
+            ],
+            "response_length": "long"
+          },
+          "result_summary": "四项搜索返回国网4万亿元规划、全国电网5万亿元规划、思源半年报；国电南瑞及2026年8月统计未取得匹配正文。返回2024年统计，未用于2026判断。",
+          "error": null,
+          "operation_counts": {
+            "web": 4,
+            "search": 4,
+            "open": 0,
+            "find": 0,
+            "click": 0,
+            "local_computation": 0
+          },
+          "sources": [
+            "https://www.sasac.gov.cn/n2588025/n2588124/c35325777/content.html",
+            "https://www.nea.gov.cn/20260130/f5870f4fe28744139406827434f3859c/c.html",
+            "https://static.sse.com.cn/bond/bridge2/disclosure/announcement/c/202603/fe9984_20260320_UBAQ.pdf",
+            "https://www.stats.gov.cn/zs/tjwh/tjkw/tjqk/zgxxb/202601/P020260119314604089738.pdf",
+            "https://xbj.nea.gov.cn/dtyw/hyxx/202607/t20260722_305231.html",
+            "https://www.nea.gov.cn/2024-09/23/c_1212399359.htm",
+            "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12494945&stockid=002028",
+            "https://disc.static.szse.cn/download/disc/disk03/finalpage/2026-08-15/ef9f19b9-f0eb-48cf-8eef-05c2c8d8f6cc.PDF",
+            "https://www.ccedia.com/statute_detail/17348.html",
+            "https://stock.finance.sina.com.cn/stock/go.php/vReport_Show/kind/lastest/rptid/827824716928/index.phtml",
+            "https://www.yicai.com/news/103007253.html",
+            "https://file.finance.sina.com.cn/cn/diaoyan/jgdy/2026/2026-03/2026-03-20/10176134_1.PDF",
+            "https://disc.static.szse.cn/disc/disk03/finalpage/2026-08-15/ef9f19b9-f0eb-48cf-8eef-05c2c8d8f6cc.PDF",
+            "https://finance.eastmoney.com/a/202601163622138132.html",
+            "https://www.guosenqh.com.cn/attach/20260430/20260430075039732_689191.pdf",
+            "https://gzb.nea.gov.cn/dtyw/hyxx/202310/t20231023_192143.html",
+            "https://www.youtube.com/watch?v=AB28bVKQ8tg",
+            "https://zh.wikipedia.org/wiki/%E5%9C%8B%E5%AE%B6%E9%9B%BB%E5%8A%9B%E5%85%AC%E5%8F%B8"
+          ]
+        },
+        {
+          "time": "2026-09-22T07:08:00.208Z",
+          "completed_at": "2026-09-22T07:08:03.169Z",
+          "tool": "web__run",
+          "parameters": {
+            "search_query": [
+              {
+                "q": "国电南瑞 2026年半年度报告 营业收入 净利润 site:sse.com.cn"
+              },
+              {
+                "q": "许继电气 2026年半年度报告 净利润 订单 site:cninfo.com.cn"
+              },
+              {
+                "q": "国家能源局 2026年 1-7月份 电网工程 完成投资"
+              },
+              {
+                "q": "国电南瑞 思源电气 许继电气 2026年9月21日 收盘 市盈率"
+              }
+            ],
+            "open": [
+              {
+                "ref_id": "https://www.sasac.gov.cn/n2588025/n2588124/c35325777/content.html"
+              },
+              {
+                "ref_id": "https://xbj.nea.gov.cn/dtyw/hyxx/202607/t20260722_305231.html"
+              },
+              {
+                "ref_id": "https://disc.static.szse.cn/download/disc/disk03/finalpage/2026-08-15/ef9f19b9-f0eb-48cf-8eef-05c2c8d8f6cc.PDF"
+              }
+            ],
+            "response_length": "long"
+          },
+          "result_summary": "四项搜索取得南瑞9月21日行情、许继财务报告、能源局半年能源发布会等；限定站点未直接定位南瑞半年报。三项打开中，国资委页面报Internal Error，能源局西北局与思源PDF成功。",
+          "error": {
+            "operation": "open",
+            "ref_id": "https://www.sasac.gov.cn/n2588025/n2588124/c35325777/content.html",
+            "message": "Internal Error",
+            "handling": "沿用已返回的国资委搜索正文，并参照国家能源局官方转载材料；披露直接打开失败。"
+          },
+          "operation_counts": {
+            "web": 11,
+            "search": 8,
+            "open": 3,
+            "find": 0,
+            "click": 0,
+            "local_computation": 0
+          },
+          "sources": [
+            "https://cn.investing.com/equities/nari-tech-historical-data",
+            "https://www.nea.gov.cn/2024-08/23/c_1310785026.htm",
+            "https://www.yyqyx.com/s/600268.SH",
+            "https://static.sse.com.cn/stock/disclosure/announcement/c/202603/002077_20260327_IUNQ.pdf",
+            "https://static.cninfo.com.cn/finalpage/2026-08-20/1225483630.PDF",
+            "https://quote.cfi.cn/cfi_lhb_stock.aspx?stockcode=600268",
+            "https://www.kissdown.cn/daima/600268.html",
+            "https://www.sse.com.cn/aboutus/mediacenter/hotandd/c/c_20260830_10830362.shtml",
+            "https://www.nea.gov.cn/20260730/3ce671c387574eeeb120fc3825be0399/c.html",
+            "https://prpq.nea.gov.cn/jnyw/14376.html",
+            "https://english.sse.com.cn/news/newsrelease/voice/c/c_20260918_10832566.shtml",
+            "https://www.lixinger.com/equity/company/detail/sh/600268/600268/fundamental/valuation/pe-ttm",
+            "https://english.sse.com.cn/news/newsrelease/voice/c/c_20260526_10819716.shtml",
+            "https://www.bse.cn/disclosure/2026/2026-03-26/1774519466_916128.pdf",
+            "https://static.sse.com.cn/stock/disclosure/announcement/c/202212/001270_20221230_93BK.pdf",
+            "https://pdf.dfcfw.com/pdf/H2_AN202603311820922293_1.pdf?1774985554000.pdf=",
+            "https://static.sse.com.cn/stock/disclosure/announcement/c/202503/603097_20250311_5CVF.pdf",
+            "https://www.sasac.gov.cn/n2588025/n2588124/c35325777/content.html",
+            "https://xbj.nea.gov.cn/dtyw/hyxx/202607/t20260722_305231.html",
+            "https://disc.static.szse.cn/download/disc/disk03/finalpage/2026-08-15/ef9f19b9-f0eb-48cf-8eef-05c2c8d8f6cc.PDF"
+          ]
+        },
+        {
+          "time": "2026-09-22T07:08:14.394Z",
+          "completed_at": "2026-09-22T07:08:17.083Z",
+          "tool": "web__run",
+          "parameters": {
+            "search_query": [
+              {
+                "q": "\"国电南瑞\" \"2026年半年度报告\""
+              },
+              {
+                "q": "\"思源电气\" \"2026年09月21日\" \"收盘\""
+              },
+              {
+                "q": "\"许继电气\" \"2026年半年度报告\""
+              }
+            ],
+            "open": [
+              {
+                "ref_id": "https://cn.investing.com/equities/nari-tech-historical-data"
+              },
+              {
+                "ref_id": "https://www.nea.gov.cn/20260730/3ce671c387574eeeb120fc3825be0399/c.html"
+              },
+              {
+                "ref_id": "turn410view2",
+                "lineno": 230
+              }
+            ],
+            "response_length": "long"
+          },
+          "result_summary": "三项搜索定位南瑞2026半年报、思源9月21日行情、许继半年报；打开南瑞行情、能源局发布会及思源PDF现金流段。",
+          "error": null,
+          "operation_counts": {
+            "web": 17,
+            "search": 11,
+            "open": 6,
+            "find": 0,
+            "click": 0,
+            "local_computation": 0
+          },
+          "sources": [
+            "https://cn.investing.com/equities/sieyuan-electric-a-historical-data",
+            "https://static.cninfo.com.cn/finalpage/2026-08-27/1225508099.PDF",
+            "https://static.cninfo.com.cn/finalpage/2026-08-20/1225482987.PDF",
+            "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12507021&stockid=000400",
+            "https://disc.static.szse.cn/download/disc/disk03/finalpage/2026-08-20/330e07a4-efad-4cdf-99fd-7d6056f5dcd8.PDF",
+            "https://s.askci.com/stock/financialreport/000400/financefile/",
+            "https://www.lixinger.com/equity/company/detail/sh/600406/600406/announcement?type=fs",
+            "https://stock.qianzhan.com/hs/sourcefiles_000400.sz.html",
+            "https://paper.cnstock.com/html/2026-08/27/content_2260635.htm",
+            "https://stock.stockstar.com/notice/SN2026082700000062.shtml",
+            "https://stock.stockstar.com/notice/SN2026082000000668.shtml",
+            "https://static.cninfo.com.cn/finalpage/2026-08-20/1225482387.PDF",
+            "https://www.fxbaogao.com/detail/5616962",
+            "https://quotewh.cfi.cn/quote.aspx?client=phone&contenttype=cbgg&stockid=1752",
+            "https://xueqiu.com/S/SZ000400/405721359",
+            "https://stock.quote.stockstar.com/info_000400.shtml",
+            "https://irm.cninfo.com.cn/",
+            "https://cn.investing.com/equities/nari-tech-historical-data",
+            "https://www.nea.gov.cn/20260730/3ce671c387574eeeb120fc3825be0399/c.html",
+            "https://disc.static.szse.cn/download/disc/disk03/finalpage/2026-08-15/ef9f19b9-f0eb-48cf-8eef-05c2c8d8f6cc.PDF"
+          ]
+        },
+        {
+          "time": "2026-09-22T07:08:44.078Z",
+          "completed_at": "2026-09-22T07:08:47.156Z",
+          "tool": "web__run",
+          "parameters": {
+            "open": [
+              {
+                "ref_id": "https://static.cninfo.com.cn/finalpage/2026-08-27/1225508099.PDF",
+                "lineno": 100
+              },
+              {
+                "ref_id": "turn410view2",
+                "lineno": 70
+              },
+              {
+                "ref_id": "https://stock.stockstar.com/notice/SN2026082000000668.shtml",
+                "lineno": 100
+              },
+              {
+                "ref_id": "https://cn.investing.com/equities/sieyuan-electric-a-historical-data"
+              }
+            ],
+            "search_query": [
+              {
+                "q": "\"国电南瑞\" \"思源电气\" \"2025\" \"净利润\" \"2026\" \"年报\""
+              }
+            ],
+            "response_length": "long"
+          },
+          "result_summary": "打开南瑞半年报、思源半年报、许继半年报转载与思源行情。第12项搜索返回2025年报经营线索及年报原文链接；二手预测未直接作为估值事实。",
+          "error": null,
+          "operation_counts": {
+            "web": 22,
+            "search": 12,
+            "open": 10,
+            "find": 0,
+            "click": 0,
+            "local_computation": 0
+          },
+          "sources": [
+            "https://caifuhao.eastmoney.com/news/20260714163549585671340",
+            "https://9fzt.com/9fztgw_1_top/786c3a9c1706e5cbfe1ce202a7ed0424.html",
+            "https://www.compassingai.com/company/000400-sz/",
+            "https://caifuhao.eastmoney.com/news/20260221212613158065200",
+            "https://www.loopseek.cn/report/600406.SH.html",
+            "https://www.toutiao.com/article/7634685436468527650/",
+            "https://caifuhao.eastmoney.com/news/20260119173200787672380",
+            "https://xueqiu.com/7242244620/407686012",
+            "https://www.illx.ink/reports/sieyuan-valuation-2026-07-12.html",
+            "https://pdf.dfcfw.com/pdf/H3_AP202605121822205281_1.pdf?1778591700000.pdf=",
+            "https://finance.ifeng.com/c/8vflJ04ITHB",
+            "https://paper.cnstock.com/html/2026-04/28/content_2207189.htm",
+            "https://s.unifuncs.com/?sid=cbaf21c6-7e49-4a7f-836a-f76fbbbf2285",
+            "https://pdf.dfcfw.com/pdf/H301_AP202605051821970587_1.pdf",
+            "https://pdf.dfcfw.com/pdf/H3_AP202605061821981907_1.pdf?1778062223000.pdf=",
+            "https://epaper.stcn.com/att/202503/19/507a55b4-7e8c-4104-8d09-c7b07e32386e.pdf",
+            "https://pdf.dfcfw.com/pdf/H3_AP202603021820171037_1.pdf%3F1772437910000.pdf",
+            "https://static.cninfo.com.cn/finalpage/2026-08-27/1225508099.PDF",
+            "https://disc.static.szse.cn/download/disc/disk03/finalpage/2026-08-15/ef9f19b9-f0eb-48cf-8eef-05c2c8d8f6cc.PDF",
+            "https://stock.stockstar.com/notice/SN2026082000000668.shtml",
+            "https://cn.investing.com/equities/sieyuan-electric-a-historical-data"
+          ]
+        },
+        {
+          "time": "2026-09-22T07:09:00.175Z",
+          "completed_at": "2026-09-22T07:09:03.200Z",
+          "tool": "web__run",
+          "parameters": {
+            "open": [
+              {
+                "ref_id": "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12278691&stockid=600406"
+              },
+              {
+                "ref_id": "https://static.cninfo.com.cn/finalpage/2026-04-18/1225117828.PDF",
+                "lineno": 65
+              },
+              {
+                "ref_id": "turn415view0",
+                "lineno": 170
+              },
+              {
+                "ref_id": "turn410view2",
+                "lineno": 98
+              }
+            ],
+            "response_length": "long"
+          },
+          "result_summary": "打开南瑞2025年报公告转载及思源2025年报摘要；读取南瑞和思源2026H1主要财务、股本或EPS等。",
+          "error": null,
+          "operation_counts": {
+            "web": 26,
+            "search": 12,
+            "open": 14,
+            "find": 0,
+            "click": 0,
+            "local_computation": 0
+          },
+          "sources": [
+            "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12278691&stockid=600406",
+            "https://static.cninfo.com.cn/finalpage/2026-04-18/1225117828.PDF",
+            "https://static.cninfo.com.cn/finalpage/2026-08-27/1225508099.PDF",
+            "https://disc.static.szse.cn/download/disc/disk03/finalpage/2026-08-15/ef9f19b9-f0eb-48cf-8eef-05c2c8d8f6cc.PDF"
+          ]
+        },
+        {
+          "time": "2026-09-22T07:09:12.233Z",
+          "completed_at": "2026-09-22T07:09:15.099Z",
+          "tool": "web__run",
+          "parameters": {
+            "find": [
+              {
+                "ref_id": "turn416view0",
+                "pattern": "82.79"
+              },
+              {
+                "ref_id": "turn415view0",
+                "pattern": "新签"
+              },
+              {
+                "ref_id": "turn410view2",
+                "pattern": "扩建变压器"
+              }
+            ],
+            "open": [
+              {
+                "ref_id": "turn415view2",
+                "lineno": 150
+              }
+            ],
+            "response_length": "long"
+          },
+          "result_summary": "三项find均无匹配：南瑞年报82.79、南瑞半年报新签、思源半年报扩建变压器。没有把未匹配当成事实不存在。打开许继半年报，取得扣非利润、现金、产品与项目情况。",
+          "error": null,
+          "operation_counts": {
+            "web": 30,
+            "search": 12,
+            "open": 15,
+            "find": 3,
+            "click": 0,
+            "local_computation": 0
+          },
+          "sources": [
+            "https://stock.stockstar.com/notice/SN2026082000000668.shtml",
+            "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12278691&stockid=600406",
+            "https://static.cninfo.com.cn/finalpage/2026-08-27/1225508099.PDF",
+            "https://disc.static.szse.cn/download/disc/disk03/finalpage/2026-08-15/ef9f19b9-f0eb-48cf-8eef-05c2c8d8f6cc.PDF"
+          ],
+          "non_matching_finds": [
+            "82.79",
+            "新签",
+            "扩建变压器"
+          ]
+        },
+        {
+          "time": "2026-09-22T07:09:27.977Z",
+          "completed_at": "2026-09-22T07:09:30.783Z",
+          "tool": "web__run",
+          "parameters": {
+            "find": [
+              {
+                "ref_id": "turn416view0",
+                "pattern": "基本每股收益"
+              }
+            ],
+            "open": [
+              {
+                "ref_id": "turn415view0",
+                "lineno": 360
+              },
+              {
+                "ref_id": "turn410view2",
+                "lineno": 180
+              },
+              {
+                "ref_id": "turn415view2",
+                "lineno": 370
+              }
+            ],
+            "response_length": "long"
+          },
+          "result_summary": "南瑞年报find基本每股收益成功，同时返回CFO与原文定位；打开南瑞产品部署、思源业务模式、许继现金流及收入构成段。",
+          "error": null,
+          "operation_counts": {
+            "web": 34,
+            "search": 12,
+            "open": 18,
+            "find": 4,
+            "click": 0,
+            "local_computation": 0
+          },
+          "sources": [
+            "https://static.cninfo.com.cn/finalpage/2026-08-27/1225508099.PDF",
+            "https://disc.static.szse.cn/download/disc/disk03/finalpage/2026-08-15/ef9f19b9-f0eb-48cf-8eef-05c2c8d8f6cc.PDF",
+            "https://stock.stockstar.com/notice/SN2026082000000668.shtml",
+            "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12278691&stockid=600406"
+          ]
+        },
+        {
+          "time": "2026-09-22T07:09:42.309Z",
+          "completed_at": "2026-09-22T07:09:44.924Z",
+          "tool": "web__run",
+          "parameters": {
+            "open": [
+              {
+                "ref_id": "turn416view0",
+                "lineno": 135
+              },
+              {
+                "ref_id": "turn410view2",
+                "lineno": 265
+              }
+            ],
+            "response_length": "long"
+          },
+          "result_summary": "读取南瑞2025年报完整财务及季度表、思源2026H1产品和地区毛利、营运资金及投入。完成36条web限额。",
+          "error": null,
+          "operation_counts": {
+            "web": 36,
+            "search": 12,
+            "open": 20,
+            "find": 4,
+            "click": 0,
+            "local_computation": 0
+          },
+          "sources": [
+            "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12278691&stockid=600406",
+            "https://disc.static.szse.cn/download/disc/disk03/finalpage/2026-08-15/ef9f19b9-f0eb-48cf-8eef-05c2c8d8f6cc.PDF"
+          ]
+        },
+        {
+          "time": "2026-09-22T07:10:47.978Z",
+          "completed_at": "2026-09-22T07:10:47.980Z",
+          "tool": "local JavaScript calculation (functions.exec)",
+          "parameters": {
+            "inputs": {
+              "nari": {
+                "price": 22.1,
+                "profit2025": 8278971723.32,
+                "profit2026H1": 3072688826.28,
+                "profit2025H1": 2952191275.23,
+                "shares2026H1": 8031756156,
+                "cfo2025": 12768702125.04,
+                "cfo2026H1": 591109591.8,
+                "cfo2025H1": 2808524757.71
+              },
+              "sieyuan": {
+                "price": 138.89,
+                "eps2025": 4.04,
+                "eps2026H1": 1.87,
+                "eps2025H1": 1.66,
+                "profit2025": 3150142665.04,
+                "profit2026H1": 1463716011.88,
+                "profit2025H1": 1292697963.66,
+                "inventory2026H1": 5999041214.08,
+                "inventory2025": 4078944481.1
+              },
+              "assumptions": {
+                "horizonYears": 3,
+                "requiredReturn": 0.1,
+                "terminalPEnari": 20,
+                "terminalPEsieyuan": 25,
+                "dividendsExcluded": true,
+                "shareCountUnchanged": true
+              }
+            },
+            "formula": "TTM profit = FY2025 + H12026 - H12025; NARI EPS = TTM profit / 2026H1 total shares; Sieyuan approximate TTM EPS = FY2025 EPS + H12026 EPS - H12025 EPS; future price = EPS0*(1+g)^3*terminalPE; hurdle price = future price/(1.10)^3; growth required = (price*1.10^3/terminalPE/EPS0)^(1/3)-1"
+          },
+          "result_summary": {
+            "nari": {
+              "epsTTM": 1.0457824056442881,
+              "peTTM": 21.13250316769728,
+              "requiredEPS": 1.4707550000000005,
+              "requiredGrowth": 0.12038254518737124,
+              "scenarios": [
+                {
+                  "growth": 0.04,
+                  "terminalEPS": 1.1763629799426567,
+                  "terminalPE": 20,
+                  "terminalPrice": 23.527259598853135,
+                  "annualPriceReturn": 0.02107981324243058,
+                  "currentPriceFor10PercentReturn": 17.67637836127207
+                },
+                {
+                  "growth": 0.08,
+                  "terminalEPS": 1.3173846457789777,
+                  "terminalPE": 20,
+                  "terminalPrice": 26.347692915579554,
+                  "annualPriceReturn": 0.060352113751754866,
+                  "currentPriceFor10PercentReturn": 19.795411657084557
+                },
+                {
+                  "growth": 0.12,
+                  "terminalEPS": 1.4692489835970188,
+                  "terminalPE": 20,
+                  "terminalPrice": 29.38497967194038,
+                  "annualPriceReturn": 0.09962441426107915,
+                  "currentPriceFor10PercentReturn": 22.07737015172079
+                }
+              ]
+            },
+            "sieyuan": {
+              "epsTTM": 4.25,
+              "peTTM": 32.68,
+              "requiredEPS": 7.394503600000002,
+              "requiredGrowth": 0.20274445924191387,
+              "scenarios": [
+                {
+                  "growth": 0.1,
+                  "terminalEPS": 5.6567500000000015,
+                  "terminalPE": 25,
+                  "terminalPrice": 141.41875000000005,
+                  "annualPriceReturn": 0.0060324873686463665,
+                  "currentPriceFor10PercentReturn": 106.25
+                },
+                {
+                  "growth": 0.15,
+                  "terminalEPS": 6.463718749999999,
+                  "terminalPE": 25,
+                  "terminalPrice": 161.59296874999998,
+                  "annualPriceReturn": 0.05176123679449374,
+                  "currentPriceFor10PercentReturn": 121.40718914350107
+                },
+                {
+                  "growth": 0.2,
+                  "terminalEPS": 7.343999999999999,
+                  "terminalPE": 25,
+                  "terminalPrice": 183.6,
+                  "annualPriceReturn": 0.09748998622034133,
+                  "currentPriceFor10PercentReturn": 137.94139744552962
+                }
+              ]
+            },
+            "nariTrailingCFO": 10551286959.130001,
+            "sieyuanTTMProfit": 3321160713.26,
+            "sieyuanInventoryChange": 0.47073372581481987,
+            "nariPE15Downside": -0.1058475254893817,
+            "sieyuanPE20Downside": -0.06923194614443084
+          },
+          "error": null,
+          "operation_counts": {
+            "web": 36,
+            "search": 12,
+            "open": 20,
+            "find": 4,
+            "click": 0,
+            "local_computation": 1
+          }
+        },
+        {
+          "time": "2026-09-22T07:14:41.546Z",
+          "tool": "local JSON validation (functions.exec)",
+          "parameters": {
+            "checks": [
+              "JSON roundtrip",
+              "required fields",
+              "web/search/local quotas",
+              "no unredacted local absolute paths",
+              "web parameters unchanged"
+            ],
+            "artifact": "<repo>/evals/reports/2026-09-22-discovery/runs/<run>.json"
+          },
+          "result_summary": "结构与配额校验通过；只有本地路径脱敏，web参数保持原样。",
+          "error": null,
+          "operation_counts": {
+            "web": 36,
+            "search": 12,
+            "open": 20,
+            "find": 4,
+            "click": 0,
+            "local_computation": 2,
+            "research_calculations": 1,
+            "artifact_validations": 1
+          }
+        },
+        {
+          "time": "2026-09-22T07:15:08.218Z",
+          "tool": "apply_patch",
+          "parameters": {
+            "operation": "Add File",
+            "path": "<repo>/evals/reports/2026-09-22-discovery/runs/<run>.json",
+            "content": "完整的本次实验JSON，内容即本文件；为避免自引用递归，不在工具日志内重复整份文件。"
+          },
+          "result_summary": "实际写入成功，工具返回{}。随后将本条写入结果加入同一文件。",
+          "error": null,
+          "operation_counts": {
+            "web": 36,
+            "search": 12,
+            "open": 20,
+            "find": 4,
+            "click": 0,
+            "local_computation": 2,
+            "research_calculations": 1,
+            "artifact_validations": 1
+          }
+        }
+      ],
+      "operation_counts": {
+        "web_entries": 36,
+        "search_entries": 12,
+        "local_research_calculations": 1
+      },
+      "unresolved": [
+        "未独立核对两家公司9月21日报价及半年末之后全部股本变化；思源滚动EPS使用已披露EPS的近似加减。",
+        "未完成许继价格与利润下降分产品归因，故未将其列为已确认投资机会。",
+        "未定位2026年7—8月电网工程投资官方统计；检索返回的2024年资料已剔除。",
+        "未覆盖A股全部配网、虚拟电厂、构网型储能、海缆与特高压供应商，也未核完竞争者扩产和最新全部中标结果。",
+        "未取得详细合同交付及验收日程，三年兑现路径采用条件分析，没有声称全部规划项目在期限内确认收入。"
+      ]
+    },
+    {
+      "label": "B",
+      "answer": "以 2026 年 9 月 21 日为截止日、展望其后三年，我的排序是：**国电南瑞是优先考察的价格型机会；思源电气有竞争力，但当前价格要求较强增长，宜等更好的买价；平高电气暂留观察。** 这不是一个可以按产业相关性整体买入的板块。\n\n电网变化已经发生，但需要区分三件事。首先，国家电网公布“十五五”固定资产投资预计 4 万亿元，较“十四五”增长 40%，并提出跨区跨省输电能力提升超过 30%。这是五年总额和建设目标，不能解释成每年投资增长 40%，也不能把公司固定资产投资与全国电网工程投资直接相加。[国家电网公告，国资委转发](https://www.sasac.gov.cn/n2588025/n2588124/c35325777/content.html)、[国家能源局转发新华社报道](https://www.nea.gov.cn/20260130/f5870f4fe28744139406827434f3859c/c.html)\n\n其次，2026 年上半年可再生能源装机已占总装机 60.7%，发电量占比为 41.2%。装机与发电量是不同口径；我的推断是，风光继续进入系统后，跨区域输送、调度控制、稳定性与灵活调节设备的重要性上升，收益应沿着具体项目和产品寻找。实际投资也有分化：中电联报告的公开报道显示，2025 年全国电网工程投资增长 5.1%，直流工程增长 25.7%，110 千伏及以下配网仅增长 0.7%，1000 千伏等级投资反而下降 34.9%。因此，“特高压”“配网”四个字本身不足以推出公司盈利增长。[国家能源局，2026-08-17](https://www.nea.gov.cn/20260817/3b9aadf9d3e540879aa8e1d15405ff71/c.html)、[人民日报海外版转述中电联年度报告，2026-07-15](https://paper.people.com.cn/rmrbhwb/pad/content/202607/15/content_30168732.html)\n\n第三，调节能力开始获得更明确的付费机制。2026 年 114 号文允许符合条件的电网侧独立新型储能获得容量电价，折算与顶峰贡献、放电时长等有关，并实行项目清单管理。这有助于设备需求与项目融资，但不能把政策直接折成所有储能公司的确定利润；地方标准、项目资格和实际结算仍是关键。[发改价格〔2026〕114 号原文](https://www.ndrc.gov.cn/xwdt/tzgg/202601/t20260130_1403525.html)\n\n**国电南瑞（600406）：我最愿意继续研究的，是调度、保护与柔性输电订单兑现，而不是给所有新概念加估值。**\n\n系统越复杂，控制和保护越重要；公司已经披露新一代调度、柔直背靠背和换流阀项目，受益关系有产品与项目支撑。2026 年上半年新签合同 456.33 亿元、增长 28.79%；但收入增长 14.54%，归母利润仅增长 4.08%，经营现金流只有 5.91 亿元、同比下降 78.95%。公司解释现金流下降主要来自采购付款增加。因此目前最关键的是利润率和回款能否跟上订单。订单还包含电网外及海外业务，不能全部按高毛利自动化产品估值。[2026 年半年报，第 9、19、22 页](https://static.cninfo.com.cn/finalpage/2026-08-27/1225508099.PDF)\n\n2025 年归母利润为 82.79 亿元、全年现金分红约 49.68 亿元。用已披露股本和“2025 全年利润＋2026 上半年－2025 上半年”计算，滚动每股利润约 1.046 元；9 月 21 日收盘 22.10 元，对应约 21.1 倍。过去一年分红额对应的静态股息率约 2.8%，这是历史口径，不能当作未来承诺。[公司年度行动评估公告](https://file.finance.sina.com.cn/211.154.219.97%3A9494/MRGG/CNSESH_STOCK/2026/2026-4/2026-04-30/12278712.PDF)、[9 月 21 日行情](https://wap.stockstar.com/detail/RB2026092100027138)\n\n我的价格条件是：**约 20 元及以下更有吸引力，22.10 元属于合理观察区，尚不是明显低估。** 假设未来三年每股利润年增 10%、届时 20 倍市盈率，三年后约 27.84 元；从 22.10 元买入，价格回报年化约 8%，另有不确定的现金分红。从 20 元买入，价格回报年化约 11.7%。这条机会成立的前提是订单能带来持续盈利与现金，而不是继续用收入规模掩盖回报率下降。\n\n**思源电气（002028）：设备能力值得付费，目前却需要给增长减速留余地。**\n\n公司输配电产品已形成多条业务线。2026 年上半年开关、变压器业务毛利率分别为 39.06%、36.36%，但海外收入只增长 11.22%，收入占比由 33.68% 降至 29.49%；储能系统及元件收入增长很快，毛利率却只有 10.50%。这意味着业务结构不同，一元新增收入带来的利润也不同。半年归母利润增长 13.23%，经营现金流 2.27 亿元，现金转化仍需看完整年度。[2026 年半年报，第 6、8—11 页](https://disc.static.szse.cn/disc/disk03/finalpage/2026-08-15/ef9f19b9-f0eb-48cf-8eef-05c2c8d8f6cc.PDF)\n\n2025 年稀释每股收益 4.01 元，与两个半年稀释每股收益相接，得到约 4.20 元的滚动近似值；按公开历史行情所示 9 月 21 日 138.89 元，约为 33.1 倍。由于各期间加权股数不同，这一算法只是近似市盈率。[2025 年年报](https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12112020&stockid=002028)、[思源历史行情](https://hk.investing.com/equities/sieyuan-electric-a-historical-data)\n\n我的价格条件是：**先等到约 110—114 元，或者等盈利能力出现足以改变估值的实证。** 假设三年每股利润年增 15%、终值 25 倍，三年后约 159.69 元；从 138.89 元买入，价格回报年化仅约 4.8%，从 110 元买入则约 13.2%。当前价格并非一定会跌，而是需要更乐观的增长假设才有足够回报。汇率、客户认证与交付、海外回款和低毛利业务扩张都会影响兑现；不能再机械外推 2025 年的高增长。\n\n下面把两家的三年不确定性摆出来。盈利增速、终值市盈率与 12% 回报门槛均为我的估值假设，不是公司指引或一致预期；不计分红、税费和再投资，也没有给 AI、固态变压器等业务单独加价值。\n\n| 公司、情景 | 每股利润年增 | 三年后市盈率 | 三年后价格测算 | 以截止日参考价买入的年化价格回报 |\n|---|---:|---:|---:|---:|\n| 南瑞：保守 | 0% | 16 倍 | 16.73 元 | -8.9% |\n| 南瑞：基准 | 10% | 20 倍 | 27.84 元 | 8.0% |\n| 南瑞：乐观 | 15% | 24 倍 | 38.17 元 | 20.0% |\n| 思源：保守 | 5% | 20 倍 | 97.24 元 | -11.2% |\n| 思源：基准 | 15% | 25 倍 | 159.69 元 | 4.8% |\n| 思源：乐观 | 25% | 30 倍 | 246.09 元 | 21.0% |\n\n计算式为：三年后价格＝当前滚动每股利润×（1＋增长率）³×终值市盈率。按基准情景、要求不含分红年化 12%，对应买价上限约为南瑞 19.82 元、思源 113.67 元。这里最大的风险是增长假设错误，不能把这些数字当成精确目标价。\n\n**平高电气（600312）：当前还不能用表面便宜完成投资判断。**\n\n半年报显示收入下降 5.64%、归母利润增长 22.87%，经营现金流为 -6.89 亿元；公司同日还披露会计估计变更公告。本轮取证没有取得变更影响金额及完整分部利润桥接，因此无法确认利润增长中有多少可以持续。9 月又有中标公告，但“中标”也不能替代利润质量核验。[半年报摘要](https://static.cninfo.com.cn/finalpage/2026-08-20/1225483266.PDF)、[会计估计变更公告](https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12506207&stockid=600312)、[9 月 9 日中标公告](https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12589171&stockid=600312)\n\n行情检索中两处显示 9 月 21 日为 19.49 元，但还出现了疑似日期错配的 19.77 元页面，而且一个历史行情页打开后只返回截至 9 月 7 日的数据。这里仅把 19.49 元作待复核参考。即使按该价格，用半年 EPS 0.602 元乘二会算出约 16.2 倍，也不能据此判断便宜：半年年化既不是标准滚动利润，也没有消除季节性和会计估计影响。[逐日行情参考](https://www.yyqyx.com/s/600312.SH)、[存在缓存差异的历史行情页](https://jp.investing.com/equities/pinggao-elec-historical-data)\n\n接下来三年的观察应跟着交付和回款走：\n\n- 2026 年末至 2027 年，核实招标、新签合同能否转成验收收入。南瑞若连续报告期订单走弱、盈利增速仍明显落后于收入，应下调基准增长率；思源要看到海外利润与现金同步增长，而不是只看海外收入或储能收入规模。\n- 2027—2028 年，用完整年度或滚动年度检查现金流，避免把半年的收付款季节性直接定性为恶化。我会把经营现金流／归母净利润恢复到 0.8 以上作为研究门槛之一，结合应收和存货判断；这是自设筛选条件，不是会计准则。\n- 到 2028—2029 年，重新检查订单可见度、竞争、产能利用率和所付估值。若只有利润增长而估值明显压缩，股东回报仍可能很低。\n\n储能运营、虚拟电厂和新型电力电子仍可作为后续研究方向，但本轮没有核实到足够的独立盈利、收费与回款证据，不把概念名单列为已成立的机会。南瑞与思源也共享电网投资及设备周期风险，持有两家不等于充分分散。\n\n本次属于有限额度的公开资料研究，覆盖的是两家较完整候选及一家排查对象，并未穷尽 A 股。价格来自公开历史行情，未完成交易所原始日行情逐笔校验；思源只有一个明确截止日价格来源，平高存在上述冲突。2026 年 7—8 月全国电网工程投资的同口径最新值也未成功取得，因此没有用旧年份结果冒充。结论应理解为有价格与经营条件的研究排序，不能理解为按现价无条件买入。",
+      "sources": [
+        {
+          "id": "S01",
+          "title": "国家电网“十五五”计划投资4万亿元建设新型电力系统",
+          "url": "https://www.sasac.gov.cn/n2588025/n2588124/c35325777/content.html",
+          "published_at": "2026-01-19",
+          "type": "国资委转发国家电网公告",
+          "evidence_and_caveat": "搜索返回正文；直接打开 Internal Error；投资口径用能源局转载交叉核对"
+        },
+        {
+          "id": "S02",
+          "title": "4万亿元投资发力！国家电网“十五五”锚定新型电力系统建设",
+          "url": "https://www.nea.gov.cn/20260130/f5870f4fe28744139406827434f3859c/c.html",
+          "published_at": "2026-01-30",
+          "type": "国家能源局转新华社",
+          "evidence_and_caveat": "验证国家电网投资规划；无年度40%增长推断"
+        },
+        {
+          "id": "S03",
+          "title": "2026年上半年新能源和可再生能源发展情况",
+          "url": "https://www.nea.gov.cn/20260817/3b9aadf9d3e540879aa8e1d15405ff71/c.html",
+          "published_at": "2026-08-17",
+          "type": "国家能源局",
+          "evidence_and_caveat": "检索结果给出装机60.7%、发电量41.2%等数据"
+        },
+        {
+          "id": "S04",
+          "title": "主要电力企业电源工程建设完成投资4.7万亿元",
+          "url": "https://paper.people.com.cn/rmrbhwb/pad/content/202607/15/content_30168732.html",
+          "published_at": "2026-07-15",
+          "type": "人民日报海外版转述中电联年度报告",
+          "evidence_and_caveat": "2025年电网工程与细分电压等级实际投资"
+        },
+        {
+          "id": "S05",
+          "title": "关于完善发电侧容量电价机制的通知",
+          "url": "https://www.ndrc.gov.cn/xwdt/tzgg/202601/t20260130_1403525.html",
+          "published_at": "2026-01-30",
+          "type": "国家发展改革委、国家能源局政策原文，落款2026-01-27",
+          "evidence_and_caveat": "容量电价、放电时长、项目清单与不重复补偿"
+        },
+        {
+          "id": "S06",
+          "title": "国电南瑞2026年半年度报告",
+          "url": "https://static.cninfo.com.cn/finalpage/2026-08-27/1225508099.PDF",
+          "published_at": "2026-08-27",
+          "type": "公司法定披露PDF",
+          "evidence_and_caveat": "报告第9、19、22页财务、合同、现金流；总股本为2026-08-24口径"
+        },
+        {
+          "id": "S07",
+          "title": "国电南瑞2025年度提质增效重回报评估暨2026年度行动方案",
+          "url": "https://file.finance.sina.com.cn/211.154.219.97%3A9494/MRGG/CNSESH_STOCK/2026/2026-4/2026-04-30/12278712.PDF",
+          "published_at": "2026-04-30",
+          "type": "公司公告PDF，新浪托管",
+          "evidence_and_caveat": "2025利润82.79亿元、分红49.68亿元等"
+        },
+        {
+          "id": "S08",
+          "title": "国电南瑞9月21日行情快报",
+          "url": "https://wap.stockstar.com/detail/RB2026092100027138",
+          "published_at": "2026-09-21",
+          "type": "证券之星行情转述",
+          "evidence_and_caveat": "22.10元与Investing检索结果一致；未用资金流向支持估值"
+        },
+        {
+          "id": "S09",
+          "title": "国电南瑞历史行情",
+          "url": "https://cn.investing.com/equities/nari-tech-historical-data",
+          "published_at": null,
+          "type": "第三方历史行情",
+          "evidence_and_caveat": "检索显示2026-09-21收盘22.10元；动态页面"
+        },
+        {
+          "id": "S10",
+          "title": "思源电气2026年半年度报告",
+          "url": "https://disc.static.szse.cn/disc/disk03/finalpage/2026-08-15/ef9f19b9-f0eb-48cf-8eef-05c2c8d8f6cc.PDF",
+          "published_at": "2026-08-15",
+          "type": "深交所公司法定披露PDF",
+          "evidence_and_caveat": "最终半年报净利14.637亿元取代较早业绩快报14.87亿元"
+        },
+        {
+          "id": "S11",
+          "title": "思源电气2025年年度报告",
+          "url": "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12112020&stockid=002028",
+          "published_at": "2026-04-18",
+          "type": "公司年报，新浪转载",
+          "evidence_and_caveat": "稀释EPS4.01、归母31.501亿元；使用年报而非快报"
+        },
+        {
+          "id": "S12",
+          "title": "思源电气历史行情",
+          "url": "https://hk.investing.com/equities/sieyuan-electric-a-historical-data",
+          "published_at": null,
+          "type": "第三方历史行情",
+          "evidence_and_caveat": "检索显示2026-09-21收盘138.89元；无第二个截止日价格源"
+        },
+        {
+          "id": "S13",
+          "title": "平高电气2026年半年度报告摘要",
+          "url": "https://static.cninfo.com.cn/finalpage/2026-08-20/1225483266.PDF",
+          "published_at": "2026-08-20",
+          "type": "公司法定披露PDF",
+          "evidence_and_caveat": "归母8.1685亿元、经营现金流-6.8944亿元、EPS0.6020"
+        },
+        {
+          "id": "S14",
+          "title": "平高电气2026年半年度报告",
+          "url": "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12506211&stockid=600312",
+          "published_at": "2026-08-20",
+          "type": "公司半年报，新浪转载",
+          "evidence_and_caveat": "工具展示到财务指标，未取得完整利润桥接"
+        },
+        {
+          "id": "S15",
+          "title": "平高电气关于会计估计变更的公告",
+          "url": "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12506207&stockid=600312",
+          "published_at": "2026-08-20",
+          "type": "公司公告，新浪转载",
+          "evidence_and_caveat": "由公告列表及点击核实公告存在；本轮响应未展示影响金额"
+        },
+        {
+          "id": "S16",
+          "title": "平高电气中标公告",
+          "url": "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12589171&stockid=600312",
+          "published_at": "2026-09-09",
+          "type": "公司公告，新浪转载",
+          "evidence_and_caveat": "由公告列表及点击核实；未把未读取金额写入答案"
+        },
+        {
+          "id": "S17",
+          "title": "平高电气逐日行情",
+          "url": "https://www.yyqyx.com/s/600312.SH",
+          "published_at": null,
+          "type": "第三方行情",
+          "evidence_and_caveat": "搜索结果2026-09-21收盘19.49元，来源权威性有限"
+        },
+        {
+          "id": "S18",
+          "title": "平高电气历史行情（日文）",
+          "url": "https://jp.investing.com/equities/pinggao-elec-historical-data",
+          "published_at": null,
+          "type": "第三方历史行情",
+          "evidence_and_caveat": "搜索结果有2026-09-21收盘19.49元；打开时返回至9月7日，缓存不一致"
+        },
+        {
+          "id": "S19",
+          "title": "平高电气日期可能错配的行情页（未采用）",
+          "url": "https://www.kissdown.cn/daima/600312/20260311.html",
+          "published_at": "2026-09-21（页面标注，存疑）",
+          "type": "低可信第三方行情",
+          "evidence_and_caveat": "声称9月21日19.77元；该OHLC与Investing打开页8月28日行一致，故排除"
+        }
+      ],
+      "tools_log": [
+        {
+          "tool": "discovery",
+          "parameters": {
+            "name_filter": "web.*run$"
+          },
+          "started_at": "2026-09-22 07:07:39 UTC",
+          "result": [
+            "web__run"
+          ],
+          "entries": 0,
+          "errors": []
+        },
+        {
+          "tool": "web__run",
+          "parameters": {
+            "search_query": [
+              {
+                "q": "国家电网 2026 投资 6500亿 十五五 4万亿 2026 9月"
+              },
+              {
+                "q": "中国电力企业联合会 2026 上半年 电网工程 完成投资 电源 2026 7月"
+              },
+              {
+                "q": "国电南瑞 2026 半年报 净利润 订单 特高压 海外"
+              }
+            ],
+            "response_length": "long"
+          },
+          "started_at": "2026-09-22T07:07:47.138Z",
+          "completed_at": "2026-09-22T07:07:50.714Z",
+          "entry_count": 3,
+          "operation_counts_after": {
+            "web_entries": 3,
+            "search": 3,
+            "open": 0,
+            "find": 0,
+            "click": 0,
+            "local_calculations": 0
+          },
+          "sources": [
+            "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12543058&stockid=600406",
+            "https://paper.people.com.cn/rmrbhwb/pad/content/202607/15/content_30168732.html",
+            "https://stock.stockstar.com/notice/SN2026082700000062.shtml",
+            "https://www.nea.gov.cn/20260130/f5870f4fe28744139406827434f3859c/c.html",
+            "https://www.sasac.gov.cn/n2588025/n2588124/c35325777/content.html",
+            "https://paper.cnstock.com/html/2026-08/27/content_2260635.htm",
+            "https://stock.finance.sina.com.cn/stock/go.php/vReport_Show/kind/search/rptid/841230891884/index.phtml",
+            "https://stock.finance.sina.com.cn/stock/go.php/vReport_Show/kind/lastest/rptid/841391522549/index.phtml",
+            "https://stock.finance.sina.com.cn/stock/go.php/vReport_Show/kind/company/rptid/841166433823/index.phtml",
+            "https://data.eastmoney.com/report/info/AP202608271828523383.html",
+            "https://static.sse.com.cn/bond/bridge2/disclosure/announcement/c/202603/fe9984_20260320_UBAQ.pdf",
+            "https://finance.eastmoney.com/a/202608273856102977.html",
+            "https://stock.finance.sina.com.cn/stock/go.php/vReport_Show/kind/search/rptid/843045124862/index.phtml",
+            "https://static.cninfo.com.cn/finalpage/2026-08-27/1225508099.PDF",
+            "https://file.finance.sina.com.cn/211.154.219.97%3A9494/MRGG/CNSESH_STOCK/2026/2026-4/2026-04-30/12278712.PDF",
+            "https://static.cninfo.com.cn/finalpage/2026-04-01/1225070157.PDF",
+            "https://idea-cp.cnfin.com/ice/2025/10/14/62c486eb72ae44419d9300f6e36a100f.pdf",
+            "https://static.sse.com.cn/disclosure/bond/announcement/company/c/new/2026-05-25/245285_20260525_5KTR.pdf",
+            "https://www.youtube.com/watch?v=AB28bVKQ8tg",
+            "https://www.youtube.com/watch?v=6f6_ppkkXCo"
+          ],
+          "result_summary": "检索国家电网十五五投资、行业投资和国电南瑞中报；获得4万亿元投资计划、2025实际电网投资细分、南瑞2026半年报及原始PDF链接。",
+          "errors": []
+        },
+        {
+          "tool": "web__run",
+          "parameters": {
+            "search_query": [
+              {
+                "q": "site.nea.gov.cn 2026 1-8月份 电网工程 完成投资"
+              },
+              {
+                "q": "思源电气 平高电气 2026 半年度报告 净利润 毛利率 订单"
+              },
+              {
+                "q": "国电南瑞 思源电气 平高电气 2026年9月21日 收盘"
+              },
+              {
+                "q": "site.ndrc.gov.cn 电力 2026 1月 容量 电价 储能 电网 调节 114"
+              }
+            ],
+            "response_length": "long"
+          },
+          "started_at": "2026-09-22T07:08:09.429Z",
+          "completed_at": "2026-09-22T07:08:12.130Z",
+          "entry_count": 4,
+          "operation_counts_after": {
+            "web_entries": 7,
+            "search": 7,
+            "open": 0,
+            "find": 0,
+            "click": 0,
+            "local_calculations": 0
+          },
+          "sources": [
+            "https://www.ndrc.gov.cn/xxgk/jd/jd/202601/t20260130_1403521_ext.html",
+            "https://www.ndrc.gov.cn/xxgk/jd/jd/202601/t20260130_1403520_ext.html",
+            "https://www.nea.gov.cn/2024-09/23/c_1212399359.htm",
+            "https://gzb.nea.gov.cn/dtyw/hyxx/202310/t20231023_192143.html",
+            "https://www.ndrc.gov.cn/xwdt/tzgg/202601/t20260130_1403525.html",
+            "https://cn.investing.com/equities/nari-tech-historical-data",
+            "https://hk.investing.com/equities/sieyuan-electric-a-historical-data",
+            "https://prpq.nea.gov.cn/jnyw/14599.html",
+            "https://zfxxgk.ndrc.gov.cn/wap/iteminfo.jsp?id=18883",
+            "https://www.ndrc.gov.cn/xxgk/jd/jd/202602/t20260211_1403695.html",
+            "https://www.ndrc.gov.cn/xxgk/zcfb/tz/202402/t20240227_1364257_ext.html",
+            "https://static.cninfo.com.cn/finalpage/2026-08-15/1225473691.PDF",
+            "https://wap.stockstar.com/detail/RB2026092100027138",
+            "https://disc.static.szse.cn/disc/disk03/finalpage/2026-08-15/ef9f19b9-f0eb-48cf-8eef-05c2c8d8f6cc.PDF",
+            "https://www.nrdc.cn/Public/uploads/2024-08-08/66b42073b4579.pdf",
+            "https://www.nrdc.cn/Public/uploads/2025-11-27/692809b062466.pdf",
+            "https://www.nrdc.cn/Public/uploads/2025-07-22/687eeb2746622.pdf"
+          ],
+          "result_summary": "检索2026年1-8月电网投资、思源/平高中报与三家9月21日价格及容量电价；未取得2026年1-8月同口径电网投资，结果含2024旧数据；取得114号文、思源半年报链接、南瑞22.10及思源138.89的历史行情行。",
+          "errors": []
+        },
+        {
+          "tool": "web__run",
+          "parameters": {
+            "open": [
+              {
+                "ref_id": "https://static.cninfo.com.cn/finalpage/2026-08-27/1225508099.PDF"
+              },
+              {
+                "ref_id": "https://disc.static.szse.cn/disc/disk03/finalpage/2026-08-15/ef9f19b9-f0eb-48cf-8eef-05c2c8d8f6cc.PDF"
+              },
+              {
+                "ref_id": "https://www.sasac.gov.cn/n2588025/n2588124/c35325777/content.html"
+              },
+              {
+                "ref_id": "https://cn.investing.com/equities/nari-tech-historical-data"
+              },
+              {
+                "ref_id": "https://hk.investing.com/equities/sieyuan-electric-a-historical-data"
+              }
+            ],
+            "response_length": "long"
+          },
+          "started_at": "2026-09-22T07:08:26.361Z",
+          "completed_at": "2026-09-22T07:08:29.059Z",
+          "entry_count": 5,
+          "operation_counts_after": {
+            "web_entries": 12,
+            "search": 7,
+            "open": 5,
+            "find": 0,
+            "click": 0,
+            "local_calculations": 0
+          },
+          "sources": [
+            "https://static.cninfo.com.cn/finalpage/2026-08-27/1225508099.PDF",
+            "https://disc.static.szse.cn/disc/disk03/finalpage/2026-08-15/ef9f19b9-f0eb-48cf-8eef-05c2c8d8f6cc.PDF",
+            "https://www.sasac.gov.cn/n2588025/n2588124/c35325777/content.html",
+            "https://cn.investing.com/equities/nari-tech-historical-data",
+            "https://hk.investing.com/equities/sieyuan-electric-a-historical-data"
+          ],
+          "result_summary": "打开南瑞和思源半年报PDF、国资委计划原文、两家历史行情；国资委页面直接打开返回Internal Error，其余返回文档元数据/内容。",
+          "errors": [
+            {
+              "operation": "open",
+              "url": "https://www.sasac.gov.cn/n2588025/n2588124/c35325777/content.html",
+              "message": "Internal Error"
+            }
+          ]
+        },
+        {
+          "tool": "web__run",
+          "parameters": {
+            "search_query": [
+              {
+                "q": "平高电气 2026 半年度报告 2026年9月21日 收盘价"
+              },
+              {
+                "q": "2026年 1-7月 电网工程 投资 国家能源局"
+              },
+              {
+                "q": "思源电气 2026 半年度报告 归属 净利润 经营活动 2025 2026"
+              }
+            ],
+            "find": [
+              {
+                "ref_id": "turn413view0",
+                "pattern": "456.33"
+              },
+              {
+                "ref_id": "turn413view1",
+                "pattern": "主要会计数据"
+              },
+              {
+                "ref_id": "turn413view1",
+                "pattern": "新增订单"
+              }
+            ],
+            "response_length": "long"
+          },
+          "started_at": "2026-09-22T07:08:42.393Z",
+          "completed_at": "2026-09-22T07:08:45.174Z",
+          "entry_count": 6,
+          "operation_counts_after": {
+            "web_entries": 18,
+            "search": 10,
+            "open": 5,
+            "find": 3,
+            "click": 0,
+            "local_calculations": 0
+          },
+          "sources": [
+            "https://disc.static.szse.cn/download/disc/disk03/finalpage/2026-08-15/ef9f19b9-f0eb-48cf-8eef-05c2c8d8f6cc.PDF",
+            "https://disc.static.szse.cn/disc/disk03/finalpage/2026-08-15/ef9f19b9-f0eb-48cf-8eef-05c2c8d8f6cc.PDF",
+            "https://www.nea.gov.cn/2024-08/23/c_1310785026.htm",
+            "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12494945&stockid=002028",
+            "https://hbj.nea.gov.cn/dtyw/gjnyjdt/202309/t20230917_106988.html",
+            "https://www.ithome.com/0/975/968.htm",
+            "https://www.ithome.com/0/989/803.htm",
+            "https://prpq.nea.gov.cn/jnyw/14268.html",
+            "https://obor.nea.gov.cn/detail/23027.html",
+            "https://www.lixinger.com/equity/company/detail/sz/002028/2028/announcement?type=fs",
+            "https://wap.stockstar.com/detail/SN2026081500000019",
+            "https://www.nea.gov.cn/20260817/3b9aadf9d3e540879aa8e1d15405ff71/c.html",
+            "https://static.cninfo.com.cn/finalpage/2026-08-15/1225473691.PDF",
+            "https://finance.sina.com.cn/stock/yyyj/2026-08-14/doc-ininicvf2732738.shtml",
+            "https://prpq.nea.gov.cn/hyzx/14198.html",
+            "https://pdf.dfcfw.com/pdf/H3_AP202603101820464861_1.pdf?1773179178000.pdf=",
+            "https://static.cninfo.com.cn/finalpage/2026-08-20/1225483266.PDF",
+            "https://pdf.dfcfw.com/pdf/H2_AN202603311820922293_1.pdf?1774985554000.pdf=",
+            "https://static.cninfo.com.cn/finalpage/2026-08-27/1225508099.PDF"
+          ],
+          "result_summary": "检索平高中报和行情、2026年1-7月投资、思源中报；找到平高中报摘要和可再生能源2026H1结构；月度投资检索仍落到2024数据，未采用。查找南瑞合同成功；思源PDF两次find未匹配，后续改为按行打开。",
+          "errors": [
+            {
+              "operation": "find",
+              "ref_id": "turn413view1",
+              "pattern": "主要会计数据",
+              "message": "No matching text found"
+            },
+            {
+              "operation": "find",
+              "ref_id": "turn413view1",
+              "pattern": "新增订单",
+              "message": "No matching text found"
+            }
+          ]
+        },
+        {
+          "tool": "web__run",
+          "parameters": {
+            "search_query": [
+              {
+                "q": "平高电气 2026年9月21日 收盘"
+              },
+              {
+                "q": "思源电气 平高电气 2025 年报 归母净利润"
+              }
+            ],
+            "open": [
+              {
+                "ref_id": "https://static.cninfo.com.cn/finalpage/2026-08-20/1225483266.PDF"
+              },
+              {
+                "ref_id": "turn413view1",
+                "lineno": 150
+              },
+              {
+                "ref_id": "turn413view0",
+                "lineno": 540
+              },
+              {
+                "ref_id": "https://www.nea.gov.cn/20260130/f5870f4fe28744139406827434f3859c/c.html"
+              }
+            ],
+            "response_length": "long"
+          },
+          "started_at": "2026-09-22T07:09:01.227Z",
+          "completed_at": "2026-09-22T07:09:04.284Z",
+          "entry_count": 6,
+          "operation_counts_after": {
+            "web_entries": 24,
+            "search": 12,
+            "open": 9,
+            "find": 3,
+            "click": 0,
+            "local_calculations": 0
+          },
+          "sources": [
+            "https://www.yyqyx.com/s/600312.SH",
+            "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12112020&stockid=002028",
+            "https://jp.investing.com/equities/pinggao-elec-historical-data",
+            "https://www.kissdown.cn/daima/600312/20260311.html",
+            "https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?CompanyCode=10001417&gather=1&id=11917669",
+            "https://stock.stockstar.com/notice/SN2026041800001864.shtml",
+            "https://cn.investing.com/equities/pinggao-elec-historical-data",
+            "https://www.lixinger.com/equity/company/detail/sz/002028/2028/announcement?type=fs",
+            "https://stock.stockstar.com/AN2026041800007915.shtml",
+            "https://finance.eastmoney.com/a/202604173709199574.html",
+            "https://finance.sina.com.cn/stock/relnews/cn/2026-04-22/doc-inhvkupw9269682.shtml",
+            "https://s.askci.com/stock/financialreport/002028/financefile/",
+            "https://static.cninfo.com.cn/finalpage/2025-04-19/1223145398.PDF",
+            "https://static.cninfo.com.cn/finalpage/2025-08-16/1224498689.PDF",
+            "https://static.cninfo.com.cn/finalpage/2025-10-18/1224719649.PDF",
+            "https://disc.static.szse.cn/download/disc/disk03/finalpage/2025-04-19/1a6a122f-b4a9-4849-9567-9359638414aa.PDF",
+            "https://file.finance.sina.com.cn/211.154.219.97%3A9494/MRGG/CNSESZ_STOCK/2025/2025-4/2025-04-26/11011213.PDF",
+            "https://pdf.dfcfw.com/pdf/H3_AP202509301753244710_1.pdf%3F1759223174000.pdf",
+            "https://static.cninfo.com.cn/finalpage/2026-08-20/1225483266.PDF",
+            "https://disc.static.szse.cn/disc/disk03/finalpage/2026-08-15/ef9f19b9-f0eb-48cf-8eef-05c2c8d8f6cc.PDF",
+            "https://static.cninfo.com.cn/finalpage/2026-08-27/1225508099.PDF",
+            "https://www.nea.gov.cn/20260130/f5870f4fe28744139406827434f3859c/c.html"
+          ],
+          "result_summary": "最后两次搜索取得平高19.49元行情、存在冲突的19.77元页面、思源2025年报31.50亿元等；打开平高摘要、思源/南瑞指定行及能源局投资规划转载。搜索预算到12。",
+          "errors": []
+        },
+        {
+          "tool": "web__run",
+          "parameters": {
+            "open": [
+              {
+                "ref_id": "turn417view0",
+                "lineno": 0
+              },
+              {
+                "ref_id": "turn413view1",
+                "lineno": 190
+              },
+              {
+                "ref_id": "https://file.finance.sina.com.cn/211.154.219.97%3A9494/MRGG/CNSESH_STOCK/2026/2026-4/2026-04-30/12278712.PDF"
+              }
+            ],
+            "response_length": "long"
+          },
+          "started_at": "2026-09-22T07:09:23.808Z",
+          "completed_at": "2026-09-22T07:09:26.281Z",
+          "entry_count": 3,
+          "operation_counts_after": {
+            "web_entries": 27,
+            "search": 12,
+            "open": 12,
+            "find": 3,
+            "click": 0,
+            "local_calculations": 0
+          },
+          "sources": [
+            "https://static.cninfo.com.cn/finalpage/2026-08-20/1225483266.PDF",
+            "http://www.sse.com.cn",
+            "https://disc.static.szse.cn/disc/disk03/finalpage/2026-08-15/ef9f19b9-f0eb-48cf-8eef-05c2c8d8f6cc.PDF",
+            "https://file.finance.sina.com.cn/211.154.219.97%3A9494/MRGG/CNSESH_STOCK/2026/2026-4/2026-04-30/12278712.PDF",
+            "https://file.finance.sina.com.cn/211.154.219.97:9494/MRGG/CNSESH_STOCK/2026/2026-4/2026-04-30/12278712.PDF;"
+          ],
+          "result_summary": "打开平高摘要全文，取得收入-5.64%、归母+22.87%、经营现金流-6.89亿元；打开思源业务和毛利表，海外增长11.22%、毛利33.39%，储能毛利10.50%；打开南瑞年度行动评估公告。",
+          "errors": []
+        },
+        {
+          "tool": "web__run",
+          "parameters": {
+            "open": [
+              {
+                "ref_id": "https://money.finance.sina.com.cn/corp/go.php/vCB_AllBulletin/stockid/600312.phtml"
+              },
+              {
+                "ref_id": "turn419view2",
+                "lineno": 20
+              },
+              {
+                "ref_id": "turn413view0",
+                "lineno": 565
+              }
+            ],
+            "response_length": "long"
+          },
+          "started_at": "2026-09-22T07:09:47.106Z",
+          "completed_at": "2026-09-22T07:09:49.669Z",
+          "entry_count": 3,
+          "operation_counts_after": {
+            "web_entries": 30,
+            "search": 12,
+            "open": 15,
+            "find": 3,
+            "click": 0,
+            "local_calculations": 0
+          },
+          "sources": [
+            "https://money.finance.sina.com.cn/corp/go.php/vCB_AllBulletin/stockid/600312.phtml",
+            "https://file.finance.sina.com.cn/211.154.219.97%3A9494/MRGG/CNSESH_STOCK/2026/2026-4/2026-04-30/12278712.PDF",
+            "https://file.finance.sina.com.cn/211.154.219.97:9494/MRGG/CNSESH_STOCK/2026/2026-4/2026-04-30/12278712.PDF;",
+            "https://file.finance.sina.com.cn/211.154.219.97:9494/MRGG/CNSESH_STOCK/2026/2026-4/2026-04-30/12278712.PDF",
+            "https://static.cninfo.com.cn/finalpage/2026-08-27/1225508099.PDF"
+          ],
+          "result_summary": "打开平高公告列表以定位最新法定披露；读南瑞年度利润分红与2026半年报采购付款导致现金流下降的说明。",
+          "errors": []
+        },
+        {
+          "tool": "web__run",
+          "parameters": {
+            "find": [
+              {
+                "ref_id": "turn422view0",
+                "pattern": "2026年半年度报告"
+              }
+            ],
+            "open": [
+              {
+                "ref_id": "turn417search2"
+              },
+              {
+                "ref_id": "turn417search1",
+                "lineno": 240
+              }
+            ],
+            "response_length": "long"
+          },
+          "started_at": "2026-09-22T07:10:01.860Z",
+          "completed_at": "2026-09-22T07:10:04.521Z",
+          "entry_count": 3,
+          "operation_counts_after": {
+            "web_entries": 33,
+            "search": 12,
+            "open": 17,
+            "find": 4,
+            "click": 0,
+            "local_calculations": 0
+          },
+          "sources": [
+            "https://jp.investing.com/equities/pinggao-elec-historical-data",
+            "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12112020&stockid=002028",
+            "https://money.finance.sina.com.cn/corp/go.php/vCB_AllBulletin/stockid/600312.phtml"
+          ],
+          "result_summary": "查找平高公告列表中的半年报，识别同日会计估计变更和9月9日中标公告；打开平高Investing日文行情却只返回至9月7日，与搜索缓存不同；读思源年报指定段。",
+          "errors": []
+        },
+        {
+          "tool": "web__run",
+          "parameters": {
+            "click": [
+              {
+                "ref_id": "turn422view0"
+              },
+              {
+                "ref_id": "turn422view0"
+              },
+              {
+                "ref_id": "turn422view0"
+              }
+            ],
+            "response_length": "long"
+          },
+          "started_at": "2026-09-22T07:10:16.509Z",
+          "completed_at": "2026-09-22T07:10:18.999Z",
+          "entry_count": 3,
+          "operation_counts_after": {
+            "web_entries": 36,
+            "search": 12,
+            "open": 17,
+            "find": 4,
+            "click": 3,
+            "local_calculations": 0
+          },
+          "sources": [
+            "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12506211&stockid=600312",
+            "http://www.pinggao.com",
+            "http://www.sse.com.cn",
+            "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12506207&stockid=600312",
+            "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12589171&stockid=600312"
+          ],
+          "result_summary": "点击平高中报、会计估计变更和9月9日中标公告；中报返回财务指标，另外两份仅展示元数据，未取得会计变更影响金额或中标金额。web预算到36。",
+          "errors": []
+        },
+        {
+          "tool": "local_javascript_calculation",
+          "parameters": {
+            "nari": {
+              "price": 22.1,
+              "ttm_eps": 1.0457859262541587,
+              "annual_2025_net_profit_100m": 82.79,
+              "half_2026_net_profit_100m": 30.7268882628,
+              "half_2025_net_profit_100m": 29.5219127523,
+              "current_shares_100m": 80.31756156
+            },
+            "sieyuan": {
+              "price": 138.89,
+              "approx_diluted_ttm_eps": 4.199999999999999,
+              "eps_2025_diluted": 4.01,
+              "eps_h1_2026_diluted": 1.85,
+              "eps_h1_2025_diluted": 1.66
+            },
+            "scenarios": {
+              "nari": [
+                {
+                  "name": "bear",
+                  "g": 0,
+                  "pe": 16
+                },
+                {
+                  "name": "base",
+                  "g": 0.1,
+                  "pe": 20
+                },
+                {
+                  "name": "bull",
+                  "g": 0.15,
+                  "pe": 24
+                }
+              ],
+              "sieyuan": [
+                {
+                  "name": "bear",
+                  "g": 0.05,
+                  "pe": 20
+                },
+                {
+                  "name": "base",
+                  "g": 0.15,
+                  "pe": 25
+                },
+                {
+                  "name": "bull",
+                  "g": 0.25,
+                  "pe": 30
+                }
+              ]
+            }
+          },
+          "formula": "EPS_N=(FY2025归母+H12026归母-H12025归母)/20260824总股本；EPS_S=2025稀释EPS+H12026稀释EPS-H12025稀释EPS（近似）；3年价格=EPS0*(1+g)^3*终值PE；年化=(3年价格/买价)^(1/3)-1；不计分红；12%回报买价=3年价格/1.12^3。",
+          "started_at": "2026-09-22T07:11:45.951Z",
+          "completed_at": "2026-09-22T07:11:45.954Z",
+          "entries": 0,
+          "result": {
+            "nari_ttm_pe": 21.13243202570027,
+            "sieyuan_approx_ttm_pe": 33.06904761904762,
+            "nari": [
+              {
+                "name": "bear",
+                "g": 0,
+                "pe": 16,
+                "eps3": 1.0457859262541587,
+                "price3": 16.73257482006654,
+                "total_return_ex_dividend": -0.24286991764404808,
+                "cagr_ex_dividend": -0.08856961965850108,
+                "buy_price_for_12pct_cagr": 11.9099162519834
+              },
+              {
+                "name": "base",
+                "g": 0.1,
+                "pe": 20,
+                "eps3": 1.3919410678442856,
+                "price3": 27.838821356885713,
+                "total_return_ex_dividend": 0.25967517451971545,
+                "cagr_ex_dividend": 0.07998947592617367,
+                "buy_price_for_12pct_cagr": 19.815123164237388
+              },
+              {
+                "name": "bull",
+                "g": 0.15,
+                "pe": 24,
+                "eps3": 1.5905096705917934,
+                "price3": 38.17223209420304,
+                "total_return_ex_dividend": 0.7272503210046624,
+                "cagr_ex_dividend": 0.19982643809362122,
+                "buy_price_for_12pct_cagr": 27.170240819602874
+              }
+            ],
+            "sieyuan": [
+              {
+                "name": "bear",
+                "g": 0.05,
+                "pe": 20,
+                "eps3": 4.862025,
+                "price3": 97.2405,
+                "total_return_ex_dividend": -0.2998740010079919,
+                "cagr_ex_dividend": -0.1120427276395689,
+                "buy_price_for_12pct_cagr": 69.21386718749997
+              },
+              {
+                "name": "base",
+                "g": 0.15,
+                "pe": 25,
+                "eps3": 6.387674999999998,
+                "price3": 159.69187499999995,
+                "total_return_ex_dividend": 0.1497723018215853,
+                "cagr_ex_dividend": 0.047620401650148914,
+                "buy_price_for_12pct_cagr": 113.6655223612882
+              },
+              {
+                "name": "bull",
+                "g": 0.25,
+                "pe": 30,
+                "eps3": 8.203124999999998,
+                "price3": 246.09374999999994,
+                "total_return_ex_dividend": 0.7718608251133989,
+                "cagr_ex_dividend": 0.2100682576783255,
+                "buy_price_for_12pct_cagr": 175.16467036033154
+              }
+            ],
+            "nari_2025_dividend_yield_proxy": 0.02798844682586224,
+            "nari_entry_20_cagr": 0.11653827718014598,
+            "sieyuan_entry_110_cagr": 0.1323048781389482,
+            "pinggao_half_annualized_pe_only": 16.187707641196013
+          },
+          "errors": [],
+          "operation_counts_after": {
+            "web_entries": 36,
+            "search": 12,
+            "open": 17,
+            "find": 4,
+            "click": 3,
+            "local_calculations": 1
+          },
+          "sources": [
+            "S06",
+            "S07",
+            "S08",
+            "S10",
+            "S11",
+            "S12",
+            "S13",
+            "S17"
+          ]
+        }
+      ],
+      "operation_counts": {
+        "web_entries": 36,
+        "search_entries": 12,
+        "local_research_calculations": 1
+      },
+      "unresolved": [
+        "未取得2026年7—8月全国电网工程投资最新同口径值；检索所得2024数据没有用于当前判断。",
+        "国资委网页open失败；投资计划由其搜索正文及能源局转载交叉核对。",
+        "平高会计估计变更的量化影响、分部利润来源、订单金额与回款质量未完成核实，未列入优先机会。",
+        "平高9月21日价格存在搜索缓存与打开页日期差异；19.49元仅为参考，19.77元疑为8月28日数据错标。",
+        "思源138.89元只取得一个明确截止日行情来源；两家主候选均未取得交易所原始日行情核对。",
+        "滚动EPS使用已披露半年度数据；南瑞年度利润为公告四舍五入数，思源稀释EPS跨期相接为近似，存在股数口径差异。",
+        "未验证所有容量电价省级实施细则、独立储能项目清单或虚拟电厂独立盈利；不据此给公司确定估值溢价。"
+      ]
+    },
+    {
+      "label": "C",
+      "answer": "截至2026年9月21日，我把国电南瑞列为优先考虑的条件型机会，平高电气列为需要更低价格和交付证据的次选；思源电气经营能力值得关注，但当前价格要求较高。没有足够依据把整个电网设备板块当作便宜资产。本轮深入比较的是调度与控制、高压开关、综合输变电设备三条路径，不是全A股排名。\n\n电网扩张是真的，但要分清资金落到哪里。国家电网“十五五”固定资产投资计划4万亿元，较上一个五年增长40%；这是五年总额比较，不能当作每年增长40%。计划同时涉及跨区输电、配电网、微电网和数字设施。[国家电网计划，国资委2026-01-19](https://www.sasac.gov.cn/n2588025/n2588124/c35325777/content.html) 南网2026年安排1800亿元，其中设备更新投资不低于506亿元；上半年实际完成892.62亿元，同比增长14.79%。计划已有支出验证。[年度安排](https://www.sasac.gov.cn/n4470048/n35313464/n35346844/n35346859/c35326863/content.html)、[半年执行](https://wap.sasac.gov.cn/n2588025/n2588124/c35673203/content.html)\n\n我的机制判断是：新能源扩大接网与远距离送电需求，同时提高安全控制、调度和配网灵活性要求。设备厂商只有在取得订单、保留毛利并收回现金后才能兑现价值；电网投资还包括工程、土建等支出，不能全算成上市设备公司的市场。以下公司的已披露经营结果，也说明同一需求背景下的价值捕获并不相同。\n\n| 对象 | 截止日收盘价 | 近似归母利润TTM | 近似PE TTM | 本轮判断 |\n|---|---:|---:|---:|---|\n| 国电南瑞，600406.SH | 22.10元 | 83.99亿元 | 21.1倍 | 三者中优先，但利润转化仍需改善 |\n| 平高电气，600312.SH | 19.49元 | 12.72亿元 | 20.8倍 | 有订单支撑，当前价尚缺充分安全边际 |\n| 思源电气，002028.SZ | 138.89元 | 33.21亿元 | 32.7倍 | 增长较快，价格也要求更快兑现 |\n\n报价分别来自[南瑞历史行情](https://cn.investing.com/equities/nari-tech-historical-data)、[平高历史行情](https://jp.investing.com/equities/pinggao-elec-historical-data)、[思源历史行情](https://hk.investing.com/equities/sieyuan-electric-a-historical-data)。南瑞另有同日财经报道、平高另有历史行情页相互核对；思源未取得第二个独立报价源。均为人民币A股报价，不是可成交订单。\n\n计算用“2025全年归母利润＋2026上半年－2025上半年”，没有把半年利润简单翻倍。南瑞、思源按半年报股本计算；平高2025利润采用披露的11.2亿元近似值，股数用半年利润/EPS近似反推，所以估值仅保留一位小数。尚未逐项核对半年末至截止日股本变动。基础资料见[南瑞2025年报](https://static.cninfo.com.cn/finalpage/2026-04-30/1225257886.PDF)、[思源2025年报](https://disc.static.szse.cn/disc/disk03/finalpage/2026-04-18/e1ce7b05-0a5c-4746-bb9f-2f32b65301f9.PDF)、[平高2025年度财务报告材料](https://dataclouds.cninfo.com.cn/shgonggao/hsomarket/2026/20260511/2c899bcb343c4a5ea9c70daac73824ec.PDF)及下列半年报。思源年报全文访问失败，此处年度数字限于搜索索引展示的公告内容。\n\n国电南瑞的理由最完整：2026上半年新签合同456.33亿元、增长28.79%，柔直与调度项目已有落地；收入增长14.54%，归母利润仅增长4.08%，主营毛利率下降1.11个百分点。需求与盈利之间仍有损耗。半年经营现金流5.91亿元、同比减少22.17亿元，但现金流附注显示经营应付项目较上年同期多流出约22.65亿元，不能把现金下降全部解释成客户不付款。[南瑞2026半年报](https://static.cninfo.com.cn/finalpage/2026-08-27/1225508099.PDF)\n\n这支持“订单兑现、调度和柔直产品扩张”的三年路径，也提醒不能按合同增速预测净利润。2026—2027年的关键是已有项目履约；2027—2029年的增量还要靠后续采购、竞争地位与费用控制。这里的年份是研究窗口，未取得各合同逐年的交付表。国网采购关系能支持需求可见性，却不能证明厂商拥有无限定价权。若收入持续较快增长而利润与现金回报长期跟不上，10%的每股盈利增长假设就应下修。\n\n平高电气有真实订单，但利润改善的解释尚不充分。上半年收入53.74亿元、下降5.64%，归母利润8.17亿元、增长22.87%，扣非利润增长20.76%，经营现金流为-6.89亿元；公司解释收入下降与重点项目未到履约交付期有关。扣非同步增长削弱了“全靠一次性收益”的解释，但本轮未成功提取分产品毛利与成本变化，不能把利润增长直接归因于提价或高压产品结构。[平高2026半年报公告转载](https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12506211&stockid=600312)\n\n9月公告中标约9.36亿元，确认采购需求继续发生。不过公告包含合营公司，不能把全部金额都计入上市公司合并收入，更不能直接乘净利率算新增归母利润。[2026-09-09中标公告](https://static.cninfo.com.cn/finalpage/2026-09-09/1225552799.PDF) 这条路径依赖2026—2028年交付与回款、以及后续招标延续；无法核实年度交付分配。收入恢复但毛利回落，或者利润不能转成现金，都会削弱它相对南瑞的吸引力。\n\n思源电气最需要区分增长来源。2026上半年收入增长27.05%，归母增长13.23%；海外收入增长11.22%。开关毛利率39.06%、变压器36.36%，但快速增长的储能系统及元件毛利率只有10.50%。计算显示，储能贡献了约42%的新增收入，不能把总体收入增长等同于高毛利输变电设备需求增长；公司整体毛利率由约31.74%降至30.46%。[思源2026半年报](https://disc.static.szse.cn/download/disc/disk03/finalpage/2026-08-15/ef9f19b9-f0eb-48cf-8eef-05c2c8d8f6cc.PDF)\n\n思源2025年新增订单288.91亿元、增长34.64%，为后续交付提供基础，但订单口径为不含税，不能与各公告含税中标额混加。[思源2025年报披露](https://disc.static.szse.cn/disc/disk03/finalpage/2026-04-18/e1ce7b05-0a5c-4746-bb9f-2f32b65301f9.PDF) 三年回报需要开关和变压器的盈利优势保持、订单按期交付并改善现金回收；本轮证据不足以把海外扩张外推成持续高速盈利增长，也没有据此给储能业务单独加估值。\n\n把价格条件说清楚，以下是我设定的敏感性计算，并非公司指引、市场一致预期或目标价。以当前TTM每股盈利为起点，三年股数不变；假设南瑞和平高每股盈利年增10%，思源年增15%，退出PE分别20、18、25倍。这组倍数只是分析假设，反映我对业务持续性与增长要求的差别，未以历史估值分位证明其“合理”。\n\n| 对象 | 三年EPS增长假设 / 退出PE | 该情景当前买价对应的年化股价收益 | 要求年化12%股价收益时的价格上限 | 当前价达到该回报所需EPS年增 |\n|---|---|---:|---:|---:|\n| 国电南瑞 | 10% / 20倍 | 8.0% | 约19.8元 | 14.1% |\n| 平高电气 | 10% / 18倍 | 4.8% | 约16.0元 | 17.5% |\n| 思源电气 | 15% / 25倍 | 5.1% | 约114.9元 | 22.5% |\n\n公式为：三年终值＝当前TTM EPS×(1＋增长率)^3×退出PE；价格上限＝终值/1.12^3。12%是本轮分析者设定的门槛，不是用户的既定收益要求。未计股息、税费和稀释，因此这些数字是股价收益，不是总回报；纳入未来股息会提高相应价格上限，但本轮未完整建模未来分红。\n\n由此，我更愿在约20元附近、且合同向利润的转化改善时考虑南瑞；22.10元下属于有经营基础的合理候选，尚非明显便宜。平高约16元的价格条件比现在更有容错空间，但必须先补上利润结构与回款解释。思源若价格接近115元、经营假设保持，或有足够证据支持超过22%的持续每股盈利增长，才更接近本轮回报门槛。价格下跌本身不构成机会，经营假设恶化时这些上限也要同步下调。\n\n还没有完成的关键核查是：平高分产品盈利桥、三家公司订单的逐年交付与现金占用安排、思源最新完整订单和第二报价源、半年末后股本变动及更广同业比较。平高交易所PDF两种协议访问失败，公告转载页的相关查找也未成功；思源年报两个公开路径访问失败；PDF截图调用未在工具输出中显示图像。因此不能把这些缺口表述为公司没有披露或问题不存在。本轮检索达到实验上限，结论止于上述有价格条件的有限比较。",
+      "sources": [
+        {
+          "url": "https://www.sasac.gov.cn/n2588025/n2588124/c35325777/content.html",
+          "title": "国家电网十五五计划投资4万亿元",
+          "date": "2026-01-19",
+          "access": "search_result",
+          "evidence": "五年固定资产投资4万亿、较十四五+40%，主配微与跨区输电规划"
+        },
+        {
+          "url": "https://www.sasac.gov.cn/n4470048/n35313464/n35346844/n35346859/c35326863/content.html",
+          "title": "南方电网2026固定资产投资安排",
+          "date": "2026-01-21",
+          "access": "search_result",
+          "evidence": "1800亿元；设备更新不低于506亿元"
+        },
+        {
+          "url": "https://wap.sasac.gov.cn/n2588025/n2588124/c35673203/content.html",
+          "title": "南网2026上半年投资执行",
+          "date": "2026-07-27",
+          "access": "search_result",
+          "evidence": "892.62亿元，同比14.79%"
+        },
+        {
+          "url": "https://static.cninfo.com.cn/finalpage/2026-08-27/1225508099.PDF",
+          "title": "国电南瑞2026半年报",
+          "date": "2026-08-27",
+          "access": "open/find/search successful; screenshot image not returned",
+          "evidence": "财务、订单456.33亿元、毛利率、股本与现金桥"
+        },
+        {
+          "url": "https://static.cninfo.com.cn/finalpage/2026-04-30/1225257886.PDF",
+          "title": "国电南瑞2025年报",
+          "date": "2026-04-30",
+          "access": "search/open successful",
+          "evidence": "归母8278971723.32元；2025经营现金12768702125.04元"
+        },
+        {
+          "url": "https://disc.static.szse.cn/download/disc/disk03/finalpage/2026-08-15/ef9f19b9-f0eb-48cf-8eef-05c2c8d8f6cc.PDF",
+          "title": "思源电气2026半年报",
+          "date": "2026-08-15",
+          "access": "open/find/search successful; screenshot image not returned",
+          "evidence": "财务、股本、产品收入与成本、海外收入"
+        },
+        {
+          "url": "https://disc.static.szse.cn/disc/disk03/finalpage/2026-04-18/e1ce7b05-0a5c-4746-bb9f-2f32b65301f9.PDF",
+          "title": "思源电气2025年报",
+          "date": "2026-04-18",
+          "access": "search indexing successful; both /disc and /download/disc full opens failed",
+          "evidence": "归母3150142665.04元；不含税新增订单288.91亿元"
+        },
+        {
+          "url": "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12506211&stockid=600312",
+          "title": "平高电气2026半年报公告转载",
+          "date": "2026-08-20",
+          "access": "search/open successful; find 毛利率/订单 returned no match",
+          "evidence": "收入、归母、扣非、CFO、项目未到交付期说明"
+        },
+        {
+          "url": "https://dataclouds.cninfo.com.cn/shgonggao/hsomarket/2026/20260511/2c899bcb343c4a5ea9c70daac73824ec.PDF",
+          "title": "平高电气2025年度财务报告材料",
+          "date": "2026-05-11",
+          "access": "search_result",
+          "evidence": "2025归母11.2亿元（舍入值）、营业收入125.17亿元"
+        },
+        {
+          "url": "https://static.cninfo.com.cn/finalpage/2026-09-09/1225552799.PDF",
+          "title": "平高中标公告2026-033",
+          "date": "2026-09-09",
+          "access": "search_result",
+          "evidence": "中标9.36亿元，包含合营公司，公告提示签约后合同履行影响经营"
+        },
+        {
+          "url": "https://cn.investing.com/equities/nari-tech-historical-data",
+          "title": "国电南瑞历史行情",
+          "date": "2026-09-21 observation",
+          "access": "search_result",
+          "evidence": "22.10元；与同日证券之星报道相符"
+        },
+        {
+          "url": "https://wap.stockstar.com/detail/RB2026092100027138",
+          "title": "国电南瑞9月21日收盘报道",
+          "date": "2026-09-21",
+          "access": "search_result",
+          "evidence": "22.10元"
+        },
+        {
+          "url": "https://hk.investing.com/equities/sieyuan-electric-a-historical-data",
+          "title": "思源电气历史行情",
+          "date": "2026-09-21 observation",
+          "access": "search_result",
+          "evidence": "138.89元，CNY深圳002028"
+        },
+        {
+          "url": "https://jp.investing.com/equities/pinggao-elec-historical-data",
+          "title": "平高电气历史行情",
+          "date": "2026-09-21 observation",
+          "access": "search_result",
+          "evidence": "19.49元；与大波浪历史行情相符"
+        },
+        {
+          "url": "https://www.yyqyx.com/s/600312.SH",
+          "title": "平高电气历史行情辅助核对",
+          "date": "2026-09-21 observation",
+          "access": "search_result",
+          "evidence": "19.49元；不采用搜索返回的另一日期错配页面报价"
+        }
+      ],
+      "tools_log": [
+        {
+          "at": "2026-09-22 07:02:03 UTC",
+          "tool": "web.run",
+          "parameters": {
+            "search_query": [
+              {
+                "q": "国家电网 2026 2030 固定资产投资 4万亿 新型电力系统 配电网"
+              },
+              {
+                "q": "南方电网 2026 投资 配电网 2025 2026 设备"
+              },
+              {
+                "q": "国电南瑞 2026 半年度报告 2025 年报 归母净利润"
+              },
+              {
+                "q": "思源电气 平高电气 2026 半年度报告 订单 海外"
+              }
+            ],
+            "response_length": "long"
+          },
+          "result": "成功。检索取得国网2026-01-19五年4万亿元计划、南网2026-01-21年度1800亿元计划和2026-07-27半年投资892.62亿元、南瑞2026半年报。第四项组合检索未取得思源/平高有效结果。",
+          "web_entries": 4,
+          "search_entries": 4,
+          "key_urls": [
+            "https://www.sasac.gov.cn/n2588025/n2588124/c35325777/content.html",
+            "https://www.sasac.gov.cn/n4470048/n35313464/n35346844/n35346859/c35326863/content.html",
+            "https://wap.sasac.gov.cn/n2588025/n2588124/c35673203/content.html",
+            "https://static.cninfo.com.cn/finalpage/2026-08-27/1225508099.PDF"
+          ]
+        },
+        {
+          "at": "2026-09-22 07:02:25 UTC",
+          "tool": "web.run",
+          "parameters": {
+            "search_query": [
+              {
+                "q": "思源电气 2026 半年度报告 营业收入 净利润 订单"
+              },
+              {
+                "q": "平高电气 2026 半年度报告 营业收入 净利润"
+              },
+              {
+                "q": "国电南瑞 思源电气 平高电气 2026年9月21日 收盘"
+              }
+            ],
+            "open": [
+              {
+                "ref_id": "https://static.cninfo.com.cn/finalpage/2026-08-27/1225508099.PDF"
+              }
+            ],
+            "response_length": "long"
+          },
+          "result": "成功取得三家公司2026半年报线索与南瑞原始PDF全文，取得2026-09-21南瑞22.10元、思源138.89元历史报价。半年报显示思源收入+27.05%但归母+13.23%，平高收入-5.64%但归母+22.87%。",
+          "web_entries": 4,
+          "search_entries": 3,
+          "key_urls": [
+            "https://disc.static.szse.cn/download/disc/disk03/finalpage/2026-08-15/ef9f19b9-f0eb-48cf-8eef-05c2c8d8f6cc.PDF",
+            "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12506211&stockid=600312",
+            "https://cn.investing.com/equities/nari-tech-historical-data",
+            "https://hk.investing.com/equities/sieyuan-electric-a-historical-data",
+            "https://static.cninfo.com.cn/finalpage/2026-08-27/1225508099.PDF"
+          ]
+        },
+        {
+          "at": "2026-09-22 07:02:59 UTC",
+          "tool": "web.run",
+          "parameters": {
+            "open": [
+              {
+                "ref_id": "https://disc.static.szse.cn/download/disc/disk03/finalpage/2026-08-15/ef9f19b9-f0eb-48cf-8eef-05c2c8d8f6cc.PDF"
+              },
+              {
+                "ref_id": "http://static.sse.com.cn/disclosure/listedinfo/announcement/c/new/2026-08-20/600312_20260820_NUD9.pdf"
+              }
+            ],
+            "find": [
+              {
+                "ref_id": "turn403view0",
+                "pattern": "主要会计数据"
+              },
+              {
+                "ref_id": "turn403view0",
+                "pattern": "毛利率"
+              },
+              {
+                "ref_id": "turn403view0",
+                "pattern": "新签"
+              }
+            ],
+            "search_query": [
+              {
+                "q": "平高电气 2026年9月21日 收盘"
+              },
+              {
+                "q": "国电南瑞 思源电气 2025 年度报告 归母净利润 2026"
+              }
+            ],
+            "response_length": "long"
+          },
+          "result": "思源原始PDF成功；平高上交所HTTP PDF返回Internal Error；南瑞新签字符串查无匹配（不代表无订单）。取得南瑞分部毛利率下降、两公司2025年报、平高19.49元双源报价；另一低质量报价与其冲突且URL日期错配，不采用。",
+          "web_entries": 7,
+          "search_entries": 2,
+          "key_urls": [
+            "https://disc.static.szse.cn/download/disc/disk03/finalpage/2026-08-15/ef9f19b9-f0eb-48cf-8eef-05c2c8d8f6cc.PDF",
+            "https://static.cninfo.com.cn/finalpage/2026-04-30/1225257886.PDF",
+            "https://disc.static.szse.cn/download/disc/disk03/finalpage/2026-04-18/e1ce7b05-0a5c-4746-bb9f-2f32b65301f9.PDF",
+            "https://jp.investing.com/equities/pinggao-elec-historical-data",
+            "https://www.yyqyx.com/s/600312.SH"
+          ],
+          "failed_urls": [
+            "http://static.sse.com.cn/disclosure/listedinfo/announcement/c/new/2026-08-20/600312_20260820_NUD9.pdf"
+          ]
+        },
+        {
+          "at": "2026-09-22 07:03:36 UTC",
+          "tool": "web.run",
+          "parameters": {
+            "open": [
+              {
+                "ref_id": "turn403view0",
+                "lineno": 220
+              },
+              {
+                "ref_id": "turn403view0",
+                "lineno": 470
+              },
+              {
+                "ref_id": "turn403view0",
+                "lineno": 680
+              },
+              {
+                "ref_id": "https://static.sse.com.cn/disclosure/listedinfo/announcement/c/new/2026-08-20/600312_20260820_NUD9.pdf"
+              },
+              {
+                "ref_id": "https://static.cninfo.com.cn/finalpage/2026-04-30/1225257886.PDF"
+              },
+              {
+                "ref_id": "https://disc.static.szse.cn/download/disc/disk03/finalpage/2026-04-18/e1ce7b05-0a5c-4746-bb9f-2f32b65301f9.PDF"
+              }
+            ],
+            "find": [
+              {
+                "ref_id": "turn404view0",
+                "pattern": "新增订单"
+              },
+              {
+                "ref_id": "turn404view0",
+                "pattern": "毛利率"
+              },
+              {
+                "ref_id": "turn404view0",
+                "pattern": "股本"
+              }
+            ],
+            "response_length": "long"
+          },
+          "result": "南瑞年报成功；平高HTTPS原始PDF和思源年报/download路径均Internal Error。南瑞指定行返回有限上下文，未补足全部表格。思源半年报查无新增订单字符串，但确认海外收入31.83亿元(+11.22%)、开关毛利39.06%(+3.67个百分点)、变压器毛利36.36%(+0.93个百分点)、期末股本782573282股。",
+          "web_entries": 9,
+          "search_entries": 0,
+          "key_urls": [
+            "https://static.cninfo.com.cn/finalpage/2026-04-30/1225257886.PDF",
+            "https://disc.static.szse.cn/download/disc/disk03/finalpage/2026-08-15/ef9f19b9-f0eb-48cf-8eef-05c2c8d8f6cc.PDF"
+          ],
+          "failed_urls": [
+            "https://static.sse.com.cn/disclosure/listedinfo/announcement/c/new/2026-08-20/600312_20260820_NUD9.pdf",
+            "https://disc.static.szse.cn/download/disc/disk03/finalpage/2026-04-18/e1ce7b05-0a5c-4746-bb9f-2f32b65301f9.PDF"
+          ]
+        },
+        {
+          "at": "2026-09-22 07:04:12 UTC",
+          "tool": "web.run",
+          "parameters": {
+            "search_query": [
+              {
+                "q": "site:static.cninfo.com.cn 平高电气 2026 半年度报告"
+              },
+              {
+                "q": "国电南瑞 2026 半年度 订单 柔直 中标"
+              }
+            ],
+            "screenshot": [
+              {
+                "ref_id": "turn403view0",
+                "pageno": 8
+              },
+              {
+                "ref_id": "turn403view0",
+                "pageno": 22
+              },
+              {
+                "ref_id": "turn404view0",
+                "pageno": 11
+              }
+            ],
+            "open": [
+              {
+                "ref_id": "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12506211&stockid=600312"
+              }
+            ],
+            "response_length": "long"
+          },
+          "result": "成功取得平高半年报新浪转载全文与巨潮摘要链接，南瑞半年报检索确认新签合同456.33亿元(+28.79%)及柔直/调度项目。3项截图仅返回引用标识，当前工具包装未显示图像，未声称视觉核验。随后检查工具返回类型确认为字符串，不含可转发图片。",
+          "web_entries": 6,
+          "search_entries": 2,
+          "key_urls": [
+            "https://static.cninfo.com.cn/finalpage/2026-08-20/1225483266.PDF",
+            "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12506211&stockid=600312",
+            "https://static.cninfo.com.cn/finalpage/2026-08-27/1225508099.PDF",
+            "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12543044&stockid=600406"
+          ]
+        },
+        {
+          "at": "2026-09-22 07:04:53 UTC",
+          "tool": "web.run",
+          "parameters": {
+            "find": [
+              {
+                "ref_id": "turn406view0",
+                "pattern": "毛利率"
+              },
+              {
+                "ref_id": "turn406view0",
+                "pattern": "订单"
+              },
+              {
+                "ref_id": "turn403view0",
+                "pattern": "经营活动产生的现金流量净额"
+              },
+              {
+                "ref_id": "turn404view0",
+                "pattern": "储能系统及元件类"
+              }
+            ],
+            "search_query": [
+              {
+                "q": "平高电气 2026 9 9 中标 亿元"
+              }
+            ],
+            "open": [
+              {
+                "ref_id": "https://disc.static.szse.cn/disc/disk03/finalpage/2026-04-18/e1ce7b05-0a5c-4746-bb9f-2f32b65301f9.PDF"
+              }
+            ],
+            "response_length": "long"
+          },
+          "result": "成功取得平高9月9日中标9.36亿元原始公告（含合营公司，不能全额并表）；南瑞半年CFO5.9111亿元、归母30.7269亿元、股本80.3176亿股以及现金桥；思源储能收入13.9129亿元、毛利率10.50%。平高转载全文find毛利率/订单均无匹配；思源年报替代/disc路径仍Internal Error，仅使用此前年报搜索索引可见数据。",
+          "web_entries": 6,
+          "search_entries": 1,
+          "key_urls": [
+            "https://static.cninfo.com.cn/finalpage/2026-09-09/1225552799.PDF",
+            "https://static.cninfo.com.cn/finalpage/2026-07-22/1225435743.PDF",
+            "https://static.cninfo.com.cn/finalpage/2026-08-27/1225508099.PDF",
+            "https://disc.static.szse.cn/download/disc/disk03/finalpage/2026-08-15/ef9f19b9-f0eb-48cf-8eef-05c2c8d8f6cc.PDF"
+          ],
+          "failed_urls": [
+            "https://disc.static.szse.cn/disc/disk03/finalpage/2026-04-18/e1ce7b05-0a5c-4746-bb9f-2f32b65301f9.PDF"
+          ]
+        },
+        {
+          "at": "2026-09-22 07:05:43 UTC",
+          "tool": "functions.exec JavaScript",
+          "category": "local_calculation",
+          "parameters": {
+            "inputs": {
+              "nari": {
+                "price": 22.1,
+                "shares": 8031756156,
+                "fyprofit": 8278971723.32,
+                "h1profit": 3072688826.28,
+                "prevh1profit": 2952191275.23
+              },
+              "sieyuan": {
+                "price": 138.89,
+                "shares": 782573282,
+                "fyprofit": 3150142665.04,
+                "h1profit": 1463716011.88,
+                "prevh1profit": 1292697963.66
+              },
+              "pinggao": {
+                "price": 19.49,
+                "fyprofit_yi_rounded": 11.2,
+                "h1eps": 0.602,
+                "prevh1eps": 0.4899,
+                "h1profit": 816852368.99,
+                "share_method": "以半年归母净利/已披露EPS近似反推；存在EPS四舍五入误差",
+                "shares": 1356897622.9069767,
+                "fyprofit": 1120000000,
+                "prevh1profit": 664796228.26
+              }
+            },
+            "formulas": [
+              "TTM利润=2025利润+2026H1利润-2025H1利润",
+              "TTM EPS=TTM利润/股数；PE=截止日股价/TTM EPS",
+              "储能增量收入/总增量收入",
+              "1-成本/收入",
+              "现金流变化及经营应付项目变化差额"
+            ]
+          },
+          "result": {
+            "nari": {
+              "ttm_profit_yi": 83.99469274370001,
+              "shares_yi": 80.31756156,
+              "marketcap_yi": 1775.0181104760002,
+              "ttm_eps": 1.0457824056442881,
+              "ttm_pe": 21.13250316769728,
+              "fy2025_pe": 21.44007939387175
+            },
+            "sieyuan": {
+              "ttm_profit_yi": 33.2116071326,
+              "shares_yi": 7.82573282,
+              "marketcap_yi": 1086.9160313698,
+              "ttm_eps": 4.243897395490178,
+              "ttm_pe": 32.726992916368076,
+              "fy2025_pe": 34.50370814732604
+            },
+            "pinggao": {
+              "ttm_profit_yi": 12.7205614073,
+              "shares_yi": 13.568976229069767,
+              "marketcap_yi": 264.4593467045697,
+              "ttm_eps": 0.9374739252654781,
+              "ttm_pe": 20.78991156418642,
+              "fy2025_pe": 23.61244167005087
+            },
+            "sieyuan_mix": {
+              "storage_increment_yi": 9.7127048406,
+              "total_increment_yi": 22.9832852284,
+              "storage_share_of_increment": 0.4225986295726861,
+              "grossmargin": 0.30457960926835514,
+              "previousgrossmargin": 0.3173523225860678
+            },
+            "nari_cash": {
+              "cfo_delta_yi": -22.174151659099998,
+              "extra_payables_outflow_yi": 22.6492111141
+            }
+          }
+        },
+        {
+          "at": "2026-09-22 07:06:29 UTC",
+          "tool": "functions.exec JavaScript",
+          "category": "local_calculation",
+          "parameters": {
+            "assumptions": {
+              "nari": {
+                "g": 0.1,
+                "endPE": 20
+              },
+              "pinggao": {
+                "g": 0.1,
+                "endPE": 18
+              },
+              "sieyuan": {
+                "g": 0.15,
+                "endPE": 25
+              }
+            },
+            "inputs": "上一实际计算的TTM EPS和已取证2026-09-21收盘价",
+            "formulas": [
+              "第三年EPS=当前TTM EPS*(1+g)^3",
+              "终值=第三年EPS*退出PE",
+              "12%年化价格收益上限=终值/(1.12)^3",
+              "当前价所需EPS CAGR=(价格*(1.12)^3/(退出PE*当前TTM EPS))^(1/3)-1"
+            ],
+            "scope": "三年，人民币元/股，股数不变，未计分红与交易费用；情景和回报门槛均分析者假设"
+          },
+          "result": {
+            "required_price_return": 0.12,
+            "horizon_years": 3,
+            "dividends": "excluded",
+            "share_count": "constant",
+            "nari": {
+              "g": 0.1,
+              "endPE": 20,
+              "ttm_eps": 1.0457824056442881,
+              "terminal_eps": 1.3919363819125479,
+              "terminal_price": 27.83872763825096,
+              "price_cagr": 0.0799882640064169,
+              "price_limit_for_12pct": 19.815056457164317,
+              "required_eps_growth_for_12pct": 0.1407531369180508,
+              "downside_terminal_if_zero_growth_and_PE_16": 16.73251849030861,
+              "downside_return_if_zero_growth_and_PE_16": -0.24287246650187289
+            },
+            "pinggao": {
+              "g": 0.1,
+              "endPE": 18,
+              "ttm_eps": 0.9374739252654781,
+              "terminal_eps": 1.2477777945283517,
+              "terminal_price": 22.46000030151033,
+              "price_cagr": 0.04841358449120814,
+              "price_limit_for_12pct": 15.986584580498306,
+              "required_eps_growth_for_12pct": 0.17510877217208698,
+              "downside_terminal_if_zero_growth_and_PE_16": 14.99958280424765,
+              "downside_return_if_zero_growth_and_PE_16": -0.2303959566830348
+            },
+            "sieyuan": {
+              "g": 0.15,
+              "endPE": 25,
+              "ttm_eps": 4.243897395490178,
+              "terminal_eps": 6.454437451366124,
+              "terminal_price": 161.3609362841531,
+              "price_cagr": 0.05125758523098978,
+              "price_limit_for_12pct": 114.8535272157385,
+              "required_eps_growth_for_12pct": 0.2251992452610858,
+              "downside_terminal_if_zero_growth_and_PE_16": 67.90235832784285,
+              "downside_return_if_zero_growth_and_PE_16": -0.5111069311840819
+            }
+          }
+        }
+      ],
+      "operation_counts": {
+        "web_entries": 36,
+        "search_entries": 12,
+        "local_research_calculations": 2
+      },
+      "unresolved": [
+        "平高分产品盈利变化与成本桥未取得，不能确认利润增长由提价、产品结构或降本各贡献多少。",
+        "未核实三家公司合同按年度交付分配、订单取消条款、完整营运资金与资本开支回报。",
+        "思源2025年报全文访问失败，只使用成功搜索可见的年度指标；最新半年度新增订单查找未成功。",
+        "思源截止日报价未取得第二来源；未逐项核对半年末到2026-09-21股本变动。",
+        "未完整估算未来股息，价格模型仅为情景股价回报。",
+        "有限对象比较；没有完成许继、中国西电、其他变压器和配电设备公司全行业横向调查。"
+      ]
+    }
+  ]
+}

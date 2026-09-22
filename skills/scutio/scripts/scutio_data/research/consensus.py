@@ -44,11 +44,11 @@ def eps_forecast(code):
 
 def _forecast_number(value):
     try:
-        if value in (None, "", "-", "--"):
+        if isinstance(value, bool) or value in (None, "", "-", "--"):
             return None
         number = float(value)
         return number if math.isfinite(number) else None
-    except (TypeError, ValueError):
+    except (TypeError, ValueError, OverflowError):
         return None
 
 
@@ -123,29 +123,51 @@ def consensus_forecast(code):
         return result_list_err(str(exc), source="consensus_forecast")
 
 
-@operation("history")
-def consensus_revisions(code, max_pages=5, reports=None):
-    """按证券、机构、预测财年比较 EPS；复用材料必须携带证券身份。"""
+def _conflicting_forecast_fields(rows):
+    """Return explicit field disagreements within one available report-day group."""
+    return [
+        field
+        for field in ("eps", "currency", "eps_basis", "eps_definition")
+        if len({row[field] for row in rows if row[field] not in (None, "")}) > 1
+    ]
+
+
+def _forecast_observations(code, reports):
+    """校验复用研报并生成唯一 EPS 观测口径；保留有争议的整组记录。"""
     upstream = {}
     try:
-        _, prefix, pure = require_a_share(code, "consensus_revisions")
-        symbol = prefix + pure
-        if reports is None:
-            env = discovery.stock_reports(code, max_pages=max_pages)
-        elif isinstance(reports, dict):
-            env = reports
-        else:
-            env = result_list(list(reports), source="stock_reports_reused")
+        _, prefix, pure = require_a_share(code, "forecast_observations")
+        env = reports if isinstance(reports, dict) else result_list(list(reports))
         upstream = {key: env[key] for key in ("partial", "errors", "coverage") if key in env}
         if not env.get("ok"):
             return result_list_err(
-                env.get("error") or "stock reports failed", source="consensus_revisions", **upstream
+                env.get("error") or "stock reports failed",
+                source="forecast_observations",
+                **upstream,
             )
         inputs = validate_report_identity(env, code)
-        rows, skipped = [], []
+        rows = []
+        skipped = list(env.get("skipped_reports") or [])
         for index, report in enumerate(inputs):
-            organization = report.get("orgSName") or report.get("orgName")
-            years = report.get("forecast_years")
+            normalized = "fiscal_year" in report
+            organization = (
+                report.get("organization")
+                if normalized
+                else report.get("orgSName") or report.get("orgName")
+            )
+            years = [report.get("fiscal_year")] if normalized else report.get("forecast_years")
+            info_code = report.get("info_code") if normalized else report.get("infoCode")
+            context = {
+                "index": index,
+                "info_code": info_code or "",
+                "organization": organization,
+                "forecast_years": years,
+                **{
+                    key: report[key]
+                    for key in ("published_at", "available_at")
+                    if report.get(key) not in (None, "")
+                },
+            }
             if (
                 not isinstance(years, list)
                 or not years
@@ -156,60 +178,222 @@ def consensus_revisions(code, max_pages=5, reports=None):
                 )
                 or len(set(map(str, years))) != len(years)
             ):
-                skipped.append({"index": index, "reason": "forecast_years_missing_or_invalid"})
+                skipped.append({**context, "reason": "forecast_years_missing_or_invalid"})
                 continue
+            source_date = (
+                report.get("source_date") or report.get("date")
+                if normalized
+                else report.get("publishDate") or report.get("publish_date")
+            )
             try:
-                published = date.fromisoformat(
-                    str(report.get("publishDate") or report.get("publish_date") or "")[:10]
-                ).isoformat()
+                published = date.fromisoformat(str(source_date or "")[:10]).isoformat()
             except ValueError:
-                skipped.append({"index": index, "reason": "publication_date_missing_or_invalid"})
+                skipped.append({**context, "reason": "publication_date_missing_or_invalid"})
                 continue
-            if not organization:
-                skipped.append({"index": index, "reason": "organization_missing"})
+            if not isinstance(organization, str) or not organization.strip():
+                skipped.append({**context, "reason": "organization_missing_or_invalid"})
+                continue
+            if any(
+                report.get(field) is not None and not isinstance(report[field], str)
+                for field in (
+                    "currency",
+                    "eps_basis",
+                    "eps_definition",
+                    "published_at",
+                    "available_at",
+                    "version",
+                )
+            ):
+                skipped.append(
+                    {**context, "date": published, "reason": "forecast_metadata_invalid"}
+                )
                 continue
             for offset, year in enumerate(years):
-                field = ("predictThisYearEps", "predictNextYearEps", "predictNextTwoYearEps")[
-                    offset
-                ]
+                field = (
+                    "eps"
+                    if normalized
+                    else ("predictThisYearEps", "predictNextYearEps", "predictNextTwoYearEps")[
+                        offset
+                    ]
+                )
                 eps = _forecast_number(report.get(field))
                 if eps is None:
+                    skipped.append(
+                        {
+                            **context,
+                            "forecast_years": [int(year)],
+                            "date": published,
+                            "reason": "eps_missing_or_invalid",
+                        }
+                    )
                     continue
                 rows.append(
                     {
+                        "code": pure,
+                        "symbol": prefix + pure,
                         "date": published,
+                        "source_date": source_date,
+                        "published_at": report.get("published_at"),
+                        "available_at": report.get("available_at"),
                         "organization": organization,
                         "fiscal_year": int(year),
                         "eps": eps,
-                        "analyst": report.get("researcher") or report.get("researcherName") or "",
-                        "rating": report.get("emRatingName") or report.get("ratingName") or "",
+                        "currency": report.get("currency"),
+                        "eps_basis": report.get("eps_basis"),
+                        "eps_definition": report.get("eps_definition"),
+                        "version": report.get("version"),
+                        "analyst": report.get("analyst")
+                        or report.get("researcher")
+                        or report.get("researcherName")
+                        or "",
+                        "rating": report.get("rating")
+                        or report.get("emRatingName")
+                        or report.get("ratingName")
+                        or "",
                         "title": report.get("title") or "",
-                        "info_code": report.get("infoCode") or "",
-                        "source": report.get("source") or env.get("source"),
+                        "info_code": info_code or "",
+                        "report_url": report.get("report_url")
+                        or report.get("pdf_url")
+                        or report.get("pdfUrl"),
+                        "retrieved_at": report.get("retrieved_at")
+                        if normalized
+                        else report.get("retrieved_at") or env.get("retrieved_at"),
+                        "source": report.get("source")
+                        if normalized
+                        else report.get("source") or env.get("source"),
+                        "report_references": [
+                            dict(reference)
+                            for reference in report.get("report_references") or []
+                            if isinstance(reference, dict)
+                        ],
                     }
                 )
-        daily_values = {}
+        # 相同机构、财年和日期的相同预测只计一次，保留全部报告位置。
+        deduplicated = {}
         for row in rows:
-            daily_values.setdefault(
-                (row["organization"], row["fiscal_year"], row["date"]), set()
-            ).add(row["eps"])
-        ambiguous = {key for key, values in daily_values.items() if len(values) > 1}
+            key = tuple(
+                row.get(field)
+                for field in (
+                    "organization",
+                    "fiscal_year",
+                    "date",
+                    "eps",
+                    "currency",
+                    "eps_basis",
+                    "eps_definition",
+                    "published_at",
+                    "available_at",
+                    "version",
+                )
+            )
+            reference = {
+                field: row[field]
+                for field in (
+                    "info_code",
+                    "report_url",
+                    "source",
+                    "retrieved_at",
+                    "title",
+                    "analyst",
+                )
+            }
+            if key in deduplicated:
+                references = deduplicated[key]["report_references"]
+                for candidate in row["report_references"] or [reference]:
+                    if candidate not in references:
+                        references.append(candidate)
+            else:
+                row["report_references"] = row["report_references"] or [reference]
+                deduplicated[key] = row
+        rows = list(deduplicated.values())
+        daily = {}
+        for row in rows:
+            daily.setdefault((row["organization"], row["fiscal_year"], row["date"]), []).append(row)
+        conflicts = []
+        for (organization, year, published), group in daily.items():
+            conflicting_fields = _conflicting_forecast_fields(group)
+            reason = "same_day_forecast_conflict" if conflicting_fields else None
+            for row in group:
+                row.update(conflict=bool(reason), conflict_reason=reason)
+            if reason:
+                conflicts.append(
+                    {
+                        "organization": organization,
+                        "fiscal_year": year,
+                        "date": published,
+                        "reason": reason,
+                        "fields": conflicting_fields,
+                        "eps_values": sorted({row["eps"] for row in group}),
+                        "info_codes": sorted(
+                            {
+                                str(ref.get("info_code") or "")
+                                for row in group
+                                for ref in row["report_references"]
+                            }
+                        ),
+                    }
+                )
+        upstream["partial"] = bool(
+            upstream.get("partial")
+            or skipped
+            or conflicts
+            or (env.get("coverage") or {}).get("truncated")
+        )
+        return result_list(
+            sorted(
+                rows,
+                key=lambda item: (
+                    item["date"],
+                    item["organization"],
+                    item["fiscal_year"],
+                    str(item["info_code"]),
+                ),
+            ),
+            source="forecast_observations",
+            code=pure,
+            symbol=prefix + pure,
+            skipped_reports=skipped,
+            conflicts=conflicts,
+            input_source=env.get("input_source", env.get("source")),
+            input_retrieved_at=env.get("input_retrieved_at", env.get("retrieved_at")),
+            **upstream,
+        )
+    except (TypeError, ValueError, KeyError) as exc:
+        return result_list_err(str(exc), source="forecast_observations", **upstream)
+
+
+@operation("history")
+def consensus_revisions(code, max_pages=5, reports=None):
+    """按证券、机构、预测财年比较相邻 EPS；同日冲突整组不生成方向。"""
+    try:
+        require_a_share(code, "consensus_revisions")
+        if reports is None:
+            reports = discovery.stock_reports(code, max_pages=max_pages)
+        env = _forecast_observations(code, reports)
+        env["source"] = "consensus_revisions"
+        if not env.get("ok"):
+            return env
         prior_by_year = {}
-        seen = set()
         comparable = []
-        for row in sorted(rows, key=lambda item: (item["date"], item["info_code"])):
-            identity = (row["info_code"], row["fiscal_year"])
-            if row["info_code"] and identity in seen:
-                continue
-            seen.add(identity)
+        for observation in env["items"]:
+            row = dict(observation)
             group = (row["organization"], row["fiscal_year"])
             prior = prior_by_year.get(group)
-            # 日期相同而无更细发布时间时，不猜测同日研报的先后。
             reason = (
-                "same_day_order_unknown"
-                if prior and prior["date"] == row["date"]
+                "ambiguous_current_day"
+                if row["conflict"]
                 else "ambiguous_previous_day"
-                if prior and (*group, prior["date"]) in ambiguous
+                if prior and prior["conflict"]
+                else "same_day_order_unknown"
+                if prior and prior["date"] == row["date"]
+                else "forecast_basis_mismatch"
+                if prior
+                and any(
+                    row[field] not in (None, "")
+                    and prior[field] not in (None, "")
+                    and row[field] != prior[field]
+                    for field in ("currency", "eps_basis", "eps_definition")
+                )
                 else None
             )
             change = row["eps"] - prior["eps"] if prior and reason is None else None
@@ -222,27 +406,18 @@ def consensus_revisions(code, max_pages=5, reports=None):
                 direction=("up" if change > 0 else "down" if change < 0 else "flat")
                 if change is not None
                 else "new"
-                if prior is None
+                if prior is None and reason is None
                 else None,
             )
             prior_by_year[group] = row
             comparable.append(row)
         comparable.sort(key=lambda item: (item["date"], item["fiscal_year"]), reverse=True)
-        upstream["partial"] = bool(
-            upstream.get("partial")
-            or skipped
-            or ambiguous
-            or (env.get("coverage") or {}).get("truncated")
-        )
-        return result_list(
-            comparable,
-            source="consensus_revisions",
-            code=pure,
-            symbol=symbol,
+        env.update(
+            items=comparable,
+            partial=bool(env["partial"] or any(row["comparison_reason"] for row in comparable)),
             revision_scope="broker_report_updates",
-            skipped_reports=skipped,
             note="按同一机构、同一预测财年比较 EPS；非供应商直接发布的汇总修订指标",
-            **upstream,
         )
+        return env
     except (TypeError, ValueError, KeyError) as exc:
-        return result_list_err(str(exc), source="consensus_revisions", **upstream)
+        return result_list_err(str(exc), source="consensus_revisions")

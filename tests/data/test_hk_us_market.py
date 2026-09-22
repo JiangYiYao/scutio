@@ -458,6 +458,7 @@ def test_hk_bars_use_akshare_and_preserve_share_volume(monkeypatch):
     monkeypatch.setattr(akshare_source, "fetch", fetch)
     out = market.security_bars("hk00700", count=1)
     assert out["ok"] and out["source"] == "akshare_eastmoney"
+    assert (out["symbol"], out["code"], out["currency"]) == ("hk00700", "00700", "HKD")
     assert out["bars"][0]["datetime"] == "2026-09-08"
     assert out["bars"][0]["volume"] == 17643957
     assert out["bars"][0]["amount_unit"] == "HKD"
@@ -508,6 +509,7 @@ def test_security_bars_us_prefers_eastmoney(monkeypatch):
     monkeypatch.setattr(akshare_source, "fetch", fetch)
     out = market.security_bars("usAAPL", count=1)
     assert out["ok"] and out["source"] == "akshare_eastmoney"
+    assert (out["symbol"], out["code"], out["currency"]) == ("usAAPL", "AAPL", "USD")
     assert out["bars"][0]["volume"] == 56090840
     assert out["bars"][0]["close"] == pytest.approx(338.19)
 

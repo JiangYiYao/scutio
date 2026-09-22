@@ -7,7 +7,33 @@ from datetime import datetime, timedelta, timezone
 from scutio_data._providers.akshare import client
 from scutio_data._providers.eastmoney import em_secid_candidates, remember_em_secid
 from scutio_data._providers.quote_parse import normalize_bar
-from scutio_data._runtime.symbols import require_a_share, require_security, security_kind
+from scutio_data._runtime.symbols import (
+    require_a_share,
+    require_security,
+    security_kind,
+    validate_identity,
+)
+
+
+def _validate_bar_identity(row, code, prefix, pure):
+    """Check native claims before normalization drops provider-specific columns."""
+    fields = ("symbol", "stockCode", "code", "ticker", "股票代码", "证券代码", "SECURITY_CODE")
+    claims = {"exchange": row.get("exchange")}
+    for field in fields:
+        value = row.get(field)
+        if value in (None, ""):
+            continue
+        value = str(value).strip()
+        if prefix != "us" and value.isdigit():
+            value = value.zfill(len(pure))
+        elif prefix == "us" and value.upper() == pure:
+            value = pure
+        claims[field] = value
+    # An absent native identifier is permitted, but is not independent identity proof.
+    try:
+        validate_identity(claims, code, fields=fields, required=False)
+    except ValueError as exc:
+        raise ValueError("bar identity mismatch") from exc
 
 
 def bars(code, frequency="D", count=80, index=None, adjust="none", source="sina"):
@@ -60,6 +86,8 @@ def bars(code, frequency="D", count=80, index=None, adjust="none", source="sina"
                             **dates,
                         )
                         if rows:
+                            for row in rows:
+                                _validate_bar_identity(row, code, prefix, pure)
                             remember_em_secid(code, secid)
                             break
                     except RuntimeError as exc:
@@ -119,6 +147,7 @@ def bars(code, frequency="D", count=80, index=None, adjust="none", source="sina"
         raise ValueError("unsupported AKShare bars source")
     mapped = {}
     for row in rows:
+        _validate_bar_identity(row, code, prefix, pure)
         row = {
             {
                 "日期": "datetime",

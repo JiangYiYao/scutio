@@ -1,0 +1,92 @@
+[
+  {
+    "id": "r01",
+    "case": "market",
+    "condition": "baseline",
+    "web_entries": 36,
+    "search_entries": 12,
+    "local_research_calculations": 1,
+    "started_at": "2026-09-22T06:53:28Z",
+    "completed_at": "2026-09-22T07:00:36Z"
+  },
+  {
+    "id": "r02",
+    "case": "market",
+    "condition": "candidate",
+    "web_entries": 36,
+    "search_entries": 12,
+    "local_research_calculations": 1,
+    "started_at": "2026-09-22T06:55:17Z",
+    "completed_at": "2026-09-22T07:04:39Z"
+  },
+  {
+    "id": "r03",
+    "case": "market",
+    "condition": "plain",
+    "web_entries": 36,
+    "search_entries": 12,
+    "local_research_calculations": 1,
+    "started_at": "2026-09-22T06:56:14Z",
+    "completed_at": "2026-09-22T07:03:44Z"
+  },
+  {
+    "id": "r04",
+    "case": "grid",
+    "condition": "baseline",
+    "web_entries": 36,
+    "search_entries": 12,
+    "local_research_calculations": 2,
+    "started_at": "2026-09-22T07:01:37Z",
+    "completed_at": "2026-09-22 07:09:29 UTC"
+  },
+  {
+    "id": "r05",
+    "case": "grid",
+    "condition": "candidate",
+    "web_entries": 36,
+    "search_entries": 12,
+    "local_research_calculations": 1,
+    "started_at": "2026-09-22T07:07:10Z",
+    "completed_at": "2026-09-22T07:15:08.218Z"
+  },
+  {
+    "id": "r06",
+    "case": "grid",
+    "condition": "plain",
+    "web_entries": 36,
+    "search_entries": 12,
+    "local_research_calculations": 1,
+    "started_at": "2026-09-22 07:07:39 UTC",
+    "completed_at": "2026-09-22 07:17:14 UTC"
+  },
+  {
+    "id": "r07",
+    "case": "packaging",
+    "condition": "baseline",
+    "web_entries": 36,
+    "search_entries": 11,
+    "local_research_calculations": 2,
+    "started_at": "2026-09-22T07:10:28Z",
+    "completed_at": "2026-09-22 07:18:05 UTC"
+  },
+  {
+    "id": "r08",
+    "case": "packaging",
+    "condition": "candidate",
+    "web_entries": 36,
+    "search_entries": 12,
+    "local_research_calculations": 2,
+    "started_at": "2026-09-22T07:15:37Z",
+    "completed_at": "2026-09-22 07:24:04 UTC"
+  },
+  {
+    "id": "r09",
+    "case": "packaging",
+    "condition": "plain",
+    "web_entries": 36,
+    "search_entries": 12,
+    "local_research_calculations": 1,
+    "started_at": "2026-09-22T07:17:54.736Z",
+    "completed_at": "2026-09-22T07:24:16.359Z"
+  }
+]

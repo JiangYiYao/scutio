@@ -1,0 +1,3680 @@
+{
+  "sh600519": {
+    "ok": true,
+    "error": null,
+    "source": "forecast_price_changes",
+    "items": [
+      {
+        "organization": "万联证券",
+        "start_forecast": {
+          "observations": [
+            {
+              "code": "600519",
+              "symbol": "sh600519",
+              "date": "2026-04-29",
+              "source_date": "2026-04-29",
+              "published_at": null,
+              "available_at": null,
+              "organization": "万联证券",
+              "fiscal_year": 2026,
+              "eps": 68.83,
+              "currency": null,
+              "eps_basis": null,
+              "eps_definition": null,
+              "version": null,
+              "analyst": "",
+              "rating": "",
+              "title": "点评报告：业绩稳健增长，直销收入首次超越代理渠道",
+              "info_code": "AP202604291821727471",
+              "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202604291821727471_1.pdf",
+              "retrieved_at": null,
+              "source": "akshare_eastmoney",
+              "report_references": [
+                {
+                  "info_code": "AP202604291821727471",
+                  "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202604291821727471_1.pdf",
+                  "source": "akshare_eastmoney",
+                  "retrieved_at": null,
+                  "title": "点评报告：业绩稳健增长，直销收入首次超越代理渠道",
+                  "analyst": ""
+                }
+              ],
+              "conflict": false,
+              "conflict_reason": null
+            }
+          ],
+          "date": "2026-04-29",
+          "age_days": 54,
+          "eps": 68.83
+        },
+        "end_forecast": {
+          "observations": [
+            {
+              "code": "600519",
+              "symbol": "sh600519",
+              "date": "2026-08-19",
+              "source_date": "2026-08-19",
+              "published_at": null,
+              "available_at": null,
+              "organization": "万联证券",
+              "fiscal_year": 2026,
+              "eps": 68.95,
+              "currency": null,
+              "eps_basis": null,
+              "eps_definition": null,
+              "version": null,
+              "analyst": "",
+              "rating": "",
+              "title": "2026年中期业绩点评报告：提价与直销双轮驱动，改革深化稳基本盘",
+              "info_code": "AP202608191828157250",
+              "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202608191828157250_1.pdf",
+              "retrieved_at": null,
+              "source": "akshare_eastmoney",
+              "report_references": [
+                {
+                  "info_code": "AP202608191828157250",
+                  "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202608191828157250_1.pdf",
+                  "source": "akshare_eastmoney",
+                  "retrieved_at": null,
+                  "title": "2026年中期业绩点评报告：提价与直销双轮驱动，改革深化稳基本盘",
+                  "analyst": ""
+                }
+              ],
+              "conflict": false,
+              "conflict_reason": null
+            }
+          ],
+          "date": "2026-08-19",
+          "age_days": 30,
+          "eps": 68.95
+        },
+        "start_price": {
+          "date": "2026-06-22",
+          "price": 1241.41,
+          "currency": "CNY",
+          "source": "hithink",
+          "retrieved_at": "2026-09-22T06:45:44.094930+00:00",
+          "adjust": "none"
+        },
+        "end_price": {
+          "date": "2026-09-18",
+          "price": 1257.12,
+          "currency": "CNY",
+          "source": "hithink",
+          "retrieved_at": "2026-09-22T06:45:44.094930+00:00",
+          "adjust": "none"
+        },
+        "coverage_status": "paired",
+        "eps_comparable": false,
+        "eps_change": null,
+        "eps_change_pct": null,
+        "direction": null,
+        "unchanged_report": false,
+        "price_change_pct": null,
+        "pe0": null,
+        "pe1": null,
+        "pe_change_pct": null,
+        "metrics_computable": false,
+        "matched": null,
+        "reasons": [
+          "share_basis_unverified",
+          "currency_unknown",
+          "eps_basis_unknown",
+          "eps_definition_unknown"
+        ],
+        "symbol": "sh600519",
+        "fiscal_year": 2026,
+        "cash_dividends": "unknown"
+      },
+      {
+        "organization": "东兴证券",
+        "start_forecast": {
+          "observations": [
+            {
+              "code": "600519",
+              "symbol": "sh600519",
+              "date": "2026-04-01",
+              "source_date": "2026-04-01",
+              "published_at": null,
+              "available_at": null,
+              "organization": "东兴证券",
+              "fiscal_year": 2026,
+              "eps": 74.65,
+              "currency": null,
+              "eps_basis": null,
+              "eps_definition": null,
+              "version": null,
+              "analyst": "",
+              "rating": "",
+              "title": "提价点评：价格市场化改革再尝试，提价进一步增厚业绩",
+              "info_code": "AP202604011820942555",
+              "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202604011820942555_1.pdf",
+              "retrieved_at": null,
+              "source": "akshare_eastmoney",
+              "report_references": [
+                {
+                  "info_code": "AP202604011820942555",
+                  "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202604011820942555_1.pdf",
+                  "source": "akshare_eastmoney",
+                  "retrieved_at": null,
+                  "title": "提价点评：价格市场化改革再尝试，提价进一步增厚业绩",
+                  "analyst": ""
+                }
+              ],
+              "conflict": false,
+              "conflict_reason": null
+            }
+          ],
+          "date": "2026-04-01",
+          "age_days": 82,
+          "eps": 74.65
+        },
+        "end_forecast": {
+          "observations": [
+            {
+              "code": "600519",
+              "symbol": "sh600519",
+              "date": "2026-04-01",
+              "source_date": "2026-04-01",
+              "published_at": null,
+              "available_at": null,
+              "organization": "东兴证券",
+              "fiscal_year": 2026,
+              "eps": 74.65,
+              "currency": null,
+              "eps_basis": null,
+              "eps_definition": null,
+              "version": null,
+              "analyst": "",
+              "rating": "",
+              "title": "提价点评：价格市场化改革再尝试，提价进一步增厚业绩",
+              "info_code": "AP202604011820942555",
+              "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202604011820942555_1.pdf",
+              "retrieved_at": null,
+              "source": "akshare_eastmoney",
+              "report_references": [
+                {
+                  "info_code": "AP202604011820942555",
+                  "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202604011820942555_1.pdf",
+                  "source": "akshare_eastmoney",
+                  "retrieved_at": null,
+                  "title": "提价点评：价格市场化改革再尝试，提价进一步增厚业绩",
+                  "analyst": ""
+                }
+              ],
+              "conflict": false,
+              "conflict_reason": null
+            }
+          ],
+          "date": "2026-04-01",
+          "age_days": 170,
+          "eps": 74.65
+        },
+        "start_price": {
+          "date": "2026-06-22",
+          "price": 1241.41,
+          "currency": "CNY",
+          "source": "hithink",
+          "retrieved_at": "2026-09-22T06:45:44.094930+00:00",
+          "adjust": "none"
+        },
+        "end_price": {
+          "date": "2026-09-18",
+          "price": 1257.12,
+          "currency": "CNY",
+          "source": "hithink",
+          "retrieved_at": "2026-09-22T06:45:44.094930+00:00",
+          "adjust": "none"
+        },
+        "coverage_status": "paired",
+        "eps_comparable": false,
+        "eps_change": null,
+        "eps_change_pct": null,
+        "direction": null,
+        "unchanged_report": false,
+        "price_change_pct": null,
+        "pe0": null,
+        "pe1": null,
+        "pe_change_pct": null,
+        "metrics_computable": false,
+        "matched": null,
+        "reasons": [
+          "share_basis_unverified",
+          "currency_unknown",
+          "eps_basis_unknown",
+          "eps_definition_unknown"
+        ],
+        "symbol": "sh600519",
+        "fiscal_year": 2026,
+        "cash_dividends": "unknown"
+      },
+      {
+        "organization": "东吴证券",
+        "start_forecast": {
+          "observations": [
+            {
+              "code": "600519",
+              "symbol": "sh600519",
+              "date": "2026-04-26",
+              "source_date": "2026-04-26",
+              "published_at": null,
+              "available_at": null,
+              "organization": "东吴证券",
+              "fiscal_year": 2026,
+              "eps": 67.91,
+              "currency": null,
+              "eps_basis": null,
+              "eps_definition": null,
+              "version": null,
+              "analyst": "",
+              "rating": "",
+              "title": "2026年一季报点评：锐意改革全面2C，强势开局确立企稳",
+              "info_code": "AP202604261821593674",
+              "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202604261821593674_1.pdf",
+              "retrieved_at": null,
+              "source": "akshare_eastmoney",
+              "report_references": [
+                {
+                  "info_code": "AP202604261821593674",
+                  "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202604261821593674_1.pdf",
+                  "source": "akshare_eastmoney",
+                  "retrieved_at": null,
+                  "title": "2026年一季报点评：锐意改革全面2C，强势开局确立企稳",
+                  "analyst": ""
+                }
+              ],
+              "conflict": false,
+              "conflict_reason": null
+            }
+          ],
+          "date": "2026-04-26",
+          "age_days": 57,
+          "eps": 67.91
+        },
+        "end_forecast": {
+          "observations": [
+            {
+              "code": "600519",
+              "symbol": "sh600519",
+              "date": "2026-08-16",
+              "source_date": "2026-08-16",
+              "published_at": null,
+              "available_at": null,
+              "organization": "东吴证券",
+              "fiscal_year": 2026,
+              "eps": 67.51,
+              "currency": null,
+              "eps_basis": null,
+              "eps_definition": null,
+              "version": null,
+              "analyst": "",
+              "rating": "",
+              "title": "2026年中报点评：全面向C夯实塔基，底色不改向好可期",
+              "info_code": "AP202608161828030058",
+              "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202608161828030058_1.pdf",
+              "retrieved_at": null,
+              "source": "akshare_eastmoney",
+              "report_references": [
+                {
+                  "info_code": "AP202608161828030058",
+                  "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202608161828030058_1.pdf",
+                  "source": "akshare_eastmoney",
+                  "retrieved_at": null,
+                  "title": "2026年中报点评：全面向C夯实塔基，底色不改向好可期",
+                  "analyst": ""
+                }
+              ],
+              "conflict": false,
+              "conflict_reason": null
+            }
+          ],
+          "date": "2026-08-16",
+          "age_days": 33,
+          "eps": 67.51
+        },
+        "start_price": {
+          "date": "2026-06-22",
+          "price": 1241.41,
+          "currency": "CNY",
+          "source": "hithink",
+          "retrieved_at": "2026-09-22T06:45:44.094930+00:00",
+          "adjust": "none"
+        },
+        "end_price": {
+          "date": "2026-09-18",
+          "price": 1257.12,
+          "currency": "CNY",
+          "source": "hithink",
+          "retrieved_at": "2026-09-22T06:45:44.094930+00:00",
+          "adjust": "none"
+        },
+        "coverage_status": "paired",
+        "eps_comparable": false,
+        "eps_change": null,
+        "eps_change_pct": null,
+        "direction": null,
+        "unchanged_report": false,
+        "price_change_pct": null,
+        "pe0": null,
+        "pe1": null,
+        "pe_change_pct": null,
+        "metrics_computable": false,
+        "matched": null,
+        "reasons": [
+          "share_basis_unverified",
+          "currency_unknown",
+          "eps_basis_unknown",
+          "eps_definition_unknown"
+        ],
+        "symbol": "sh600519",
+        "fiscal_year": 2026,
+        "cash_dividends": "unknown"
+      },
+      {
+        "organization": "中邮证券",
+        "start_forecast": {
+          "observations": [
+            {
+              "code": "600519",
+              "symbol": "sh600519",
+              "date": "2026-04-28",
+              "source_date": "2026-04-28",
+              "published_at": null,
+              "available_at": null,
+              "organization": "中邮证券",
+              "fiscal_year": 2026,
+              "eps": 68.16,
+              "currency": null,
+              "eps_basis": null,
+              "eps_definition": null,
+              "version": null,
+              "analyst": "",
+              "rating": "",
+              "title": "收入利润双稳增符合预期，i茅台放量显著",
+              "info_code": "AP202604281821660055",
+              "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202604281821660055_1.pdf",
+              "retrieved_at": null,
+              "source": "akshare_eastmoney",
+              "report_references": [
+                {
+                  "info_code": "AP202604281821660055",
+                  "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202604281821660055_1.pdf",
+                  "source": "akshare_eastmoney",
+                  "retrieved_at": null,
+                  "title": "收入利润双稳增符合预期，i茅台放量显著",
+                  "analyst": ""
+                }
+              ],
+              "conflict": false,
+              "conflict_reason": null
+            }
+          ],
+          "date": "2026-04-28",
+          "age_days": 55,
+          "eps": 68.16
+        },
+        "end_forecast": {
+          "observations": [
+            {
+              "code": "600519",
+              "symbol": "sh600519",
+              "date": "2026-08-18",
+              "source_date": "2026-08-18",
+              "published_at": null,
+              "available_at": null,
+              "organization": "中邮证券",
+              "fiscal_year": 2026,
+              "eps": 66.53,
+              "currency": null,
+              "eps_basis": null,
+              "eps_definition": null,
+              "version": null,
+              "analyst": "",
+              "rating": "",
+              "title": "淡季收入短期承压，提价有望带动下半年改善",
+              "info_code": "AP202608181828095469",
+              "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202608181828095469_1.pdf",
+              "retrieved_at": null,
+              "source": "akshare_eastmoney",
+              "report_references": [
+                {
+                  "info_code": "AP202608181828095469",
+                  "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202608181828095469_1.pdf",
+                  "source": "akshare_eastmoney",
+                  "retrieved_at": null,
+                  "title": "淡季收入短期承压，提价有望带动下半年改善",
+                  "analyst": ""
+                }
+              ],
+              "conflict": false,
+              "conflict_reason": null
+            }
+          ],
+          "date": "2026-08-18",
+          "age_days": 31,
+          "eps": 66.53
+        },
+        "start_price": {
+          "date": "2026-06-22",
+          "price": 1241.41,
+          "currency": "CNY",
+          "source": "hithink",
+          "retrieved_at": "2026-09-22T06:45:44.094930+00:00",
+          "adjust": "none"
+        },
+        "end_price": {
+          "date": "2026-09-18",
+          "price": 1257.12,
+          "currency": "CNY",
+          "source": "hithink",
+          "retrieved_at": "2026-09-22T06:45:44.094930+00:00",
+          "adjust": "none"
+        },
+        "coverage_status": "paired",
+        "eps_comparable": false,
+        "eps_change": null,
+        "eps_change_pct": null,
+        "direction": null,
+        "unchanged_report": false,
+        "price_change_pct": null,
+        "pe0": null,
+        "pe1": null,
+        "pe_change_pct": null,
+        "metrics_computable": false,
+        "matched": null,
+        "reasons": [
+          "share_basis_unverified",
+          "currency_unknown",
+          "eps_basis_unknown",
+          "eps_definition_unknown"
+        ],
+        "symbol": "sh600519",
+        "fiscal_year": 2026,
+        "cash_dividends": "unknown"
+      },
+      {
+        "organization": "中银证券",
+        "start_forecast": {
+          "observations": [
+            {
+              "code": "600519",
+              "symbol": "sh600519",
+              "date": "2026-04-27",
+              "source_date": "2026-04-27",
+              "published_at": null,
+              "available_at": null,
+              "organization": "中银证券",
+              "fiscal_year": 2026,
+              "eps": 68.1,
+              "currency": null,
+              "eps_basis": null,
+              "eps_definition": null,
+              "version": null,
+              "analyst": "",
+              "rating": "",
+              "title": "i茅台大放异彩，2026年稳健开局",
+              "info_code": "AP202604271821598041",
+              "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202604271821598041_1.pdf",
+              "retrieved_at": null,
+              "source": "akshare_eastmoney",
+              "report_references": [
+                {
+                  "info_code": "AP202604271821598041",
+                  "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202604271821598041_1.pdf",
+                  "source": "akshare_eastmoney",
+                  "retrieved_at": null,
+                  "title": "i茅台大放异彩，2026年稳健开局",
+                  "analyst": ""
+                }
+              ],
+              "conflict": false,
+              "conflict_reason": null
+            }
+          ],
+          "date": "2026-04-27",
+          "age_days": 56,
+          "eps": 68.1
+        },
+        "end_forecast": {
+          "observations": [
+            {
+              "code": "600519",
+              "symbol": "sh600519",
+              "date": "2026-08-21",
+              "source_date": "2026-08-21",
+              "published_at": null,
+              "available_at": null,
+              "organization": "中银证券",
+              "fiscal_year": 2026,
+              "eps": 67.1,
+              "currency": null,
+              "eps_basis": null,
+              "eps_definition": null,
+              "version": null,
+              "analyst": "",
+              "rating": "",
+              "title": "市场化改革带来短期业绩阵痛，公司改革成效显著，基本面仍具韧性",
+              "info_code": "AP202608211828236036",
+              "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202608211828236036_1.pdf",
+              "retrieved_at": null,
+              "source": "akshare_eastmoney",
+              "report_references": [
+                {
+                  "info_code": "AP202608211828236036",
+                  "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202608211828236036_1.pdf",
+                  "source": "akshare_eastmoney",
+                  "retrieved_at": null,
+                  "title": "市场化改革带来短期业绩阵痛，公司改革成效显著，基本面仍具韧性",
+                  "analyst": ""
+                }
+              ],
+              "conflict": false,
+              "conflict_reason": null
+            }
+          ],
+          "date": "2026-08-21",
+          "age_days": 28,
+          "eps": 67.1
+        },
+        "start_price": {
+          "date": "2026-06-22",
+          "price": 1241.41,
+          "currency": "CNY",
+          "source": "hithink",
+          "retrieved_at": "2026-09-22T06:45:44.094930+00:00",
+          "adjust": "none"
+        },
+        "end_price": {
+          "date": "2026-09-18",
+          "price": 1257.12,
+          "currency": "CNY",
+          "source": "hithink",
+          "retrieved_at": "2026-09-22T06:45:44.094930+00:00",
+          "adjust": "none"
+        },
+        "coverage_status": "paired",
+        "eps_comparable": false,
+        "eps_change": null,
+        "eps_change_pct": null,
+        "direction": null,
+        "unchanged_report": false,
+        "price_change_pct": null,
+        "pe0": null,
+        "pe1": null,
+        "pe_change_pct": null,
+        "metrics_computable": false,
+        "matched": null,
+        "reasons": [
+          "share_basis_unverified",
+          "currency_unknown",
+          "eps_basis_unknown",
+          "eps_definition_unknown"
+        ],
+        "symbol": "sh600519",
+        "fiscal_year": 2026,
+        "cash_dividends": "unknown"
+      },
+      {
+        "organization": "信达证券",
+        "start_forecast": {
+          "observations": [
+            {
+              "code": "600519",
+              "symbol": "sh600519",
+              "date": "2026-04-26",
+              "source_date": "2026-04-26",
+              "published_at": null,
+              "available_at": null,
+              "organization": "信达证券",
+              "fiscal_year": 2026,
+              "eps": 67.12,
+              "currency": null,
+              "eps_basis": null,
+              "eps_definition": null,
+              "version": null,
+              "analyst": "",
+              "rating": "",
+              "title": "改革成效凸显，i茅台放量激增",
+              "info_code": "AP202604261821593789",
+              "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202604261821593789_1.pdf",
+              "retrieved_at": null,
+              "source": "akshare_eastmoney",
+              "report_references": [
+                {
+                  "info_code": "AP202604261821593789",
+                  "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202604261821593789_1.pdf",
+                  "source": "akshare_eastmoney",
+                  "retrieved_at": null,
+                  "title": "改革成效凸显，i茅台放量激增",
+                  "analyst": ""
+                }
+              ],
+              "conflict": false,
+              "conflict_reason": null
+            }
+          ],
+          "date": "2026-04-26",
+          "age_days": 57,
+          "eps": 67.12
+        },
+        "end_forecast": {
+          "observations": [
+            {
+              "code": "600519",
+              "symbol": "sh600519",
+              "date": "2026-04-26",
+              "source_date": "2026-04-26",
+              "published_at": null,
+              "available_at": null,
+              "organization": "信达证券",
+              "fiscal_year": 2026,
+              "eps": 67.12,
+              "currency": null,
+              "eps_basis": null,
+              "eps_definition": null,
+              "version": null,
+              "analyst": "",
+              "rating": "",
+              "title": "改革成效凸显，i茅台放量激增",
+              "info_code": "AP202604261821593789",
+              "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202604261821593789_1.pdf",
+              "retrieved_at": null,
+              "source": "akshare_eastmoney",
+              "report_references": [
+                {
+                  "info_code": "AP202604261821593789",
+                  "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202604261821593789_1.pdf",
+                  "source": "akshare_eastmoney",
+                  "retrieved_at": null,
+                  "title": "改革成效凸显，i茅台放量激增",
+                  "analyst": ""
+                }
+              ],
+              "conflict": false,
+              "conflict_reason": null
+            }
+          ],
+          "date": "2026-04-26",
+          "age_days": 145,
+          "eps": 67.12
+        },
+        "start_price": {
+          "date": "2026-06-22",
+          "price": 1241.41,
+          "currency": "CNY",
+          "source": "hithink",
+          "retrieved_at": "2026-09-22T06:45:44.094930+00:00",
+          "adjust": "none"
+        },
+        "end_price": {
+          "date": "2026-09-18",
+          "price": 1257.12,
+          "currency": "CNY",
+          "source": "hithink",
+          "retrieved_at": "2026-09-22T06:45:44.094930+00:00",
+          "adjust": "none"
+        },
+        "coverage_status": "paired",
+        "eps_comparable": false,
+        "eps_change": null,
+        "eps_change_pct": null,
+        "direction": null,
+        "unchanged_report": false,
+        "price_change_pct": null,
+        "pe0": null,
+        "pe1": null,
+        "pe_change_pct": null,
+        "metrics_computable": false,
+        "matched": null,
+        "reasons": [
+          "share_basis_unverified",
+          "currency_unknown",
+          "eps_basis_unknown",
+          "eps_definition_unknown"
+        ],
+        "symbol": "sh600519",
+        "fiscal_year": 2026,
+        "cash_dividends": "unknown"
+      },
+      {
+        "organization": "华鑫证券",
+        "start_forecast": {
+          "observations": [
+            {
+              "code": "600519",
+              "symbol": "sh600519",
+              "date": "2026-05-05",
+              "source_date": "2026-05-05",
+              "published_at": null,
+              "available_at": null,
+              "organization": "华鑫证券",
+              "fiscal_year": 2026,
+              "eps": 68.71,
+              "currency": null,
+              "eps_basis": null,
+              "eps_definition": null,
+              "version": null,
+              "analyst": "",
+              "rating": "",
+              "title": "公司事件点评报告：i茅台持续发力，改革效果初显",
+              "info_code": "AP202605051821970230",
+              "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202605051821970230_1.pdf",
+              "retrieved_at": null,
+              "source": "akshare_eastmoney",
+              "report_references": [
+                {
+                  "info_code": "AP202605051821970230",
+                  "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202605051821970230_1.pdf",
+                  "source": "akshare_eastmoney",
+                  "retrieved_at": null,
+                  "title": "公司事件点评报告：i茅台持续发力，改革效果初显",
+                  "analyst": ""
+                }
+              ],
+              "conflict": false,
+              "conflict_reason": null
+            }
+          ],
+          "date": "2026-05-05",
+          "age_days": 48,
+          "eps": 68.71
+        },
+        "end_forecast": {
+          "observations": [
+            {
+              "code": "600519",
+              "symbol": "sh600519",
+              "date": "2026-08-17",
+              "source_date": "2026-08-17",
+              "published_at": null,
+              "available_at": null,
+              "organization": "华鑫证券",
+              "fiscal_year": 2026,
+              "eps": 68.82,
+              "currency": null,
+              "eps_basis": null,
+              "eps_definition": null,
+              "version": null,
+              "analyst": "",
+              "rating": "",
+              "title": "公司事件点评报告：i茅台超预期，改革效果逐步明显",
+              "info_code": "AP202608171828051638",
+              "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202608171828051638_1.pdf",
+              "retrieved_at": null,
+              "source": "akshare_eastmoney",
+              "report_references": [
+                {
+                  "info_code": "AP202608171828051638",
+                  "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202608171828051638_1.pdf",
+                  "source": "akshare_eastmoney",
+                  "retrieved_at": null,
+                  "title": "公司事件点评报告：i茅台超预期，改革效果逐步明显",
+                  "analyst": ""
+                }
+              ],
+              "conflict": false,
+              "conflict_reason": null
+            }
+          ],
+          "date": "2026-08-17",
+          "age_days": 32,
+          "eps": 68.82
+        },
+        "start_price": {
+          "date": "2026-06-22",
+          "price": 1241.41,
+          "currency": "CNY",
+          "source": "hithink",
+          "retrieved_at": "2026-09-22T06:45:44.094930+00:00",
+          "adjust": "none"
+        },
+        "end_price": {
+          "date": "2026-09-18",
+          "price": 1257.12,
+          "currency": "CNY",
+          "source": "hithink",
+          "retrieved_at": "2026-09-22T06:45:44.094930+00:00",
+          "adjust": "none"
+        },
+        "coverage_status": "paired",
+        "eps_comparable": false,
+        "eps_change": null,
+        "eps_change_pct": null,
+        "direction": null,
+        "unchanged_report": false,
+        "price_change_pct": null,
+        "pe0": null,
+        "pe1": null,
+        "pe_change_pct": null,
+        "metrics_computable": false,
+        "matched": null,
+        "reasons": [
+          "share_basis_unverified",
+          "currency_unknown",
+          "eps_basis_unknown",
+          "eps_definition_unknown"
+        ],
+        "symbol": "sh600519",
+        "fiscal_year": 2026,
+        "cash_dividends": "unknown"
+      },
+      {
+        "organization": "国信证券",
+        "start_forecast": {
+          "observations": [
+            {
+              "code": "600519",
+              "symbol": "sh600519",
+              "date": "2026-04-27",
+              "source_date": "2026-04-27",
+              "published_at": null,
+              "available_at": null,
+              "organization": "国信证券",
+              "fiscal_year": 2026,
+              "eps": 67.06,
+              "currency": null,
+              "eps_basis": null,
+              "eps_definition": null,
+              "version": null,
+              "analyst": "",
+              "rating": "",
+              "title": "2026Q1收入稳健增长，市场化改革成效逐步显现",
+              "info_code": "AP202604271821597817",
+              "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202604271821597817_1.pdf",
+              "retrieved_at": null,
+              "source": "akshare_eastmoney",
+              "report_references": [
+                {
+                  "info_code": "AP202604271821597817",
+                  "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202604271821597817_1.pdf",
+                  "source": "akshare_eastmoney",
+                  "retrieved_at": null,
+                  "title": "2026Q1收入稳健增长，市场化改革成效逐步显现",
+                  "analyst": ""
+                }
+              ],
+              "conflict": false,
+              "conflict_reason": null
+            }
+          ],
+          "date": "2026-04-27",
+          "age_days": 56,
+          "eps": 67.06
+        },
+        "end_forecast": {
+          "observations": [
+            {
+              "code": "600519",
+              "symbol": "sh600519",
+              "date": "2026-08-17",
+              "source_date": "2026-08-17",
+              "published_at": null,
+              "available_at": null,
+              "organization": "国信证券",
+              "fiscal_year": 2026,
+              "eps": 65.77,
+              "currency": null,
+              "eps_basis": null,
+              "eps_definition": null,
+              "version": null,
+              "analyst": "",
+              "rating": "",
+              "title": "2026上半年收入同比增长1.3%，继续深化市场化改革",
+              "info_code": "AP202608171828048790",
+              "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202608171828048790_1.pdf",
+              "retrieved_at": null,
+              "source": "akshare_eastmoney",
+              "report_references": [
+                {
+                  "info_code": "AP202608171828048790",
+                  "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202608171828048790_1.pdf",
+                  "source": "akshare_eastmoney",
+                  "retrieved_at": null,
+                  "title": "2026上半年收入同比增长1.3%，继续深化市场化改革",
+                  "analyst": ""
+                }
+              ],
+              "conflict": false,
+              "conflict_reason": null
+            }
+          ],
+          "date": "2026-08-17",
+          "age_days": 32,
+          "eps": 65.77
+        },
+        "start_price": {
+          "date": "2026-06-22",
+          "price": 1241.41,
+          "currency": "CNY",
+          "source": "hithink",
+          "retrieved_at": "2026-09-22T06:45:44.094930+00:00",
+          "adjust": "none"
+        },
+        "end_price": {
+          "date": "2026-09-18",
+          "price": 1257.12,
+          "currency": "CNY",
+          "source": "hithink",
+          "retrieved_at": "2026-09-22T06:45:44.094930+00:00",
+          "adjust": "none"
+        },
+        "coverage_status": "paired",
+        "eps_comparable": false,
+        "eps_change": null,
+        "eps_change_pct": null,
+        "direction": null,
+        "unchanged_report": false,
+        "price_change_pct": null,
+        "pe0": null,
+        "pe1": null,
+        "pe_change_pct": null,
+        "metrics_computable": false,
+        "matched": null,
+        "reasons": [
+          "share_basis_unverified",
+          "currency_unknown",
+          "eps_basis_unknown",
+          "eps_definition_unknown"
+        ],
+        "symbol": "sh600519",
+        "fiscal_year": 2026,
+        "cash_dividends": "unknown"
+      },
+      {
+        "organization": "国金证券",
+        "start_forecast": {
+          "observations": [
+            {
+              "code": "600519",
+              "symbol": "sh600519",
+              "date": "2026-04-26",
+              "source_date": "2026-04-26",
+              "published_at": null,
+              "available_at": null,
+              "organization": "国金证券",
+              "fiscal_year": 2026,
+              "eps": 67.383,
+              "currency": null,
+              "eps_basis": null,
+              "eps_definition": null,
+              "version": null,
+              "analyst": "",
+              "rating": "",
+              "title": "业绩符合预期，市场化改革成效斐然",
+              "info_code": "AP202604261821586283",
+              "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202604261821586283_1.pdf",
+              "retrieved_at": null,
+              "source": "akshare_eastmoney",
+              "report_references": [
+                {
+                  "info_code": "AP202604261821586283",
+                  "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202604261821586283_1.pdf",
+                  "source": "akshare_eastmoney",
+                  "retrieved_at": null,
+                  "title": "业绩符合预期，市场化改革成效斐然",
+                  "analyst": ""
+                }
+              ],
+              "conflict": false,
+              "conflict_reason": null
+            }
+          ],
+          "date": "2026-04-26",
+          "age_days": 57,
+          "eps": 67.383
+        },
+        "end_forecast": {
+          "observations": [
+            {
+              "code": "600519",
+              "symbol": "sh600519",
+              "date": "2026-08-16",
+              "source_date": "2026-08-16",
+              "published_at": null,
+              "available_at": null,
+              "organization": "国金证券",
+              "fiscal_year": 2026,
+              "eps": 66.23,
+              "currency": null,
+              "eps_basis": null,
+              "eps_definition": null,
+              "version": null,
+              "analyst": "",
+              "rating": "",
+              "title": "直营化改革成效凸显，经营仍具韧性",
+              "info_code": "AP202608161828029200",
+              "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202608161828029200_1.pdf",
+              "retrieved_at": null,
+              "source": "akshare_eastmoney",
+              "report_references": [
+                {
+                  "info_code": "AP202608161828029200",
+                  "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202608161828029200_1.pdf",
+                  "source": "akshare_eastmoney",
+                  "retrieved_at": null,
+                  "title": "直营化改革成效凸显，经营仍具韧性",
+                  "analyst": ""
+                }
+              ],
+              "conflict": false,
+              "conflict_reason": null
+            }
+          ],
+          "date": "2026-08-16",
+          "age_days": 33,
+          "eps": 66.23
+        },
+        "start_price": {
+          "date": "2026-06-22",
+          "price": 1241.41,
+          "currency": "CNY",
+          "source": "hithink",
+          "retrieved_at": "2026-09-22T06:45:44.094930+00:00",
+          "adjust": "none"
+        },
+        "end_price": {
+          "date": "2026-09-18",
+          "price": 1257.12,
+          "currency": "CNY",
+          "source": "hithink",
+          "retrieved_at": "2026-09-22T06:45:44.094930+00:00",
+          "adjust": "none"
+        },
+        "coverage_status": "paired",
+        "eps_comparable": false,
+        "eps_change": null,
+        "eps_change_pct": null,
+        "direction": null,
+        "unchanged_report": false,
+        "price_change_pct": null,
+        "pe0": null,
+        "pe1": null,
+        "pe_change_pct": null,
+        "metrics_computable": false,
+        "matched": null,
+        "reasons": [
+          "share_basis_unverified",
+          "currency_unknown",
+          "eps_basis_unknown",
+          "eps_definition_unknown"
+        ],
+        "symbol": "sh600519",
+        "fiscal_year": 2026,
+        "cash_dividends": "unknown"
+      },
+      {
+        "organization": "太平洋",
+        "start_forecast": null,
+        "end_forecast": {
+          "observations": [
+            {
+              "code": "600519",
+              "symbol": "sh600519",
+              "date": "2026-08-18",
+              "source_date": "2026-08-18",
+              "published_at": null,
+              "available_at": null,
+              "organization": "太平洋",
+              "fiscal_year": 2026,
+              "eps": 68.34,
+              "currency": null,
+              "eps_basis": null,
+              "eps_definition": null,
+              "version": null,
+              "analyst": "",
+              "rating": "",
+              "title": "市场化改革重塑渠道和价格体系，业绩保持韧性",
+              "info_code": "AP202608181828097561",
+              "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202608181828097561_1.pdf",
+              "retrieved_at": null,
+              "source": "akshare_eastmoney",
+              "report_references": [
+                {
+                  "info_code": "AP202608181828097561",
+                  "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202608181828097561_1.pdf",
+                  "source": "akshare_eastmoney",
+                  "retrieved_at": null,
+                  "title": "市场化改革重塑渠道和价格体系，业绩保持韧性",
+                  "analyst": ""
+                }
+              ],
+              "conflict": false,
+              "conflict_reason": null
+            }
+          ],
+          "date": "2026-08-18",
+          "age_days": 31,
+          "eps": 68.34
+        },
+        "start_price": {
+          "date": "2026-06-22",
+          "price": 1241.41,
+          "currency": "CNY",
+          "source": "hithink",
+          "retrieved_at": "2026-09-22T06:45:44.094930+00:00",
+          "adjust": "none"
+        },
+        "end_price": {
+          "date": "2026-09-18",
+          "price": 1257.12,
+          "currency": "CNY",
+          "source": "hithink",
+          "retrieved_at": "2026-09-22T06:45:44.094930+00:00",
+          "adjust": "none"
+        },
+        "coverage_status": "new_coverage",
+        "eps_comparable": false,
+        "eps_change": null,
+        "eps_change_pct": null,
+        "direction": null,
+        "unchanged_report": false,
+        "price_change_pct": null,
+        "pe0": null,
+        "pe1": null,
+        "pe_change_pct": null,
+        "metrics_computable": false,
+        "matched": null,
+        "reasons": [
+          "start_forecast_missing",
+          "share_basis_unverified"
+        ],
+        "symbol": "sh600519",
+        "fiscal_year": 2026,
+        "cash_dividends": "unknown"
+      },
+      {
+        "organization": "山西证券",
+        "start_forecast": {
+          "observations": [
+            {
+              "code": "600519",
+              "symbol": "sh600519",
+              "date": "2026-04-28",
+              "source_date": "2026-04-28",
+              "published_at": null,
+              "available_at": null,
+              "organization": "山西证券",
+              "fiscal_year": 2026,
+              "eps": 68.19,
+              "currency": null,
+              "eps_basis": null,
+              "eps_definition": null,
+              "version": null,
+              "analyst": "",
+              "rating": "",
+              "title": "渠道重构落地，改革初现成效",
+              "info_code": "AP202604281821665969",
+              "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202604281821665969_1.pdf",
+              "retrieved_at": null,
+              "source": "akshare_eastmoney",
+              "report_references": [
+                {
+                  "info_code": "AP202604281821665969",
+                  "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202604281821665969_1.pdf",
+                  "source": "akshare_eastmoney",
+                  "retrieved_at": null,
+                  "title": "渠道重构落地，改革初现成效",
+                  "analyst": ""
+                }
+              ],
+              "conflict": false,
+              "conflict_reason": null
+            }
+          ],
+          "date": "2026-04-28",
+          "age_days": 55,
+          "eps": 68.19
+        },
+        "end_forecast": {
+          "observations": [
+            {
+              "code": "600519",
+              "symbol": "sh600519",
+              "date": "2026-08-18",
+              "source_date": "2026-08-18",
+              "published_at": null,
+              "available_at": null,
+              "organization": "山西证券",
+              "fiscal_year": 2026,
+              "eps": 68.21,
+              "currency": null,
+              "eps_basis": null,
+              "eps_definition": null,
+              "version": null,
+              "analyst": "",
+              "rating": "",
+              "title": "短期业绩承压，i茅台延续高增",
+              "info_code": "AP202608181828111071",
+              "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202608181828111071_1.pdf",
+              "retrieved_at": null,
+              "source": "akshare_eastmoney",
+              "report_references": [
+                {
+                  "info_code": "AP202608181828111071",
+                  "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202608181828111071_1.pdf",
+                  "source": "akshare_eastmoney",
+                  "retrieved_at": null,
+                  "title": "短期业绩承压，i茅台延续高增",
+                  "analyst": ""
+                }
+              ],
+              "conflict": false,
+              "conflict_reason": null
+            }
+          ],
+          "date": "2026-08-18",
+          "age_days": 31,
+          "eps": 68.21
+        },
+        "start_price": {
+          "date": "2026-06-22",
+          "price": 1241.41,
+          "currency": "CNY",
+          "source": "hithink",
+          "retrieved_at": "2026-09-22T06:45:44.094930+00:00",
+          "adjust": "none"
+        },
+        "end_price": {
+          "date": "2026-09-18",
+          "price": 1257.12,
+          "currency": "CNY",
+          "source": "hithink",
+          "retrieved_at": "2026-09-22T06:45:44.094930+00:00",
+          "adjust": "none"
+        },
+        "coverage_status": "paired",
+        "eps_comparable": false,
+        "eps_change": null,
+        "eps_change_pct": null,
+        "direction": null,
+        "unchanged_report": false,
+        "price_change_pct": null,
+        "pe0": null,
+        "pe1": null,
+        "pe_change_pct": null,
+        "metrics_computable": false,
+        "matched": null,
+        "reasons": [
+          "share_basis_unverified",
+          "currency_unknown",
+          "eps_basis_unknown",
+          "eps_definition_unknown"
+        ],
+        "symbol": "sh600519",
+        "fiscal_year": 2026,
+        "cash_dividends": "unknown"
+      },
+      {
+        "organization": "开源证券",
+        "start_forecast": {
+          "observations": [
+            {
+              "code": "600519",
+              "symbol": "sh600519",
+              "date": "2026-04-28",
+              "source_date": "2026-04-28",
+              "published_at": null,
+              "available_at": null,
+              "organization": "开源证券",
+              "fiscal_year": 2026,
+              "eps": 68.02,
+              "currency": null,
+              "eps_basis": null,
+              "eps_definition": null,
+              "version": null,
+              "analyst": "",
+              "rating": "",
+              "title": "公司信息更新报告：大单品放量价稳，触底信号明确",
+              "info_code": "AP202604281821686501",
+              "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202604281821686501_1.pdf",
+              "retrieved_at": null,
+              "source": "akshare_eastmoney",
+              "report_references": [
+                {
+                  "info_code": "AP202604281821686501",
+                  "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202604281821686501_1.pdf",
+                  "source": "akshare_eastmoney",
+                  "retrieved_at": null,
+                  "title": "公司信息更新报告：大单品放量价稳，触底信号明确",
+                  "analyst": ""
+                }
+              ],
+              "conflict": false,
+              "conflict_reason": null
+            }
+          ],
+          "date": "2026-04-28",
+          "age_days": 55,
+          "eps": 68.02
+        },
+        "end_forecast": {
+          "observations": [
+            {
+              "code": "600519",
+              "symbol": "sh600519",
+              "date": "2026-04-28",
+              "source_date": "2026-04-28",
+              "published_at": null,
+              "available_at": null,
+              "organization": "开源证券",
+              "fiscal_year": 2026,
+              "eps": 68.02,
+              "currency": null,
+              "eps_basis": null,
+              "eps_definition": null,
+              "version": null,
+              "analyst": "",
+              "rating": "",
+              "title": "公司信息更新报告：大单品放量价稳，触底信号明确",
+              "info_code": "AP202604281821686501",
+              "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202604281821686501_1.pdf",
+              "retrieved_at": null,
+              "source": "akshare_eastmoney",
+              "report_references": [
+                {
+                  "info_code": "AP202604281821686501",
+                  "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202604281821686501_1.pdf",
+                  "source": "akshare_eastmoney",
+                  "retrieved_at": null,
+                  "title": "公司信息更新报告：大单品放量价稳，触底信号明确",
+                  "analyst": ""
+                }
+              ],
+              "conflict": false,
+              "conflict_reason": null
+            }
+          ],
+          "date": "2026-04-28",
+          "age_days": 143,
+          "eps": 68.02
+        },
+        "start_price": {
+          "date": "2026-06-22",
+          "price": 1241.41,
+          "currency": "CNY",
+          "source": "hithink",
+          "retrieved_at": "2026-09-22T06:45:44.094930+00:00",
+          "adjust": "none"
+        },
+        "end_price": {
+          "date": "2026-09-18",
+          "price": 1257.12,
+          "currency": "CNY",
+          "source": "hithink",
+          "retrieved_at": "2026-09-22T06:45:44.094930+00:00",
+          "adjust": "none"
+        },
+        "coverage_status": "paired",
+        "eps_comparable": false,
+        "eps_change": null,
+        "eps_change_pct": null,
+        "direction": null,
+        "unchanged_report": false,
+        "price_change_pct": null,
+        "pe0": null,
+        "pe1": null,
+        "pe_change_pct": null,
+        "metrics_computable": false,
+        "matched": null,
+        "reasons": [
+          "share_basis_unverified",
+          "currency_unknown",
+          "eps_basis_unknown",
+          "eps_definition_unknown"
+        ],
+        "symbol": "sh600519",
+        "fiscal_year": 2026,
+        "cash_dividends": "unknown"
+      },
+      {
+        "organization": "爱建证券",
+        "start_forecast": {
+          "observations": [
+            {
+              "code": "600519",
+              "symbol": "sh600519",
+              "date": "2026-04-01",
+              "source_date": "2026-04-01",
+              "published_at": null,
+              "available_at": null,
+              "organization": "爱建证券",
+              "fiscal_year": 2026,
+              "eps": 77.05,
+              "currency": null,
+              "eps_basis": null,
+              "eps_definition": null,
+              "version": null,
+              "analyst": "",
+              "rating": "",
+              "title": "首次覆盖报告：推进市场化改革，龙头持续变革转型",
+              "info_code": "AP202604011820949486",
+              "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202604011820949486_1.pdf",
+              "retrieved_at": null,
+              "source": "akshare_eastmoney",
+              "report_references": [
+                {
+                  "info_code": "AP202604011820949486",
+                  "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202604011820949486_1.pdf",
+                  "source": "akshare_eastmoney",
+                  "retrieved_at": null,
+                  "title": "首次覆盖报告：推进市场化改革，龙头持续变革转型",
+                  "analyst": ""
+                }
+              ],
+              "conflict": false,
+              "conflict_reason": null
+            }
+          ],
+          "date": "2026-04-01",
+          "age_days": 82,
+          "eps": 77.05
+        },
+        "end_forecast": {
+          "observations": [
+            {
+              "code": "600519",
+              "symbol": "sh600519",
+              "date": "2026-04-01",
+              "source_date": "2026-04-01",
+              "published_at": null,
+              "available_at": null,
+              "organization": "爱建证券",
+              "fiscal_year": 2026,
+              "eps": 77.05,
+              "currency": null,
+              "eps_basis": null,
+              "eps_definition": null,
+              "version": null,
+              "analyst": "",
+              "rating": "",
+              "title": "首次覆盖报告：推进市场化改革，龙头持续变革转型",
+              "info_code": "AP202604011820949486",
+              "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202604011820949486_1.pdf",
+              "retrieved_at": null,
+              "source": "akshare_eastmoney",
+              "report_references": [
+                {
+                  "info_code": "AP202604011820949486",
+                  "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202604011820949486_1.pdf",
+                  "source": "akshare_eastmoney",
+                  "retrieved_at": null,
+                  "title": "首次覆盖报告：推进市场化改革，龙头持续变革转型",
+                  "analyst": ""
+                }
+              ],
+              "conflict": false,
+              "conflict_reason": null
+            }
+          ],
+          "date": "2026-04-01",
+          "age_days": 170,
+          "eps": 77.05
+        },
+        "start_price": {
+          "date": "2026-06-22",
+          "price": 1241.41,
+          "currency": "CNY",
+          "source": "hithink",
+          "retrieved_at": "2026-09-22T06:45:44.094930+00:00",
+          "adjust": "none"
+        },
+        "end_price": {
+          "date": "2026-09-18",
+          "price": 1257.12,
+          "currency": "CNY",
+          "source": "hithink",
+          "retrieved_at": "2026-09-22T06:45:44.094930+00:00",
+          "adjust": "none"
+        },
+        "coverage_status": "paired",
+        "eps_comparable": false,
+        "eps_change": null,
+        "eps_change_pct": null,
+        "direction": null,
+        "unchanged_report": false,
+        "price_change_pct": null,
+        "pe0": null,
+        "pe1": null,
+        "pe_change_pct": null,
+        "metrics_computable": false,
+        "matched": null,
+        "reasons": [
+          "share_basis_unverified",
+          "currency_unknown",
+          "eps_basis_unknown",
+          "eps_definition_unknown"
+        ],
+        "symbol": "sh600519",
+        "fiscal_year": 2026,
+        "cash_dividends": "unknown"
+      },
+      {
+        "organization": "群益证券",
+        "start_forecast": {
+          "observations": [
+            {
+              "code": "600519",
+              "symbol": "sh600519",
+              "date": "2026-04-28",
+              "source_date": "2026-04-28",
+              "published_at": null,
+              "available_at": null,
+              "organization": "群益证券",
+              "fiscal_year": 2026,
+              "eps": 68.91,
+              "currency": null,
+              "eps_basis": null,
+              "eps_definition": null,
+              "version": null,
+              "analyst": "",
+              "rating": "",
+              "title": "转型初见成效，i茅台收入大幅增长",
+              "info_code": "AP202604281821658363",
+              "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202604281821658363_1.pdf",
+              "retrieved_at": null,
+              "source": "akshare_eastmoney",
+              "report_references": [
+                {
+                  "info_code": "AP202604281821658363",
+                  "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202604281821658363_1.pdf",
+                  "source": "akshare_eastmoney",
+                  "retrieved_at": null,
+                  "title": "转型初见成效，i茅台收入大幅增长",
+                  "analyst": ""
+                }
+              ],
+              "conflict": false,
+              "conflict_reason": null
+            }
+          ],
+          "date": "2026-04-28",
+          "age_days": 55,
+          "eps": 68.91
+        },
+        "end_forecast": {
+          "observations": [
+            {
+              "code": "600519",
+              "symbol": "sh600519",
+              "date": "2026-08-18",
+              "source_date": "2026-08-18",
+              "published_at": null,
+              "available_at": null,
+              "organization": "群益证券",
+              "fiscal_year": 2026,
+              "eps": 68.12,
+              "currency": null,
+              "eps_basis": null,
+              "eps_definition": null,
+              "version": null,
+              "analyst": "",
+              "rating": "",
+              "title": "飞天整体稳健，推进全面向C",
+              "info_code": "AP202608181828101201",
+              "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202608181828101201_1.pdf",
+              "retrieved_at": null,
+              "source": "akshare_eastmoney",
+              "report_references": [
+                {
+                  "info_code": "AP202608181828101201",
+                  "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202608181828101201_1.pdf",
+                  "source": "akshare_eastmoney",
+                  "retrieved_at": null,
+                  "title": "飞天整体稳健，推进全面向C",
+                  "analyst": ""
+                }
+              ],
+              "conflict": false,
+              "conflict_reason": null
+            }
+          ],
+          "date": "2026-08-18",
+          "age_days": 31,
+          "eps": 68.12
+        },
+        "start_price": {
+          "date": "2026-06-22",
+          "price": 1241.41,
+          "currency": "CNY",
+          "source": "hithink",
+          "retrieved_at": "2026-09-22T06:45:44.094930+00:00",
+          "adjust": "none"
+        },
+        "end_price": {
+          "date": "2026-09-18",
+          "price": 1257.12,
+          "currency": "CNY",
+          "source": "hithink",
+          "retrieved_at": "2026-09-22T06:45:44.094930+00:00",
+          "adjust": "none"
+        },
+        "coverage_status": "paired",
+        "eps_comparable": false,
+        "eps_change": null,
+        "eps_change_pct": null,
+        "direction": null,
+        "unchanged_report": false,
+        "price_change_pct": null,
+        "pe0": null,
+        "pe1": null,
+        "pe_change_pct": null,
+        "metrics_computable": false,
+        "matched": null,
+        "reasons": [
+          "share_basis_unverified",
+          "currency_unknown",
+          "eps_basis_unknown",
+          "eps_definition_unknown"
+        ],
+        "symbol": "sh600519",
+        "fiscal_year": 2026,
+        "cash_dividends": "unknown"
+      },
+      {
+        "organization": "西南证券",
+        "start_forecast": {
+          "observations": [
+            {
+              "code": "600519",
+              "symbol": "sh600519",
+              "date": "2026-04-28",
+              "source_date": "2026-04-28",
+              "published_at": null,
+              "available_at": null,
+              "organization": "西南证券",
+              "fiscal_year": 2026,
+              "eps": 70.67,
+              "currency": null,
+              "eps_basis": null,
+              "eps_definition": null,
+              "version": null,
+              "analyst": "",
+              "rating": "",
+              "title": "2026年一季报点评：茅台酒稳健，系列酒重拾增长",
+              "info_code": "AP202604281821659552",
+              "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202604281821659552_1.pdf",
+              "retrieved_at": null,
+              "source": "akshare_eastmoney",
+              "report_references": [
+                {
+                  "info_code": "AP202604281821659552",
+                  "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202604281821659552_1.pdf",
+                  "source": "akshare_eastmoney",
+                  "retrieved_at": null,
+                  "title": "2026年一季报点评：茅台酒稳健，系列酒重拾增长",
+                  "analyst": ""
+                }
+              ],
+              "conflict": false,
+              "conflict_reason": null
+            }
+          ],
+          "date": "2026-04-28",
+          "age_days": 55,
+          "eps": 70.67
+        },
+        "end_forecast": {
+          "observations": [
+            {
+              "code": "600519",
+              "symbol": "sh600519",
+              "date": "2026-08-21",
+              "source_date": "2026-08-21",
+              "published_at": null,
+              "available_at": null,
+              "organization": "西南证券",
+              "fiscal_year": 2026,
+              "eps": 69.83,
+              "currency": null,
+              "eps_basis": null,
+              "eps_definition": null,
+              "version": null,
+              "analyst": "",
+              "rating": "",
+              "title": "2026年中报点评：茅台酒稳健，系列酒主动调整",
+              "info_code": "AP202608211828244348",
+              "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202608211828244348_1.pdf",
+              "retrieved_at": null,
+              "source": "akshare_eastmoney",
+              "report_references": [
+                {
+                  "info_code": "AP202608211828244348",
+                  "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202608211828244348_1.pdf",
+                  "source": "akshare_eastmoney",
+                  "retrieved_at": null,
+                  "title": "2026年中报点评：茅台酒稳健，系列酒主动调整",
+                  "analyst": ""
+                }
+              ],
+              "conflict": false,
+              "conflict_reason": null
+            }
+          ],
+          "date": "2026-08-21",
+          "age_days": 28,
+          "eps": 69.83
+        },
+        "start_price": {
+          "date": "2026-06-22",
+          "price": 1241.41,
+          "currency": "CNY",
+          "source": "hithink",
+          "retrieved_at": "2026-09-22T06:45:44.094930+00:00",
+          "adjust": "none"
+        },
+        "end_price": {
+          "date": "2026-09-18",
+          "price": 1257.12,
+          "currency": "CNY",
+          "source": "hithink",
+          "retrieved_at": "2026-09-22T06:45:44.094930+00:00",
+          "adjust": "none"
+        },
+        "coverage_status": "paired",
+        "eps_comparable": false,
+        "eps_change": null,
+        "eps_change_pct": null,
+        "direction": null,
+        "unchanged_report": false,
+        "price_change_pct": null,
+        "pe0": null,
+        "pe1": null,
+        "pe_change_pct": null,
+        "metrics_computable": false,
+        "matched": null,
+        "reasons": [
+          "share_basis_unverified",
+          "currency_unknown",
+          "eps_basis_unknown",
+          "eps_definition_unknown"
+        ],
+        "symbol": "sh600519",
+        "fiscal_year": 2026,
+        "cash_dividends": "unknown"
+      },
+      {
+        "organization": "诚通证券",
+        "start_forecast": {
+          "observations": [
+            {
+              "code": "600519",
+              "symbol": "sh600519",
+              "date": "2026-05-25",
+              "source_date": "2026-05-25",
+              "published_at": null,
+              "available_at": null,
+              "organization": "诚通证券",
+              "fiscal_year": 2026,
+              "eps": 66.68,
+              "currency": null,
+              "eps_basis": null,
+              "eps_definition": null,
+              "version": null,
+              "analyst": "",
+              "rating": "",
+              "title": "2025年年报及2026年一季报点评：顺势出清舒缓压力巩固优势稳健前行",
+              "info_code": "AP202605251822844635",
+              "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202605251822844635_1.pdf",
+              "retrieved_at": null,
+              "source": "akshare_eastmoney",
+              "report_references": [
+                {
+                  "info_code": "AP202605251822844635",
+                  "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202605251822844635_1.pdf",
+                  "source": "akshare_eastmoney",
+                  "retrieved_at": null,
+                  "title": "2025年年报及2026年一季报点评：顺势出清舒缓压力巩固优势稳健前行",
+                  "analyst": ""
+                }
+              ],
+              "conflict": false,
+              "conflict_reason": null
+            }
+          ],
+          "date": "2026-05-25",
+          "age_days": 28,
+          "eps": 66.68
+        },
+        "end_forecast": {
+          "observations": [
+            {
+              "code": "600519",
+              "symbol": "sh600519",
+              "date": "2026-05-25",
+              "source_date": "2026-05-25",
+              "published_at": null,
+              "available_at": null,
+              "organization": "诚通证券",
+              "fiscal_year": 2026,
+              "eps": 66.68,
+              "currency": null,
+              "eps_basis": null,
+              "eps_definition": null,
+              "version": null,
+              "analyst": "",
+              "rating": "",
+              "title": "2025年年报及2026年一季报点评：顺势出清舒缓压力巩固优势稳健前行",
+              "info_code": "AP202605251822844635",
+              "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202605251822844635_1.pdf",
+              "retrieved_at": null,
+              "source": "akshare_eastmoney",
+              "report_references": [
+                {
+                  "info_code": "AP202605251822844635",
+                  "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202605251822844635_1.pdf",
+                  "source": "akshare_eastmoney",
+                  "retrieved_at": null,
+                  "title": "2025年年报及2026年一季报点评：顺势出清舒缓压力巩固优势稳健前行",
+                  "analyst": ""
+                }
+              ],
+              "conflict": false,
+              "conflict_reason": null
+            }
+          ],
+          "date": "2026-05-25",
+          "age_days": 116,
+          "eps": 66.68
+        },
+        "start_price": {
+          "date": "2026-06-22",
+          "price": 1241.41,
+          "currency": "CNY",
+          "source": "hithink",
+          "retrieved_at": "2026-09-22T06:45:44.094930+00:00",
+          "adjust": "none"
+        },
+        "end_price": {
+          "date": "2026-09-18",
+          "price": 1257.12,
+          "currency": "CNY",
+          "source": "hithink",
+          "retrieved_at": "2026-09-22T06:45:44.094930+00:00",
+          "adjust": "none"
+        },
+        "coverage_status": "paired",
+        "eps_comparable": false,
+        "eps_change": null,
+        "eps_change_pct": null,
+        "direction": null,
+        "unchanged_report": false,
+        "price_change_pct": null,
+        "pe0": null,
+        "pe1": null,
+        "pe_change_pct": null,
+        "metrics_computable": false,
+        "matched": null,
+        "reasons": [
+          "share_basis_unverified",
+          "currency_unknown",
+          "eps_basis_unknown",
+          "eps_definition_unknown"
+        ],
+        "symbol": "sh600519",
+        "fiscal_year": 2026,
+        "cash_dividends": "unknown"
+      }
+    ],
+    "code": "600519",
+    "symbol": "sh600519",
+    "fiscal_year": 2026,
+    "start_date": "2026-06-22",
+    "end_date": "2026-09-18",
+    "max_age_days": 180,
+    "eps_floor": 0.01,
+    "mode": "retrospective_current_materials",
+    "point_in_time_verified": false,
+    "date_only_policy": "eligible_after_stated_date",
+    "share_basis": null,
+    "cash_dividends": "unknown",
+    "partial": true,
+    "matched": null,
+    "summary": {
+      "organizations": 16,
+      "paired": 0,
+      "computable": 0,
+      "matched": 0,
+      "up": 0,
+      "down": 0,
+      "flat": 0,
+      "new_coverage": 1,
+      "old_only": 0,
+      "not_updated": 0,
+      "disagreement": false,
+      "metrics": {
+        "eps_change_pct": {
+          "values": [],
+          "count": 0,
+          "median": null
+        },
+        "pe_change_pct": {
+          "values": [],
+          "count": 0,
+          "median": null
+        }
+      }
+    },
+    "coverage": {
+      "companies": {
+        "requested": 1,
+        "fetched": 1,
+        "computable": 0,
+        "matched": 0,
+        "missing": 1,
+        "displayed": 1
+      },
+      "organizations": {
+        "total": 16,
+        "returned": 16,
+        "truncated": false
+      },
+      "forecasts": {
+        "authors": false,
+        "pdf_links": true,
+        "begin": "2025-12-24",
+        "available_count": 48,
+        "returned_count": 48,
+        "limit": 500,
+        "truncated": false,
+        "limit_scope": "local_rows"
+      },
+      "bars": {
+        "amount": true,
+        "volume_unit": "share"
+      }
+    },
+    "skipped_reports": [],
+    "conflicts": [],
+    "input_provenance": {
+      "forecasts": {
+        "input_source": "stock_reports",
+        "input_retrieved_at": null,
+        "errors": null,
+        "partial": true
+      },
+      "bars": {
+        "source": "hithink",
+        "retrieved_at": "2026-09-22T06:45:44.094930+00:00",
+        "errors": {},
+        "partial": false
+      }
+    },
+    "warning": "按当前可得材料回溯；仅为研究线索，不证明历史可交易、市场遗漏或收益预测能力。 公司行动未完全核实。"
+  },
+  "sh688981": {
+    "ok": true,
+    "error": null,
+    "source": "forecast_price_changes",
+    "items": [
+      {
+        "organization": "中邮证券",
+        "start_forecast": {
+          "observations": [
+            {
+              "code": "688981",
+              "symbol": "sh688981",
+              "date": "2026-05-22",
+              "source_date": "2026-05-22",
+              "published_at": null,
+              "available_at": null,
+              "organization": "中邮证券",
+              "fiscal_year": 2026,
+              "eps": 0.79,
+              "currency": null,
+              "eps_basis": null,
+              "eps_definition": null,
+              "version": null,
+              "analyst": "",
+              "rating": "",
+              "title": "再上新台阶",
+              "info_code": "AP202605221822682971",
+              "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202605221822682971_1.pdf",
+              "retrieved_at": null,
+              "source": "akshare_eastmoney",
+              "report_references": [
+                {
+                  "info_code": "AP202605221822682971",
+                  "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202605221822682971_1.pdf",
+                  "source": "akshare_eastmoney",
+                  "retrieved_at": null,
+                  "title": "再上新台阶",
+                  "analyst": ""
+                }
+              ],
+              "conflict": false,
+              "conflict_reason": null
+            }
+          ],
+          "date": "2026-05-22",
+          "age_days": 31,
+          "eps": 0.79
+        },
+        "end_forecast": {
+          "observations": [
+            {
+              "code": "688981",
+              "symbol": "sh688981",
+              "date": "2026-05-22",
+              "source_date": "2026-05-22",
+              "published_at": null,
+              "available_at": null,
+              "organization": "中邮证券",
+              "fiscal_year": 2026,
+              "eps": 0.79,
+              "currency": null,
+              "eps_basis": null,
+              "eps_definition": null,
+              "version": null,
+              "analyst": "",
+              "rating": "",
+              "title": "再上新台阶",
+              "info_code": "AP202605221822682971",
+              "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202605221822682971_1.pdf",
+              "retrieved_at": null,
+              "source": "akshare_eastmoney",
+              "report_references": [
+                {
+                  "info_code": "AP202605221822682971",
+                  "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202605221822682971_1.pdf",
+                  "source": "akshare_eastmoney",
+                  "retrieved_at": null,
+                  "title": "再上新台阶",
+                  "analyst": ""
+                }
+              ],
+              "conflict": false,
+              "conflict_reason": null
+            }
+          ],
+          "date": "2026-05-22",
+          "age_days": 119,
+          "eps": 0.79
+        },
+        "start_price": {
+          "date": "2026-06-22",
+          "price": 145.59,
+          "currency": "CNY",
+          "source": "hithink",
+          "retrieved_at": "2026-09-22T06:45:46.732181+00:00",
+          "adjust": "none"
+        },
+        "end_price": {
+          "date": "2026-09-18",
+          "price": 122.0,
+          "currency": "CNY",
+          "source": "hithink",
+          "retrieved_at": "2026-09-22T06:45:46.732181+00:00",
+          "adjust": "none"
+        },
+        "coverage_status": "paired",
+        "eps_comparable": false,
+        "eps_change": null,
+        "eps_change_pct": null,
+        "direction": null,
+        "unchanged_report": false,
+        "price_change_pct": null,
+        "pe0": null,
+        "pe1": null,
+        "pe_change_pct": null,
+        "metrics_computable": false,
+        "matched": null,
+        "reasons": [
+          "share_basis_unverified",
+          "currency_unknown",
+          "eps_basis_unknown",
+          "eps_definition_unknown"
+        ],
+        "symbol": "sh688981",
+        "fiscal_year": 2026,
+        "cash_dividends": "unknown"
+      },
+      {
+        "organization": "山西证券",
+        "start_forecast": null,
+        "end_forecast": {
+          "observations": [
+            {
+              "code": "688981",
+              "symbol": "sh688981",
+              "date": "2026-08-21",
+              "source_date": "2026-08-21",
+              "published_at": null,
+              "available_at": null,
+              "organization": "山西证券",
+              "fiscal_year": 2026,
+              "eps": 0.96,
+              "currency": null,
+              "eps_basis": null,
+              "eps_definition": null,
+              "version": null,
+              "analyst": "",
+              "rating": "",
+              "title": "26Q2业绩超预期，指引Q3盈利水平持续提升",
+              "info_code": "AP202608211828253185",
+              "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202608211828253185_1.pdf",
+              "retrieved_at": null,
+              "source": "akshare_eastmoney",
+              "report_references": [
+                {
+                  "info_code": "AP202608211828253185",
+                  "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202608211828253185_1.pdf",
+                  "source": "akshare_eastmoney",
+                  "retrieved_at": null,
+                  "title": "26Q2业绩超预期，指引Q3盈利水平持续提升",
+                  "analyst": ""
+                }
+              ],
+              "conflict": false,
+              "conflict_reason": null
+            }
+          ],
+          "date": "2026-08-21",
+          "age_days": 28,
+          "eps": 0.96
+        },
+        "start_price": {
+          "date": "2026-06-22",
+          "price": 145.59,
+          "currency": "CNY",
+          "source": "hithink",
+          "retrieved_at": "2026-09-22T06:45:46.732181+00:00",
+          "adjust": "none"
+        },
+        "end_price": {
+          "date": "2026-09-18",
+          "price": 122.0,
+          "currency": "CNY",
+          "source": "hithink",
+          "retrieved_at": "2026-09-22T06:45:46.732181+00:00",
+          "adjust": "none"
+        },
+        "coverage_status": "new_coverage",
+        "eps_comparable": false,
+        "eps_change": null,
+        "eps_change_pct": null,
+        "direction": null,
+        "unchanged_report": false,
+        "price_change_pct": null,
+        "pe0": null,
+        "pe1": null,
+        "pe_change_pct": null,
+        "metrics_computable": false,
+        "matched": null,
+        "reasons": [
+          "start_forecast_missing",
+          "share_basis_unverified"
+        ],
+        "symbol": "sh688981",
+        "fiscal_year": 2026,
+        "cash_dividends": "unknown"
+      }
+    ],
+    "code": "688981",
+    "symbol": "sh688981",
+    "fiscal_year": 2026,
+    "start_date": "2026-06-22",
+    "end_date": "2026-09-18",
+    "max_age_days": 180,
+    "eps_floor": 0.01,
+    "mode": "retrospective_current_materials",
+    "point_in_time_verified": false,
+    "date_only_policy": "eligible_after_stated_date",
+    "share_basis": null,
+    "cash_dividends": "unknown",
+    "partial": true,
+    "matched": null,
+    "summary": {
+      "organizations": 2,
+      "paired": 0,
+      "computable": 0,
+      "matched": 0,
+      "up": 0,
+      "down": 0,
+      "flat": 0,
+      "new_coverage": 1,
+      "old_only": 0,
+      "not_updated": 0,
+      "disagreement": false,
+      "metrics": {
+        "eps_change_pct": {
+          "values": [],
+          "count": 0,
+          "median": null
+        },
+        "pe_change_pct": {
+          "values": [],
+          "count": 0,
+          "median": null
+        }
+      }
+    },
+    "coverage": {
+      "companies": {
+        "requested": 1,
+        "fetched": 1,
+        "computable": 0,
+        "matched": 0,
+        "missing": 1,
+        "displayed": 1
+      },
+      "organizations": {
+        "total": 2,
+        "returned": 2,
+        "truncated": false
+      },
+      "forecasts": {
+        "authors": false,
+        "pdf_links": true,
+        "begin": "2025-12-24",
+        "available_count": 3,
+        "returned_count": 3,
+        "limit": 500,
+        "truncated": false,
+        "limit_scope": "local_rows"
+      },
+      "bars": {
+        "amount": true,
+        "volume_unit": "share"
+      }
+    },
+    "skipped_reports": [],
+    "conflicts": [],
+    "input_provenance": {
+      "forecasts": {
+        "input_source": "stock_reports",
+        "input_retrieved_at": null,
+        "errors": null,
+        "partial": true
+      },
+      "bars": {
+        "source": "hithink",
+        "retrieved_at": "2026-09-22T06:45:46.732181+00:00",
+        "errors": {},
+        "partial": false
+      }
+    },
+    "warning": "按当前可得材料回溯；仅为研究线索，不证明历史可交易、市场遗漏或收益预测能力。 公司行动未完全核实。"
+  },
+  "sz300750": {
+    "ok": true,
+    "error": null,
+    "source": "forecast_price_changes",
+    "items": [
+      {
+        "organization": "东吴证券",
+        "start_forecast": {
+          "observations": [
+            {
+              "code": "300750",
+              "symbol": "sz300750",
+              "date": "2026-04-16",
+              "source_date": "2026-04-16",
+              "published_at": null,
+              "available_at": null,
+              "organization": "东吴证券",
+              "fiscal_year": 2026,
+              "eps": 21.07,
+              "currency": null,
+              "eps_basis": null,
+              "eps_definition": null,
+              "version": null,
+              "analyst": "",
+              "rating": "",
+              "title": "2026年一季报点评：龙头份额再提升，业绩持续超预期",
+              "info_code": "AP202604161821255081",
+              "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202604161821255081_1.pdf",
+              "retrieved_at": null,
+              "source": "akshare_eastmoney",
+              "report_references": [
+                {
+                  "info_code": "AP202604161821255081",
+                  "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202604161821255081_1.pdf",
+                  "source": "akshare_eastmoney",
+                  "retrieved_at": null,
+                  "title": "2026年一季报点评：龙头份额再提升，业绩持续超预期",
+                  "analyst": ""
+                }
+              ],
+              "conflict": false,
+              "conflict_reason": null
+            }
+          ],
+          "date": "2026-04-16",
+          "age_days": 67,
+          "eps": 21.07
+        },
+        "end_forecast": {
+          "observations": [
+            {
+              "code": "300750",
+              "symbol": "sz300750",
+              "date": "2026-07-26",
+              "source_date": "2026-07-26",
+              "published_at": null,
+              "available_at": null,
+              "organization": "东吴证券",
+              "fiscal_year": 2026,
+              "eps": 20.78,
+              "currency": null,
+              "eps_basis": null,
+              "eps_definition": null,
+              "version": null,
+              "analyst": "",
+              "rating": "",
+              "title": "宁德时代2026年中报点评：出货高增业绩稳健，回购彰显龙头信心",
+              "info_code": "AP202607261827357010",
+              "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202607261827357010_1.pdf",
+              "retrieved_at": null,
+              "source": "akshare_eastmoney",
+              "report_references": [
+                {
+                  "info_code": "AP202607261827357010",
+                  "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202607261827357010_1.pdf",
+                  "source": "akshare_eastmoney",
+                  "retrieved_at": null,
+                  "title": "宁德时代2026年中报点评：出货高增业绩稳健，回购彰显龙头信心",
+                  "analyst": ""
+                }
+              ],
+              "conflict": false,
+              "conflict_reason": null
+            }
+          ],
+          "date": "2026-07-26",
+          "age_days": 54,
+          "eps": 20.78
+        },
+        "start_price": {
+          "date": "2026-06-22",
+          "price": 408.98,
+          "currency": "CNY",
+          "source": "hithink",
+          "retrieved_at": "2026-09-22T06:45:49.742215+00:00",
+          "adjust": "none"
+        },
+        "end_price": {
+          "date": "2026-09-18",
+          "price": 301.95,
+          "currency": "CNY",
+          "source": "hithink",
+          "retrieved_at": "2026-09-22T06:45:49.742215+00:00",
+          "adjust": "none"
+        },
+        "coverage_status": "paired",
+        "eps_comparable": false,
+        "eps_change": null,
+        "eps_change_pct": null,
+        "direction": null,
+        "unchanged_report": false,
+        "price_change_pct": null,
+        "pe0": null,
+        "pe1": null,
+        "pe_change_pct": null,
+        "metrics_computable": false,
+        "matched": null,
+        "reasons": [
+          "share_basis_unverified",
+          "currency_unknown",
+          "eps_basis_unknown",
+          "eps_definition_unknown"
+        ],
+        "symbol": "sz300750",
+        "fiscal_year": 2026,
+        "cash_dividends": "unknown"
+      },
+      {
+        "organization": "东莞证券",
+        "start_forecast": {
+          "observations": [
+            {
+              "code": "300750",
+              "symbol": "sz300750",
+              "date": "2026-04-16",
+              "source_date": "2026-04-16",
+              "published_at": null,
+              "available_at": null,
+              "organization": "东莞证券",
+              "fiscal_year": 2026,
+              "eps": 20.33,
+              "currency": null,
+              "eps_basis": null,
+              "eps_definition": null,
+              "version": null,
+              "analyst": "",
+              "rating": "",
+              "title": "2026年一季报点评：营收和净利均高速增长，业绩保持靓丽",
+              "info_code": "AP202604161821262529",
+              "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202604161821262529_1.pdf",
+              "retrieved_at": null,
+              "source": "akshare_eastmoney",
+              "report_references": [
+                {
+                  "info_code": "AP202604161821262529",
+                  "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202604161821262529_1.pdf",
+                  "source": "akshare_eastmoney",
+                  "retrieved_at": null,
+                  "title": "2026年一季报点评：营收和净利均高速增长，业绩保持靓丽",
+                  "analyst": ""
+                }
+              ],
+              "conflict": false,
+              "conflict_reason": null
+            }
+          ],
+          "date": "2026-04-16",
+          "age_days": 67,
+          "eps": 20.33
+        },
+        "end_forecast": {
+          "observations": [
+            {
+              "code": "300750",
+              "symbol": "sz300750",
+              "date": "2026-04-16",
+              "source_date": "2026-04-16",
+              "published_at": null,
+              "available_at": null,
+              "organization": "东莞证券",
+              "fiscal_year": 2026,
+              "eps": 20.33,
+              "currency": null,
+              "eps_basis": null,
+              "eps_definition": null,
+              "version": null,
+              "analyst": "",
+              "rating": "",
+              "title": "2026年一季报点评：营收和净利均高速增长，业绩保持靓丽",
+              "info_code": "AP202604161821262529",
+              "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202604161821262529_1.pdf",
+              "retrieved_at": null,
+              "source": "akshare_eastmoney",
+              "report_references": [
+                {
+                  "info_code": "AP202604161821262529",
+                  "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202604161821262529_1.pdf",
+                  "source": "akshare_eastmoney",
+                  "retrieved_at": null,
+                  "title": "2026年一季报点评：营收和净利均高速增长，业绩保持靓丽",
+                  "analyst": ""
+                }
+              ],
+              "conflict": false,
+              "conflict_reason": null
+            }
+          ],
+          "date": "2026-04-16",
+          "age_days": 155,
+          "eps": 20.33
+        },
+        "start_price": {
+          "date": "2026-06-22",
+          "price": 408.98,
+          "currency": "CNY",
+          "source": "hithink",
+          "retrieved_at": "2026-09-22T06:45:49.742215+00:00",
+          "adjust": "none"
+        },
+        "end_price": {
+          "date": "2026-09-18",
+          "price": 301.95,
+          "currency": "CNY",
+          "source": "hithink",
+          "retrieved_at": "2026-09-22T06:45:49.742215+00:00",
+          "adjust": "none"
+        },
+        "coverage_status": "paired",
+        "eps_comparable": false,
+        "eps_change": null,
+        "eps_change_pct": null,
+        "direction": null,
+        "unchanged_report": false,
+        "price_change_pct": null,
+        "pe0": null,
+        "pe1": null,
+        "pe_change_pct": null,
+        "metrics_computable": false,
+        "matched": null,
+        "reasons": [
+          "share_basis_unverified",
+          "currency_unknown",
+          "eps_basis_unknown",
+          "eps_definition_unknown"
+        ],
+        "symbol": "sz300750",
+        "fiscal_year": 2026,
+        "cash_dividends": "unknown"
+      },
+      {
+        "organization": "中银证券",
+        "start_forecast": {
+          "observations": [
+            {
+              "code": "300750",
+              "symbol": "sz300750",
+              "date": "2026-03-11",
+              "source_date": "2026-03-11",
+              "published_at": null,
+              "available_at": null,
+              "organization": "中银证券",
+              "fiscal_year": 2026,
+              "eps": 20.4,
+              "currency": null,
+              "eps_basis": null,
+              "eps_definition": null,
+              "version": null,
+              "analyst": "",
+              "rating": "",
+              "title": "2025年业绩保持高增，动储电池销量快速增长",
+              "info_code": "AP202603111820479800",
+              "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202603111820479800_1.pdf",
+              "retrieved_at": null,
+              "source": "akshare_eastmoney",
+              "report_references": [
+                {
+                  "info_code": "AP202603111820479800",
+                  "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202603111820479800_1.pdf",
+                  "source": "akshare_eastmoney",
+                  "retrieved_at": null,
+                  "title": "2025年业绩保持高增，动储电池销量快速增长",
+                  "analyst": ""
+                }
+              ],
+              "conflict": false,
+              "conflict_reason": null
+            }
+          ],
+          "date": "2026-03-11",
+          "age_days": 103,
+          "eps": 20.4
+        },
+        "end_forecast": {
+          "observations": [
+            {
+              "code": "300750",
+              "symbol": "sz300750",
+              "date": "2026-03-11",
+              "source_date": "2026-03-11",
+              "published_at": null,
+              "available_at": null,
+              "organization": "中银证券",
+              "fiscal_year": 2026,
+              "eps": 20.4,
+              "currency": null,
+              "eps_basis": null,
+              "eps_definition": null,
+              "version": null,
+              "analyst": "",
+              "rating": "",
+              "title": "2025年业绩保持高增，动储电池销量快速增长",
+              "info_code": "AP202603111820479800",
+              "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202603111820479800_1.pdf",
+              "retrieved_at": null,
+              "source": "akshare_eastmoney",
+              "report_references": [
+                {
+                  "info_code": "AP202603111820479800",
+                  "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202603111820479800_1.pdf",
+                  "source": "akshare_eastmoney",
+                  "retrieved_at": null,
+                  "title": "2025年业绩保持高增，动储电池销量快速增长",
+                  "analyst": ""
+                }
+              ],
+              "conflict": false,
+              "conflict_reason": null
+            }
+          ],
+          "date": "2026-03-11",
+          "age_days": 191
+        },
+        "start_price": {
+          "date": "2026-06-22",
+          "price": 408.98,
+          "currency": "CNY",
+          "source": "hithink",
+          "retrieved_at": "2026-09-22T06:45:49.742215+00:00",
+          "adjust": "none"
+        },
+        "end_price": {
+          "date": "2026-09-18",
+          "price": 301.95,
+          "currency": "CNY",
+          "source": "hithink",
+          "retrieved_at": "2026-09-22T06:45:49.742215+00:00",
+          "adjust": "none"
+        },
+        "coverage_status": "old_only",
+        "eps_comparable": false,
+        "eps_change": null,
+        "eps_change_pct": null,
+        "direction": null,
+        "unchanged_report": false,
+        "price_change_pct": null,
+        "pe0": null,
+        "pe1": null,
+        "pe_change_pct": null,
+        "metrics_computable": false,
+        "matched": null,
+        "reasons": [
+          "end_forecast_stale",
+          "share_basis_unverified"
+        ],
+        "symbol": "sz300750",
+        "fiscal_year": 2026,
+        "cash_dividends": "unknown"
+      },
+      {
+        "organization": "交银国际证券",
+        "start_forecast": {
+          "observations": [
+            {
+              "code": "300750",
+              "symbol": "sz300750",
+              "date": "2026-04-17",
+              "source_date": "2026-04-17",
+              "published_at": null,
+              "available_at": null,
+              "organization": "交银国际证券",
+              "fiscal_year": 2026,
+              "eps": 19.906,
+              "currency": null,
+              "eps_basis": null,
+              "eps_definition": null,
+              "version": null,
+              "analyst": "",
+              "rating": "",
+              "title": "1季度业绩超预期，盈利维持韧性；维持买入",
+              "info_code": "AP202604171821285130",
+              "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202604171821285130_1.pdf",
+              "retrieved_at": null,
+              "source": "akshare_eastmoney",
+              "report_references": [
+                {
+                  "info_code": "AP202604171821285130",
+                  "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202604171821285130_1.pdf",
+                  "source": "akshare_eastmoney",
+                  "retrieved_at": null,
+                  "title": "1季度业绩超预期，盈利维持韧性；维持买入",
+                  "analyst": ""
+                }
+              ],
+              "conflict": false,
+              "conflict_reason": null
+            }
+          ],
+          "date": "2026-04-17",
+          "age_days": 66,
+          "eps": 19.906
+        },
+        "end_forecast": {
+          "observations": [
+            {
+              "code": "300750",
+              "symbol": "sz300750",
+              "date": "2026-07-28",
+              "source_date": "2026-07-28",
+              "published_at": null,
+              "available_at": null,
+              "organization": "交银国际证券",
+              "fiscal_year": 2026,
+              "eps": 20.507,
+              "currency": null,
+              "eps_basis": null,
+              "eps_definition": null,
+              "version": null,
+              "analyst": "",
+              "rating": "",
+              "title": "2季度出货超预期，关注盈利修复节奏及供需变化；维持买入",
+              "info_code": "AP202607281827402414",
+              "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202607281827402414_1.pdf",
+              "retrieved_at": null,
+              "source": "akshare_eastmoney",
+              "report_references": [
+                {
+                  "info_code": "AP202607281827402414",
+                  "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202607281827402414_1.pdf",
+                  "source": "akshare_eastmoney",
+                  "retrieved_at": null,
+                  "title": "2季度出货超预期，关注盈利修复节奏及供需变化；维持买入",
+                  "analyst": ""
+                }
+              ],
+              "conflict": false,
+              "conflict_reason": null
+            }
+          ],
+          "date": "2026-07-28",
+          "age_days": 52,
+          "eps": 20.507
+        },
+        "start_price": {
+          "date": "2026-06-22",
+          "price": 408.98,
+          "currency": "CNY",
+          "source": "hithink",
+          "retrieved_at": "2026-09-22T06:45:49.742215+00:00",
+          "adjust": "none"
+        },
+        "end_price": {
+          "date": "2026-09-18",
+          "price": 301.95,
+          "currency": "CNY",
+          "source": "hithink",
+          "retrieved_at": "2026-09-22T06:45:49.742215+00:00",
+          "adjust": "none"
+        },
+        "coverage_status": "paired",
+        "eps_comparable": false,
+        "eps_change": null,
+        "eps_change_pct": null,
+        "direction": null,
+        "unchanged_report": false,
+        "price_change_pct": null,
+        "pe0": null,
+        "pe1": null,
+        "pe_change_pct": null,
+        "metrics_computable": false,
+        "matched": null,
+        "reasons": [
+          "share_basis_unverified",
+          "unusable_forecast_records",
+          "currency_unknown",
+          "eps_basis_unknown",
+          "eps_definition_unknown"
+        ],
+        "symbol": "sz300750",
+        "fiscal_year": 2026,
+        "cash_dividends": "unknown"
+      },
+      {
+        "organization": "华鑫证券",
+        "start_forecast": {
+          "observations": [
+            {
+              "code": "300750",
+              "symbol": "sz300750",
+              "date": "2026-03-24",
+              "source_date": "2026-03-24",
+              "published_at": null,
+              "available_at": null,
+              "organization": "华鑫证券",
+              "fiscal_year": 2026,
+              "eps": 20.05,
+              "currency": null,
+              "eps_basis": null,
+              "eps_definition": null,
+              "version": null,
+              "analyst": "",
+              "rating": "",
+              "title": "公司事件点评报告：动力与储能双轮驱动，业绩增长强劲",
+              "info_code": "AP202603241820713245",
+              "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202603241820713245_1.pdf",
+              "retrieved_at": null,
+              "source": "akshare_eastmoney",
+              "report_references": [
+                {
+                  "info_code": "AP202603241820713245",
+                  "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202603241820713245_1.pdf",
+                  "source": "akshare_eastmoney",
+                  "retrieved_at": null,
+                  "title": "公司事件点评报告：动力与储能双轮驱动，业绩增长强劲",
+                  "analyst": ""
+                }
+              ],
+              "conflict": false,
+              "conflict_reason": null
+            }
+          ],
+          "date": "2026-03-24",
+          "age_days": 90,
+          "eps": 20.05
+        },
+        "end_forecast": {
+          "observations": [
+            {
+              "code": "300750",
+              "symbol": "sz300750",
+              "date": "2026-03-24",
+              "source_date": "2026-03-24",
+              "published_at": null,
+              "available_at": null,
+              "organization": "华鑫证券",
+              "fiscal_year": 2026,
+              "eps": 20.05,
+              "currency": null,
+              "eps_basis": null,
+              "eps_definition": null,
+              "version": null,
+              "analyst": "",
+              "rating": "",
+              "title": "公司事件点评报告：动力与储能双轮驱动，业绩增长强劲",
+              "info_code": "AP202603241820713245",
+              "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202603241820713245_1.pdf",
+              "retrieved_at": null,
+              "source": "akshare_eastmoney",
+              "report_references": [
+                {
+                  "info_code": "AP202603241820713245",
+                  "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202603241820713245_1.pdf",
+                  "source": "akshare_eastmoney",
+                  "retrieved_at": null,
+                  "title": "公司事件点评报告：动力与储能双轮驱动，业绩增长强劲",
+                  "analyst": ""
+                }
+              ],
+              "conflict": false,
+              "conflict_reason": null
+            }
+          ],
+          "date": "2026-03-24",
+          "age_days": 178,
+          "eps": 20.05
+        },
+        "start_price": {
+          "date": "2026-06-22",
+          "price": 408.98,
+          "currency": "CNY",
+          "source": "hithink",
+          "retrieved_at": "2026-09-22T06:45:49.742215+00:00",
+          "adjust": "none"
+        },
+        "end_price": {
+          "date": "2026-09-18",
+          "price": 301.95,
+          "currency": "CNY",
+          "source": "hithink",
+          "retrieved_at": "2026-09-22T06:45:49.742215+00:00",
+          "adjust": "none"
+        },
+        "coverage_status": "paired",
+        "eps_comparable": false,
+        "eps_change": null,
+        "eps_change_pct": null,
+        "direction": null,
+        "unchanged_report": false,
+        "price_change_pct": null,
+        "pe0": null,
+        "pe1": null,
+        "pe_change_pct": null,
+        "metrics_computable": false,
+        "matched": null,
+        "reasons": [
+          "share_basis_unverified",
+          "currency_unknown",
+          "eps_basis_unknown",
+          "eps_definition_unknown"
+        ],
+        "symbol": "sz300750",
+        "fiscal_year": 2026,
+        "cash_dividends": "unknown"
+      },
+      {
+        "organization": "国信证券",
+        "start_forecast": {
+          "observations": [
+            {
+              "code": "300750",
+              "symbol": "sz300750",
+              "date": "2026-04-22",
+              "source_date": "2026-04-22",
+              "published_at": null,
+              "available_at": null,
+              "organization": "国信证券",
+              "fiscal_year": 2026,
+              "eps": 21.11,
+              "currency": null,
+              "eps_basis": null,
+              "eps_definition": null,
+              "version": null,
+              "analyst": "",
+              "rating": "",
+              "title": "产品全面升级，技术创新夯实龙头领先优势",
+              "info_code": "AP202604221821434869",
+              "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202604221821434869_1.pdf",
+              "retrieved_at": null,
+              "source": "akshare_eastmoney",
+              "report_references": [
+                {
+                  "info_code": "AP202604221821434869",
+                  "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202604221821434869_1.pdf",
+                  "source": "akshare_eastmoney",
+                  "retrieved_at": null,
+                  "title": "产品全面升级，技术创新夯实龙头领先优势",
+                  "analyst": ""
+                }
+              ],
+              "conflict": false,
+              "conflict_reason": null
+            }
+          ],
+          "date": "2026-04-22",
+          "age_days": 61,
+          "eps": 21.11
+        },
+        "end_forecast": {
+          "observations": [
+            {
+              "code": "300750",
+              "symbol": "sz300750",
+              "date": "2026-07-31",
+              "source_date": "2026-07-31",
+              "published_at": null,
+              "available_at": null,
+              "organization": "国信证券",
+              "fiscal_year": 2026,
+              "eps": 20.83,
+              "currency": null,
+              "eps_basis": null,
+              "eps_definition": null,
+              "version": null,
+              "analyst": "",
+              "rating": "",
+              "title": "业绩维持快速增长，回购彰显发展信心",
+              "info_code": "AP202607311827537552",
+              "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202607311827537552_1.pdf",
+              "retrieved_at": null,
+              "source": "akshare_eastmoney",
+              "report_references": [
+                {
+                  "info_code": "AP202607311827537552",
+                  "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202607311827537552_1.pdf",
+                  "source": "akshare_eastmoney",
+                  "retrieved_at": null,
+                  "title": "业绩维持快速增长，回购彰显发展信心",
+                  "analyst": ""
+                }
+              ],
+              "conflict": false,
+              "conflict_reason": null
+            }
+          ],
+          "date": "2026-07-31",
+          "age_days": 49,
+          "eps": 20.83
+        },
+        "start_price": {
+          "date": "2026-06-22",
+          "price": 408.98,
+          "currency": "CNY",
+          "source": "hithink",
+          "retrieved_at": "2026-09-22T06:45:49.742215+00:00",
+          "adjust": "none"
+        },
+        "end_price": {
+          "date": "2026-09-18",
+          "price": 301.95,
+          "currency": "CNY",
+          "source": "hithink",
+          "retrieved_at": "2026-09-22T06:45:49.742215+00:00",
+          "adjust": "none"
+        },
+        "coverage_status": "paired",
+        "eps_comparable": false,
+        "eps_change": null,
+        "eps_change_pct": null,
+        "direction": null,
+        "unchanged_report": false,
+        "price_change_pct": null,
+        "pe0": null,
+        "pe1": null,
+        "pe_change_pct": null,
+        "metrics_computable": false,
+        "matched": null,
+        "reasons": [
+          "share_basis_unverified",
+          "currency_unknown",
+          "eps_basis_unknown",
+          "eps_definition_unknown"
+        ],
+        "symbol": "sz300750",
+        "fiscal_year": 2026,
+        "cash_dividends": "unknown"
+      },
+      {
+        "organization": "国金证券",
+        "start_forecast": {
+          "observations": [
+            {
+              "code": "300750",
+              "symbol": "sz300750",
+              "date": "2026-04-16",
+              "source_date": "2026-04-16",
+              "published_at": null,
+              "available_at": null,
+              "organization": "国金证券",
+              "fiscal_year": 2026,
+              "eps": 22.57,
+              "currency": null,
+              "eps_basis": null,
+              "eps_definition": null,
+              "version": null,
+              "analyst": "",
+              "rating": "",
+              "title": "1Q26业绩超预期，终端需求向好",
+              "info_code": "AP202604161821260252",
+              "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202604161821260252_1.pdf",
+              "retrieved_at": null,
+              "source": "akshare_eastmoney",
+              "report_references": [
+                {
+                  "info_code": "AP202604161821260252",
+                  "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202604161821260252_1.pdf",
+                  "source": "akshare_eastmoney",
+                  "retrieved_at": null,
+                  "title": "1Q26业绩超预期，终端需求向好",
+                  "analyst": ""
+                }
+              ],
+              "conflict": false,
+              "conflict_reason": null
+            }
+          ],
+          "date": "2026-04-16",
+          "age_days": 67,
+          "eps": 22.57
+        },
+        "end_forecast": {
+          "observations": [
+            {
+              "code": "300750",
+              "symbol": "sz300750",
+              "date": "2026-07-26",
+              "source_date": "2026-07-26",
+              "published_at": null,
+              "available_at": null,
+              "organization": "国金证券",
+              "fiscal_year": 2026,
+              "eps": 22.138,
+              "currency": null,
+              "eps_basis": null,
+              "eps_definition": null,
+              "version": null,
+              "analyst": "",
+              "rating": "",
+              "title": "业绩维稳符合预期，大额回购强化信心",
+              "info_code": "AP202607261827354335",
+              "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202607261827354335_1.pdf",
+              "retrieved_at": null,
+              "source": "akshare_eastmoney",
+              "report_references": [
+                {
+                  "info_code": "AP202607261827354335",
+                  "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202607261827354335_1.pdf",
+                  "source": "akshare_eastmoney",
+                  "retrieved_at": null,
+                  "title": "业绩维稳符合预期，大额回购强化信心",
+                  "analyst": ""
+                }
+              ],
+              "conflict": false,
+              "conflict_reason": null
+            }
+          ],
+          "date": "2026-07-26",
+          "age_days": 54,
+          "eps": 22.138
+        },
+        "start_price": {
+          "date": "2026-06-22",
+          "price": 408.98,
+          "currency": "CNY",
+          "source": "hithink",
+          "retrieved_at": "2026-09-22T06:45:49.742215+00:00",
+          "adjust": "none"
+        },
+        "end_price": {
+          "date": "2026-09-18",
+          "price": 301.95,
+          "currency": "CNY",
+          "source": "hithink",
+          "retrieved_at": "2026-09-22T06:45:49.742215+00:00",
+          "adjust": "none"
+        },
+        "coverage_status": "paired",
+        "eps_comparable": false,
+        "eps_change": null,
+        "eps_change_pct": null,
+        "direction": null,
+        "unchanged_report": false,
+        "price_change_pct": null,
+        "pe0": null,
+        "pe1": null,
+        "pe_change_pct": null,
+        "metrics_computable": false,
+        "matched": null,
+        "reasons": [
+          "share_basis_unverified",
+          "currency_unknown",
+          "eps_basis_unknown",
+          "eps_definition_unknown"
+        ],
+        "symbol": "sz300750",
+        "fiscal_year": 2026,
+        "cash_dividends": "unknown"
+      },
+      {
+        "organization": "山西证券",
+        "start_forecast": null,
+        "end_forecast": {
+          "observations": [
+            {
+              "code": "300750",
+              "symbol": "sz300750",
+              "date": "2026-07-29",
+              "source_date": "2026-07-29",
+              "published_at": null,
+              "available_at": null,
+              "organization": "山西证券",
+              "fiscal_year": 2026,
+              "eps": 21.28,
+              "currency": null,
+              "eps_basis": null,
+              "eps_definition": null,
+              "version": null,
+              "analyst": "",
+              "rating": "",
+              "title": "中报业绩符合预期，拟推出200-400亿元回购计划",
+              "info_code": "AP202607291827453255",
+              "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202607291827453255_1.pdf",
+              "retrieved_at": null,
+              "source": "akshare_eastmoney",
+              "report_references": [
+                {
+                  "info_code": "AP202607291827453255",
+                  "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202607291827453255_1.pdf",
+                  "source": "akshare_eastmoney",
+                  "retrieved_at": null,
+                  "title": "中报业绩符合预期，拟推出200-400亿元回购计划",
+                  "analyst": ""
+                }
+              ],
+              "conflict": false,
+              "conflict_reason": null
+            }
+          ],
+          "date": "2026-07-29",
+          "age_days": 51,
+          "eps": 21.28
+        },
+        "start_price": {
+          "date": "2026-06-22",
+          "price": 408.98,
+          "currency": "CNY",
+          "source": "hithink",
+          "retrieved_at": "2026-09-22T06:45:49.742215+00:00",
+          "adjust": "none"
+        },
+        "end_price": {
+          "date": "2026-09-18",
+          "price": 301.95,
+          "currency": "CNY",
+          "source": "hithink",
+          "retrieved_at": "2026-09-22T06:45:49.742215+00:00",
+          "adjust": "none"
+        },
+        "coverage_status": "new_coverage",
+        "eps_comparable": false,
+        "eps_change": null,
+        "eps_change_pct": null,
+        "direction": null,
+        "unchanged_report": false,
+        "price_change_pct": null,
+        "pe0": null,
+        "pe1": null,
+        "pe_change_pct": null,
+        "metrics_computable": false,
+        "matched": null,
+        "reasons": [
+          "start_forecast_missing",
+          "share_basis_unverified"
+        ],
+        "symbol": "sz300750",
+        "fiscal_year": 2026,
+        "cash_dividends": "unknown"
+      },
+      {
+        "organization": "开源证券",
+        "start_forecast": {
+          "observations": [
+            {
+              "code": "300750",
+              "symbol": "sz300750",
+              "date": "2026-04-17",
+              "source_date": "2026-04-17",
+              "published_at": null,
+              "available_at": null,
+              "organization": "开源证券",
+              "fiscal_year": 2026,
+              "eps": 21.41,
+              "currency": null,
+              "eps_basis": null,
+              "eps_definition": null,
+              "version": null,
+              "analyst": "",
+              "rating": "",
+              "title": "公司信息更新报告：一季度实现强劲增长，业绩超预期",
+              "info_code": "AP202604171821295253",
+              "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202604171821295253_1.pdf",
+              "retrieved_at": null,
+              "source": "akshare_eastmoney",
+              "report_references": [
+                {
+                  "info_code": "AP202604171821295253",
+                  "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202604171821295253_1.pdf",
+                  "source": "akshare_eastmoney",
+                  "retrieved_at": null,
+                  "title": "公司信息更新报告：一季度实现强劲增长，业绩超预期",
+                  "analyst": ""
+                }
+              ],
+              "conflict": false,
+              "conflict_reason": null
+            }
+          ],
+          "date": "2026-04-17",
+          "age_days": 66,
+          "eps": 21.41
+        },
+        "end_forecast": {
+          "observations": [
+            {
+              "code": "300750",
+              "symbol": "sz300750",
+              "date": "2026-04-17",
+              "source_date": "2026-04-17",
+              "published_at": null,
+              "available_at": null,
+              "organization": "开源证券",
+              "fiscal_year": 2026,
+              "eps": 21.41,
+              "currency": null,
+              "eps_basis": null,
+              "eps_definition": null,
+              "version": null,
+              "analyst": "",
+              "rating": "",
+              "title": "公司信息更新报告：一季度实现强劲增长，业绩超预期",
+              "info_code": "AP202604171821295253",
+              "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202604171821295253_1.pdf",
+              "retrieved_at": null,
+              "source": "akshare_eastmoney",
+              "report_references": [
+                {
+                  "info_code": "AP202604171821295253",
+                  "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202604171821295253_1.pdf",
+                  "source": "akshare_eastmoney",
+                  "retrieved_at": null,
+                  "title": "公司信息更新报告：一季度实现强劲增长，业绩超预期",
+                  "analyst": ""
+                }
+              ],
+              "conflict": false,
+              "conflict_reason": null
+            }
+          ],
+          "date": "2026-04-17",
+          "age_days": 154,
+          "eps": 21.41
+        },
+        "start_price": {
+          "date": "2026-06-22",
+          "price": 408.98,
+          "currency": "CNY",
+          "source": "hithink",
+          "retrieved_at": "2026-09-22T06:45:49.742215+00:00",
+          "adjust": "none"
+        },
+        "end_price": {
+          "date": "2026-09-18",
+          "price": 301.95,
+          "currency": "CNY",
+          "source": "hithink",
+          "retrieved_at": "2026-09-22T06:45:49.742215+00:00",
+          "adjust": "none"
+        },
+        "coverage_status": "paired",
+        "eps_comparable": false,
+        "eps_change": null,
+        "eps_change_pct": null,
+        "direction": null,
+        "unchanged_report": false,
+        "price_change_pct": null,
+        "pe0": null,
+        "pe1": null,
+        "pe_change_pct": null,
+        "metrics_computable": false,
+        "matched": null,
+        "reasons": [
+          "share_basis_unverified",
+          "currency_unknown",
+          "eps_basis_unknown",
+          "eps_definition_unknown"
+        ],
+        "symbol": "sz300750",
+        "fiscal_year": 2026,
+        "cash_dividends": "unknown"
+      },
+      {
+        "organization": "群益证券",
+        "start_forecast": null,
+        "end_forecast": {
+          "observations": [
+            {
+              "code": "300750",
+              "symbol": "sz300750",
+              "date": "2026-07-27",
+              "source_date": "2026-07-27",
+              "published_at": null,
+              "available_at": null,
+              "organization": "群益证券",
+              "fiscal_year": 2026,
+              "eps": 21.604,
+              "currency": null,
+              "eps_basis": null,
+              "eps_definition": null,
+              "version": null,
+              "analyst": "",
+              "rating": "",
+              "title": "公司半年报业绩快速增长，拟回购A股股份，建议“买进”",
+              "info_code": "AP202607271827380430",
+              "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202607271827380430_1.pdf",
+              "retrieved_at": null,
+              "source": "akshare_eastmoney",
+              "report_references": [
+                {
+                  "info_code": "AP202607271827380430",
+                  "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202607271827380430_1.pdf",
+                  "source": "akshare_eastmoney",
+                  "retrieved_at": null,
+                  "title": "公司半年报业绩快速增长，拟回购A股股份，建议“买进”",
+                  "analyst": ""
+                }
+              ],
+              "conflict": false,
+              "conflict_reason": null
+            }
+          ],
+          "date": "2026-07-27",
+          "age_days": 53,
+          "eps": 21.604
+        },
+        "start_price": {
+          "date": "2026-06-22",
+          "price": 408.98,
+          "currency": "CNY",
+          "source": "hithink",
+          "retrieved_at": "2026-09-22T06:45:49.742215+00:00",
+          "adjust": "none"
+        },
+        "end_price": {
+          "date": "2026-09-18",
+          "price": 301.95,
+          "currency": "CNY",
+          "source": "hithink",
+          "retrieved_at": "2026-09-22T06:45:49.742215+00:00",
+          "adjust": "none"
+        },
+        "coverage_status": "new_coverage",
+        "eps_comparable": false,
+        "eps_change": null,
+        "eps_change_pct": null,
+        "direction": null,
+        "unchanged_report": false,
+        "price_change_pct": null,
+        "pe0": null,
+        "pe1": null,
+        "pe_change_pct": null,
+        "metrics_computable": false,
+        "matched": null,
+        "reasons": [
+          "start_forecast_missing",
+          "share_basis_unverified"
+        ],
+        "symbol": "sz300750",
+        "fiscal_year": 2026,
+        "cash_dividends": "unknown"
+      },
+      {
+        "organization": "西南证券",
+        "start_forecast": {
+          "observations": [
+            {
+              "code": "300750",
+              "symbol": "sz300750",
+              "date": "2026-03-16",
+              "source_date": "2026-03-16",
+              "published_at": null,
+              "available_at": null,
+              "organization": "西南证券",
+              "fiscal_year": 2026,
+              "eps": 19.92,
+              "currency": null,
+              "eps_basis": null,
+              "eps_definition": null,
+              "version": null,
+              "analyst": "",
+              "rating": "",
+              "title": "2025年年报点评：出货高增长，增长模式从“产品”到“服务”演进",
+              "info_code": "AP202603161820571903",
+              "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202603161820571903_1.pdf",
+              "retrieved_at": null,
+              "source": "akshare_eastmoney",
+              "report_references": [
+                {
+                  "info_code": "AP202603161820571903",
+                  "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202603161820571903_1.pdf",
+                  "source": "akshare_eastmoney",
+                  "retrieved_at": null,
+                  "title": "2025年年报点评：出货高增长，增长模式从“产品”到“服务”演进",
+                  "analyst": ""
+                }
+              ],
+              "conflict": false,
+              "conflict_reason": null
+            }
+          ],
+          "date": "2026-03-16",
+          "age_days": 98,
+          "eps": 19.92
+        },
+        "end_forecast": {
+          "observations": [
+            {
+              "code": "300750",
+              "symbol": "sz300750",
+              "date": "2026-07-28",
+              "source_date": "2026-07-28",
+              "published_at": null,
+              "available_at": null,
+              "organization": "西南证券",
+              "fiscal_year": 2026,
+              "eps": 19.65,
+              "currency": null,
+              "eps_basis": null,
+              "eps_definition": null,
+              "version": null,
+              "analyst": "",
+              "rating": "",
+              "title": "2026年半年报点评：回购股份夯实信心，业绩持续增长，符合预期",
+              "info_code": "AP202607281827423474",
+              "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202607281827423474_1.pdf",
+              "retrieved_at": null,
+              "source": "akshare_eastmoney",
+              "report_references": [
+                {
+                  "info_code": "AP202607281827423474",
+                  "report_url": "https://pdf.dfcfw.com/pdf/H3_AP202607281827423474_1.pdf",
+                  "source": "akshare_eastmoney",
+                  "retrieved_at": null,
+                  "title": "2026年半年报点评：回购股份夯实信心，业绩持续增长，符合预期",
+                  "analyst": ""
+                }
+              ],
+              "conflict": false,
+              "conflict_reason": null
+            }
+          ],
+          "date": "2026-07-28",
+          "age_days": 52,
+          "eps": 19.65
+        },
+        "start_price": {
+          "date": "2026-06-22",
+          "price": 408.98,
+          "currency": "CNY",
+          "source": "hithink",
+          "retrieved_at": "2026-09-22T06:45:49.742215+00:00",
+          "adjust": "none"
+        },
+        "end_price": {
+          "date": "2026-09-18",
+          "price": 301.95,
+          "currency": "CNY",
+          "source": "hithink",
+          "retrieved_at": "2026-09-22T06:45:49.742215+00:00",
+          "adjust": "none"
+        },
+        "coverage_status": "paired",
+        "eps_comparable": false,
+        "eps_change": null,
+        "eps_change_pct": null,
+        "direction": null,
+        "unchanged_report": false,
+        "price_change_pct": null,
+        "pe0": null,
+        "pe1": null,
+        "pe_change_pct": null,
+        "metrics_computable": false,
+        "matched": null,
+        "reasons": [
+          "share_basis_unverified",
+          "currency_unknown",
+          "eps_basis_unknown",
+          "eps_definition_unknown"
+        ],
+        "symbol": "sz300750",
+        "fiscal_year": 2026,
+        "cash_dividends": "unknown"
+      }
+    ],
+    "code": "300750",
+    "symbol": "sz300750",
+    "fiscal_year": 2026,
+    "start_date": "2026-06-22",
+    "end_date": "2026-09-18",
+    "max_age_days": 180,
+    "eps_floor": 0.01,
+    "mode": "retrospective_current_materials",
+    "point_in_time_verified": false,
+    "date_only_policy": "eligible_after_stated_date",
+    "share_basis": null,
+    "cash_dividends": "unknown",
+    "partial": true,
+    "matched": null,
+    "summary": {
+      "organizations": 11,
+      "paired": 0,
+      "computable": 0,
+      "matched": 0,
+      "up": 0,
+      "down": 0,
+      "flat": 0,
+      "new_coverage": 2,
+      "old_only": 1,
+      "not_updated": 0,
+      "disagreement": false,
+      "metrics": {
+        "eps_change_pct": {
+          "values": [],
+          "count": 0,
+          "median": null
+        },
+        "pe_change_pct": {
+          "values": [],
+          "count": 0,
+          "median": null
+        }
+      }
+    },
+    "coverage": {
+      "companies": {
+        "requested": 1,
+        "fetched": 1,
+        "computable": 0,
+        "matched": 0,
+        "missing": 1,
+        "displayed": 1
+      },
+      "organizations": {
+        "total": 11,
+        "returned": 11,
+        "truncated": false
+      },
+      "forecasts": {
+        "authors": false,
+        "pdf_links": true,
+        "begin": "2025-12-24",
+        "available_count": 26,
+        "returned_count": 26,
+        "limit": 500,
+        "truncated": false,
+        "limit_scope": "local_rows"
+      },
+      "bars": {
+        "amount": true,
+        "volume_unit": "share"
+      }
+    },
+    "skipped_reports": [
+      {
+        "index": 7,
+        "info_code": "AP202604231821483907",
+        "organization": "交银国际证券",
+        "forecast_years": [
+          2026
+        ],
+        "date": "2026-04-23",
+        "reason": "eps_missing_or_invalid"
+      }
+    ],
+    "conflicts": [],
+    "input_provenance": {
+      "forecasts": {
+        "input_source": "stock_reports",
+        "input_retrieved_at": null,
+        "errors": null,
+        "partial": true
+      },
+      "bars": {
+        "source": "hithink",
+        "retrieved_at": "2026-09-22T06:45:49.742215+00:00",
+        "errors": {},
+        "partial": false
+      }
+    },
+    "warning": "按当前可得材料回溯；仅为研究线索，不证明历史可交易、市场遗漏或收益预测能力。 公司行动未完全核实。"
+  },
+  "sh600051": {
+    "ok": false,
+    "error": "akshare: provider_error; routes: environment=provider_error",
+    "source": "forecast_price_changes",
+    "items": [],
+    "symbol": "sh600051",
+    "input_forecasts": {
+      "ok": false,
+      "error": "akshare: provider_error; routes: environment=provider_error",
+      "source": "forecast_observations",
+      "items": []
+    },
+    "coverage": {
+      "companies": {
+        "requested": 1,
+        "fetched": 0,
+        "computable": 0,
+        "matched": 0,
+        "missing": 1,
+        "displayed": 0
+      }
+    }
+  }
+}

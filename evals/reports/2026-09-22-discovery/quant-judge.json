@@ -1,0 +1,151 @@
+{
+  "review_scope": {
+    "labels": [
+      "A",
+      "B"
+    ],
+    "read_files": [
+      "blind/quant.json",
+      "quant-inputs.json"
+    ],
+    "network_used": false,
+    "code_read_before_judgment": false,
+    "path_policy": "All artifact and source paths are repository-relative; no personal paths recorded."
+  },
+  "pairwise": {
+    "verdict": "tie",
+    "confidence": "high for equivalence of the central findings; low for relative execution efficiency",
+    "material_verified_economic_gain": false,
+    "material_price_judgment_gain": false,
+    "supplementary_research_planning_edge": "B",
+    "reasons": [
+      "A 与 B 都核实了同样三项关键经济判断：宁德国信 EPS 下降而净利预测未变；茅台西南的分母减少掩盖了约 1.35% 的近似利润下修；中芯跨机构 EPS 增加不能解释成上修，且窗口内股份发行改变了比较口径。研究优先次序与投资机会判断边界相同。",
+      "两者均把宁德价格变化推进到约 19.37→14.50 倍及维持起点倍数时约 721 亿元利润的条件计算，也均限定了已知分红的现金流算术。B 明列倍数降幅但未增加经核实的价格吸引力证据。",
+      "B 用交银 2027/2028 EPS 变化和中芯约 63.30→82.19 亿元、旧利润在新分母约 0.739 元的演示，使后续补证更具体。这些数值复算成立，但分别仍是未核验口径的多年度字段和跨机构条件演示，不是新增已核实的经营解释或盈利上修。",
+      "B 把有效券商、实际更新与沿用预测的中位数分开，便于定位样本与旧值影响；A 也给出相同的更新/沿用/新增结构。字段更多与语气更保守不构成主要判胜依据。",
+      "A 提及的 API 阻断状态未包含于允许读取的冻结原始材料，故未把这些断言当作已核实优势，也不因无法独立核实就判为错误。"
+    ]
+  },
+  "verified_findings": [
+    {
+      "labels": [
+        "A",
+        "B"
+      ],
+      "finding": "四家公司未复权价格端点及方向正确。",
+      "values": {
+        "600519": [
+          1241.41,
+          1257.12
+        ],
+        "688981": [
+          145.59,
+          122.0
+        ],
+        "300750": [
+          408.98,
+          301.95
+        ],
+        "600051": [
+          6.06,
+          6.07
+        ]
+      },
+      "evidence": "quant-inputs.json: inputs.*.bars.bars"
+    },
+    {
+      "labels": [
+        "A",
+        "B"
+      ],
+      "finding": "宁德国信 2026 年 EPS 21.11→20.83；原文核验的净利 963.51 亿元未变。隐含股数约 45.64235→46.25588 亿。",
+      "evidence": "original_checks: AP202604221821434869 and AP202607311827537552"
+    },
+    {
+      "labels": [
+        "A",
+        "B"
+      ],
+      "finding": "宁德价格/EPS 为约 19.37370→14.49592；变化 -25.17755%。B 按公告股本反推 721.08806 亿元，A 用期末隐含股本得到约 721 亿元，均与各自说明相符。",
+      "evidence": "bars endpoints; Guoxin EPS; action 1225456175"
+    },
+    {
+      "labels": [
+        "A",
+        "B"
+      ],
+      "finding": "茅台西南 EPS×表内股本约为 884.7884→872.8750 亿元，变化 -1.34647%。来源日期与原文日期差异未改变端点归属，B 明确列出日期差异。",
+      "evidence": "original_checks: AP202604281821659552 and AP202608211828244348"
+    },
+    {
+      "labels": [
+        "A",
+        "B"
+      ],
+      "finding": "茅台有效券商 15→16，同机构 15 对、10 对更新（7 降 3 升）、5 对沿用；新增太平洋。更新中位数 -1.16752%，全配对中位数 0%。",
+      "evidence": "inputs.sh600519.reports.items; 180-calendar-day snapshots, latest non-null FY2026 EPS"
+    },
+    {
+      "labels": [
+        "A",
+        "B"
+      ],
+      "finding": "宁德有效券商 9→10，同机构 8 对、5 对更新（4 降 1 升）、3 对沿用；中银过期，新增山西和群益。全部配对中位数 -0.66319%。交银缺值报告需单独核验。",
+      "evidence": "inputs.sz300750.reports.items; same snapshot rule"
+    },
+    {
+      "labels": [
+        "B"
+      ],
+      "finding": "交银 2027 EPS 23.825→24.896（约 +4.50%）、2028 EPS 26.641→28.512（约 +7.02%）在冻结字段中成立；只说明补证方向。",
+      "evidence": "inputs.sz300750.reports.items: AP202604171821285130 and AP202607281827402414"
+    },
+    {
+      "labels": [
+        "A",
+        "B"
+      ],
+      "finding": "中芯中邮 0.79 是同份报告沿用，山西 0.96 为新增样本覆盖；新增 547182073 股于 6 月 23 日登记。B 的跨机构利润演示 +29.82953% 和调整 EPS 0.73943 算术正确且附有口径限制。",
+      "evidence": "inputs.sh688981.reports.items and original_checks: 1225386195"
+    },
+    {
+      "labels": [
+        "A",
+        "B"
+      ],
+      "finding": "茅台与宁德已知窗口内每股派现分别 28.02423、1.411 元，有条件现金流变化约 +3.52%、-25.82%；600051 的 0.06 元分红在窗口前。两者均未错误使用宁德除息参考价扣减量代替实际派现。",
+      "evidence": "original_checks: 1225379934, 1225456175, 1225358086"
+    },
+    {
+      "labels": [
+        "A",
+        "B"
+      ],
+      "finding": "600051 为 provider_error，不能据此判无覆盖；77 条成功研报样本分布 48/3/26，均核实。",
+      "evidence": "inputs.*.reports"
+    }
+  ],
+  "errors": {
+    "A": [],
+    "B": [],
+    "summary": "在允许核对的冻结原始材料与算术范围内，未发现会改变研究结论的数值、归属或时点错误。A 关于 API 派生输出的陈述未经本评审核实。"
+  },
+  "efficiency": {
+    "reported_exec_calls": {
+      "A": 12,
+      "B": 7
+    },
+    "reported_local_calculation_batches": {
+      "A": 1,
+      "B": 2
+    },
+    "verdict": "inconclusive",
+    "reason": "两者计数定义不一致，且没有同口径耗时、费用和成功补证数量。B 的较少已报告 shell 调用不能单独证明补证效率提高；两者均零联网调用，本轮没有实际取得新增原文。"
+  },
+  "limitations": [
+    "只使用匿名答复及 quant-inputs.json；未读取身份映射、执行日志、派生结果、其它评审或代码，判定先于代码审查保存。",
+    "核验的是冻结核验摘录与原始字段，并未重新联网打开 PDF；无法追加验证摘录本身、历史版本、首次公开时刻或上游穷尽性。",
+    "单次四家公司回放不能证明统计增益、历史可交易性或未来收益。",
+    "B 在补证组织上的轻微优势未改变最终并列结论：没有新增已核实的经济解释或足以提升机会判断阶段的价格证据。"
+  ]
+}

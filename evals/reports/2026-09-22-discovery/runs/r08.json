@@ -1,0 +1,1031 @@
+{
+  "id": "r08",
+  "case": "packaging",
+  "condition": "candidate",
+  "question": "如何寻找 A 股包装行业未来两年的投资机会？请研究具体对象、经济机制与价格，可以得出没有合适机会的结论，不要求新技术或转型故事。研究截止日为 2026-09-21。",
+  "started_at": "2026-09-22T07:15:37Z",
+  "completed_at": "2026-09-22 07:24:04 UTC",
+  "tools_log": [
+    {
+      "at": "2026-09-22T07:15:37Z",
+      "tool": "exec_command",
+      "params": {
+        "cmd": "cat <repo>/evals/reports/2026-09-22-discovery/methods/candidate/SKILL.md",
+        "workdir": "<repo>",
+        "max_output_tokens": 12000
+      },
+      "purpose": "读取指定候选方法",
+      "result": "成功读取",
+      "counts": {
+        "web": 0,
+        "search": 0,
+        "local_calculation": 0
+      },
+      "cumulative_operations": {
+        "web": 0,
+        "search": 0,
+        "open": 0,
+        "find": 0,
+        "click": 0,
+        "screenshot": 0,
+        "local_calculation": 0
+      }
+    },
+    {
+      "at": "2026-09-22T07:15:37Z",
+      "tool": "ALL_TOOLS metadata discovery + clock__curr_time",
+      "params": {
+        "name": "web__run",
+        "clock": {}
+      },
+      "result": "web__run 可调用；记录开始时间",
+      "counts": {
+        "web": 0,
+        "search": 0,
+        "local_calculation": 0
+      },
+      "cumulative_operations": {
+        "web": 0,
+        "search": 0,
+        "open": 0,
+        "find": 0,
+        "click": 0,
+        "screenshot": 0,
+        "local_calculation": 0
+      }
+    },
+    {
+      "at": "2026-09-22T07:15:58.064Z",
+      "tool": "exec_command",
+      "params": {
+        "cmd": "cat <repo>/evals/reports/2026-09-22-discovery/methods/candidate/references/capabilities/discover.md <repo>/evals/reports/2026-09-22-discovery/methods/candidate/references/capabilities/research.md <repo>/evals/reports/2026-09-22-discovery/methods/candidate/references/methods/pipeline.md",
+        "workdir": "<repo>",
+        "max_output_tokens": 14000
+      },
+      "result": "读取发现、研究、研究协作指引；实验明确禁用子 agent，故本次独立执行",
+      "counts": {
+        "web": 0,
+        "search": 0,
+        "local_calculation": 0
+      },
+      "cumulative_operations": {
+        "web": 0,
+        "search": 0,
+        "open": 0,
+        "find": 0,
+        "click": 0,
+        "screenshot": 0,
+        "local_calculation": 0
+      }
+    },
+    {
+      "at": "2026-09-22T07:16:07.255Z",
+      "tool": "web__run",
+      "params": {
+        "search_query": [
+          {
+            "q": "A股 包装 行业 2026 半年报 裕同 奥瑞金 永新 净利润"
+          },
+          {
+            "q": "奥瑞金 2026 半年度报告 中粮包装 协同"
+          },
+          {
+            "q": "裕同科技 永新股份 2026年9月21日 股价"
+          }
+        ],
+        "response_length": "long"
+      },
+      "result_summary": "执行3个搜索。取得裕同、奥瑞金2026半年报及永新研报线索、裕同9月21日28.31元搜索摘要。多个媒体转载同一财报，未视为独立证据；永新研报摘要利润单位可疑，后续转原报核查。",
+      "source_urls": [
+        "https://cn.investing.com/equities/shenzhen-yuto-packaging-historical-data",
+        "https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12548870&stockid=002831",
+        "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12569742&stockid=002701",
+        "https://news.10jqka.com.cn/20260830/c679417379.shtml",
+        "https://finance.sina.com.cn/stock/zqgd/2026-08-28/doc-inipwnxp4443765.shtml",
+        "https://stock.stockstar.com/RB2026082800048016.shtml",
+        "https://www.cenr.com.cn/yaowen/rht/2026/08/27/232859.html",
+        "https://static.cninfo.com.cn/finalpage/2025-08-30/1224623798.PDF",
+        "https://stock.finance.sina.com.cn/stock/go.php/vReport_Show/kind/search/rptid/841284325964/index.phtml",
+        "https://stock.finance.sina.com.cn/stock/go.php/vReport_Show/kind/search/rptid/842537580220/index.phtml",
+        "https://stock.stockstar.com/RB2026082800056471.shtml",
+        "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12548870&stockid=002831",
+        "https://data.eastmoney.com/report/info/AP202605071822017415.html",
+        "https://notice.10jqka.com.cn/api/pdf/d02142f1fa173864.pdf",
+        "http://www.cninfo.com.cn）披露的《关于重大资产购买实施完成的公告》（2025-临020号）、《公司重大资产购买实施情况报告书》等相关公告",
+        "https://img3.gelonghui.com/pdf/ba795-26b18365-066c-4b7f-a917-b4ea1c3b2ad1.pdf",
+        "https://disc.static.szse.cn/download/disc/disk03/finalpage/2026-04-29/d70ade9b-b046-4dc9-9607-007a76552b91.PDF",
+        "https://file.finance.sina.com.cn/211.154.219.97%3A9494/MRGG/CNSESZ_STOCK/2025/2025-10/2025-10-11/11502466.PDF",
+        "https://reportify-1252068037.cos.ap-beijing.myqcloud.com/media/production/s_3717e489_3717e489bea77dee74e5312be7298bf9.pdf"
+      ],
+      "source_reference_ids": [
+        "turn437search0",
+        "turn437search1",
+        "turn437search2",
+        "turn437search3",
+        "turn437search4",
+        "turn437search5",
+        "turn437search6",
+        "turn437search12",
+        "turn437search7",
+        "turn437search8",
+        "turn437search9",
+        "turn437search10",
+        "turn437search11",
+        "turn437search13",
+        "turn437search14",
+        "turn437search15",
+        "turn437search16",
+        "turn437search17"
+      ],
+      "errors": [],
+      "operation_delta": {
+        "search": 3,
+        "open": 0,
+        "find": 0,
+        "click": 0,
+        "screenshot": 0,
+        "web": 3
+      },
+      "cumulative_operations": {
+        "web": 3,
+        "search": 3,
+        "open": 0,
+        "find": 0,
+        "click": 0,
+        "screenshot": 0,
+        "local_calculation": 0
+      }
+    },
+    {
+      "at": "2026-09-22T07:16:19.125Z",
+      "tool": "web__run",
+      "params": {
+        "open": [
+          {
+            "ref_id": "turn437search1"
+          },
+          {
+            "ref_id": "turn437search2"
+          },
+          {
+            "ref_id": "turn437search0"
+          }
+        ],
+        "search_query": [
+          {
+            "q": "永新股份 2026 半年度报告 2025 年度 分红 现金流"
+          },
+          {
+            "q": "奥瑞金 永新股份 2026年9月21日 收盘"
+          },
+          {
+            "q": "合兴包装 紫江企业 昇兴股份 中荣股份 2026 半年报 净利润 包装"
+          }
+        ],
+        "response_length": "long"
+      },
+      "result_summary": "执行3个open和3个搜索。打开裕同、奥瑞金半年报；行情打开版停留9月17日，与搜索摘要缓存日期不同。新增永新交易所半年报、紫江与合兴半年报线索；未取得中荣、昇兴足够资料。",
+      "source_urls": [
+        "https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12567797&stockid=002228",
+        "https://disc.static.szse.cn/disc/disk03/finalpage/2026-08-20/c9238725-4d26-465a-8296-b221f2d3b68f.PDF",
+        "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12555960&stockid=600210",
+        "https://finance.sina.com.cn/roll/2026-08-27/doc-inipuiyr5867694.shtml",
+        "https://www.lixinger.com/equity/company/detail/sz/002228/2228/announcement?type=fs",
+        "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12567797&stockid=002228",
+        "https://wap.stockstar.com/detail/SN2026081900038468",
+        "https://finance.sina.com.cn/stock/yyyj/2026-08-28/doc-inipwxpi8967308.shtml",
+        "https://finance.sina.com.cn/stock/bxjj/2026-08-29/doc-inipwxpp9821661.shtml",
+        "https://finance.sina.com.cn/stock/aiassist/yjbg/2026-08-28/doc-inipwnxr5755373.shtml",
+        "https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12548870&stockid=002831",
+        "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12569742&stockid=002701",
+        "https://cn.investing.com/equities/shenzhen-yuto-packaging-historical-data"
+      ],
+      "source_reference_ids": [
+        "turn438search0",
+        "turn438search12",
+        "turn438search1",
+        "turn438search2",
+        "turn438search3",
+        "turn438search4",
+        "turn438search5",
+        "turn438search6",
+        "turn438search7",
+        "turn438search8",
+        "turn438view0",
+        "turn437search1",
+        "turn438view1",
+        "turn437search2",
+        "turn438view2",
+        "turn437search0"
+      ],
+      "errors": [],
+      "operation_delta": {
+        "search": 3,
+        "open": 3,
+        "find": 0,
+        "click": 0,
+        "screenshot": 0,
+        "web": 6
+      },
+      "cumulative_operations": {
+        "web": 9,
+        "search": 6,
+        "open": 3,
+        "find": 0,
+        "click": 0,
+        "screenshot": 0,
+        "local_calculation": 0
+      }
+    },
+    {
+      "at": "2026-09-22T07:16:32.234Z",
+      "tool": "web__run",
+      "params": {
+        "open": [
+          {
+            "ref_id": "turn438search12"
+          },
+          {
+            "ref_id": "turn438search0"
+          },
+          {
+            "ref_id": "turn438search1"
+          }
+        ],
+        "find": [
+          {
+            "ref_id": "turn438view0",
+            "pattern": "主要会计数据"
+          },
+          {
+            "ref_id": "turn438view1",
+            "pattern": "主要会计数据"
+          },
+          {
+            "ref_id": "turn438view2",
+            "pattern": "2026年09月"
+          }
+        ],
+        "search_query": [
+          {
+            "q": "永新股份 002014 历史数据 2026年09月21日"
+          },
+          {
+            "q": "奥瑞金 002701 历史数据 2026年09月21日"
+          }
+        ],
+        "response_length": "long"
+      },
+      "result_summary": "执行3个open、3个find和2个搜索。打开永新官方PDF与紫江半年报；合兴公告open返回Internal Error。奥瑞金“主要会计数据”和裕同行情“2026年09月”find未匹配。取得奥瑞金9月21日4.41元搜索摘要及永新多家行情来源线索。",
+      "source_urls": [
+        "https://cn.investing.com/equities/org-packaging-a-historical-data",
+        "https://cn.investing.com/equities/huangshan-novel-a-historical-data",
+        "https://www.yyqyx.com/s/002014.SZ",
+        "https://data.eastmoney.com/stockcalendar/002014.html",
+        "https://data.agoer.com/cms/Index/detail?id=002701",
+        "https://vip.stock.finance.sina.com.cn/corp/go.php/vCB_AllNewsStock/symbol/sz002014.phtml",
+        "https://www.lixinger.com/equity/company/detail/sz/002014/2014/fundamental/valuation/pe-ttm",
+        "https://basic.10jqka.com.cn/002701/",
+        "https://q.stock.sohu.com/cn/002014/lshq.shtml",
+        "https://data.agoer.com/cms/Index/detail?id=002014",
+        "https://www.yyqyx.com/s/002701.SZ",
+        "https://data.10jqka.com.cn/market/lhbgg/code/002701/",
+        "https://qxb-pdf-osscache.qixin.com/AnBaseinfo/e2b69ca56d82e79db10f59b55066299e.PDF",
+        "https://static.cninfo.com.cn/finalpage/2026-06-18/1225376781.PDF",
+        "https://disc.static.szse.cn/disc/disk03/finalpage/2026-08-20/c9238725-4d26-465a-8296-b221f2d3b68f.PDF",
+        "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12555960&stockid=600210",
+        "https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12548870&stockid=002831",
+        "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12569742&stockid=002701",
+        "https://cn.investing.com/equities/shenzhen-yuto-packaging-historical-data"
+      ],
+      "source_reference_ids": [
+        "turn439search0",
+        "turn439search1",
+        "turn439search2",
+        "turn439search3",
+        "turn439search4",
+        "turn439search5",
+        "turn439search6",
+        "turn439search7",
+        "turn439search8",
+        "turn439search9",
+        "turn439search10",
+        "turn439search11",
+        "turn439search12",
+        "turn439search13",
+        "turn439view0",
+        "turn438search12",
+        "turn439view1",
+        "turn438search0",
+        "turn439view2",
+        "turn438search1",
+        "turn439view3",
+        "turn438view0",
+        "turn439view4",
+        "turn438view1",
+        "turn439view5",
+        "turn438view2"
+      ],
+      "errors": [
+        "一个或多个open返回Internal Error，详见执行摘要",
+        "一个或多个find未找到匹配，详见执行摘要"
+      ],
+      "operation_delta": {
+        "search": 2,
+        "open": 3,
+        "find": 3,
+        "click": 0,
+        "screenshot": 0,
+        "web": 8
+      },
+      "cumulative_operations": {
+        "web": 17,
+        "search": 8,
+        "open": 6,
+        "find": 3,
+        "click": 0,
+        "screenshot": 0,
+        "local_calculation": 0
+      }
+    },
+    {
+      "at": "2026-09-22T07:16:51.374Z",
+      "tool": "web__run",
+      "params": {
+        "open": [
+          {
+            "ref_id": "turn439view0",
+            "lineno": 170
+          },
+          {
+            "ref_id": "turn438view0",
+            "lineno": 145
+          },
+          {
+            "ref_id": "turn438view1",
+            "lineno": 50
+          },
+          {
+            "ref_id": "turn439view2",
+            "lineno": 80
+          }
+        ],
+        "response_length": "long"
+      },
+      "result_summary": "执行4个open。核对永新调价、海外增长、新产能与现金流；裕同同控追溯口径；紫江收入出表与房地产影响、扣非盈利和现金流；奥瑞金所打开范围以报告封面与主体身份为主。",
+      "source_urls": [
+        "https://disc.static.szse.cn/disc/disk03/finalpage/2026-08-20/c9238725-4d26-465a-8296-b221f2d3b68f.PDF",
+        "https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12548870&stockid=002831",
+        "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12569742&stockid=002701",
+        "http://www.cninfo.com.cn）上公开披露过的所有公司文件的正本及公告的原件。释义",
+        "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12555960&stockid=600210",
+        "http://www.zijiangqy.com",
+        "http://www.sse.com.cn"
+      ],
+      "source_reference_ids": [
+        "turn440view0",
+        "turn439view0",
+        "turn440view1",
+        "turn438view0",
+        "turn440view2",
+        "turn438view1",
+        "turn440view3",
+        "turn439view2"
+      ],
+      "errors": [],
+      "operation_delta": {
+        "search": 0,
+        "open": 4,
+        "find": 0,
+        "click": 0,
+        "screenshot": 0,
+        "web": 4
+      },
+      "cumulative_operations": {
+        "web": 21,
+        "search": 8,
+        "open": 10,
+        "find": 3,
+        "click": 0,
+        "screenshot": 0,
+        "local_calculation": 0
+      }
+    },
+    {
+      "at": "2026-09-22T07:17:13.812Z",
+      "tool": "web__run",
+      "params": {
+        "search_query": [
+          {
+            "q": "永新股份 \"2026-09-21\" \"收盘\""
+          },
+          {
+            "q": "紫江企业 \"2026年09月21日\" 历史数据"
+          },
+          {
+            "q": "永新股份 2025 年报 每股收益 现金分红 净利润"
+          },
+          {
+            "q": "奥瑞金 裕同科技 2025 年报 基本每股收益 扣非净利润"
+          }
+        ],
+        "response_length": "long"
+      },
+      "result_summary": "执行4个搜索，搜索限额用满。取得永新2025官方年报、奥瑞金2025官方年报、永新9月21日行情页面线索、紫江9月18日6.23元搜索摘要、裕同2025盈利卖方摘要。未把页面抓取时间当事件日期。",
+      "source_urls": [
+        "https://cn.investing.com/equities/zijiang-historical-data",
+        "https://disc.static.szse.cn/disc/disk03/finalpage/2026-04-29/a7d8cafb-aa01-491a-a7fc-677f44287237.PDF",
+        "https://stock.stockstar.com/notice/SN2026042400007362.shtml",
+        "https://disc.static.szse.cn/download/disc/disk03/finalpage/2026-04-24/9b97f576-a272-4963-9ab5-648be5119b2b.PDF",
+        "https://www.dabanke.com/gupiao-002014.html",
+        "https://epaper.stcn.com/att/202604/24/ZQ24B225-QQ_eBook.pdf",
+        "https://disc.static.szse.cn/download/disc/disk03/finalpage/2025-03-20/27c991d0-650c-4221-8207-e74fcafaae43.PDF",
+        "https://quote.cfi.cn/quote2048_002014.html",
+        "https://www.novel.com.cn/index.php?a=index&id=47&m=Download&p=2",
+        "https://finance.eastmoney.com/a/202604243717376215.html",
+        "https://stock.stockstar.com/notice/SN2026042400019481.shtml",
+        "https://www.yusin.com/investor/finance",
+        "https://finance.sina.com.cn/stock/aigc/stockfs/2026-04-23/doc-inhvpkas8368716.shtml",
+        "https://data.eastmoney.com/report/info/AP202605061821979289.html",
+        "https://data.eastmoney.com/stockcalendar/600210.html",
+        "https://basic.10jqka.com.cn/002014/worth.html",
+        "https://pdf.dfcfw.com/pdf/H3_AP202503221645906650_1.pdf",
+        "https://www.gupiaoguzhi.cn/uploads/20250421/a2b524b90865be3c5c2774714784819c.pdf",
+        "https://zh.wikipedia.org/wiki/%E6%B0%B8%E6%96%B0%E8%82%A1%E4%BB%BD"
+      ],
+      "source_reference_ids": [
+        "turn441search0",
+        "turn441search12",
+        "turn441search1",
+        "turn441search13",
+        "turn441search2",
+        "turn441search14",
+        "turn441search15",
+        "turn441search3",
+        "turn441search4",
+        "turn441search5",
+        "turn441search6",
+        "turn441search7",
+        "turn441search8",
+        "turn441search9",
+        "turn441search10",
+        "turn441search11",
+        "turn441search16",
+        "turn441search17",
+        "turn441search18"
+      ],
+      "errors": [],
+      "operation_delta": {
+        "search": 4,
+        "open": 0,
+        "find": 0,
+        "click": 0,
+        "screenshot": 0,
+        "web": 4
+      },
+      "cumulative_operations": {
+        "web": 25,
+        "search": 12,
+        "open": 10,
+        "find": 3,
+        "click": 0,
+        "screenshot": 0,
+        "local_calculation": 0
+      }
+    },
+    {
+      "at": "2026-09-22T07:17:16.798Z",
+      "tool": "exec_command",
+      "params": {
+        "cmd": "cat <repo>/evals/reports/2026-09-22-discovery/methods/candidate/references/methods/financial-analysis.md <repo>/evals/reports/2026-09-22-discovery/methods/candidate/references/methods/milestones.md <repo>/evals/reports/2026-09-22-discovery/methods/candidate/references/methods/evidence-and-sources.md",
+        "workdir": "<repo>",
+        "max_output_tokens": 9000
+      },
+      "result": "成功读取财务、时间路径与来源证据方法",
+      "counts": {
+        "web": 0,
+        "search": 0,
+        "local_calculation": 0
+      },
+      "cumulative_operations": {
+        "web": 25,
+        "search": 12,
+        "open": 10,
+        "find": 3,
+        "click": 0,
+        "screenshot": 0,
+        "local_calculation": 0
+      }
+    },
+    {
+      "at": "2026-09-22T07:17:29.743Z",
+      "tool": "web__run",
+      "params": {
+        "open": [
+          {
+            "ref_id": "turn441search2"
+          },
+          {
+            "ref_id": "turn441search0"
+          },
+          {
+            "ref_id": "turn439search0"
+          },
+          {
+            "ref_id": "turn441search13"
+          },
+          {
+            "ref_id": "turn441search12"
+          }
+        ],
+        "response_length": "long"
+      },
+      "result_summary": "执行5个open。永新9月21日打板客页面Internal Error；紫江正文只到9月17日6.25元；奥瑞金正文只到9月16日4.43元，均未确认9月21日搜索报价。成功打开永新、奥瑞金2025交易所年报。永新年报核对2025年度合计每股分红0.55元。",
+      "source_urls": [
+        "https://cn.investing.com/equities/zijiang-historical-data",
+        "https://cn.investing.com/equities/org-packaging-a-historical-data",
+        "https://disc.static.szse.cn/download/disc/disk03/finalpage/2026-04-24/9b97f576-a272-4963-9ab5-648be5119b2b.PDF",
+        "https://disc.static.szse.cn/disc/disk03/finalpage/2026-04-29/a7d8cafb-aa01-491a-a7fc-677f44287237.PDF"
+      ],
+      "source_reference_ids": [
+        "turn442view0",
+        "turn441search2",
+        "turn442view1",
+        "turn441search0",
+        "turn442view2",
+        "turn439search0",
+        "turn442view3",
+        "turn441search13",
+        "turn442view4",
+        "turn441search12"
+      ],
+      "errors": [
+        "一个或多个open返回Internal Error，详见执行摘要"
+      ],
+      "operation_delta": {
+        "search": 0,
+        "open": 5,
+        "find": 0,
+        "click": 0,
+        "screenshot": 0,
+        "web": 5
+      },
+      "cumulative_operations": {
+        "web": 30,
+        "search": 12,
+        "open": 15,
+        "find": 3,
+        "click": 0,
+        "screenshot": 0,
+        "local_calculation": 0
+      }
+    },
+    {
+      "at": "2026-09-22T07:17:47.741Z",
+      "tool": "web__run",
+      "params": {
+        "open": [
+          {
+            "ref_id": "turn438view1",
+            "lineno": 90
+          },
+          {
+            "ref_id": "turn439search1"
+          },
+          {
+            "ref_id": "turn439view2",
+            "lineno": 124
+          }
+        ],
+        "find": [
+          {
+            "ref_id": "turn442view4",
+            "pattern": "扣除非经常性损益"
+          },
+          {
+            "ref_id": "turn438view1",
+            "pattern": "短期借款"
+          },
+          {
+            "ref_id": "turn438view0",
+            "pattern": "股份总数"
+          }
+        ],
+        "response_length": "long"
+      },
+      "result_summary": "执行3个open和3个find。永新行情正文确认9月21日11.00元；奥瑞金核对归母/扣非/非经常性与CFO，债务find返回未折现合同现金流期限表而非净债务。奥瑞金年度报告扣非find无匹配。紫江CFO下降解释为房地产项目投入和税费。裕同核对2026转增后股本1,288,331,029股。用满36个web条目。",
+      "source_urls": [
+        "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12569742&stockid=002701",
+        "https://cn.investing.com/equities/huangshan-novel-a-historical-data",
+        "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12555960&stockid=600210",
+        "https://disc.static.szse.cn/disc/disk03/finalpage/2026-04-29/a7d8cafb-aa01-491a-a7fc-677f44287237.PDF",
+        "https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12548870&stockid=002831"
+      ],
+      "source_reference_ids": [
+        "turn443view0",
+        "turn438view1",
+        "turn443view1",
+        "turn439search1",
+        "turn443view2",
+        "turn439view2",
+        "turn443view3",
+        "turn442view4",
+        "turn443view4",
+        "turn443view5",
+        "turn438view0"
+      ],
+      "errors": [
+        "一个或多个find未找到匹配，详见执行摘要"
+      ],
+      "operation_delta": {
+        "search": 0,
+        "open": 3,
+        "find": 3,
+        "click": 0,
+        "screenshot": 0,
+        "web": 6
+      },
+      "cumulative_operations": {
+        "web": 36,
+        "search": 12,
+        "open": 18,
+        "find": 6,
+        "click": 0,
+        "screenshot": 0,
+        "local_calculation": 0
+      }
+    },
+    {
+      "at": "2026-09-22T07:19:05.309Z",
+      "tool": "functions.exec JavaScript local calculation",
+      "params": {
+        "assumptions": {
+          "horizon_years": 2,
+          "annual_required_return": 0.12,
+          "Yongxin": {
+            "shares": 612491866,
+            "price": 11,
+            "annual2025_profit": 438000000,
+            "annual2025_core_profit": 409000000,
+            "annual2025_dividend": 0.55,
+            "scenarios": [
+              {
+                "name": "谨慎",
+                "profit": 400000000,
+                "pe": 12,
+                "dividends": 0.8
+              },
+              {
+                "name": "基准",
+                "profit": 480000000,
+                "pe": 15,
+                "dividends": 1.1
+              },
+              {
+                "name": "较好",
+                "profit": 560000000,
+                "pe": 17,
+                "dividends": 1.2
+              }
+            ]
+          },
+          "ORG": {
+            "shares": 2559760469,
+            "price": 4.41,
+            "H12026_core_profit": 544113894,
+            "scenarios": [
+              {
+                "name": "谨慎",
+                "profit": 1000000000,
+                "pe": 9,
+                "dividends": 0.16
+              },
+              {
+                "name": "基准",
+                "profit": 1200000000,
+                "pe": 11,
+                "dividends": 0.24
+              },
+              {
+                "name": "较好",
+                "profit": 1500000000,
+                "pe": 12,
+                "dividends": 0.3
+              }
+            ]
+          },
+          "Yuto": {
+            "shares": 1288331029,
+            "price": 28.31,
+            "profit2025": 1592000000,
+            "core2025": 1525000000
+          }
+        },
+        "formula": "市值=股价×股数；EPS=归母利润/股数；终值=EPS×PE；两年含税总回报=(终值+假设期间现金股利)/入价−1；年化=(1+总回报)^(1/2)−1；12%门槛入价=(终值+股利)/(1.12^2)。仅条件情景，不是预测。"
+      },
+      "result": {
+        "Yongxin": {
+          "market_cap": 6737410526,
+          "scenarios": [
+            {
+              "name": "谨慎",
+              "profit": 400000000,
+              "pe": 12,
+              "dividends": 0.8,
+              "eps": 0.6530698972580316,
+              "terminal_price": 7.836838767096379,
+              "two_year_return": -0.21483283935487474,
+              "annualized_return": -0.11390341347845989,
+              "entry_ceiling_12pct": 6.8852349865245355
+            },
+            {
+              "name": "基准",
+              "profit": 480000000,
+              "pe": 15,
+              "dividends": 1.1,
+              "eps": 0.7836838767096378,
+              "terminal_price": 11.755258150644567,
+              "two_year_return": 0.1686598318767787,
+              "annualized_return": 0.0810457122049828,
+              "entry_ceiling_12pct": 10.2481330920317
+            },
+            {
+              "name": "较好",
+              "profit": 560000000,
+              "pe": 17,
+              "dividends": 1.2,
+              "eps": 0.9142978561612441,
+              "terminal_price": 15.54306355474115,
+              "two_year_return": 0.5220966867946502,
+              "annualized_return": 0.2337328263423366,
+              "entry_ceiling_12pct": 13.34746775728727
+            }
+          ],
+          "PE2025reported": 15.382215812785388,
+          "PE2025core": 16.47288637163814,
+          "trailing_declared_yield": 0.05
+        },
+        "ORG": {
+          "market_cap": 11288543668.29,
+          "scenarios": [
+            {
+              "name": "谨慎",
+              "profit": 1000000000,
+              "pe": 9,
+              "dividends": 0.16,
+              "eps": 0.39066155295017174,
+              "terminal_price": 3.5159539765515455,
+              "two_year_return": -0.16645034545316428,
+              "annualized_return": -0.08701059450460447,
+              "entry_ceiling_12pct": 2.930448004266219
+            },
+            {
+              "name": "基准",
+              "profit": 1200000000,
+              "pe": 11,
+              "dividends": 0.24,
+              "eps": 0.46879386354020613,
+              "terminal_price": 5.156732498942268,
+              "two_year_return": 0.22374886597330335,
+              "annualized_return": 0.1062318319291411,
+              "entry_ceiling_12pct": 4.302242106937394
+            },
+            {
+              "name": "较好",
+              "profit": 1500000000,
+              "pe": 12,
+              "dividends": 0.3,
+              "eps": 0.5859923294252577,
+              "terminal_price": 7.031907953103092,
+              "two_year_return": 0.6625641617013813,
+              "annualized_return": 0.2894045764233122,
+              "entry_ceiling_12pct": 5.844952130981418
+            }
+          ],
+          "halfyear_runrate_PE": 10.373327894003383
+        },
+        "Yuto": {
+          "market_cap": 36472651430.99,
+          "PE2025reported": 22.909956929013816,
+          "PE2025core": 23.916492741632787,
+          "required_profit_at_15PE": 2431510095.399333,
+          "required_profit_at_18PE": 2026258412.8327777
+        }
+      },
+      "operation_delta": {
+        "local_calculation": 1
+      },
+      "cumulative_operations": {
+        "web": 36,
+        "search": 12,
+        "open": 18,
+        "find": 6,
+        "click": 0,
+        "screenshot": 0,
+        "local_calculation": 1
+      }
+    },
+    {
+      "at": "2026-09-22T07:22:45.731Z",
+      "tool": "functions.exec JavaScript local calculation",
+      "params": {
+        "inputs": {
+          "purple_assumed_eps": 0.6,
+          "purple_assumed_terminal_pe": 11,
+          "purple_stale_price": 6.25,
+          "annual_hurdle": 0.12,
+          "org_H1_core_profit": 544113894,
+          "org_H1_revenue_rounded": 13881000000
+        },
+        "formula": "紫江终值=EPS×PE；资本收益=终值/旧价−1；入价上限=终值/(1.12^2)；奥瑞金半年扣非利润率=扣非利润/收入"
+      },
+      "result": {
+        "purple_terminal_price": 6.6,
+        "purple_two_year_capital_return": 0.05600000000000005,
+        "purple_entry_ceiling": 5.261479591836734,
+        "org_H1_core_margin": 0.039198465096174626
+      },
+      "operation_delta": {
+        "local_calculation": 1
+      },
+      "cumulative_operations": {
+        "web": 36,
+        "search": 12,
+        "open": 18,
+        "find": 6,
+        "click": 0,
+        "screenshot": 0,
+        "local_calculation": 2
+      }
+    },
+    {
+      "at": "2026-09-22 07:24:04 UTC",
+      "tool": "clock__curr_time",
+      "params": {},
+      "result": {
+        "current_time": "2026-09-22 07:24:04 UTC"
+      },
+      "operation_delta": {
+        "web": 0,
+        "local_calculation": 0
+      },
+      "cumulative_operations": {
+        "web": 36,
+        "search": 12,
+        "open": 18,
+        "find": 6,
+        "click": 0,
+        "screenshot": 0,
+        "local_calculation": 2
+      }
+    }
+  ],
+  "operation_counts": {
+    "web": 36,
+    "search": 12,
+    "open": 18,
+    "find": 6,
+    "click": 0,
+    "screenshot": 0,
+    "local_calculation": 2,
+    "web_calls": 7,
+    "limits": {
+      "web_entries": 36,
+      "search_entries": 12,
+      "local_calculations": 8
+    },
+    "counting_rule": "每个search/open/find/click/screenshot条目计一次web；失败和未匹配计入；本地研究数值计算按批次计数。只读方法、工具发现、时钟、编排与写日志不计研究操作。"
+  },
+  "answer": "截至 2026 年 9 月 21 日，我更愿意把未来两年的研究精力放在奥瑞金的整合回报与永新股份的成熟业务现金收益上。奥瑞金有条件性价比，永新经营基础较容易理解但 11 元并不明显便宜；裕同按现有包装盈利购买的要求偏高；紫江可能被合并报表变化遮蔽了包装改善，但其现金用途与利润归属尚未拆清。本轮没有形成一项证据与价格都足够扎实、可以无条件认定的高把握机会。这也不等于整个 A 股包装行业没有机会。\n\n期限按未来两年、到 2028 年 9 月理解。以下 2028 年盈利表示届时可能达到的年度经营状态，不是提前知道 2028 年全年业绩。事实使用截止日前材料；情景、估值倍数和 12% 年化回报门槛由我设定，均不属于公司指引。\n\n寻找机会的关键是：原料变动以后，加工利润能留下多少；增加的订单能否利用现有产线；扩大规模之后，现金是在股东手里，还是继续进入库存、工厂和收购。食品、饮料和消费电子包装的客户、资本开支与定价不同，不能按同一个“包装景气度”买入整板块。客户认证和就近供货可以增加黏性，但下游大客户同样有议价能力；行业集中并不自动变成涨价权。\n\n本次实际取得四家公司的半年报正文，另有合兴包装的财报摘要。搜索涉及昇兴、中荣，但未取得足够材料，不算完成研究；烟标、无菌包装和其他小公司也没有全面扫描。\n\n| 对象 | 本轮使用的价格锚 | 证据与投资判断 |\n|---|---:|---|\n| 奥瑞金 002701.SZ | 4.41 元，9 月 21 日搜索摘要 | 原页面只读到 9 月 16 日，因此是待确认的计算锚；整合机会最值得优先推进 |\n| 永新股份 002014.SZ | 11.00 元，9 月 21 日历史行情正文 | 成熟业务与分红有依据，当前价格接近合理；更低入价更有吸引力 |\n| 裕同科技 002831.SZ | 28.31 元，9 月 21 日搜索摘要 | 原页面缓存较旧；按这一价格，包装基本盘尚不足以支持明显低估 |\n| 紫江企业 600210.SH | 6.25 元，9 月 17 日正文 | 不是 9 月 21 日价格；只能作条件估值，不能据此称截止日便宜 |\n\n行情出处分别为 [奥瑞金历史行情](https://cn.investing.com/equities/org-packaging-a-historical-data)、[永新历史行情](https://cn.investing.com/equities/huangshan-novel-a-historical-data)、[裕同历史行情](https://cn.investing.com/equities/shenzhen-yuto-packaging-historical-data)、[紫江历史行情](https://cn.investing.com/equities/zijiang-historical-data)。搜索摘要与打开页面存在缓存日期差异，我保留这个缺口，没有把旧报价改标成新报价。\n\n奥瑞金值得研究的不是“收购后收入变大”，而是整合之后每元收入能贡献多少可持续归母利润。2026 年上半年收入 138.81 亿元、归母利润 7.63 亿元、扣非利润 5.44 亿元；归母下降 15.51%，扣非增长 35.70%，经营现金流仅 3.50 亿元。2025 年已收购原中粮包装与沙特制罐资产，半年报称整合和海外业务继续推进。应将经营改善与处置收益分开，合并资产的全部利润也不能都算给 A 股股东。[奥瑞金 2026 半年报](https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12569742&stockid=002701)\n\n我的推断是：采购、产线调配、交付距离和管理费用的改善，可以在两年内转成利润；海外较好的定价也可能帮助公司，但不能把公司定性描述当成已确认的吨罐利润。替代解释是，并表范围扩大与会计处置改善了表面数据，整合并未创造足够现金。现金流低于利润、需要偿债和继续投资，意味着普通股回报受融资成本约束。所读债务表是未折现合同现金流表，不能直接当净债务用于企业价值估值。\n\n以年末 25.60 亿股近似股数，假设未来没有新增摊薄，以 4.41 元作计算锚。股数来源为 [2025 年报](https://disc.static.szse.cn/disc/disk03/finalpage/2026-04-29/a7d8cafb-aa01-491a-a7fc-677f44287237.PDF)。按半年扣非简单乘二，约为 10.4 倍盈利；这只是规模参照，绝不是 2026 全年预测，季节性和整合范围尚会影响下半年。\n\n| 奥瑞金至两年后的条件情景 | 可持续归母利润 | 期末 PE | 假设两年现金股利/股 | 期末股价 | 含股利两年总回报 |\n|---|---:|---:|---:|---:|---:|\n| 谨慎：整合改善被成本与融资抵消 | 10 亿元 | 9 倍 | 0.16 元 | 3.52 元 | -16.6% |\n| 基准：经营改善保留、无明显估值扩张 | 12 亿元 | 11 倍 | 0.24 元 | 5.16 元 | +22.4% |\n| 较好：整合和海外效益一起兑现 | 15 亿元 | 12 倍 | 0.30 元 | 7.03 元 | +66.3% |\n\n这些盈利不包含重复发生大额处置收益的假设。基准可以理解为约 300 亿元收入、4% 归母净利率的条件组合；比上半年扣非净利率约 3.9% 更需要的是业务规模与现金改善，而不是利润率跳升。收入与利润率是假设，尚没有订单资料来确认这个组合。11 倍 PE 是为整合与债务风险留下折价的判断，不是市场公允倍数的事实。\n\n基准年化约 10.6%；要达到我设定的 12% 门槛，数学入价约 4.30 元，因此 4.41 元附近只算有条件吸引力，不能把乐观情景当安全边际。考虑报价与债务核验缺口，约 4 元以下才有更明显余地。未来两年应看到扣非增长转化为经营回款、整合投入后资金压力下降；若利润主要靠处置、应收和融资继续吸收现金，则降级，不因收入增长而坚持原判断。\n\n永新的机会机制更朴素：食品软包装客户认证、稳定交付与薄膜自配，在原料上涨时帮助维持加工利润。2026 年上半年收入 19.37 亿元、归母利润 1.84 亿元，分别增长 10.95% 和 0.43%；公司披露与客户协商调价、国际业务增长 18.36%，并有薄膜和复合软包装产能将在下半年继续释放。财务费用明显增长，经营现金流约 1.01 亿元，说明收入增长尚未等比例进入股东收益。[永新 2026 半年报，第 9—12 页](https://disc.static.szse.cn/disc/disk03/finalpage/2026-08-20/c9238725-4d26-465a-8296-b221f2d3b68f.PDF)\n\n2025 年收入 37.23 亿元、归母利润 4.38 亿元、扣非 4.09 亿元，归母同比下降 6.33%，不能把它当成无波动增长股。[2025 年报业绩摘要](https://finance.eastmoney.com/a/202604243717376215.html) 官方年报列示 2025 年度中期与期末合计每股分红 0.55 元、全年分红比例 76.89%，股数为 6.1249 亿股。[永新 2025 年报，第 39 页](https://disc.static.szse.cn/download/disc/disk03/finalpage/2026-04-24/9b97f576-a272-4963-9ab5-648be5119b2b.PDF)\n\n11 元对应约 15.4 倍 2025 归母盈利、16.5 倍扣非盈利，历史年度分红/现价为 5%。后者不是买入以后确定拿到的股息，也不是经核验的滚动十二个月分红率。\n\n| 永新至两年后的条件情景 | 年归母利润 | 期末 PE | 假设两年股利/股 | 期末股价 | 两年总回报 |\n|---|---:|---:|---:|---:|---:|\n| 谨慎：成本与新增折旧挤压利润 | 4.0 亿元 | 12 倍 | 0.80 元 | 7.84 元 | -21.5% |\n| 基准：产能消化，恢复温和增长 | 4.8 亿元 | 15 倍 | 1.10 元 | 11.76 元 | +16.9% |\n| 较好：海外与产品结构均兑现 | 5.6 亿元 | 17 倍 | 1.20 元 | 15.54 元 | +52.2% |\n\n基准利润仅较 2025 年增长约一成，但仍需要调价覆盖原料、产能投放后有订单和回款，不能拿设计产能直接乘利润。基准 PE 与当前水平接近，股利假设延续历史年度水平。基准年化约 8.1%，12% 门槛对应约 10.25 元入价；我会把 9.5—10 元作为更值得重估的区域，前提是盈利与分红能力没有同步下修。若扩产只能靠持续增加负债、年度经营现金不足以承担必要投资与分红，5% 的历史股息观感就不够可靠。\n\n裕同当前主要问题是价格需要额外增长。其半年报显示纸制精品包装收入下降 3.74%，毛利率升至 26.87%；集团扣非利润 5.51 亿元、同比下降 1.50%，现金流 15.53 亿元。同控合并带来追溯调整，同时转增后总股本为 12.8833 亿股，不能拿转增前 EPS 配现在的价格。[裕同 2026 半年报](https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12548870&stockid=002831)\n\n以 28.31 元和新股数计，市值约 364.7 亿元。2025 原披露归母/扣非利润约 15.92/15.25 亿元，粗算约 22.9/23.9 倍；这是旧年度口径的量级参照，追溯调整未齐，不称精确 TTM PE。[2025 年报点评](https://data.eastmoney.com/report/info/AP202605061821979289.html) 若两年后成熟包装业务按 15—18 倍盈利计价，仅维持这个市值就需要约 20.3—24.3 亿元年利润，尚未包含投资者所需的资本收益。效率改善有价值，但目前材料不能证明足够填补这段盈利距离。\n\n公司还布局液冷等新业务，这是实际资本配置，不能当作不存在；但本轮没有足够客户订单、独立利润和再投资证据给它估值。[2026 半年报报道](https://stock.stockstar.com/RB2026082800048016.shtml) 结论是“包装基本盘尚不足以支持这个价格很便宜”，不是断言新业务必然失败。用户并不要求转型故事，因此我不靠给新业务随意加价完成推荐。\n\n紫江需要保留，但不能按净利润涨幅直接买入。半年报披露上期房地产收入及紫江新材出表影响了同比口径，包装业务有增长；归母 5.44 亿元、扣非 4.99 亿元，而经营现金流为 -1.57 亿元，公司解释主要涉及房地产项目建设与税费。新包装项目预计下半年陆续投产。[紫江 2026 半年报](https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12555960&stockid=600210)\n\n这里的潜在机会是包装改善被合并收入下降遮住；风险则是包装赚的钱流入地产等其他用途。半年扣非 EPS 为 0.329 元，不能简单翻倍当全年持续盈利。做一个不计股利的反推：若可持续全年 EPS 真能达到 0.60 元，给 11 倍 PE，终值为 6.60 元；以旧报价 6.25 元购买，两年资本增值仅 5.6%。要满足 12% 年化门槛，对应入价约 5.26 元。0.60 元和 11 倍均为假设，尚缺分业务净利润、资金归属和股利核验，因此它是下一优先核查对象，不是已经确认的低估机会。\n\n合兴是反例而不是最终排除项：摘要显示半年收入增长 7.26%，扣非利润下降 26.23%。至少说明销量或收入改善不够，必须看纸价传导、加工利润和费用。[合兴半年报摘要](https://finance.sina.com.cn/stock/bxjj/2026-08-29/doc-inipwxpp9821661.shtml) 原报告打开失败、价格和估值未完成，因此不能据此断言它没有投资价值。\n\n计算统一为：期末股价＝可持续归母利润÷股数×PE；两年总回报＝（期末股价＋期间假设现金股利）÷入价－1。股利不再投资，未扣个人税费和交易成本，没有赋予情景发生概率。倍数、盈利和股利会相互影响；悲观时缩减股利，不能同时保留乐观分红。\n\n就目前证据，优先顺序是奥瑞金的整合现金回报、永新在更合适价格的成熟业务收益、紫江的分部与资金拆解；裕同需要额外盈利证据或更低价格。接下来最能改变判断的公开节点是 2026 年报与 2027 年中报：它们应显示新产能是否贡献利润、整合是否回款，以及分红是否由经营支撑。这些是本次研究需要验证的经营事实，不是后台监控安排。\n\n这是一轮有限样本的研究诊断：用满 36 个 web 条目，其中 12 个搜索；两次页面打开报错、部分 find 未匹配，未取得所有公司的截止日精确行情、完整债务与资本开支拆分，也未完成客户侧独立验证。材料以交易所财报和公司报告镜像为主，研究报道仅作明确标注的补充。结论具有这些边界，不能据此宣称市场没有其他机会，也不能由单次实验推断研究方法的统计优越性。",
+  "sources": [
+    {
+      "id": "S1",
+      "title": "奥瑞金2026年半年度报告（公司公告镜像）",
+      "url": "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12569742&stockid=002701",
+      "date": "2026-08-29",
+      "usage": "收入、归母及扣非利润、处置收益、CFO、整合进展；债务find返回未折现合同现金流，不当作净债务",
+      "access": "正文及定向查找"
+    },
+    {
+      "id": "S2",
+      "title": "奥瑞金2025年年度报告",
+      "url": "https://disc.static.szse.cn/disc/disk03/finalpage/2026-04-29/a7d8cafb-aa01-491a-a7fc-677f44287237.PDF",
+      "date": "2026-04-29",
+      "usage": "年末股数与收购背景；扣非find未成功",
+      "access": "交易所PDF部分文本"
+    },
+    {
+      "id": "S3",
+      "title": "永新2026年半年度报告",
+      "url": "https://disc.static.szse.cn/disc/disk03/finalpage/2026-08-20/c9238725-4d26-465a-8296-b221f2d3b68f.PDF",
+      "date": "2026-08-20",
+      "usage": "经营机制、扩产时间、海外增长、调价、半年收入利润现金流",
+      "access": "交易所PDF，第9至12页及自动抽取片段"
+    },
+    {
+      "id": "S4",
+      "title": "永新2025年年度报告",
+      "url": "https://disc.static.szse.cn/download/disc/disk03/finalpage/2026-04-24/9b97f576-a272-4963-9ab5-648be5119b2b.PDF",
+      "date": "2026-04-24",
+      "usage": "2025年度分红合计0.55元、分红比例与股数",
+      "access": "交易所PDF第39页片段"
+    },
+    {
+      "id": "S5",
+      "title": "永新2025年报业绩摘要",
+      "url": "https://finance.eastmoney.com/a/202604243717376215.html",
+      "date": "2026-04-24",
+      "usage": "全年收入、归母及扣非利润、CFO",
+      "access": "搜索摘要，二手转述"
+    },
+    {
+      "id": "S6",
+      "title": "裕同2026年半年度报告（公司公告镜像）",
+      "url": "https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12548870&stockid=002831",
+      "date": "2026-08",
+      "usage": "分部收入毛利率、同控追溯、利润现金流、转增后股数",
+      "access": "正文与定向查找"
+    },
+    {
+      "id": "S7",
+      "title": "裕同2025年报与2026年一季报点评",
+      "url": "https://data.eastmoney.com/report/info/AP202605061821979289.html",
+      "date": "2026-05",
+      "usage": "2025原披露利润量级；未当作已核准同控追溯后的TTM",
+      "access": "搜索摘要，卖方材料"
+    },
+    {
+      "id": "S8",
+      "title": "裕同2026半年度财报报道",
+      "url": "https://stock.stockstar.com/RB2026082800048016.shtml",
+      "date": "2026-08-28",
+      "usage": "新业务资本配置线索，未给新业务估值",
+      "access": "搜索摘要，二手报道"
+    },
+    {
+      "id": "S9",
+      "title": "紫江2026年半年度报告（公司公告镜像）",
+      "url": "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12555960&stockid=600210",
+      "date": "2026-08-28",
+      "usage": "收入合并范围、包装项目、利润与EPS、房地产现金用途",
+      "access": "正文与财务章节"
+    },
+    {
+      "id": "S10",
+      "title": "合兴2026半年度业绩摘要",
+      "url": "https://finance.sina.com.cn/stock/bxjj/2026-08-29/doc-inipwxpp9821661.shtml",
+      "date": "2026-08-29",
+      "usage": "收入和扣非利润方向；原报告打开失败未深度排除",
+      "access": "搜索摘要"
+    },
+    {
+      "id": "S11",
+      "title": "奥瑞金历史行情",
+      "url": "https://cn.investing.com/equities/org-packaging-a-historical-data",
+      "date": "2026-09-21 / 正文止于2026-09-16",
+      "usage": "搜索摘要4.41元仅作条件价格锚；正文4.43元是9月16日",
+      "access": "搜索与打开版本存在日期差异"
+    },
+    {
+      "id": "S12",
+      "title": "永新历史行情",
+      "url": "https://cn.investing.com/equities/huangshan-novel-a-historical-data",
+      "date": "2026-09-21",
+      "usage": "正文确认收盘11.00元",
+      "access": "行情正文"
+    },
+    {
+      "id": "S13",
+      "title": "裕同历史行情",
+      "url": "https://cn.investing.com/equities/shenzhen-yuto-packaging-historical-data",
+      "date": "2026-09-21 / 打开页窗口止于2026-09-17",
+      "usage": "搜索摘要28.31元仅作条件价格锚",
+      "access": "搜索与打开版本存在日期差异"
+    },
+    {
+      "id": "S14",
+      "title": "紫江历史行情",
+      "url": "https://cn.investing.com/equities/zijiang-historical-data",
+      "date": "2026-09-17",
+      "usage": "正文确认6.25元旧价；搜索另见9月18日6.23元但未用作最新价",
+      "access": "行情正文"
+    }
+  ],
+  "unresolved": [
+    "裕同、奥瑞金9月21日价格仅搜索摘要有，打开页缓存较旧；紫江未核到截止日收盘，永新已确认。",
+    "奥瑞金2026现时股本变动、净债务与受限资金没有完成全表核对；模型沿用2025年末股数并明确无摊薄假设。",
+    "奥瑞金并购的可比内生增长、分部利润、整合现金投入与新增产能需求未拆清，未给整合成功概率。",
+    "永新扩产资本开支、订单消化与持续分红覆盖未完成量化；2025年度分红不冒充未来或滚动12个月分红。",
+    "裕同同控追溯后完整2025利润、非包装新业务客户订单、独立利润和资金需求未取得，2025旧口径只作量级参考。",
+    "紫江包装/地产/投资的利润与现金归属、可持续全年EPS、分红与最新报价尚待核验。",
+    "合兴原报告打开失败；昇兴、中荣及其他包装公司未完成研究；客户与供应商端未独立交叉验证。"
+  ],
+  "limitations": [
+    "单次有限样本诊断，不宣称全行业穷尽扫描或方法统计优越性。",
+    "仅阅读指定candidate方法与所需references；没有阅读其它版本、answers、handoff或用户历史；未用子agent、当前项目取数脚本、量化信号工具或私人账户。",
+    "36个web条目、12个search达到上限；2个数值计算批次。",
+    "财报正文仅取得工具返回的章节和片段，不声称逐页通读；官方文件与公司公告镜像为主要证据，媒体与卖方摘要均注明层级。",
+    "web参数原样保留；工具结果保存真实执行摘要与实际返回来源URL，非伪造全文。所有本地路径仅做<repo>/<home>/<tmp>脱敏；未存凭证或会话/task IDs。",
+    "条件情景无概率、无确定目标价；估值倍数与12%回报门槛为AI假设，回报未计税费及股利再投资；季节性、并表及利润口径限制明确保留。"
+  ]
+}

@@ -1,0 +1,341 @@
+{
+  "started_at": "2026-09-22 07:18:40 UTC",
+  "completed_at": "2026-09-22 07:23:20 UTC",
+  "condition": "current_candidate",
+  "diagnostic_type": "in_context_offline_behavior_diagnostic",
+  "tools_log": [
+    {
+      "sequence": 1,
+      "operation": "list_paths",
+      "tool": "exec_command",
+      "description": "以pwd和rg --files列出允许范围内候选方法、行为题清单和材料文件名；不读取列出的其他实验文件内容。",
+      "scope": [
+        "<repo>/evals/reports/2026-09-22-discovery/methods/candidate/",
+        "<repo>/evals/reports/2026-09-22-discovery/behavior-manifest.json",
+        "<repo>/evals/reports/2026-09-22-discovery/behavior-materials/"
+      ],
+      "case_ids": []
+    },
+    {
+      "sequence": 2,
+      "operation": "read_files",
+      "tool": "exec_command",
+      "files": [
+        "<repo>/evals/reports/2026-09-22-discovery/methods/candidate/SKILL.md",
+        "<repo>/evals/reports/2026-09-22-discovery/behavior-manifest.json"
+      ],
+      "description": "读取候选技能、10个用户问题、指定证据材料路径和离线约束。"
+    },
+    {
+      "sequence": 3,
+      "operation": "read_files",
+      "tool": "exec_command",
+      "files": [
+        "<repo>/evals/reports/2026-09-22-discovery/methods/candidate/references/capabilities/discover.md",
+        "<repo>/evals/reports/2026-09-22-discovery/methods/candidate/references/capabilities/research.md",
+        "<repo>/evals/reports/2026-09-22-discovery/methods/candidate/references/capabilities/review.md",
+        "<repo>/evals/reports/2026-09-22-discovery/methods/candidate/references/capabilities/simulate.md",
+        "<repo>/evals/reports/2026-09-22-discovery/methods/candidate/references/methods/financial-analysis.md",
+        "<repo>/evals/reports/2026-09-22-discovery/methods/candidate/references/methods/evidence-and-sources.md",
+        "<repo>/evals/reports/2026-09-22-discovery/methods/candidate/references/methods/milestones.md",
+        "<repo>/evals/reports/2026-09-22-discovery/methods/candidate/references/methods/pipeline.md"
+      ],
+      "description": "按本批问题读取发现、研究、复核、推演、财务、证据、时间和协作方法；该批为同一上下文，未启动子agent。"
+    },
+    {
+      "sequence": 4,
+      "operation": "read_files",
+      "tool": "exec_command",
+      "files": [
+        "<repo>/evals/reports/2026-09-22-discovery/methods/candidate/references/capabilities/verify.md",
+        "<repo>/evals/reports/2026-09-22-discovery/methods/candidate/references/toolkit/screening.md",
+        "<repo>/evals/reports/2026-09-22-discovery/behavior-materials/contract.md",
+        "<repo>/evals/reports/2026-09-22-discovery/behavior-materials/financials.md",
+        "<repo>/evals/reports/2026-09-22-discovery/behavior-materials/quote.md"
+      ],
+      "description": "读取查证、筛选方法，并实际打开机会题合同、财报预算、带时点报价三个原始文件。",
+      "evidence_case_id": "opportunity-cannot-stop-at-lead"
+    },
+    {
+      "sequence": 5,
+      "operation": "calculate",
+      "tool": "functions.exec JavaScript",
+      "calculations": [
+        {
+          "case_id": "company-investment-outward",
+          "formula": "2 / 200 * 100",
+          "result": 1,
+          "unit": "%",
+          "meaning": "乙合同总额相当于乙去年收入比例；不表示年度收入增幅"
+        },
+        {
+          "case_id": "stable-business-and-price",
+          "formula": "10 / 80 * 100",
+          "result": 12.5,
+          "unit": "%",
+          "meaning": "按10亿元为年度普通股可分配现金计算的价格现金收益率"
+        },
+        {
+          "case_id": "stable-business-and-price",
+          "formula": "5 / 80 * 100",
+          "result": 6.25,
+          "unit": "%",
+          "meaning": "净现金占股权市值比例"
+        },
+        {
+          "case_id": "opportunity-cannot-stop-at-lead",
+          "formula": "12 / 3",
+          "result": 4,
+          "unit": "亿元/年",
+          "meaning": "预计每年确认的合同收入"
+        },
+        {
+          "case_id": "opportunity-cannot-stop-at-lead",
+          "formula": "0.4 / 4 * 100",
+          "result": 10,
+          "unit": "%",
+          "meaning": "管理层正常成本及按期验收预算中的增量税后利润/订单收入"
+        },
+        {
+          "case_id": "opportunity-cannot-stop-at-lead",
+          "formula": "0.4 / 1 * 100",
+          "result": 40,
+          "unit": "%",
+          "meaning": "预算新增年度税后利润相当于现有年度归母净利润比例"
+        },
+        {
+          "case_id": "opportunity-cannot-stop-at-lead",
+          "formula": "1 + 0.4",
+          "result": 1.4,
+          "unit": "亿元/年",
+          "meaning": "假定旧业务不变、预算兑现且增量利润均归属于普通股的条件利润"
+        },
+        {
+          "case_id": "opportunity-cannot-stop-at-lead",
+          "formula": "60 / 1",
+          "result": 60,
+          "unit": "倍",
+          "meaning": "报价市值/现有同口径归母净利润"
+        },
+        {
+          "case_id": "opportunity-cannot-stop-at-lead",
+          "formula": "60 / (1 + 0.4)",
+          "result": 42.85714285714286,
+          "unit": "倍",
+          "meaning": "条件利润的股权市值倍数"
+        },
+        {
+          "case_id": "opportunity-cannot-stop-at-lead",
+          "formula": "0.4 * 3",
+          "result": 1.2000000000000002,
+          "unit": "亿元",
+          "meaning": "三年预算增量税后利润，不能直接作为现金回收额"
+        },
+        {
+          "case_id": "whole-company-business-links",
+          "formula": "28 - 37",
+          "result": -9,
+          "unit": "亿元/半年",
+          "meaning": "两披露分部营业利润简单合计；非确认的集团合并营业利润"
+        },
+        {
+          "case_id": "horizon-and-company-scope",
+          "formula": "22 / 29 * 100",
+          "result": 75.86206896551724,
+          "unit": "%",
+          "meaning": "2025年集团资本开支中投向新型回用系统比例"
+        },
+        {
+          "case_id": "horizon-and-company-scope",
+          "formula": "16 - 3",
+          "result": 13,
+          "unit": "亿元/年",
+          "meaning": "两分部营业利润简单合计；不等于归母净利润"
+        },
+        {
+          "case_id": "simple-calculation-without-delegation",
+          "formula": "20 / 100 * 100",
+          "result": 20,
+          "unit": "%"
+        }
+      ],
+      "description": "使用确定性JavaScript运算复核答案中的算术；浮点0.4×3的展示值按原输入精度表述为1.2亿元。"
+    },
+    {
+      "sequence": 6,
+      "operation": "filter_supplied_records",
+      "tool": "functions.exec JavaScript",
+      "case_id": "table-screening-scope",
+      "predicate": "typeof pe === 'number' && pe > 0 && pe < 20",
+      "input_rows": 4,
+      "matches": [
+        {
+          "name": "甲",
+          "pe": 15
+        }
+      ],
+      "missing_rows": [
+        "丙"
+      ],
+      "description": "仅筛选题面4行数据；不读取或调用范围外的脚本。"
+    },
+    {
+      "sequence": 7,
+      "operation": "write_artifact",
+      "tool": "apply_patch",
+      "path": "<repo>/evals/reports/2026-09-22-discovery/behavior-run.json",
+      "description": "保存本次作答、实际工具读取与计算日志；不修改候选技能。"
+    },
+    {
+      "sequence": 8,
+      "operation": "validate_output",
+      "tool": "exec_command / python3",
+      "path": "<repo>/evals/reports/2026-09-22-discovery/behavior-run.json",
+      "checks": [
+        "JSON parses",
+        "10 unique case IDs",
+        "all answers, used_materials and route present",
+        "no /Users/ or /private/ personal absolute paths",
+        "opportunity case lists contract, financials and quote",
+        "simple arithmetic answer is 20%"
+      ],
+      "result": "passed"
+    }
+  ],
+  "cases": [
+    {
+      "id": "company-investment-outward",
+      "answer": "优先研究丙。独家供应关键材料使它可能掌握瓶颈，且去年收入只有3亿元，新增订单可能对公司很重要；但订单额、独家安排期限、可替代性、产能及利润归属尚未核实，所以这是研究优先级，不能据此认定投资最有吸引力。下一步沿甲的采购和丙的供货合同查这些关键缺口。\n甲的100亿元是三年投资额，不等于供应商收入或甲的利润，也值得检查投入回报。乙有确定合同，但2亿元仅相当于去年200亿元收入的1%，且合同总额与年度收入不是同一期间；现有证据显示直接影响相对小，优先级低于丙。丁只有板块标签，本轮不列为有依据的受益对象。",
+      "used_materials": [
+        "<repo>/evals/reports/2026-09-22-discovery/behavior-manifest.json#cases/company-investment-outward",
+        "<repo>/evals/reports/2026-09-22-discovery/methods/candidate/SKILL.md",
+        "<repo>/evals/reports/2026-09-22-discovery/methods/candidate/references/capabilities/discover.md",
+        "<repo>/evals/reports/2026-09-22-discovery/methods/candidate/references/capabilities/research.md",
+        "<repo>/evals/reports/2026-09-22-discovery/methods/candidate/references/methods/evidence-and-sources.md"
+      ],
+      "route": "发现：由甲的资本投入向供应链展开，按价值归属与潜在经济影响选择补证对象"
+    },
+    {
+      "id": "stable-business-and-price",
+      "answer": "先把甲作为有依据的机会候选继续研究。若题中的每年10亿元是普通股可分配现金，80亿元股权市值对应12.5%的年度现金收益率；十年稳定、维护正常、没有重大一次性项目，使这一价格线索值得认真核查，无需等待新技术故事。5亿元净现金相当于市值的6.25%，但仍需确认可动用且不是经营必需资金，不能重复计价。\n下一步重点查10亿元能否持续归属股东、未来维护和竞争变化会不会侵蚀现金，以及分配或再投资安排。现有材料支持甲有值得验证的价格吸引力，尚不能仅凭收益率判定买入。乙只有热度，没有经营数据和报价，当前不足以作机会判断，研究优先级低于甲。",
+      "used_materials": [
+        "<repo>/evals/reports/2026-09-22-discovery/behavior-manifest.json#cases/stable-business-and-price",
+        "<repo>/evals/reports/2026-09-22-discovery/methods/candidate/SKILL.md",
+        "<repo>/evals/reports/2026-09-22-discovery/methods/candidate/references/capabilities/discover.md",
+        "<repo>/evals/reports/2026-09-22-discovery/methods/candidate/references/capabilities/research.md",
+        "<repo>/evals/reports/2026-09-22-discovery/methods/candidate/references/methods/financial-analysis.md",
+        "<repo>/evals/reports/2026-09-22-discovery/methods/candidate/references/methods/evidence-and-sources.md"
+      ],
+      "route": "发现→研究：从稳定现金与价格关系形成候选"
+    },
+    {
+      "id": "truncated-coverage",
+      "answer": "可以说：本轮已读取的有限材料中，尚未找到证据充分且价格有吸引力的对象；不能说A股未来两年没有机会，也不能称完成全市场扫描。\n公司事件仅取得5000条且已截断，这是事件数，不是公司覆盖数；新闻只有最新20条，研报只覆盖40家公司。查询窗口和去重后公司范围仍不完整，6家财报失败应列为未取得资料，不能算筛选不通过。未来两年也可能兑现早年启动的项目，最新新闻不能覆盖它们。\n本轮离线条件下只能交付这一局部结论及覆盖缺口。后续应补齐与声明范围匹配的证券池和历史项目窗口，处理分页截断，并对6家失败对象补取原始财报；完成前不把局部未发现外推到全市场。",
+      "used_materials": [
+        "<repo>/evals/reports/2026-09-22-discovery/behavior-manifest.json#cases/truncated-coverage",
+        "<repo>/evals/reports/2026-09-22-discovery/methods/candidate/SKILL.md",
+        "<repo>/evals/reports/2026-09-22-discovery/methods/candidate/references/capabilities/discover.md",
+        "<repo>/evals/reports/2026-09-22-discovery/methods/candidate/references/methods/evidence-and-sources.md"
+      ],
+      "route": "发现：核对覆盖和收束边界"
+    },
+    {
+      "id": "partner-changes-value-owner",
+      "answer": "原先把项目技术收益归给甲的依据已被合同修正。甲只收固定安装费，研究重点应缩到安装费金额、成本及相对现有业务的影响，不再用整个项目的技术收益支持甲。\n把技术许可的价值链转向乙，并沿已明确的30%持股关系研究丙。丙在允许市场范围内，可以直接纳入候选；但30%持股不代表取得项目全部利润、并表乙收入，或立刻收到30%的许可费现金。需要查乙的许可费净收益、持续性和成本，再查丙的权利、核算方式、分红安排及这部分价值相对丙整体和市值的大小。\n因此调整候选与补证顺序，而不是直接把丙宣布为胜出机会。两者价格尚未给出，现阶段能更新的是价值归属与研究优先级。",
+      "used_materials": [
+        "<repo>/evals/reports/2026-09-22-discovery/behavior-manifest.json#cases/partner-changes-value-owner",
+        "<repo>/evals/reports/2026-09-22-discovery/methods/candidate/SKILL.md",
+        "<repo>/evals/reports/2026-09-22-discovery/methods/candidate/references/capabilities/review.md",
+        "<repo>/evals/reports/2026-09-22-discovery/methods/candidate/references/capabilities/discover.md",
+        "<repo>/evals/reports/2026-09-22-discovery/methods/candidate/references/capabilities/research.md",
+        "<repo>/evals/reports/2026-09-22-discovery/methods/candidate/references/methods/financial-analysis.md"
+      ],
+      "route": "复核→发现→研究：新合同修正原候选并追踪上市权益归属"
+    },
+    {
+      "id": "opportunity-cannot-stop-at-lead",
+      "answer": "应继续核实；我已读取附带的原始合同、最近财报与预算、报价快照，材料支持的结论已超出只有订单的名单。\n合同为三年固定总价12亿元、预计每年确认4亿元，没有利润保证，原材料上涨由甲承担，款项随年度验收。管理层在正常成本、按期验收条件下预算每年新增税后利润0.4亿元，约为订单收入的10%，相当于现有年度归母净利润1亿元的40%；它是预算，尚未兑现。履约另需3亿元资本开支，净现金为0，不能由此确定资金来源已落实，验收前支出还可能形成资金占用。\n2026年9月21日收盘的普通股市值为60亿元人民币，对现有同口径利润为60倍。若旧业务利润不变、预算兑现且新增利润均归属普通股，年度利润为1.4亿元，对应约42.9倍。三年预算新增税后利润合计1.2亿元，但不能把净利润直接当现金回款、或将3亿元资本开支从利润中再直接扣除来计算回报；折旧、营运资金、融资和合同后的资产用途仍缺失。\n我的判断是：订单确有经营重要性，但现有材料不足以证明当前价格下有吸引力。即使预算兑现，价格仍要求较高且更持久的回报；仅凭这份三年订单不能支撑有依据的投资机会结论。接下来最能改变判断的是成本波动对利润的影响、履约融资及回款现金流、合同期后盈利延续性。本轮允许材料已全部读完，缺口来自这些数据未提供，而不是把可读取的证据留给以后。",
+      "used_materials": [
+        "<repo>/evals/reports/2026-09-22-discovery/behavior-manifest.json#cases/opportunity-cannot-stop-at-lead",
+        "<repo>/evals/reports/2026-09-22-discovery/methods/candidate/SKILL.md",
+        "<repo>/evals/reports/2026-09-22-discovery/methods/candidate/references/capabilities/discover.md",
+        "<repo>/evals/reports/2026-09-22-discovery/methods/candidate/references/capabilities/verify.md",
+        "<repo>/evals/reports/2026-09-22-discovery/methods/candidate/references/capabilities/research.md",
+        "<repo>/evals/reports/2026-09-22-discovery/methods/candidate/references/capabilities/simulate.md",
+        "<repo>/evals/reports/2026-09-22-discovery/methods/candidate/references/methods/financial-analysis.md",
+        "<repo>/evals/reports/2026-09-22-discovery/methods/candidate/references/methods/evidence-and-sources.md",
+        "<repo>/evals/reports/2026-09-22-discovery/behavior-materials/contract.md",
+        "<repo>/evals/reports/2026-09-22-discovery/behavior-materials/financials.md",
+        "<repo>/evals/reports/2026-09-22-discovery/behavior-materials/quote.md"
+      ],
+      "route": "发现→查证→研究→条件计算：实际读取全部附带证据并检验利润、资金与价格"
+    },
+    {
+      "id": "quantitative-hit-is-a-lead",
+      "answer": "不能。现在只得到当前指数100家样本中的5条待解释线索，20家缺少可比记录不能算未命中，也不能把样本结果推广为全市场机会。\n一位机构上修、其他机构下修说明观点存在冲突，不能称一致预期改善。参考PE下降还可能只是EPS分母上调的算术结果，不能单独证明变便宜或市场未定价；需对齐机构、预测财年、修订时间和价格时点，再查经营原因及价格要求。\n今天的成分名单和今天取得的历史研报，不能直接重建过去可交易的信息集。需要历史时点成分、报告实际公开时间与修订版本、当时价格和交易可行性；否则可能包含幸存者偏差与前视信息。因此可交付五个有分歧的研究线索，不能宣称发现五个过去可交易且尚未定价的机会。",
+      "used_materials": [
+        "<repo>/evals/reports/2026-09-22-discovery/behavior-manifest.json#cases/quantitative-hit-is-a-lead",
+        "<repo>/evals/reports/2026-09-22-discovery/methods/candidate/SKILL.md",
+        "<repo>/evals/reports/2026-09-22-discovery/methods/candidate/references/capabilities/discover.md",
+        "<repo>/evals/reports/2026-09-22-discovery/methods/candidate/references/methods/evidence-and-sources.md",
+        "<repo>/evals/reports/2026-09-22-discovery/methods/candidate/references/toolkit/screening.md"
+      ],
+      "route": "发现：量化异常作为线索，核对口径、分歧和历史信息边界"
+    },
+    {
+      "id": "whole-company-business-links",
+      "answer": "远航的核心问题是：能否把成熟通信业务支持的新算力交付体系，变成具有规模回报的第二条价值来源。它已有对外商业化起点，但当前2万亿元市值下，材料还不足以证明整体投资吸引力。\n半年报显示，通信收入75亿元、营业利润28亿元，是当前盈利基础；计算收入34亿元，其中16亿元来自首次对外销售计算服务，这比只有样机更进一步。但计算仍营业亏损37亿元、资本开支236亿元。两分部营业利润简单合计为亏损9亿元，不能直接当作集团合并净利润；通信利润也不等于可以覆盖计算投入的现金。现有数据说明资源和未来价值的不确定性已集中到计算业务，不能只用通信的盈利质量解释整家公司。\n低成本运输、自研芯片和新部署方式应作为一套交付系统来研究：若它们共同降低从设备交付到客户实际使用的全生命周期成本，并保持可靠性与利用率，计算服务就可能改善经济性。这是根据公司目标提出的经营假说，三个样机各自通过测试并未验证组合后的效果；集成、闲置和持续投入都可能抵消单项节省。首次外售也尚未证明客户会规模续用、或公司能保留成本下降收益。\n我对其转型的看法是：已有需求变现迹象，值得深入研究，规模盈利路径尚未打通。要把这种前景连接到2万亿元市值，必须解释通信的持续贡献，加上计算在系统成本、利用率、客户验收和再投资后能形成多大长期现金回报；不能用某块业务成功代替整体价格判断，也不能因当前亏损就把未来价值归零。现有材料最缺的是整套系统在客户场景中的成本与使用结果，以及持续扩张的资金安排。",
+      "used_materials": [
+        "<repo>/evals/reports/2026-09-22-discovery/behavior-manifest.json#cases/whole-company-business-links",
+        "<repo>/evals/reports/2026-09-22-discovery/methods/candidate/SKILL.md",
+        "<repo>/evals/reports/2026-09-22-discovery/methods/candidate/references/capabilities/research.md",
+        "<repo>/evals/reports/2026-09-22-discovery/methods/candidate/references/capabilities/simulate.md",
+        "<repo>/evals/reports/2026-09-22-discovery/methods/candidate/references/methods/financial-analysis.md",
+        "<repo>/evals/reports/2026-09-22-discovery/methods/candidate/references/methods/evidence-and-sources.md"
+      ],
+      "route": "研究→定性推演：连接成熟业务、计算商业化、系统成本依赖与整体价值"
+    },
+    {
+      "id": "horizon-and-company-scope",
+      "answer": "以2026年9月10日为研究时点，未来三年到2029年9月10日，我会把澄川看成有成熟盈利支撑、正在押注新型回用系统验证和早期放量的公司。顺利路径是在三年内跨过客户验证并进入爬坡；材料不支持把2031年的成熟利用率提前计入这三年的经营贡献。420亿元市值是否有吸引力，仍取决于新增系统的回报和原股东实际取得的份额。\n2025年成熟设备收入72亿元、营业利润16亿元，新系统收入8亿元、营业亏损3亿元；集团29亿元资本开支有22亿元投向新系统，约76%。因此成熟设备仍是经营基础，新系统虽收入小，却主导增量资本风险。两分部营业利润简单合计13亿元不是归母净利润，不能据此直接计算PE，也不能认定成熟利润足以覆盖全部投入。\n兑现路径有明确的先后条件。2026年7月单一水质下节能18%是局部技术支持，尚未解决多水质稳定性和膜寿命，不能当作整套系统成本降低18%。计划2027年底投产还要通过客户资格认证；客户要求2028年9月前完成90天现场验收，验收通过后才授予长期供货，而且仍在比较改造原设备。只有投产和验证衔接、客户确认全生命周期成本优势，2029年才可能处于长期供货后的早期爬坡。若资格认证、寿命或现场验收受阻，产能投入可能先发生，订单和现金则延后，成熟业务将承担更长的资金支撑期。旧设备改造是实际替代路线，新系统节能本身不保证赢得采购。\n公司未来范围也可能变化。2026年8月备忘录提出未来九个月评估共同持股平台，大致对应2027年5月前的评估窗口；这不是确定的交易或投产期限。若采用平台持股，需看出资比例、控制权、估值、融资及利润分配，新增业务可能通过合并经营或投资收益进入澄川，投入和收益还要与运营商分享；若采用长期采购及收入分成，则可能维持现有主体但用合同分配现金和风险。两条路径都可能实现合作，不能预设平台已经并表或自行加入精确交易概率。截至本次提供材料，条款未定，也没有足够后续披露判断是否已发生变化。\n所以三年终点最关键的是：系统是否获得真实客户验证、长期订单和可靠成本数据，以及以哪种权利和资金结构进入澄川。成功验证可以提高对2031年及以后回报的信心，但2029年估值仍须扣看剩余爬坡投入和原股东可得收益。现有材料支持明确的转型路径及条件，尚不支持成熟高回报或420亿元低估的结论。",
+      "used_materials": [
+        "<repo>/evals/reports/2026-09-22-discovery/behavior-manifest.json#cases/horizon-and-company-scope",
+        "<repo>/evals/reports/2026-09-22-discovery/methods/candidate/SKILL.md",
+        "<repo>/evals/reports/2026-09-22-discovery/methods/candidate/references/capabilities/research.md",
+        "<repo>/evals/reports/2026-09-22-discovery/methods/candidate/references/capabilities/simulate.md",
+        "<repo>/evals/reports/2026-09-22-discovery/methods/candidate/references/methods/milestones.md",
+        "<repo>/evals/reports/2026-09-22-discovery/methods/candidate/references/methods/financial-analysis.md",
+        "<repo>/evals/reports/2026-09-22-discovery/methods/candidate/references/methods/evidence-and-sources.md"
+      ],
+      "route": "研究→期限推演：以2029年9月为终点，连接验证、采购、产能爬坡和潜在公司范围变化"
+    },
+    {
+      "id": "simple-calculation-without-delegation",
+      "answer": "20%。",
+      "used_materials": [
+        "<repo>/evals/reports/2026-09-22-discovery/behavior-manifest.json#cases/simple-calculation-without-delegation",
+        "<repo>/evals/reports/2026-09-22-discovery/methods/candidate/SKILL.md"
+      ],
+      "route": "直接计算：20 ÷ 100 × 100%，无研究扩展、无委派"
+    },
+    {
+      "id": "table-screening-scope",
+      "answer": "甲，PE=15。丙的PE缺失，未纳入命中。",
+      "used_materials": [
+        "<repo>/evals/reports/2026-09-22-discovery/behavior-manifest.json#cases/table-screening-scope",
+        "<repo>/evals/reports/2026-09-22-discovery/methods/candidate/SKILL.md",
+        "<repo>/evals/reports/2026-09-22-discovery/methods/candidate/references/toolkit/screening.md"
+      ],
+      "route": "给定表内条件筛选：PE > 0 且 PE < 20，无投资价值评价"
+    }
+  ],
+  "limitations": [
+    "本次为同一上下文中的10题批次诊断，不是独立运行的统计评测，不能据此计算可推广的成功率或因果效果。",
+    "方法文档按本批题目的需要集中加载并共享；route是实际分析路径标注，不代表隔离上下文下逐题独立发生的工具路由。",
+    "所有公司和证据均为题面与指定文件中的虚构夹具；遵守离线约束，未联网、未调用真实市场数据、未启动子agent。",
+    "输入资料只读取候选SKILL.md、相关方法、behavior-manifest.json及三个指定behavior-materials文件；另回读本次新建输出进行格式和脱敏检查。未读取expected_output、handoff或其他实验答案。",
+    "除指定机会题的三个本地文件外，其他题目的事实证据仅为清单中的用户问题；无法继续补齐的问题在答案中保留为具体证据边界。",
+    "为保持读文件范围约束，简单表格筛选使用functions.exec内的确定性JavaScript，未调用候选目录外的screen_records.py；因此不构成该脚本的执行验证。",
+    "所有个人绝对路径以<repo>占位；未创建研究档案、交易或后台任务。"
+  ]
+}

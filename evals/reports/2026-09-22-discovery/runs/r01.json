@@ -1,0 +1,530 @@
+{
+  "id": "r01",
+  "case": "market",
+  "condition": "baseline",
+  "question": "请帮我寻找 A 股未来 1—3 年值得考虑的投资机会，不预设行业或公司。请自行研究公开信息，说明哪些对象及条件更有吸引力，也可以得出目前没有合适机会的结论。研究截止日为 2026-09-21。",
+  "started_at": "2026-09-22T06:53:28Z",
+  "tools_log": [
+    {
+      "call": 1,
+      "tool": "web.run",
+      "request": {
+        "search_query": [
+          {
+            "q": "site.stats.gov.cn 2026年 1—8月份 全国规模以上工业 增加值 利润"
+          },
+          {
+            "q": "2026年 半年报 A股 利润 增长 行业 现金流"
+          },
+          {
+            "q": "2026年9月21日 A股 收盘 市盈率 银行 电网 家电"
+          }
+        ],
+        "response_length": "long"
+      },
+      "web_entries": 3,
+      "search_entries": 3,
+      "status": "success",
+      "evidence": [
+        "统计局1—7月工业利润+17.6%，电子+1.1倍、有色+91.8%，汽车-20.4%、电气设备-7.6%；产业量增长与利润并不相同。",
+        "上交所半年度综述：沪市净利润+17.6%，电子、有色、石油石化净利增速领先。",
+        "上市公司协会提供全市场半年经营报告，可作为非预设行业入口；行情聚合页仅为线索尚未核实。"
+      ],
+      "key_urls": [
+        "https://www.stats.gov.cn/sj/zxfb/202608/t20260827_1965126.html",
+        "https://www.sse.com.cn/aboutus/mediacenter/hotandd/c/c_20260830_10830362.shtml",
+        "https://www.capco.org.cn/sjfb/dytj/202609/20260901/j_2026090109504700017882275680267259.html"
+      ]
+    },
+    {
+      "call": 2,
+      "tool": "web.run",
+      "request": {
+        "open": [
+          {
+            "ref_id": "https://www.sse.com.cn/aboutus/mediacenter/hotandd/c/c_20260830_10830362.shtml"
+          },
+          {
+            "ref_id": "https://www.capco.org.cn/sjfb/dytj/202609/20260901/j_2026090109504700017882275680267259.html"
+          },
+          {
+            "ref_id": "https://www.stats.gov.cn/sj/zxfb/202609/t20260915_1965307.html"
+          }
+        ],
+        "response_length": "long"
+      },
+      "web_entries": 3,
+      "search_entries": 0,
+      "status": "2 success, 1 internal error",
+      "evidence": [
+        "SSE原文给出工业富联AI服务器收入+2.3倍与机柜出货+3.2倍；药明康德在手订单664亿元+25%；平高电气归母业绩方向+23%，成为三条待核查线索。",
+        "中上协全市场净利增速19.5%，中位数0.9%，四成公司净利润正增长；总量改善高度分化。",
+        "统计局2026-09-15经济运行正文打开内部错误，保留搜索摘要但不假装打开核实。"
+      ],
+      "key_urls": [
+        "https://www.sse.com.cn/aboutus/mediacenter/hotandd/c/c_20260830_10830362.shtml",
+        "https://www.capco.org.cn/sjfb/dytj/202609/20260901/j_2026090109504700017882275680267259.html"
+      ]
+    },
+    {
+      "call": 3,
+      "tool": "web.run",
+      "request": {
+        "search_query": [
+          {
+            "q": "工业富联 2026年 半年度报告 归母 净利润 现金流"
+          },
+          {
+            "q": "药明康德 2026年 半年度报告 持续经营 在手订单"
+          },
+          {
+            "q": "平高电气 2026年 半年度报告 在手订单 营业收入"
+          }
+        ],
+        "response_length": "long"
+      },
+      "web_entries": 3,
+      "search_entries": 3,
+      "status": "success",
+      "evidence": [
+        "药明公司披露持续收入+48%、在手订单664.3亿元+25.2%，归母与调整利润差异需核对；在建工程增加40.35%。",
+        "工业富联半年报转载显示经营现金流73.91亿元、收入5578.61亿元；存在存货与应收占款。",
+        "平高半年报搜索摘要称重点项目未到交付期、经营现金流-6.89亿元，提示不能把电网投资直接当收入。"
+      ],
+      "key_urls": [
+        "https://static.cninfo.com.cn/finalpage/2026-08-04/1225455027.PDF",
+        "https://www.wuxiapptec.cn/news/wuxi-news/m4tt0j39a735o3vj5qsrfzdi",
+        "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12487983&stockid=601138",
+        "http://static.sse.com.cn/disclosure/listedinfo/announcement/c/new/2026-08-20/600312_20260820_NUD9.pdf"
+      ]
+    },
+    {
+      "call": 4,
+      "tool": "web.run",
+      "request": {
+        "open": [
+          {
+            "ref_id": "https://static.cninfo.com.cn/finalpage/2026-08-04/1225455027.PDF"
+          },
+          {
+            "ref_id": "https://www.wuxiapptec.cn/news/wuxi-news/m4tt0j39a735o3vj5qsrfzdi"
+          },
+          {
+            "ref_id": "http://static.sse.com.cn/disclosure/listedinfo/announcement/c/new/2026-08-20/600312_20260820_NUD9.pdf"
+          },
+          {
+            "ref_id": "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12487983&stockid=601138"
+          }
+        ],
+        "response_length": "long"
+      },
+      "web_entries": 4,
+      "search_entries": 0,
+      "status": "3 success, 1 internal error",
+      "evidence": [
+        "药明半年报核实：H1归母110.80亿、扣非105.72亿、CFO96.99亿；去年出售药明合联权益形成高非经常基数；总股本29.8376亿股。",
+        "药明持续收入48%同比相较总收入38.93%因终止业务剥离，不能混口径。",
+        "平高上交所PDF返回Internal Error；工业富联新浪公司报告正文可读待定向定位。"
+      ],
+      "key_urls": [
+        "https://static.cninfo.com.cn/finalpage/2026-08-04/1225455027.PDF",
+        "https://www.wuxiapptec.cn/news/wuxi-news/m4tt0j39a735o3vj5qsrfzdi",
+        "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12487983&stockid=601138"
+      ]
+    },
+    {
+      "call": 5,
+      "tool": "web.run",
+      "request": {
+        "search_query": [
+          {
+            "q": "\"工业富联\" \"2026年9月21日\" \"收盘\""
+          },
+          {
+            "q": "\"药明康德\" \"2026年9月21日\" \"收盘\""
+          },
+          {
+            "q": "\"平高电气\" \"2026年9月21日\" \"收盘\""
+          }
+        ],
+        "open": [
+          {
+            "ref_id": "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12506211&stockid=600312"
+          },
+          {
+            "ref_id": "turn379view1",
+            "lineno": 45
+          },
+          {
+            "ref_id": "turn379view0",
+            "lineno": 325
+          }
+        ],
+        "find": [
+          {
+            "ref_id": "turn379view3",
+            "pattern": "归属于上市公司股东的净利润"
+          }
+        ],
+        "response_length": "long"
+      },
+      "web_entries": 7,
+      "search_entries": 3,
+      "status": "success; two A-share quote searches unresolved",
+      "evidence": [
+        "富途工业富联601138-SH页面显示09/21 15:00收盘63.60元、总股本198.44亿股、TTM PE26.90；别处日期混杂报道不采用。",
+        "药明报价搜索主要返回港股208港元，不能用于A股；平高未返回合适历史收盘。",
+        "药明官网把2026收入指引从513—530亿元调至585—605亿元。",
+        "工业富联原报告核实H1归母237.40亿、扣非229.84亿，报表单位为千元。平高报告正文打开成功。"
+      ],
+      "key_urls": [
+        "https://www.futunn.com/stock/601138-SH/news",
+        "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12506211&stockid=600312",
+        "https://www.wuxiapptec.cn/news/wuxi-news/m4tt0j39a735o3vj5qsrfzdi"
+      ]
+    },
+    {
+      "call": 6,
+      "tool": "web.run",
+      "request": {
+        "open": [
+          {
+            "ref_id": "https://www.futunn.com/stock/603259-SH"
+          },
+          {
+            "ref_id": "https://www.futunn.com/stock/600312-SH"
+          },
+          {
+            "ref_id": "turn379view3",
+            "lineno": 180
+          },
+          {
+            "ref_id": "turn380view0",
+            "lineno": 105
+          },
+          {
+            "ref_id": "turn379view1",
+            "lineno": 53
+          }
+        ],
+        "response_length": "long"
+      },
+      "web_entries": 5,
+      "search_entries": 0,
+      "status": "3 success, 1 internal error, 1 empty body",
+      "evidence": [
+        "工业富联期末存货1921.09亿较年初+27.30%，应收1275.22亿+15.15%，应付1784.59亿+29.36%；产能扩张也占用资金。",
+        "平高H1收入53.74亿-5.64%、归母8.1685亿+22.87%、扣非7.983亿、CFO-6.894亿、总股本13.5692亿。",
+        "药明公司披露被列入1260H清单且诉讼进行中；2026资本开支指引75—85亿、调整自由现金流135—145亿。这改变风险评估，需独立核验限制范围。",
+        "药明富途根报价页Internal Error；平高根报价页仅一行空文，无可用价格。"
+      ],
+      "key_urls": [
+        "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12487983&stockid=601138",
+        "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12506211&stockid=600312",
+        "https://www.wuxiapptec.cn/news/wuxi-news/m4tt0j39a735o3vj5qsrfzdi"
+      ]
+    },
+    {
+      "call": 7,
+      "tool": "web.run",
+      "request": {
+        "search_query": [
+          {
+            "q": "WuXi AppTec 1260H 2026 September BIOSECURE site.congress.gov"
+          },
+          {
+            "q": "2026 second quarter earnings AI capital expenditures demand site.abc.xyz"
+          },
+          {
+            "q": "2026 国家电网 投资 8000 亿元 site.sasac.gov.cn"
+          }
+        ],
+        "open": [
+          {
+            "ref_id": "https://www.futunn.com/stock/603259-SH/news"
+          },
+          {
+            "ref_id": "https://www.futunn.com/stock/600312-SH/news"
+          },
+          {
+            "ref_id": "turn380view0",
+            "lineno": 147
+          }
+        ],
+        "response_length": "long"
+      },
+      "web_entries": 6,
+      "search_entries": 3,
+      "status": "searches returned nonmatching secondary news only; 1 report open success; quote opens failed",
+      "evidence": [
+        "1260H法律查询及国资委电网查询没有返回对应官方原始材料，不能据此断言已覆盖清单或招标。",
+        "Alphabet查询返回AP等二手新闻，不作为客户合同或工业富联份额的证据。",
+        "药明/news端点Internal Error；平高/news跳403。两家公司截止日A股报价仍缺。",
+        "平高报告打开成功但本次未返回目标管理层段落，继续定向find。"
+      ],
+      "key_urls": [
+        "https://apnews.com/article/f914606d842d4c6848019083d667fc3a",
+        "https://www.futunn.com/403",
+        "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12506211&stockid=600312"
+      ]
+    },
+    {
+      "call": 8,
+      "tool": "web.run",
+      "request": {
+        "find": [
+          {
+            "ref_id": "turn380view0",
+            "pattern": "重点项目"
+          },
+          {
+            "ref_id": "turn379view3",
+            "pattern": "云计算"
+          },
+          {
+            "ref_id": "turn379view0",
+            "pattern": "1260H"
+          }
+        ],
+        "response_length": "long"
+      },
+      "web_entries": 3,
+      "search_entries": 0,
+      "status": "2 matches, 1 no match",
+      "evidence": [
+        "药明半年报第24页：公司称6月8日被列入1260H、6月11日起诉、6月29日申请禁令，8月3日报告定稿时未裁决；这只能支持该时点，不能断言9月21日诉讼状态。",
+        "工业富联报告云计算定义包含服务器存储软硬方案，云计算在建工程85.80亿元；没有据此把芯片价值归给整机厂。",
+        "平高find重点项目无匹配，搜索摘要与可检索正文存在可见性差异，不能称完整复核该原因。"
+      ],
+      "key_urls": [
+        "https://static.cninfo.com.cn/finalpage/2026-08-04/1225455027.PDF",
+        "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12487983&stockid=601138"
+      ]
+    },
+    {
+      "call": 9,
+      "tool": "web.run",
+      "request": {
+        "open": [
+          {
+            "ref_id": "https://static.sse.com.cn/disclosure/listedinfo/announcement/c/new/2026-09-09/600312_20260909_XCBJ.pdf"
+          },
+          {
+            "ref_id": "turn379view3",
+            "lineno": 155
+          }
+        ],
+        "response_length": "long"
+      },
+      "web_entries": 2,
+      "search_entries": 0,
+      "status": "industrial report success; Pinggao award PDF internal error",
+      "evidence": [
+        "工业富联管理层全文：云计算收入+75.7%；ASIC与GPU双路线增长，已覆盖机柜设计/液冷/电源；CPO为样机交货而非规模利润。",
+        "营业成本5179.69798亿元、收入5578.60645亿元，可计算毛利率；当前业绩主要兑现于既有AI服务器/交换机，而新产品不能全算未来确定利润。",
+        "平高9月9日中标公告PDFInternal Error，未核实订单金额及归属，不将公告标题当收入。"
+      ],
+      "key_urls": [
+        "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12487983&stockid=601138"
+      ]
+    },
+    {
+      "call": 10,
+      "tool": "local JavaScript deterministic calculation",
+      "inputs": {
+        "fii": {
+          "h1_revenue_yi": 5578.60645,
+          "h1_cost_yi": 5179.69798,
+          "h1_profit_yi": 237.40458,
+          "h1_cfo_yi": 73.91463,
+          "shares_yi": 198.44,
+          "price": 63.6
+        },
+        "wuxi": {
+          "h1_core_profit_yi": 105.7217731783,
+          "shares_yi": 29.83757155,
+          "fcf_guidance_mid_yi": 140
+        },
+        "pinggao": {
+          "h1_core_profit_yi": 7.9830224194,
+          "shares_yi": 13.56921309
+        }
+      },
+      "formulas": [
+        "market_cap=price*shares",
+        "gross_margin=1-cost/revenue",
+        "cash_conversion=CFO/net_profit",
+        "three_year_price=revenue*net_margin*PE/shares",
+        "annual_return=(three_year_price/current_price)^(1/3)-1",
+        "required_profit=current_price*1.1^3*shares/22",
+        "annualized_core_EPS=H1_deducted_profit*2/shares"
+      ],
+      "status": "success",
+      "results": {
+        "fii": {
+          "market_cap_yi": 12620.784,
+          "gm": 0.07150683124456647,
+          "net_margin": 0.04255625166030488,
+          "cfo_profit": 0.31134458315842095,
+          "annualized_reference_profit": 474.80916,
+          "annualized_reference_revenue": 11157.2129,
+          "annualized_pe": 26.58075088526093,
+          "required_profit_for_3yr_10pct_22pe": 763.5574320000003,
+          "required_revenue_at_4_5pct": 16967.94293333334,
+          "scenarios": [
+            {
+              "label": "downside",
+              "revenue": 12000,
+              "margin": 0.035,
+              "pe": 20,
+              "profit": 420.00000000000006,
+              "price": 42.330175367869394,
+              "annual_return": -0.12689933832131994
+            },
+            {
+              "label": "conditional_base",
+              "revenue": 16000,
+              "margin": 0.045,
+              "pe": 22,
+              "profit": 720,
+              "price": 79.82261640798227,
+              "annual_return": 0.07867251881059234
+            },
+            {
+              "label": "strong",
+              "revenue": 20000,
+              "margin": 0.05,
+              "pe": 25,
+              "profit": 1000,
+              "price": 125.98266478532554,
+              "annual_return": 0.25588890833603095
+            }
+          ],
+          "entry_for_10pct_base": 59.971913154006195
+        },
+        "wuxi": {
+          "annualized_core_eps": 7.08648644552978,
+          "price_at18pe": 127.55675601953604,
+          "price_at20pe": 141.7297289105956,
+          "fcf_yield_at130": 0.03609285276847797
+        },
+        "pinggao": {
+          "annualized_core_eps": 1.1766374905385173,
+          "price_at18pe": 21.179474829693312,
+          "price_at20pe": 23.532749810770348
+        }
+      },
+      "evidence": [
+        "所有未来收入、净利率、PE、10%回报要求均为研究者情景假设；半年×2仅统一运行速度参考，非全年预测。"
+      ]
+    }
+  ],
+  "operation_counts": {
+    "web_entries": 36,
+    "search_entries": 12,
+    "local_calculations": 1
+  },
+  "answer": "截至 **2026-09-21**，本轮最值得继续考虑的是工业富联的算力设备业务，但现价下回报对持续增长已有要求；药明康德的经营改善很强，政策风险与价格核查仍阻止我把它升级为当前买入机会；平高电气暂列观察。**我没有找到证据足够完整、可以不附条件推荐的标的，也没有据此断言全市场没有机会。**\n\n起点是全市场经营变化，而非预设行业：2026年上半年上市公司合计净利润增长19.5%，净利润增速中位数却只有0.9%，只有四成公司净利润正增长，说明总量复苏不能直接转为广泛买入理由。统计局1—7月数据中，电子、有色利润强劲，汽车、电气机械利润下降，也提醒我们区分产量、收入与最终利润。[中上协半年经营报告](https://www.capco.org.cn/sjfb/dytj/202609/20260901/j_2026090109504700017882275680267259.html)、[统计局工业利润](https://www.stats.gov.cn/sj/zxfb/202608/t20260827_1965126.html)\n\n随后沿上交所披露的具体变化，核查了算力设备、药物研发生产服务和电网设备三个分支。它们是有限范围的研究结果，不是全市场排名。[上交所半年报综述](https://www.sse.com.cn/aboutus/mediacenter/hotandd/c/c_20260830_10830362.shtml)\n\n| 对象 | 本轮判断 | 更有吸引力的条件 |\n|---|---|---|\n| 工业富联，601138.SH | 三者中最接近可以讨论现价回报的对象；增长兑现，但并非明显低估 | 约60元以内才接近下述基准情景的10%年化门槛，且需要现金回收跟上 |\n| 药明康德，603259.SH | 经营机会成立，当前投资机会尚未闭合 | 先核清截至研究日的美国业务约束，再结合正常化利润判断；128—142元只是估值敏感区间 |\n| 平高电气，600312.SH | 设备能力得到验证，收入与现金尚未同步 | 订单交付和全年回款改善后，再看约18—20倍正常化利润；当前证据不能支持追价 |\n\n表中药明、平高的价格均为条件测算，**不是核实到的9月21日收盘价**。\n\n**工业富联：价值来自整机柜与系统整合，回报受现金占用和估值约束。**\n\n公司半年报显示，云计算收入增长75.7%，GPU、ASIC机柜同时放量，液冷、电源和机柜设计构成系统交付能力。CPO目前披露的是样机交付，不能提前计作成熟利润。半年收入5578.61亿元、归母利润237.40亿元，但经营现金流只有73.91亿元，约为归母利润的31%；存货与应收继续增长。按报表算出的毛利率约7.15%、归母净利率约4.26%，说明它保留的是制造和系统交付价值，不能享有整条算力产业链的利润。[工业富联2026半年报](https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12487983&stockid=601138)\n\n未来1年主要看已有订单交付、营运资金回收及新平台切换；2—3年看机柜、液冷和高速网络能否持续提高单机价值，同时维持份额。我的判断是增长路径有经营依据，但客户压价、平台转换或过量备货都可能令收入增长不能转成同幅度的股东回报。尚未取得客户侧合同与采购材料，因此不把公司的份额表述当成独立验证。\n\n富途页面显示9月21日15:00收盘为63.60元，总股本198.44亿股，对应约1.262万亿元市值。该报价仅取得单一行情来源；页面列出的TTM市盈率26.90倍与下方的情景测算口径不同。[工业富联行情](https://www.futunn.com/stock/601138-SH/news)\n\n下表全部是我的2029年条件假设，单位为人民币亿元；股数不变，未计分红、税费与交易成本。公式为“收入×归母净利率×退出PE÷股数”。\n\n| 2029年条件 | 收入 | 归母净利率 | 归母利润 | 退出PE | 对应每股价值 | 从63.60元起的三年年化价格回报 |\n|---|---:|---:|---:|---:|---:|---:|\n| 增长放缓、利润率受压 | 12,000 | 3.5% | 420 | 20倍 | 42.33元 | -12.7% |\n| 交付扩张且盈利能力略升 | 16,000 | 4.5% | 720 | 22倍 | 79.82元 | 7.9% |\n| 高增长与更高利润率均兑现 | 20,000 | 5.0% | 1,000 | 25倍 | 125.98元 | 25.6% |\n\n这些不是目标价或概率预测。半年收入乘二为11157亿元，仅作为经营速度参考，不能代替全年预测。63.60元若要在三年后以22倍PE取得10%年化价格回报，需要约764亿元归母利润；若净利率4.5%，对应收入约1.70万亿元。反过来，基准情景79.82元折回10%年化，当前门槛约60元。这解释了为何我认可经营变化，却认为当前价格还谈不上厚实安全边际；若现金占用持续恶化，跌到60元也不自动构成机会。\n\n**药明康德：商业化项目贡献比“创新药热度”更实在，但地缘风险改变估值。**\n\n半年持续经营收入增长48%，在手订单664.3亿元、同比增长25.2%，支持“管线走向后期、既有产能释放带来规模效应”的解释。扣非归母利润105.72亿元、经营现金流96.99亿元；上年处置股权形成高基数，所以29.43%的归母增速与89.39%的扣非增速不能混用。公司把2026收入指引上调至585—605亿元，同时把资本开支增至75—85亿元；增长仍要持续投入。[药明康德半年报](https://static.cninfo.com.cn/finalpage/2026-08-04/1225455027.PDF)、[公司业绩与指引](https://www.wuxiapptec.cn/news/wuxi-news/m4tt0j39a735o3vj5qsrfzdi)\n\n未来1—3年的受益路径是订单交付、客户分子进入商业化、产能爬坡，而非把订单余额一次性计成收入。不过，公司报告披露6月被列入美国1260H名单、已起诉，并称截至8月3日报告定稿时禁令申请尚无裁决。这是公司披露和立场，不能当成独立法律判断；本轮未核实此后至9月21日的裁决及具体适用限制。若客户转移项目，新产能可能同时面对收入损失与折旧压力。这个缺口足以阻止我给出当前买入结论。[半年报风险披露，第24页](https://static.cninfo.com.cn/finalpage/2026-08-04/1225455027.PDF)\n\n仅作价格敏感性：半年扣非利润乘二、除以期末总股本，约为7.09元每股收益；18—20倍对应128—142元。倍数是我为增长与政策不确定性设的研究假设，并非同业公允价。公司调整自由现金流指引中值140亿元，在130元股价下相当于约3.6%的市值收益率，而且它是公司调整口径、不是已核实的普通股自由现金流。这说明即使落在该区间，也仍需未来增长；不能因为利润快速增长就认为很便宜。\n\n**平高电气：有设备能力，但尚不能把电网建设量当成股东回报。**\n\n上交所披露其800千伏断路器已工程应用，说明具备承接高规格项目的能力。但半年收入53.74亿元、下降5.64%，归母利润8.17亿元、增长22.87%，经营现金流为-6.89亿元，利润与交付、回款并不同步。本轮没有取得可核验的新订单金额和完整归因，因此只能判断其受益方向合理，尚不能量化未来三年的利润增量。[上交所经营综述](https://www.sse.com.cn/aboutus/mediacenter/hotandd/c/c_20260830_10830362.shtml)、[平高电气半年报](https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12506211&stockid=600312)\n\n将半年扣非利润简单乘二，约合每股1.18元；18—20倍对应21.2—23.5元。这只是偏谨慎的研究区间，半年季节性使它不能替代全年估值。若后续交付增长而应收、存货或现金缺口进一步扩大，就应下调吸引力；若持续回款且高规格设备盈利贡献扩大，才有依据提高正常化盈利。现阶段它的研究优先级低于工业富联。\n\n本轮已用完36项网页操作、其中12项搜索。药明和平高的行情入口报错或拒绝访问，平高中标公告PDF也未能打开；客户侧采购、美国政策最新状态未完成独立核查。我因此交付的是一个有现价反推的成长候选、一个受重大未知限制的经营候选和一个观察对象，没有用缺失资料补造结论。银行、消费、资源品等尚未进行公司层面的充分比较，不能解释为已排除。",
+  "sources": [
+    {
+      "title": "境内股票市场上市公司2026年半年度经营业绩报告",
+      "url": "https://www.capco.org.cn/sjfb/dytj/202609/20260901/j_2026090109504700017882275680267259.html",
+      "published_at": "2026-09-01",
+      "type": "industry association primary summary",
+      "used_for": [
+        "全市场经营分化与覆盖入口"
+      ]
+    },
+    {
+      "title": "2026年1—7月份全国规模以上工业企业利润增长17.6%",
+      "url": "https://www.stats.gov.cn/sj/zxfb/202608/t20260827_1965126.html",
+      "published_at": "2026-08-27",
+      "type": "government primary statistics; search excerpt",
+      "used_for": [
+        "电子有色与汽车电气机械利润分化"
+      ]
+    },
+    {
+      "title": "沪市公司2026年半年报业绩综述",
+      "url": "https://www.sse.com.cn/aboutus/mediacenter/hotandd/c/c_20260830_10830362.shtml",
+      "published_at": "2026-08-30",
+      "type": "exchange primary summary",
+      "used_for": [
+        "候选发现",
+        "平高高规格设备工程应用"
+      ]
+    },
+    {
+      "title": "工业富联2026年半年度报告",
+      "url": "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12487983&stockid=601138",
+      "published_at": "2026-08-12",
+      "type": "company primary filing reproduced by Sina",
+      "used_for": [
+        "财务基线",
+        "GPU ASIC 机柜价值归属",
+        "新技术阶段",
+        "营运资金"
+      ]
+    },
+    {
+      "title": "工业富联行情与新闻",
+      "url": "https://www.futunn.com/stock/601138-SH/news",
+      "as_of": "2026-09-21 15:00 Asia/Shanghai",
+      "type": "broker quote page; single source",
+      "used_for": [
+        "63.60元收盘",
+        "198.44亿总股本",
+        "TTM PE26.90"
+      ]
+    },
+    {
+      "title": "药明康德2026年半年度报告",
+      "url": "https://static.cninfo.com.cn/finalpage/2026-08-04/1225455027.PDF",
+      "published_at": "2026-08-04",
+      "type": "company primary filing",
+      "used_for": [
+        "持续经营与终止经营口径",
+        "扣非及现金流",
+        "股本",
+        "截至8月3日诉讼披露"
+      ]
+    },
+    {
+      "title": "药明康德2026年上半年业绩强劲并全面上调全年指引",
+      "url": "https://www.wuxiapptec.cn/news/wuxi-news/m4tt0j39a735o3vj5qsrfzdi",
+      "published_at": "2026-08-03",
+      "type": "company primary release",
+      "used_for": [
+        "收入/资本开支/调整FCF指引",
+        "管理层政策风险表述"
+      ]
+    },
+    {
+      "title": "平高电气2026年半年度报告",
+      "url": "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12506211&stockid=600312",
+      "published_at": "2026-08-20",
+      "type": "company primary filing reproduced by Sina",
+      "used_for": [
+        "收入利润现金流股数",
+        "条件估值"
+      ]
+    }
+  ],
+  "unresolved": [
+    "药明康德与平高电气截至2026-09-21的A股收盘价未取得，不采用药明港股报价代替。",
+    "药明1260H及相关诉讼、适用法律限制在2026-08-03之后至2026-09-21的变化未独立核实。",
+    "工业富联客户侧采购、份额与新产品量产的独立交叉证据不足。",
+    "平高9月9日中标公告金额、订单所属公司及未来交付进度未取得；收入下降与利润上升的完整分解未查清。",
+    "工业富联未来利润率、现金转换与2029年收入均为条件假设，未获得公司三年盈利指引。"
+  ],
+  "limitations": [
+    "仅沿全市场披露发现的三个机制分支展开，未进行全市场逐股筛选，不能声称全市场排名或没有其他机会。",
+    "36项web操作与12项search上限均达到；报错、空正文、无匹配find和不相关返回均计入实际操作。",
+    "未调用金融数据脚本、量化入口、私人账户或其他代理。",
+    "工业富联行情仅一来源；未取得另两家截至日A股报价。",
+    "半年×2仅估值运行速度参考，不是全年预测；所有PE与未来经营情景为研究者假设，未计分红税费与稀释。",
+    "部分公司公告通过新浪原文转载读取；重要法律状态缺少监管/法院独立材料。",
+    "公开文件已做路径脱敏检查：如需表示本地位置统一使用 <repo>、<home>、<tmp>；本文件未记录个人绝对路径、凭据或代理任务标识。"
+  ],
+  "completed_at": "2026-09-22T07:00:36Z"
+}

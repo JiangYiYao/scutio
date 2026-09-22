@@ -1,0 +1,3227 @@
+{
+  "status": "completed_small_sample_field_audit_no_expansion",
+  "baseline_commit": "a5e176ee74cb77798c04bf1a035bb94ec2eb2d37",
+  "frozen_config": {
+    "date": "2026-09-22",
+    "symbols": [
+      "sh600519",
+      "sh688981",
+      "sz300750",
+      "sh600051"
+    ],
+    "start_date": "2026-06-22",
+    "end_date": "2026-09-18",
+    "fiscal_year": 2026,
+    "max_forecast_age_calendar_days": 180,
+    "near_zero_eps_cny_per_share": 0.01,
+    "reports_begin": "2025-12-24",
+    "max_pages": 10,
+    "bars_count": 180,
+    "adjust": "none",
+    "max_workers": 3,
+    "source_selection": "Existing public facade defaults and current credential configuration; no credentials read or recorded by audit script",
+    "holding_period": null
+  },
+  "timing": {
+    "api_started_at": "2026-09-22T06:45:43.018489+00:00",
+    "api_finished_at": "2026-09-22T06:45:53.823278+00:00",
+    "api_batch": {
+      "batch_state": "finished",
+      "timing": {
+        "total_seconds": 10.804437,
+        "first_success_seconds": 1.081693
+      }
+    },
+    "documents_started_at": "2026-09-22T06:48:41.130901+00:00",
+    "documents_finished_at": "2026-09-22T06:48:48.039313+00:00",
+    "documents_batch": {
+      "batch_state": "finished",
+      "timing": {
+        "total_seconds": 6.907745,
+        "first_success_seconds": 0.887646
+      }
+    }
+  },
+  "summary": {
+    "api_calls": 17,
+    "api_successes": 15,
+    "api_failures": 2,
+    "documents_attempted": 10,
+    "document_successes": 10,
+    "reports_original_verified": 6,
+    "company_action_original_verified": 4,
+    "fully_verified_comparable_company_windows": 0,
+    "expanded_sample": false,
+    "historical_backtest_ready": false,
+    "alpha_validated": false
+  },
+  "time_semantics": {
+    "source_display_date": "Preserved publishDate/date from current source snapshot",
+    "document_date": "Separately read from downloaded original; not proven first public availability",
+    "retrieved_at": "Current audit request timestamp only",
+    "first_available_at": null,
+    "historical_version_verified": false
+  },
+  "samples": {
+    "sh600519": {
+      "request_symbol": "sh600519",
+      "calls": {
+        "reports": {
+          "started_at": "2026-09-22T06:45:43.018964+00:00",
+          "elapsed_seconds": 6.192
+        },
+        "bars": {
+          "started_at": "2026-09-22T06:45:43.019266+00:00",
+          "elapsed_seconds": 1.079
+        },
+        "announcements": {
+          "started_at": "2026-09-22T06:45:43.019457+00:00",
+          "elapsed_seconds": 3.109
+        },
+        "dividends": {
+          "started_at": "2026-09-22T06:45:44.100653+00:00",
+          "elapsed_seconds": 0.284
+        }
+      },
+      "reports": {
+        "metadata": {
+          "ok": true,
+          "error": null,
+          "source": "stock_reports",
+          "adapter": "akshare",
+          "provider": "eastmoney",
+          "code": "600519",
+          "symbol": "sh600519",
+          "partial": false,
+          "coverage": {
+            "authors": false,
+            "pdf_links": true,
+            "begin": "2025-12-24",
+            "available_count": 48,
+            "returned_count": 48,
+            "limit": 500,
+            "truncated": false,
+            "limit_scope": "local_rows"
+          }
+        },
+        "returned_count": 48,
+        "all_returned_identity_checks_passed": true,
+        "raw_rows": [
+          {
+            "stockCode": "600519",
+            "symbol": "sh600519",
+            "stockName": "贵州茅台",
+            "title": "贵州茅台公司跟踪报告：以动销定投放，缓解市场压力，低速稳态发展",
+            "publishDate": "2026-09-21",
+            "orgSName": "诚通证券",
+            "infoCode": "AP202609211829719676",
+            "pdf_url": "https://pdf.dfcfw.com/pdf/H3_AP202609211829719676_1.pdf",
+            "source": "akshare_eastmoney",
+            "forecast_years": [
+              2026,
+              2027,
+              2028
+            ],
+            "predictThisYearEps": 65.14,
+            "predictNextYearEps": 67.87,
+            "predictNextTwoYearEps": 71.32
+          },
+          {
+            "stockCode": "600519",
+            "symbol": "sh600519",
+            "stockName": "贵州茅台",
+            "title": "2026年中报点评：茅台酒稳健，系列酒主动调整",
+            "publishDate": "2026-08-21",
+            "orgSName": "西南证券",
+            "infoCode": "AP202608211828244348",
+            "pdf_url": "https://pdf.dfcfw.com/pdf/H3_AP202608211828244348_1.pdf",
+            "source": "akshare_eastmoney",
+            "forecast_years": [
+              2026,
+              2027,
+              2028
+            ],
+            "predictThisYearEps": 69.83,
+            "predictNextYearEps": 75.82,
+            "predictNextTwoYearEps": 83.83
+          },
+          {
+            "stockCode": "600519",
+            "symbol": "sh600519",
+            "stockName": "贵州茅台",
+            "title": "市场化改革带来短期业绩阵痛，公司改革成效显著，基本面仍具韧性",
+            "publishDate": "2026-08-21",
+            "orgSName": "中银证券",
+            "infoCode": "AP202608211828236036",
+            "pdf_url": "https://pdf.dfcfw.com/pdf/H3_AP202608211828236036_1.pdf",
+            "source": "akshare_eastmoney",
+            "forecast_years": [
+              2026,
+              2027,
+              2028
+            ],
+            "predictThisYearEps": 67.1,
+            "predictNextYearEps": 70.2,
+            "predictNextTwoYearEps": 73.7
+          },
+          {
+            "stockCode": "600519",
+            "symbol": "sh600519",
+            "stockName": "贵州茅台",
+            "title": "2026年中期业绩点评报告：提价与直销双轮驱动，改革深化稳基本盘",
+            "publishDate": "2026-08-19",
+            "orgSName": "万联证券",
+            "infoCode": "AP202608191828157250",
+            "pdf_url": "https://pdf.dfcfw.com/pdf/H3_AP202608191828157250_1.pdf",
+            "source": "akshare_eastmoney",
+            "forecast_years": [
+              2026,
+              2027,
+              2028
+            ],
+            "predictThisYearEps": 68.95,
+            "predictNextYearEps": 74.88,
+            "predictNextTwoYearEps": 80.58
+          },
+          {
+            "stockCode": "600519",
+            "symbol": "sh600519",
+            "stockName": "贵州茅台",
+            "title": "短期业绩承压，i茅台延续高增",
+            "publishDate": "2026-08-18",
+            "orgSName": "山西证券",
+            "infoCode": "AP202608181828111071",
+            "pdf_url": "https://pdf.dfcfw.com/pdf/H3_AP202608181828111071_1.pdf",
+            "source": "akshare_eastmoney",
+            "forecast_years": [
+              2026,
+              2027,
+              2028
+            ],
+            "predictThisYearEps": 68.21,
+            "predictNextYearEps": 71.6,
+            "predictNextTwoYearEps": 75.11
+          },
+          {
+            "stockCode": "600519",
+            "symbol": "sh600519",
+            "stockName": "贵州茅台",
+            "title": "飞天整体稳健，推进全面向C",
+            "publishDate": "2026-08-18",
+            "orgSName": "群益证券",
+            "infoCode": "AP202608181828101201",
+            "pdf_url": "https://pdf.dfcfw.com/pdf/H3_AP202608181828101201_1.pdf",
+            "source": "akshare_eastmoney",
+            "forecast_years": [
+              2026,
+              2027,
+              2028
+            ],
+            "predictThisYearEps": 68.12,
+            "predictNextYearEps": 73.29,
+            "predictNextTwoYearEps": 77.44
+          },
+          {
+            "stockCode": "600519",
+            "symbol": "sh600519",
+            "stockName": "贵州茅台",
+            "title": "市场化改革重塑渠道和价格体系，业绩保持韧性",
+            "publishDate": "2026-08-18",
+            "orgSName": "太平洋",
+            "infoCode": "AP202608181828097561",
+            "pdf_url": "https://pdf.dfcfw.com/pdf/H3_AP202608181828097561_1.pdf",
+            "source": "akshare_eastmoney",
+            "forecast_years": [
+              2026,
+              2027,
+              2028
+            ],
+            "predictThisYearEps": 68.34,
+            "predictNextYearEps": 71.3,
+            "predictNextTwoYearEps": 73.19
+          },
+          {
+            "stockCode": "600519",
+            "symbol": "sh600519",
+            "stockName": "贵州茅台",
+            "title": "淡季收入短期承压，提价有望带动下半年改善",
+            "publishDate": "2026-08-18",
+            "orgSName": "中邮证券",
+            "infoCode": "AP202608181828095469",
+            "pdf_url": "https://pdf.dfcfw.com/pdf/H3_AP202608181828095469_1.pdf",
+            "source": "akshare_eastmoney",
+            "forecast_years": [
+              2026,
+              2027,
+              2028
+            ],
+            "predictThisYearEps": 66.53,
+            "predictNextYearEps": 68.97,
+            "predictNextTwoYearEps": 73.02
+          },
+          {
+            "stockCode": "600519",
+            "symbol": "sh600519",
+            "stockName": "贵州茅台",
+            "title": "公司事件点评报告：i茅台超预期，改革效果逐步明显",
+            "publishDate": "2026-08-17",
+            "orgSName": "华鑫证券",
+            "infoCode": "AP202608171828051638",
+            "pdf_url": "https://pdf.dfcfw.com/pdf/H3_AP202608171828051638_1.pdf",
+            "source": "akshare_eastmoney",
+            "forecast_years": [
+              2026,
+              2027,
+              2028
+            ],
+            "predictThisYearEps": 68.82,
+            "predictNextYearEps": 73.13,
+            "predictNextTwoYearEps": 78.37
+          },
+          {
+            "stockCode": "600519",
+            "symbol": "sh600519",
+            "stockName": "贵州茅台",
+            "title": "2026上半年收入同比增长1.3%，继续深化市场化改革",
+            "publishDate": "2026-08-17",
+            "orgSName": "国信证券",
+            "infoCode": "AP202608171828048790",
+            "pdf_url": "https://pdf.dfcfw.com/pdf/H3_AP202608171828048790_1.pdf",
+            "source": "akshare_eastmoney",
+            "forecast_years": [
+              2026,
+              2027,
+              2028
+            ],
+            "predictThisYearEps": 65.77,
+            "predictNextYearEps": 70.77,
+            "predictNextTwoYearEps": 77.66
+          },
+          {
+            "stockCode": "600519",
+            "symbol": "sh600519",
+            "stockName": "贵州茅台",
+            "title": "2026年中报点评：全面向C夯实塔基，底色不改向好可期",
+            "publishDate": "2026-08-16",
+            "orgSName": "东吴证券",
+            "infoCode": "AP202608161828030058",
+            "pdf_url": "https://pdf.dfcfw.com/pdf/H3_AP202608161828030058_1.pdf",
+            "source": "akshare_eastmoney",
+            "forecast_years": [
+              2026,
+              2027,
+              2028
+            ],
+            "predictThisYearEps": 67.51,
+            "predictNextYearEps": 72.92,
+            "predictNextTwoYearEps": 75.84
+          },
+          {
+            "stockCode": "600519",
+            "symbol": "sh600519",
+            "stockName": "贵州茅台",
+            "title": "直营化改革成效凸显，经营仍具韧性",
+            "publishDate": "2026-08-16",
+            "orgSName": "国金证券",
+            "infoCode": "AP202608161828029200",
+            "pdf_url": "https://pdf.dfcfw.com/pdf/H3_AP202608161828029200_1.pdf",
+            "source": "akshare_eastmoney",
+            "forecast_years": [
+              2026,
+              2027,
+              2028
+            ],
+            "predictThisYearEps": 66.23,
+            "predictNextYearEps": 70.55,
+            "predictNextTwoYearEps": 74.81
+          },
+          {
+            "stockCode": "600519",
+            "symbol": "sh600519",
+            "stockName": "贵州茅台",
+            "title": "需求根基稳固，市场化定价持续兑现",
+            "publishDate": "2026-07-23",
+            "orgSName": "中邮证券",
+            "infoCode": "AP202607231827290069",
+            "pdf_url": "https://pdf.dfcfw.com/pdf/H3_AP202607231827290069_1.pdf",
+            "source": "akshare_eastmoney",
+            "forecast_years": [
+              2026,
+              2027,
+              2028
+            ],
+            "predictThisYearEps": 67.19,
+            "predictNextYearEps": 69.76,
+            "predictNextTwoYearEps": 73.96
+          },
+          {
+            "stockCode": "600519",
+            "symbol": "sh600519",
+            "stockName": "贵州茅台",
+            "title": "飞天茅台年内二次提价，进一步落实市场化机制",
+            "publishDate": "2026-07-20",
+            "orgSName": "群益证券",
+            "infoCode": "AP202607201827134022",
+            "pdf_url": "https://pdf.dfcfw.com/pdf/H3_AP202607201827134022_1.pdf",
+            "source": "akshare_eastmoney",
+            "forecast_years": [
+              2026,
+              2027,
+              2028
+            ],
+            "predictThisYearEps": 68.91,
+            "predictNextYearEps": 71.98,
+            "predictNextTwoYearEps": 74.83
+          },
+          {
+            "stockCode": "600519",
+            "symbol": "sh600519",
+            "stockName": "贵州茅台",
+            "title": "2025年年报及2026年一季报点评：顺势出清舒缓压力巩固优势稳健前行",
+            "publishDate": "2026-05-25",
+            "orgSName": "诚通证券",
+            "infoCode": "AP202605251822844635",
+            "pdf_url": "https://pdf.dfcfw.com/pdf/H3_AP202605251822844635_1.pdf",
+            "source": "akshare_eastmoney",
+            "forecast_years": [
+              2026,
+              2027,
+              2028
+            ],
+            "predictThisYearEps": 66.68,
+            "predictNextYearEps": 69.43,
+            "predictNextTwoYearEps": 72.56
+          },
+          {
+            "stockCode": "600519",
+            "symbol": "sh600519",
+            "stockName": "贵州茅台",
+            "title": "公司事件点评报告：i茅台持续发力，改革效果初显",
+            "publishDate": "2026-05-05",
+            "orgSName": "华鑫证券",
+            "infoCode": "AP202605051821970230",
+            "pdf_url": "https://pdf.dfcfw.com/pdf/H3_AP202605051821970230_1.pdf",
+            "source": "akshare_eastmoney",
+            "forecast_years": [
+              2026,
+              2027,
+              2028
+            ],
+            "predictThisYearEps": 68.71,
+            "predictNextYearEps": 73.01,
+            "predictNextTwoYearEps": 78.25
+          },
+          {
+            "stockCode": "600519",
+            "symbol": "sh600519",
+            "stockName": "贵州茅台",
+            "title": "点评报告：业绩稳健增长，直销收入首次超越代理渠道",
+            "publishDate": "2026-04-29",
+            "orgSName": "万联证券",
+            "infoCode": "AP202604291821727471",
+            "pdf_url": "https://pdf.dfcfw.com/pdf/H3_AP202604291821727471_1.pdf",
+            "source": "akshare_eastmoney",
+            "forecast_years": [
+              2026,
+              2027,
+              2028
+            ],
+            "predictThisYearEps": 68.83,
+            "predictNextYearEps": 74.75,
+            "predictNextTwoYearEps": 80.44
+          },
+          {
+            "stockCode": "600519",
+            "symbol": "sh600519",
+            "stockName": "贵州茅台",
+            "title": "公司信息更新报告：大单品放量价稳，触底信号明确",
+            "publishDate": "2026-04-28",
+            "orgSName": "开源证券",
+            "infoCode": "AP202604281821686501",
+            "pdf_url": "https://pdf.dfcfw.com/pdf/H3_AP202604281821686501_1.pdf",
+            "source": "akshare_eastmoney",
+            "forecast_years": [
+              2026,
+              2027,
+              2028
+            ],
+            "predictThisYearEps": 68.02,
+            "predictNextYearEps": 71.6,
+            "predictNextTwoYearEps": 74.56
+          },
+          {
+            "stockCode": "600519",
+            "symbol": "sh600519",
+            "stockName": "贵州茅台",
+            "title": "渠道重构落地，改革初现成效",
+            "publishDate": "2026-04-28",
+            "orgSName": "山西证券",
+            "infoCode": "AP202604281821665969",
+            "pdf_url": "https://pdf.dfcfw.com/pdf/H3_AP202604281821665969_1.pdf",
+            "source": "akshare_eastmoney",
+            "forecast_years": [
+              2026,
+              2027,
+              2028
+            ],
+            "predictThisYearEps": 68.19,
+            "predictNextYearEps": 71.7,
+            "predictNextTwoYearEps": 75.27
+          },
+          {
+            "stockCode": "600519",
+            "symbol": "sh600519",
+            "stockName": "贵州茅台",
+            "title": "收入利润双稳增符合预期，i茅台放量显著",
+            "publishDate": "2026-04-28",
+            "orgSName": "中邮证券",
+            "infoCode": "AP202604281821660055",
+            "pdf_url": "https://pdf.dfcfw.com/pdf/H3_AP202604281821660055_1.pdf",
+            "source": "akshare_eastmoney",
+            "forecast_years": [
+              2026,
+              2027,
+              2028
+            ],
+            "predictThisYearEps": 68.16,
+            "predictNextYearEps": 72.64,
+            "predictNextTwoYearEps": 79.8
+          },
+          {
+            "stockCode": "600519",
+            "symbol": "sh600519",
+            "stockName": "贵州茅台",
+            "title": "2026年一季报点评：茅台酒稳健，系列酒重拾增长",
+            "publishDate": "2026-04-28",
+            "orgSName": "西南证券",
+            "infoCode": "AP202604281821659552",
+            "pdf_url": "https://pdf.dfcfw.com/pdf/H3_AP202604281821659552_1.pdf",
+            "source": "akshare_eastmoney",
+            "forecast_years": [
+              2026,
+              2027,
+              2028
+            ],
+            "predictThisYearEps": 70.67,
+            "predictNextYearEps": 76.93,
+            "predictNextTwoYearEps": 85.06
+          },
+          {
+            "stockCode": "600519",
+            "symbol": "sh600519",
+            "stockName": "贵州茅台",
+            "title": "转型初见成效，i茅台收入大幅增长",
+            "publishDate": "2026-04-28",
+            "orgSName": "群益证券",
+            "infoCode": "AP202604281821658363",
+            "pdf_url": "https://pdf.dfcfw.com/pdf/H3_AP202604281821658363_1.pdf",
+            "source": "akshare_eastmoney",
+            "forecast_years": [
+              2026,
+              2027,
+              2028
+            ],
+            "predictThisYearEps": 68.91,
+            "predictNextYearEps": 71.98,
+            "predictNextTwoYearEps": 74.83
+          },
+          {
+            "stockCode": "600519",
+            "symbol": "sh600519",
+            "stockName": "贵州茅台",
+            "title": "i茅台大放异彩，2026年稳健开局",
+            "publishDate": "2026-04-27",
+            "orgSName": "中银证券",
+            "infoCode": "AP202604271821598041",
+            "pdf_url": "https://pdf.dfcfw.com/pdf/H3_AP202604271821598041_1.pdf",
+            "source": "akshare_eastmoney",
+            "forecast_years": [
+              2026,
+              2027,
+              2028
+            ],
+            "predictThisYearEps": 68.1,
+            "predictNextYearEps": 72.5,
+            "predictNextTwoYearEps": 78.3
+          },
+          {
+            "stockCode": "600519",
+            "symbol": "sh600519",
+            "stockName": "贵州茅台",
+            "title": "2026Q1收入稳健增长，市场化改革成效逐步显现",
+            "publishDate": "2026-04-27",
+            "orgSName": "国信证券",
+            "infoCode": "AP202604271821597817",
+            "pdf_url": "https://pdf.dfcfw.com/pdf/H3_AP202604271821597817_1.pdf",
+            "source": "akshare_eastmoney",
+            "forecast_years": [
+              2026,
+              2027,
+              2028
+            ],
+            "predictThisYearEps": 67.06,
+            "predictNextYearEps": 71.46,
+            "predictNextTwoYearEps": 77.99
+          },
+          {
+            "stockCode": "600519",
+            "symbol": "sh600519",
+            "stockName": "贵州茅台",
+            "title": "改革成效凸显，i茅台放量激增",
+            "publishDate": "2026-04-26",
+            "orgSName": "信达证券",
+            "infoCode": "AP202604261821593789",
+            "pdf_url": "https://pdf.dfcfw.com/pdf/H3_AP202604261821593789_1.pdf",
+            "source": "akshare_eastmoney",
+            "forecast_years": [
+              2026,
+              2027,
+              2028
+            ],
+            "predictThisYearEps": 67.12,
+            "predictNextYearEps": 70.16,
+            "predictNextTwoYearEps": 73.12
+          },
+          {
+            "stockCode": "600519",
+            "symbol": "sh600519",
+            "stockName": "贵州茅台",
+            "title": "2026年一季报点评：锐意改革全面2C，强势开局确立企稳",
+            "publishDate": "2026-04-26",
+            "orgSName": "东吴证券",
+            "infoCode": "AP202604261821593674",
+            "pdf_url": "https://pdf.dfcfw.com/pdf/H3_AP202604261821593674_1.pdf",
+            "source": "akshare_eastmoney",
+            "forecast_years": [
+              2026,
+              2027,
+              2028
+            ],
+            "predictThisYearEps": 67.91,
+            "predictNextYearEps": 71.92,
+            "predictNextTwoYearEps": 74.33
+          },
+          {
+            "stockCode": "600519",
+            "symbol": "sh600519",
+            "stockName": "贵州茅台",
+            "title": "业绩符合预期，市场化改革成效斐然",
+            "publishDate": "2026-04-26",
+            "orgSName": "国金证券",
+            "infoCode": "AP202604261821586283",
+            "pdf_url": "https://pdf.dfcfw.com/pdf/H3_AP202604261821586283_1.pdf",
+            "source": "akshare_eastmoney",
+            "forecast_years": [
+              2026,
+              2027,
+              2028
+            ],
+            "predictThisYearEps": 67.383,
+            "predictNextYearEps": 71.401,
+            "predictNextTwoYearEps": 75.908
+          },
+          {
+            "stockCode": "600519",
+            "symbol": "sh600519",
+            "stockName": "贵州茅台",
+            "title": "2025年年报点评：茅台酒增速放缓，系列酒全年显著承压",
+            "publishDate": "2026-04-23",
+            "orgSName": "西南证券",
+            "infoCode": "AP202604231821488125",
+            "pdf_url": "https://pdf.dfcfw.com/pdf/H3_AP202604231821488125_1.pdf",
+            "source": "akshare_eastmoney",
+            "forecast_years": [
+              2026,
+              2027,
+              2028
+            ],
+            "predictThisYearEps": 70.67,
+            "predictNextYearEps": 76.93,
+            "predictNextTwoYearEps": 85.06
+          },
+          {
+            "stockCode": "600519",
+            "symbol": "sh600519",
+            "stockName": "贵州茅台",
+            "title": "卸下包袱，着眼长期健康发展，2026年开启新篇章",
+            "publishDate": "2026-04-22",
+            "orgSName": "中银证券",
+            "infoCode": "AP202604221821432233",
+            "pdf_url": "https://pdf.dfcfw.com/pdf/H3_AP202604221821432233_1.pdf",
+            "source": "akshare_eastmoney",
+            "forecast_years": [
+              2026,
+              2027,
+              2028
+            ],
+            "predictThisYearEps": 68.1,
+            "predictNextYearEps": 72.5,
+            "predictNextTwoYearEps": 78.3
+          },
+          {
+            "stockCode": "600519",
+            "symbol": "sh600519",
+            "stockName": "贵州茅台",
+            "title": "公司信息更新报告：主动调整释放压力，2026年改善趋势明确",
+            "publishDate": "2026-04-21",
+            "orgSName": "开源证券",
+            "infoCode": "AP202604211821393446",
+            "pdf_url": "https://pdf.dfcfw.com/pdf/H3_AP202604211821393446_1.pdf",
+            "source": "akshare_eastmoney",
+            "forecast_years": [
+              2026,
+              2027,
+              2028
+            ],
+            "predictThisYearEps": 68.02,
+            "predictNextYearEps": 71.6,
+            "predictNextTwoYearEps": 74.56
+          },
+          {
+            "stockCode": "600519",
+            "symbol": "sh600519",
+            "stockName": "贵州茅台",
+            "title": "2025年释放经营压力，2026年改革破局",
+            "publishDate": "2026-04-19",
+            "orgSName": "国信证券",
+            "infoCode": "AP202604191821320244",
+            "pdf_url": "https://pdf.dfcfw.com/pdf/H3_AP202604191821320244_1.pdf",
+            "source": "akshare_eastmoney",
+            "forecast_years": [
+              2026,
+              2027,
+              2028
+            ],
+            "predictThisYearEps": 67.6,
+            "predictNextYearEps": 72.15,
+            "predictNextTwoYearEps": 78.39
+          },
+          {
+            "stockCode": "600519",
+            "symbol": "sh600519",
+            "stockName": "贵州茅台",
+            "title": "面对承压，坚定改革",
+            "publishDate": "2026-04-17",
+            "orgSName": "信达证券",
+            "infoCode": "AP202604171821287518",
+            "pdf_url": "https://pdf.dfcfw.com/pdf/H3_AP202604171821287518_1.pdf",
+            "source": "akshare_eastmoney",
+            "forecast_years": [
+              2026,
+              2027,
+              2028
+            ],
+            "predictThisYearEps": 69.33,
+            "predictNextYearEps": 72.45,
+            "predictNextTwoYearEps": 75.52
+          },
+          {
+            "stockCode": "600519",
+            "symbol": "sh600519",
+            "stockName": "贵州茅台",
+            "title": "超预期出清，市场化改革持续推进",
+            "publishDate": "2026-04-17",
+            "orgSName": "国金证券",
+            "infoCode": "AP202604171821286410",
+            "pdf_url": "https://pdf.dfcfw.com/pdf/H3_AP202604171821286410_1.pdf",
+            "source": "akshare_eastmoney",
+            "forecast_years": [
+              2026,
+              2027,
+              2028
+            ],
+            "predictThisYearEps": 68.517,
+            "predictNextYearEps": 72.183,
+            "predictNextTwoYearEps": 76.341
+          },
+          {
+            "stockCode": "600519",
+            "symbol": "sh600519",
+            "stockName": "贵州茅台",
+            "title": "推进价格市场化改革，助力2026年稳增长",
+            "publishDate": "2026-04-09",
+            "orgSName": "中邮证券",
+            "infoCode": "AP202604091821085016",
+            "pdf_url": "https://pdf.dfcfw.com/pdf/H3_AP202604091821085016_1.pdf",
+            "source": "akshare_eastmoney",
+            "forecast_years": [
+              2026,
+              2027,
+              2028
+            ],
+            "predictThisYearEps": 74.5,
+            "predictNextYearEps": 80.03,
+            "predictNextTwoYearEps": null
+          },
+          {
+            "stockCode": "600519",
+            "symbol": "sh600519",
+            "stockName": "贵州茅台",
+            "title": "公司信息更新报告：提振行业信心，增强业绩保障",
+            "publishDate": "2026-04-07",
+            "orgSName": "开源证券",
+            "infoCode": "AP202604071821047878",
+            "pdf_url": "https://pdf.dfcfw.com/pdf/H3_AP202604071821047878_1.pdf",
+            "source": "akshare_eastmoney",
+            "forecast_years": [
+              2026,
+              2027,
+              2028
+            ],
+            "predictThisYearEps": 77.75,
+            "predictNextYearEps": 82.18,
+            "predictNextTwoYearEps": null
+          },
+          {
+            "stockCode": "600519",
+            "symbol": "sh600519",
+            "stockName": "贵州茅台",
+            "title": "淡季提价，渠道结构持续调整，市场化导向明确",
+            "publishDate": "2026-04-02",
+            "orgSName": "中银证券",
+            "infoCode": "AP202604021820980236",
+            "pdf_url": "https://pdf.dfcfw.com/pdf/H3_AP202604021820980236_1.pdf",
+            "source": "akshare_eastmoney",
+            "forecast_years": [
+              2026,
+              2027,
+              2028
+            ],
+            "predictThisYearEps": 75.8,
+            "predictNextYearEps": 80.93,
+            "predictNextTwoYearEps": null
+          },
+          {
+            "stockCode": "600519",
+            "symbol": "sh600519",
+            "stockName": "贵州茅台",
+            "title": "首次覆盖报告：推进市场化改革，龙头持续变革转型",
+            "publishDate": "2026-04-01",
+            "orgSName": "爱建证券",
+            "infoCode": "AP202604011820949486",
+            "pdf_url": "https://pdf.dfcfw.com/pdf/H3_AP202604011820949486_1.pdf",
+            "source": "akshare_eastmoney",
+            "forecast_years": [
+              2026,
+              2027,
+              2028
+            ],
+            "predictThisYearEps": 77.05,
+            "predictNextYearEps": 81.01,
+            "predictNextTwoYearEps": null
+          },
+          {
+            "stockCode": "600519",
+            "symbol": "sh600519",
+            "stockName": "贵州茅台",
+            "title": "提价点评：价格市场化改革再尝试，提价进一步增厚业绩",
+            "publishDate": "2026-04-01",
+            "orgSName": "东兴证券",
+            "infoCode": "AP202604011820942555",
+            "pdf_url": "https://pdf.dfcfw.com/pdf/H3_AP202604011820942555_1.pdf",
+            "source": "akshare_eastmoney",
+            "forecast_years": [
+              2026,
+              2027,
+              2028
+            ],
+            "predictThisYearEps": 74.65,
+            "predictNextYearEps": 77.91,
+            "predictNextTwoYearEps": null
+          },
+          {
+            "stockCode": "600519",
+            "symbol": "sh600519",
+            "stockName": "贵州茅台",
+            "title": "市场化改革下的价格体系重构",
+            "publishDate": "2026-03-31",
+            "orgSName": "信达证券",
+            "infoCode": "AP202603311820926225",
+            "pdf_url": "https://pdf.dfcfw.com/pdf/H3_AP202603311820926225_1.pdf",
+            "source": "akshare_eastmoney",
+            "forecast_years": [
+              2026,
+              2027,
+              2028
+            ],
+            "predictThisYearEps": 75.52,
+            "predictNextYearEps": 78.71,
+            "predictNextTwoYearEps": null
+          },
+          {
+            "stockCode": "600519",
+            "symbol": "sh600519",
+            "stockName": "贵州茅台",
+            "title": "飞天茅台调价，市场化改革持续推进",
+            "publishDate": "2026-03-31",
+            "orgSName": "国金证券",
+            "infoCode": "AP202603311820890730",
+            "pdf_url": "https://pdf.dfcfw.com/pdf/H3_AP202603311820890730_1.pdf",
+            "source": "akshare_eastmoney",
+            "forecast_years": [
+              2026,
+              2027,
+              2028
+            ],
+            "predictThisYearEps": 73.886,
+            "predictNextYearEps": 77.489,
+            "predictNextTwoYearEps": null
+          },
+          {
+            "stockCode": "600519",
+            "symbol": "sh600519",
+            "stockName": "贵州茅台",
+            "title": "市场化转型专题：量价归位与渠道重构",
+            "publishDate": "2026-03-23",
+            "orgSName": "国金证券",
+            "infoCode": "AP202603231820696581",
+            "pdf_url": "https://pdf.dfcfw.com/pdf/H3_AP202603231820696581_1.pdf",
+            "source": "akshare_eastmoney",
+            "forecast_years": [
+              2026,
+              2027,
+              2028
+            ],
+            "predictThisYearEps": 73.886,
+            "predictNextYearEps": 77.489,
+            "predictNextTwoYearEps": null
+          },
+          {
+            "stockCode": "600519",
+            "symbol": "sh600519",
+            "stockName": "贵州茅台",
+            "title": "革故鼎新，与时偕行，再论茅台的护城河与增长潜力",
+            "publishDate": "2026-03-19",
+            "orgSName": "国信证券",
+            "infoCode": "AP202603191820648186",
+            "pdf_url": "https://pdf.dfcfw.com/pdf/H3_AP202603191820648186_1.pdf",
+            "source": "akshare_eastmoney",
+            "forecast_years": [
+              2026,
+              2027,
+              2028
+            ],
+            "predictThisYearEps": 71.26,
+            "predictNextYearEps": 72.78,
+            "predictNextTwoYearEps": null
+          },
+          {
+            "stockCode": "600519",
+            "symbol": "sh600519",
+            "stockName": "贵州茅台",
+            "title": "步入2C新时代，降维竞争持续成长",
+            "publishDate": "2026-03-17",
+            "orgSName": "东吴证券",
+            "infoCode": "AP202603171820594543",
+            "pdf_url": "https://pdf.dfcfw.com/pdf/H3_AP202603171820594543_1.pdf",
+            "source": "akshare_eastmoney",
+            "forecast_years": [
+              2026,
+              2027,
+              2028
+            ],
+            "predictThisYearEps": 71.98,
+            "predictNextYearEps": 75.05,
+            "predictNextTwoYearEps": null
+          },
+          {
+            "stockCode": "600519",
+            "symbol": "sh600519",
+            "stockName": "贵州茅台",
+            "title": "营销改革复盘专题：笃行不怠，臻于至善",
+            "publishDate": "2026-03-03",
+            "orgSName": "东吴证券",
+            "infoCode": "AP202603031820234429",
+            "pdf_url": "https://pdf.dfcfw.com/pdf/H3_AP202603031820234429_1.pdf",
+            "source": "akshare_eastmoney",
+            "forecast_years": [
+              2026,
+              2027,
+              2028
+            ],
+            "predictThisYearEps": 71.98,
+            "predictNextYearEps": 75.05,
+            "predictNextTwoYearEps": null
+          },
+          {
+            "stockCode": "600519",
+            "symbol": "sh600519",
+            "stockName": "贵州茅台",
+            "title": "市场化运营方案披露，产品渠道运营全方位改革",
+            "publishDate": "2026-01-15",
+            "orgSName": "中邮证券",
+            "infoCode": "AP202601151817046347",
+            "pdf_url": "https://pdf.dfcfw.com/pdf/H3_AP202601151817046347_1.pdf",
+            "source": "akshare_eastmoney",
+            "forecast_years": [
+              2026,
+              2027,
+              2028
+            ],
+            "predictThisYearEps": 74.47,
+            "predictNextYearEps": 79.32,
+            "predictNextTwoYearEps": null
+          },
+          {
+            "stockCode": "600519",
+            "symbol": "sh600519",
+            "stockName": "贵州茅台",
+            "title": "2026年推进市场化改革，i茅台春节前加大投放",
+            "publishDate": "2026-01-09",
+            "orgSName": "群益证券",
+            "infoCode": "AP202601091816872559",
+            "pdf_url": "https://pdf.dfcfw.com/pdf/H3_AP202601091816872559_1.pdf",
+            "source": "akshare_eastmoney",
+            "forecast_years": [
+              2026,
+              2027,
+              2028
+            ],
+            "predictThisYearEps": 74.05,
+            "predictNextYearEps": 78.94,
+            "predictNextTwoYearEps": null
+          },
+          {
+            "stockCode": "600519",
+            "symbol": "sh600519",
+            "stockName": "贵州茅台",
+            "title": "全面推进市场化转型，解决供需适配问题",
+            "publishDate": "2026-01-05",
+            "orgSName": "国信证券",
+            "infoCode": "AP202601051815430375",
+            "pdf_url": "https://pdf.dfcfw.com/pdf/H3_AP202601051815430375_1.pdf",
+            "source": "akshare_eastmoney",
+            "forecast_years": [
+              2026,
+              2027,
+              2028
+            ],
+            "predictThisYearEps": 72.04,
+            "predictNextYearEps": 73.07,
+            "predictNextTwoYearEps": null
+          },
+          {
+            "stockCode": "600519",
+            "symbol": "sh600519",
+            "stockName": "贵州茅台",
+            "title": "2026加速营销转型，多元渠道构建更进一步",
+            "publishDate": "2025-12-31",
+            "orgSName": "东吴证券",
+            "infoCode": "AP202512311811788626",
+            "pdf_url": "https://pdf.dfcfw.com/pdf/H3_AP202512311811788626_1.pdf",
+            "source": "akshare_eastmoney",
+            "forecast_years": [
+              2026,
+              2027,
+              2028
+            ],
+            "predictThisYearEps": 72.7,
+            "predictNextYearEps": 74.17,
+            "predictNextTwoYearEps": null
+          }
+        ],
+        "date_based_pair_coverage_not_validated_signals": [
+          {
+            "organization": "万联证券",
+            "start_info_code": "AP202604291821727471",
+            "end_info_code": "AP202608191828157250",
+            "start_age_days": 54,
+            "end_age_days": 30,
+            "raw_pair_present": true,
+            "within_frozen_staleness": true,
+            "same_report": false,
+            "share_basis_verified": false
+          },
+          {
+            "organization": "东兴证券",
+            "start_info_code": "AP202604011820942555",
+            "end_info_code": "AP202604011820942555",
+            "start_age_days": 82,
+            "end_age_days": 170,
+            "raw_pair_present": true,
+            "within_frozen_staleness": true,
+            "same_report": true,
+            "share_basis_verified": false
+          },
+          {
+            "organization": "东吴证券",
+            "start_info_code": "AP202604261821593674",
+            "end_info_code": "AP202608161828030058",
+            "start_age_days": 57,
+            "end_age_days": 33,
+            "raw_pair_present": true,
+            "within_frozen_staleness": true,
+            "same_report": false,
+            "share_basis_verified": false
+          },
+          {
+            "organization": "中邮证券",
+            "start_info_code": "AP202604281821660055",
+            "end_info_code": "AP202608181828095469",
+            "start_age_days": 55,
+            "end_age_days": 31,
+            "raw_pair_present": true,
+            "within_frozen_staleness": true,
+            "same_report": false,
+            "share_basis_verified": false
+          },
+          {
+            "organization": "中银证券",
+            "start_info_code": "AP202604271821598041",
+            "end_info_code": "AP202608211828236036",
+            "start_age_days": 56,
+            "end_age_days": 28,
+            "raw_pair_present": true,
+            "within_frozen_staleness": true,
+            "same_report": false,
+            "share_basis_verified": false
+          },
+          {
+            "organization": "信达证券",
+            "start_info_code": "AP202604261821593789",
+            "end_info_code": "AP202604261821593789",
+            "start_age_days": 57,
+            "end_age_days": 145,
+            "raw_pair_present": true,
+            "within_frozen_staleness": true,
+            "same_report": true,
+            "share_basis_verified": false
+          },
+          {
+            "organization": "华鑫证券",
+            "start_info_code": "AP202605051821970230",
+            "end_info_code": "AP202608171828051638",
+            "start_age_days": 48,
+            "end_age_days": 32,
+            "raw_pair_present": true,
+            "within_frozen_staleness": true,
+            "same_report": false,
+            "share_basis_verified": false
+          },
+          {
+            "organization": "国信证券",
+            "start_info_code": "AP202604271821597817",
+            "end_info_code": "AP202608171828048790",
+            "start_age_days": 56,
+            "end_age_days": 32,
+            "raw_pair_present": true,
+            "within_frozen_staleness": true,
+            "same_report": false,
+            "share_basis_verified": false
+          },
+          {
+            "organization": "国金证券",
+            "start_info_code": "AP202604261821586283",
+            "end_info_code": "AP202608161828029200",
+            "start_age_days": 57,
+            "end_age_days": 33,
+            "raw_pair_present": true,
+            "within_frozen_staleness": true,
+            "same_report": false,
+            "share_basis_verified": false
+          },
+          {
+            "organization": "太平洋",
+            "start_info_code": null,
+            "end_info_code": "AP202608181828097561",
+            "start_age_days": null,
+            "end_age_days": 31,
+            "raw_pair_present": false,
+            "within_frozen_staleness": false,
+            "same_report": false,
+            "share_basis_verified": false
+          },
+          {
+            "organization": "山西证券",
+            "start_info_code": "AP202604281821665969",
+            "end_info_code": "AP202608181828111071",
+            "start_age_days": 55,
+            "end_age_days": 31,
+            "raw_pair_present": true,
+            "within_frozen_staleness": true,
+            "same_report": false,
+            "share_basis_verified": false
+          },
+          {
+            "organization": "开源证券",
+            "start_info_code": "AP202604281821686501",
+            "end_info_code": "AP202604281821686501",
+            "start_age_days": 55,
+            "end_age_days": 143,
+            "raw_pair_present": true,
+            "within_frozen_staleness": true,
+            "same_report": true,
+            "share_basis_verified": false
+          },
+          {
+            "organization": "爱建证券",
+            "start_info_code": "AP202604011820949486",
+            "end_info_code": "AP202604011820949486",
+            "start_age_days": 82,
+            "end_age_days": 170,
+            "raw_pair_present": true,
+            "within_frozen_staleness": true,
+            "same_report": true,
+            "share_basis_verified": false
+          },
+          {
+            "organization": "群益证券",
+            "start_info_code": "AP202604281821658363",
+            "end_info_code": "AP202608181828101201",
+            "start_age_days": 55,
+            "end_age_days": 31,
+            "raw_pair_present": true,
+            "within_frozen_staleness": true,
+            "same_report": false,
+            "share_basis_verified": false
+          },
+          {
+            "organization": "西南证券",
+            "start_info_code": "AP202604281821659552",
+            "end_info_code": "AP202608211828244348",
+            "start_age_days": 55,
+            "end_age_days": 28,
+            "raw_pair_present": true,
+            "within_frozen_staleness": true,
+            "same_report": false,
+            "share_basis_verified": false
+          },
+          {
+            "organization": "诚通证券",
+            "start_info_code": "AP202605251822844635",
+            "end_info_code": "AP202605251822844635",
+            "start_age_days": 28,
+            "end_age_days": 116,
+            "raw_pair_present": true,
+            "within_frozen_staleness": true,
+            "same_report": true,
+            "share_basis_verified": false
+          }
+        ]
+      },
+      "bars": {
+        "metadata": {
+          "ok": true,
+          "error": null,
+          "errors": {},
+          "source": "hithink",
+          "sources_used": [
+            "hithink"
+          ],
+          "attempted_sources": [
+            "hithink"
+          ],
+          "fallback_reason": null,
+          "data_as_of": null,
+          "retrieved_at": "2026-09-22T06:45:44.094930+00:00",
+          "coverage": {
+            "amount": true,
+            "volume_unit": "share"
+          },
+          "adjust": "none",
+          "adjustment_basis": {
+            "provider": "hithink",
+            "direction": "none",
+            "cross_source_equivalent": true,
+            "method": "unadjusted"
+          },
+          "warning": null,
+          "frequency": "D",
+          "partial": false,
+          "quality": {
+            "status": "ok",
+            "requested_count": 180,
+            "returned_count": 180,
+            "max_gap_days": 11,
+            "issues": []
+          }
+        },
+        "returned_count": 180,
+        "range": [
+          "2025-12-26",
+          "2026-09-22"
+        ],
+        "requested_endpoints_found": [
+          "2026-06-22",
+          "2026-09-18"
+        ],
+        "raw_endpoint_rows": [
+          {
+            "datetime": "2026-06-22",
+            "open": 1214.31,
+            "high": 1252.8,
+            "low": 1205.0,
+            "close": 1241.41,
+            "vol": 5825131.0,
+            "volume": 5825131.0,
+            "volume_unit": "share",
+            "amount": 7163236298.37,
+            "amount_unit": "CNY",
+            "source": "hithink",
+            "retrieved_at": "2026-09-22T06:45:44.094930+00:00",
+            "data_as_of": null,
+            "provider_timestamp": "2026-09-21T16:00:00+00:00"
+          },
+          {
+            "datetime": "2026-09-18",
+            "open": 1262.99,
+            "high": 1265.88,
+            "low": 1256.1,
+            "close": 1257.12,
+            "vol": 2489087.0,
+            "volume": 2489087.0,
+            "volume_unit": "share",
+            "amount": 3135849108.35,
+            "amount_unit": "CNY",
+            "source": "hithink",
+            "retrieved_at": "2026-09-22T06:45:44.094930+00:00",
+            "data_as_of": null,
+            "provider_timestamp": "2026-09-21T16:00:00+00:00"
+          }
+        ],
+        "price_currency_inference": "A-share CNY from requested market; endpoint rows carry amount_unit=CNY but no explicit price currency or symbol",
+        "positive_finite_endpoint_closes": true
+      },
+      "announcements": {
+        "metadata": {
+          "ok": true,
+          "error": null,
+          "source": "stock_announcements",
+          "market": "a",
+          "adapter": "akshare",
+          "query_window": {
+            "start": "2025-09-22",
+            "end": "2026-09-22"
+          },
+          "available_count": 94,
+          "partial": true,
+          "coverage": {
+            "all_history": false,
+            "pdf_url_in_list": false
+          },
+          "warning": "List covers the last year; attachment URLs resolve on download"
+        },
+        "returned_count": 94,
+        "selected_original": {
+          "title": "贵州茅台2025年年度权益分派实施公告",
+          "date": "2026-06-22",
+          "announcement_id": "1225379934",
+          "url": "https://www.cninfo.com.cn/new/disclosure/detail?stockCode=600519&announcementId=1225379934&orgId=gssh0600519&announcementTime=2026-06-22",
+          "pdf_url": null,
+          "type": "",
+          "adjunct_type": "",
+          "adjunct_size_kb": null,
+          "sec_code": "600519",
+          "sec_name": "贵州茅台",
+          "market": "a",
+          "file_resolution": "cninfo_detail"
+        },
+        "title_screened_action_count": 4
+      },
+      "dividends": {
+        "metadata": {
+          "ok": true,
+          "error": null,
+          "source": "hithink",
+          "retrieved_at": "2026-09-22T06:45:44.382799+00:00",
+          "data_as_of": null,
+          "provider_timestamp": null,
+          "partial": true,
+          "warning": "Record/payment dates and bonus/transfer split are unavailable",
+          "units": {
+            "bonus_rmb": "CNY per 10 shares",
+            "dividend_per_share": "CNY per share"
+          },
+          "attempted_sources": [
+            "hithink"
+          ],
+          "sources_used": [
+            "hithink"
+          ],
+          "fallback_reason": null
+        },
+        "returned_count": 30,
+        "raw_recent_rows": [
+          {
+            "date": "2026-06-26",
+            "dividend_per_share": 28.02423,
+            "bonus_rmb": 280.2423,
+            "per_share_bonus": 0.0,
+            "bonus_ratio": null,
+            "transfer_ratio": null,
+            "record_date": null,
+            "payment_date": null,
+            "source": "hithink"
+          },
+          {
+            "date": "2025-12-19",
+            "dividend_per_share": 23.957,
+            "bonus_rmb": 239.57,
+            "per_share_bonus": 0.0,
+            "bonus_ratio": null,
+            "transfer_ratio": null,
+            "record_date": null,
+            "payment_date": null,
+            "source": "hithink"
+          },
+          {
+            "date": "2025-06-26",
+            "dividend_per_share": 27.673,
+            "bonus_rmb": 276.72999999999996,
+            "per_share_bonus": 0.0,
+            "bonus_ratio": null,
+            "transfer_ratio": null,
+            "record_date": null,
+            "payment_date": null,
+            "source": "hithink"
+          },
+          {
+            "date": "2024-12-20",
+            "dividend_per_share": 23.882,
+            "bonus_rmb": 238.82000000000002,
+            "per_share_bonus": 0.0,
+            "bonus_ratio": null,
+            "transfer_ratio": null,
+            "record_date": null,
+            "payment_date": null,
+            "source": "hithink"
+          },
+          {
+            "date": "2024-06-19",
+            "dividend_per_share": 30.876,
+            "bonus_rmb": 308.76,
+            "per_share_bonus": 0.0,
+            "bonus_ratio": null,
+            "transfer_ratio": null,
+            "record_date": null,
+            "payment_date": null,
+            "source": "hithink"
+          }
+        ]
+      },
+      "action_original_check": {
+        "document_date": "2026-06-22",
+        "ex_date": "2026-06-26",
+        "cash_dividend_cny_per_share": 28.02423,
+        "in_window": true,
+        "finding": "公告金额和除息日与 dividend_history 一致；该公告不能证明整个窗口股本未变化。"
+      },
+      "automatic_window_comparison_status": "blocked_pending_share_basis"
+    },
+    "sh688981": {
+      "request_symbol": "sh688981",
+      "calls": {
+        "reports": {
+          "started_at": "2026-09-22T06:45:44.387089+00:00",
+          "elapsed_seconds": 1.609
+        },
+        "bars": {
+          "started_at": "2026-09-22T06:45:45.998753+00:00",
+          "elapsed_seconds": 0.739
+        },
+        "announcements": {
+          "started_at": "2026-09-22T06:45:46.131546+00:00",
+          "elapsed_seconds": 2.244
+        },
+        "dividends": {
+          "started_at": "2026-09-22T06:45:46.743986+00:00",
+          "elapsed_seconds": 2.314
+        }
+      },
+      "reports": {
+        "metadata": {
+          "ok": true,
+          "error": null,
+          "source": "stock_reports",
+          "adapter": "akshare",
+          "provider": "eastmoney",
+          "code": "688981",
+          "symbol": "sh688981",
+          "partial": false,
+          "coverage": {
+            "authors": false,
+            "pdf_links": true,
+            "begin": "2025-12-24",
+            "available_count": 3,
+            "returned_count": 3,
+            "limit": 500,
+            "truncated": false,
+            "limit_scope": "local_rows"
+          }
+        },
+        "returned_count": 3,
+        "all_returned_identity_checks_passed": true,
+        "raw_rows": [
+          {
+            "stockCode": "688981",
+            "symbol": "sh688981",
+            "stockName": "中芯国际",
+            "title": "26Q2业绩超预期，指引Q3盈利水平持续提升",
+            "publishDate": "2026-08-21",
+            "orgSName": "山西证券",
+            "infoCode": "AP202608211828253185",
+            "pdf_url": "https://pdf.dfcfw.com/pdf/H3_AP202608211828253185_1.pdf",
+            "source": "akshare_eastmoney",
+            "forecast_years": [
+              2026,
+              2027,
+              2028
+            ],
+            "predictThisYearEps": 0.96,
+            "predictNextYearEps": 1.28,
+            "predictNextTwoYearEps": 1.81
+          },
+          {
+            "stockCode": "688981",
+            "symbol": "sh688981",
+            "stockName": "中芯国际",
+            "title": "再上新台阶",
+            "publishDate": "2026-05-22",
+            "orgSName": "中邮证券",
+            "infoCode": "AP202605221822682971",
+            "pdf_url": "https://pdf.dfcfw.com/pdf/H3_AP202605221822682971_1.pdf",
+            "source": "akshare_eastmoney",
+            "forecast_years": [
+              2026,
+              2027,
+              2028
+            ],
+            "predictThisYearEps": 0.79,
+            "predictNextYearEps": 0.95,
+            "predictNextTwoYearEps": 1.18
+          },
+          {
+            "stockCode": "688981",
+            "symbol": "sh688981",
+            "stockName": "中芯国际",
+            "title": "收入创新高",
+            "publishDate": "2026-02-26",
+            "orgSName": "中邮证券",
+            "infoCode": "AP202602261820049201",
+            "pdf_url": "https://pdf.dfcfw.com/pdf/H3_AP202602261820049201_1.pdf",
+            "source": "akshare_eastmoney",
+            "forecast_years": [
+              2026,
+              2027,
+              2028
+            ],
+            "predictThisYearEps": 0.79,
+            "predictNextYearEps": 0.95,
+            "predictNextTwoYearEps": null
+          }
+        ],
+        "date_based_pair_coverage_not_validated_signals": [
+          {
+            "organization": "中邮证券",
+            "start_info_code": "AP202605221822682971",
+            "end_info_code": "AP202605221822682971",
+            "start_age_days": 31,
+            "end_age_days": 119,
+            "raw_pair_present": true,
+            "within_frozen_staleness": true,
+            "same_report": true,
+            "share_basis_verified": false
+          },
+          {
+            "organization": "山西证券",
+            "start_info_code": null,
+            "end_info_code": "AP202608211828253185",
+            "start_age_days": null,
+            "end_age_days": 28,
+            "raw_pair_present": false,
+            "within_frozen_staleness": false,
+            "same_report": false,
+            "share_basis_verified": false
+          }
+        ]
+      },
+      "bars": {
+        "metadata": {
+          "ok": true,
+          "error": null,
+          "errors": {},
+          "source": "hithink",
+          "sources_used": [
+            "hithink"
+          ],
+          "attempted_sources": [
+            "hithink"
+          ],
+          "fallback_reason": null,
+          "data_as_of": null,
+          "retrieved_at": "2026-09-22T06:45:46.732181+00:00",
+          "coverage": {
+            "amount": true,
+            "volume_unit": "share"
+          },
+          "adjust": "none",
+          "adjustment_basis": {
+            "provider": "hithink",
+            "direction": "none",
+            "cross_source_equivalent": true,
+            "method": "unadjusted"
+          },
+          "warning": null,
+          "frequency": "D",
+          "partial": false,
+          "quality": {
+            "status": "ok",
+            "requested_count": 180,
+            "returned_count": 180,
+            "max_gap_days": 11,
+            "issues": []
+          }
+        },
+        "returned_count": 180,
+        "range": [
+          "2025-12-26",
+          "2026-09-22"
+        ],
+        "requested_endpoints_found": [
+          "2026-06-22",
+          "2026-09-18"
+        ],
+        "raw_endpoint_rows": [
+          {
+            "datetime": "2026-06-22",
+            "open": 140.78,
+            "high": 148.0,
+            "low": 140.0,
+            "close": 145.59,
+            "vol": 106096058.0,
+            "volume": 106096058.0,
+            "volume_unit": "share",
+            "amount": 15251149625.8,
+            "amount_unit": "CNY",
+            "source": "hithink",
+            "retrieved_at": "2026-09-22T06:45:46.732181+00:00",
+            "data_as_of": null,
+            "provider_timestamp": "2026-09-21T16:00:00+00:00"
+          },
+          {
+            "datetime": "2026-09-18",
+            "open": 120.78,
+            "high": 123.43,
+            "low": 119.93,
+            "close": 122.0,
+            "vol": 38721991.0,
+            "volume": 38721991.0,
+            "volume_unit": "share",
+            "amount": 4711862657.17,
+            "amount_unit": "CNY",
+            "source": "hithink",
+            "retrieved_at": "2026-09-22T06:45:46.732181+00:00",
+            "data_as_of": null,
+            "provider_timestamp": "2026-09-21T16:00:00+00:00"
+          }
+        ],
+        "price_currency_inference": "A-share CNY from requested market; endpoint rows carry amount_unit=CNY but no explicit price currency or symbol",
+        "positive_finite_endpoint_closes": true
+      },
+      "announcements": {
+        "metadata": {
+          "ok": true,
+          "error": null,
+          "source": "stock_announcements",
+          "market": "a",
+          "adapter": "akshare",
+          "query_window": {
+            "start": "2025-09-22",
+            "end": "2026-09-22"
+          },
+          "available_count": 189,
+          "partial": true,
+          "coverage": {
+            "all_history": false,
+            "pdf_url_in_list": false
+          },
+          "warning": "List covers the last year; attachment URLs resolve on download"
+        },
+        "returned_count": 189,
+        "selected_original": {
+          "title": "中芯国际关于发行股份购买资产暨关联交易之发行结果暨股本变动的公告",
+          "date": "2026-06-25",
+          "announcement_id": "1225386195",
+          "url": "https://www.cninfo.com.cn/new/disclosure/detail?stockCode=688981&announcementId=1225386195&orgId=gshk0000981&announcementTime=2026-06-25",
+          "pdf_url": null,
+          "type": "",
+          "adjunct_type": "",
+          "adjunct_size_kb": null,
+          "sec_code": "688981",
+          "sec_name": "中芯国际",
+          "market": "a",
+          "file_resolution": "cninfo_detail"
+        },
+        "title_screened_action_count": 1
+      },
+      "dividends": {
+        "metadata": {
+          "ok": false,
+          "error": "hithink: data_not_ready; Special dividend coverage unavailable: akshare: provider_error; routes: environment=provider_error; Regular dividend coverage unavailable: akshare: provider_error; routes: environment=provider_error",
+          "source": "dividend_history",
+          "errors": {
+            "hithink": "hithink: data_not_ready",
+            "akshare": "Special dividend coverage unavailable: akshare: provider_error; routes: environment=provider_error; Regular dividend coverage unavailable: akshare: provider_error; routes: environment=provider_error"
+          }
+        },
+        "returned_count": 0,
+        "raw_recent_rows": []
+      },
+      "action_original_check": {
+        "document_date": "2026-06-25",
+        "registration_date": "2026-06-23",
+        "new_a_shares": 547182073,
+        "a_shares_after": 2546744622,
+        "in_window": true,
+        "finding": "发行股份购买资产的新增 A 股在 T0 后完成登记，自动跨窗口每股比较必须阻断。"
+      },
+      "automatic_window_comparison_status": "blocked_pending_share_basis"
+    },
+    "sz300750": {
+      "request_symbol": "sz300750",
+      "calls": {
+        "reports": {
+          "started_at": "2026-09-22T06:45:48.381681+00:00",
+          "elapsed_seconds": 3.636
+        },
+        "bars": {
+          "started_at": "2026-09-22T06:45:49.064132+00:00",
+          "elapsed_seconds": 0.684
+        },
+        "announcements": {
+          "started_at": "2026-09-22T06:45:49.216858+00:00",
+          "elapsed_seconds": 2.616
+        },
+        "dividends": {
+          "started_at": "2026-09-22T06:45:49.757479+00:00",
+          "elapsed_seconds": 0.335
+        }
+      },
+      "reports": {
+        "metadata": {
+          "ok": true,
+          "error": null,
+          "source": "stock_reports",
+          "adapter": "akshare",
+          "provider": "eastmoney",
+          "code": "300750",
+          "symbol": "sz300750",
+          "partial": false,
+          "coverage": {
+            "authors": false,
+            "pdf_links": true,
+            "begin": "2025-12-24",
+            "available_count": 26,
+            "returned_count": 26,
+            "limit": 500,
+            "truncated": false,
+            "limit_scope": "local_rows"
+          }
+        },
+        "returned_count": 26,
+        "all_returned_identity_checks_passed": true,
+        "raw_rows": [
+          {
+            "stockCode": "300750",
+            "symbol": "sz300750",
+            "stockName": "宁德时代",
+            "title": "业绩维持快速增长，回购彰显发展信心",
+            "publishDate": "2026-07-31",
+            "orgSName": "国信证券",
+            "infoCode": "AP202607311827537552",
+            "pdf_url": "https://pdf.dfcfw.com/pdf/H3_AP202607311827537552_1.pdf",
+            "source": "akshare_eastmoney",
+            "forecast_years": [
+              2026,
+              2027,
+              2028
+            ],
+            "predictThisYearEps": 20.83,
+            "predictNextYearEps": 25.96,
+            "predictNextTwoYearEps": 30.45
+          },
+          {
+            "stockCode": "300750",
+            "symbol": "sz300750",
+            "stockName": "宁德时代",
+            "title": "中报业绩符合预期，拟推出200-400亿元回购计划",
+            "publishDate": "2026-07-29",
+            "orgSName": "山西证券",
+            "infoCode": "AP202607291827453255",
+            "pdf_url": "https://pdf.dfcfw.com/pdf/H3_AP202607291827453255_1.pdf",
+            "source": "akshare_eastmoney",
+            "forecast_years": [
+              2026,
+              2027,
+              2028
+            ],
+            "predictThisYearEps": 21.28,
+            "predictNextYearEps": 26.49,
+            "predictNextTwoYearEps": 32.21
+          },
+          {
+            "stockCode": "300750",
+            "symbol": "sz300750",
+            "stockName": "宁德时代",
+            "title": "2026年半年报点评：回购股份夯实信心，业绩持续增长，符合预期",
+            "publishDate": "2026-07-28",
+            "orgSName": "西南证券",
+            "infoCode": "AP202607281827423474",
+            "pdf_url": "https://pdf.dfcfw.com/pdf/H3_AP202607281827423474_1.pdf",
+            "source": "akshare_eastmoney",
+            "forecast_years": [
+              2026,
+              2027,
+              2028
+            ],
+            "predictThisYearEps": 19.65,
+            "predictNextYearEps": 23.77,
+            "predictNextTwoYearEps": 28.59
+          },
+          {
+            "stockCode": "300750",
+            "symbol": "sz300750",
+            "stockName": "宁德时代",
+            "title": "2季度出货超预期，关注盈利修复节奏及供需变化；维持买入",
+            "publishDate": "2026-07-28",
+            "orgSName": "交银国际证券",
+            "infoCode": "AP202607281827402414",
+            "pdf_url": "https://pdf.dfcfw.com/pdf/H3_AP202607281827402414_1.pdf",
+            "source": "akshare_eastmoney",
+            "forecast_years": [
+              2026,
+              2027,
+              2028
+            ],
+            "predictThisYearEps": 20.507,
+            "predictNextYearEps": 24.896,
+            "predictNextTwoYearEps": 28.512
+          },
+          {
+            "stockCode": "300750",
+            "symbol": "sz300750",
+            "stockName": "宁德时代",
+            "title": "公司半年报业绩快速增长，拟回购A股股份，建议“买进”",
+            "publishDate": "2026-07-27",
+            "orgSName": "群益证券",
+            "infoCode": "AP202607271827380430",
+            "pdf_url": "https://pdf.dfcfw.com/pdf/H3_AP202607271827380430_1.pdf",
+            "source": "akshare_eastmoney",
+            "forecast_years": [
+              2026,
+              2027,
+              2028
+            ],
+            "predictThisYearEps": 21.604,
+            "predictNextYearEps": 27.17,
+            "predictNextTwoYearEps": 32.446
+          },
+          {
+            "stockCode": "300750",
+            "symbol": "sz300750",
+            "stockName": "宁德时代",
+            "title": "宁德时代2026年中报点评：出货高增业绩稳健，回购彰显龙头信心",
+            "publishDate": "2026-07-26",
+            "orgSName": "东吴证券",
+            "infoCode": "AP202607261827357010",
+            "pdf_url": "https://pdf.dfcfw.com/pdf/H3_AP202607261827357010_1.pdf",
+            "source": "akshare_eastmoney",
+            "forecast_years": [
+              2026,
+              2027,
+              2028
+            ],
+            "predictThisYearEps": 20.78,
+            "predictNextYearEps": 26.25,
+            "predictNextTwoYearEps": 31.74
+          },
+          {
+            "stockCode": "300750",
+            "symbol": "sz300750",
+            "stockName": "宁德时代",
+            "title": "业绩维稳符合预期，大额回购强化信心",
+            "publishDate": "2026-07-26",
+            "orgSName": "国金证券",
+            "infoCode": "AP202607261827354335",
+            "pdf_url": "https://pdf.dfcfw.com/pdf/H3_AP202607261827354335_1.pdf",
+            "source": "akshare_eastmoney",
+            "forecast_years": [
+              2026,
+              2027,
+              2028
+            ],
+            "predictThisYearEps": 22.138,
+            "predictNextYearEps": 27.185,
+            "predictNextTwoYearEps": 33.218
+          },
+          {
+            "stockCode": "300750",
+            "symbol": "sz300750",
+            "stockName": "宁德时代",
+            "title": "技术发布会简析：技术迭代驱动多维增长，补能生态加速布局",
+            "publishDate": "2026-04-23",
+            "orgSName": "交银国际证券",
+            "infoCode": "AP202604231821483907",
+            "pdf_url": "https://pdf.dfcfw.com/pdf/H3_AP202604231821483907_1.pdf",
+            "source": "akshare_eastmoney",
+            "forecast_years": [
+              2026,
+              2027,
+              2028
+            ],
+            "predictThisYearEps": null,
+            "predictNextYearEps": null,
+            "predictNextTwoYearEps": null
+          },
+          {
+            "stockCode": "300750",
+            "symbol": "sz300750",
+            "stockName": "宁德时代",
+            "title": "产品全面升级，技术创新夯实龙头领先优势",
+            "publishDate": "2026-04-22",
+            "orgSName": "国信证券",
+            "infoCode": "AP202604221821434869",
+            "pdf_url": "https://pdf.dfcfw.com/pdf/H3_AP202604221821434869_1.pdf",
+            "source": "akshare_eastmoney",
+            "forecast_years": [
+              2026,
+              2027,
+              2028
+            ],
+            "predictThisYearEps": 21.11,
+            "predictNextYearEps": 26.31,
+            "predictNextTwoYearEps": 30.87
+          },
+          {
+            "stockCode": "300750",
+            "symbol": "sz300750",
+            "stockName": "宁德时代",
+            "title": "盈利能力表现稳健，市场份额稳中有升",
+            "publishDate": "2026-04-17",
+            "orgSName": "国信证券",
+            "infoCode": "AP202604171821298291",
+            "pdf_url": "https://pdf.dfcfw.com/pdf/H3_AP202604171821298291_1.pdf",
+            "source": "akshare_eastmoney",
+            "forecast_years": [
+              2026,
+              2027,
+              2028
+            ],
+            "predictThisYearEps": 21.11,
+            "predictNextYearEps": 26.31,
+            "predictNextTwoYearEps": 30.87
+          },
+          {
+            "stockCode": "300750",
+            "symbol": "sz300750",
+            "stockName": "宁德时代",
+            "title": "公司信息更新报告：一季度实现强劲增长，业绩超预期",
+            "publishDate": "2026-04-17",
+            "orgSName": "开源证券",
+            "infoCode": "AP202604171821295253",
+            "pdf_url": "https://pdf.dfcfw.com/pdf/H3_AP202604171821295253_1.pdf",
+            "source": "akshare_eastmoney",
+            "forecast_years": [
+              2026,
+              2027,
+              2028
+            ],
+            "predictThisYearEps": 21.41,
+            "predictNextYearEps": 26.74,
+            "predictNextTwoYearEps": 32.28
+          },
+          {
+            "stockCode": "300750",
+            "symbol": "sz300750",
+            "stockName": "宁德时代",
+            "title": "1季度业绩超预期，盈利维持韧性；维持买入",
+            "publishDate": "2026-04-17",
+            "orgSName": "交银国际证券",
+            "infoCode": "AP202604171821285130",
+            "pdf_url": "https://pdf.dfcfw.com/pdf/H3_AP202604171821285130_1.pdf",
+            "source": "akshare_eastmoney",
+            "forecast_years": [
+              2026,
+              2027,
+              2028
+            ],
+            "predictThisYearEps": 19.906,
+            "predictNextYearEps": 23.825,
+            "predictNextTwoYearEps": 26.641
+          },
+          {
+            "stockCode": "300750",
+            "symbol": "sz300750",
+            "stockName": "宁德时代",
+            "title": "2026年一季报点评：营收和净利均高速增长，业绩保持靓丽",
+            "publishDate": "2026-04-16",
+            "orgSName": "东莞证券",
+            "infoCode": "AP202604161821262529",
+            "pdf_url": "https://pdf.dfcfw.com/pdf/H3_AP202604161821262529_1.pdf",
+            "source": "akshare_eastmoney",
+            "forecast_years": [
+              2026,
+              2027,
+              2028
+            ],
+            "predictThisYearEps": 20.33,
+            "predictNextYearEps": 24.99,
+            "predictNextTwoYearEps": 30.05
+          },
+          {
+            "stockCode": "300750",
+            "symbol": "sz300750",
+            "stockName": "宁德时代",
+            "title": "1Q26业绩超预期，终端需求向好",
+            "publishDate": "2026-04-16",
+            "orgSName": "国金证券",
+            "infoCode": "AP202604161821260252",
+            "pdf_url": "https://pdf.dfcfw.com/pdf/H3_AP202604161821260252_1.pdf",
+            "source": "akshare_eastmoney",
+            "forecast_years": [
+              2026,
+              2027,
+              2028
+            ],
+            "predictThisYearEps": 22.57,
+            "predictNextYearEps": 27.976,
+            "predictNextTwoYearEps": 34.453
+          },
+          {
+            "stockCode": "300750",
+            "symbol": "sz300750",
+            "stockName": "宁德时代",
+            "title": "2026年一季报点评：龙头份额再提升，业绩持续超预期",
+            "publishDate": "2026-04-16",
+            "orgSName": "东吴证券",
+            "infoCode": "AP202604161821255081",
+            "pdf_url": "https://pdf.dfcfw.com/pdf/H3_AP202604161821255081_1.pdf",
+            "source": "akshare_eastmoney",
+            "forecast_years": [
+              2026,
+              2027,
+              2028
+            ],
+            "predictThisYearEps": 21.07,
+            "predictNextYearEps": 26.63,
+            "predictNextTwoYearEps": 32.19
+          },
+          {
+            "stockCode": "300750",
+            "symbol": "sz300750",
+            "stockName": "宁德时代",
+            "title": "公司事件点评报告：动力与储能双轮驱动，业绩增长强劲",
+            "publishDate": "2026-03-24",
+            "orgSName": "华鑫证券",
+            "infoCode": "AP202603241820713245",
+            "pdf_url": "https://pdf.dfcfw.com/pdf/H3_AP202603241820713245_1.pdf",
+            "source": "akshare_eastmoney",
+            "forecast_years": [
+              2026,
+              2027,
+              2028
+            ],
+            "predictThisYearEps": 20.05,
+            "predictNextYearEps": 23.68,
+            "predictNextTwoYearEps": 28.69
+          },
+          {
+            "stockCode": "300750",
+            "symbol": "sz300750",
+            "stockName": "宁德时代",
+            "title": "技术迭代引领行业，盈利与规模共振向上",
+            "publishDate": "2026-03-23",
+            "orgSName": "东吴证券",
+            "infoCode": "AP202603221820688666",
+            "pdf_url": "https://pdf.dfcfw.com/pdf/H3_AP202603221820688666_1.pdf",
+            "source": "akshare_eastmoney",
+            "forecast_years": [
+              2026,
+              2027,
+              2028
+            ],
+            "predictThisYearEps": 20.6,
+            "predictNextYearEps": 25.58,
+            "predictNextTwoYearEps": 31.3
+          },
+          {
+            "stockCode": "300750",
+            "symbol": "sz300750",
+            "stockName": "宁德时代",
+            "title": "2025年年报点评：出货高增长，增长模式从“产品”到“服务”演进",
+            "publishDate": "2026-03-16",
+            "orgSName": "西南证券",
+            "infoCode": "AP202603161820571903",
+            "pdf_url": "https://pdf.dfcfw.com/pdf/H3_AP202603161820571903_1.pdf",
+            "source": "akshare_eastmoney",
+            "forecast_years": [
+              2026,
+              2027,
+              2028
+            ],
+            "predictThisYearEps": 19.92,
+            "predictNextYearEps": 24.1,
+            "predictNextTwoYearEps": 28.98
+          },
+          {
+            "stockCode": "300750",
+            "symbol": "sz300750",
+            "stockName": "宁德时代",
+            "title": "电池龙头盈利强劲，产能扩张加速推进",
+            "publishDate": "2026-03-13",
+            "orgSName": "国信证券",
+            "infoCode": "AP202603131820554662",
+            "pdf_url": "https://pdf.dfcfw.com/pdf/H3_AP202603131820554662_1.pdf",
+            "source": "akshare_eastmoney",
+            "forecast_years": [
+              2026,
+              2027,
+              2028
+            ],
+            "predictThisYearEps": 20.61,
+            "predictNextYearEps": 24.85,
+            "predictNextTwoYearEps": 28.92
+          },
+          {
+            "stockCode": "300750",
+            "symbol": "sz300750",
+            "stockName": "宁德时代",
+            "title": "公司信息更新报告：量利齐升，盈利韧性再超预期",
+            "publishDate": "2026-03-11",
+            "orgSName": "开源证券",
+            "infoCode": "AP202603111820490289",
+            "pdf_url": "https://pdf.dfcfw.com/pdf/H3_AP202603111820490289_1.pdf",
+            "source": "akshare_eastmoney",
+            "forecast_years": [
+              2026,
+              2027,
+              2028
+            ],
+            "predictThisYearEps": 21.04,
+            "predictNextYearEps": 25.37,
+            "predictNextTwoYearEps": 30.53
+          },
+          {
+            "stockCode": "300750",
+            "symbol": "sz300750",
+            "stockName": "宁德时代",
+            "title": "全年业绩超预期，盈利维持韧性；行业需求向上，上调目标价",
+            "publishDate": "2026-03-11",
+            "orgSName": "交银国际证券",
+            "infoCode": "AP202603111820481145",
+            "pdf_url": "https://pdf.dfcfw.com/pdf/H3_AP202603111820481145_1.pdf",
+            "source": "akshare_eastmoney",
+            "forecast_years": [
+              2026,
+              2027,
+              2028
+            ],
+            "predictThisYearEps": 19.906,
+            "predictNextYearEps": 23.825,
+            "predictNextTwoYearEps": 26.641
+          },
+          {
+            "stockCode": "300750",
+            "symbol": "sz300750",
+            "stockName": "宁德时代",
+            "title": "2025年业绩保持高增，动储电池销量快速增长",
+            "publishDate": "2026-03-11",
+            "orgSName": "中银证券",
+            "infoCode": "AP202603111820479800",
+            "pdf_url": "https://pdf.dfcfw.com/pdf/H3_AP202603111820479800_1.pdf",
+            "source": "akshare_eastmoney",
+            "forecast_years": [
+              2026,
+              2027,
+              2028
+            ],
+            "predictThisYearEps": 20.4,
+            "predictNextYearEps": 25.5,
+            "predictNextTwoYearEps": 31.7
+          },
+          {
+            "stockCode": "300750",
+            "symbol": "sz300750",
+            "stockName": "宁德时代",
+            "title": "业绩略超预期，景气趋势确立",
+            "publishDate": "2026-03-10",
+            "orgSName": "国金证券",
+            "infoCode": "AP202603101820459417",
+            "pdf_url": "https://pdf.dfcfw.com/pdf/H3_AP202603101820459417_1.pdf",
+            "source": "akshare_eastmoney",
+            "forecast_years": [
+              2026,
+              2027,
+              2028
+            ],
+            "predictThisYearEps": 20.771,
+            "predictNextYearEps": 26.673,
+            "predictNextTwoYearEps": 32.843
+          },
+          {
+            "stockCode": "300750",
+            "symbol": "sz300750",
+            "stockName": "宁德时代",
+            "title": "2025年报点评：业绩超预期，盈利韧性强",
+            "publishDate": "2026-03-10",
+            "orgSName": "东莞证券",
+            "infoCode": "AP202603101820458618",
+            "pdf_url": "https://pdf.dfcfw.com/pdf/H3_AP202603101820458618_1.pdf",
+            "source": "akshare_eastmoney",
+            "forecast_years": [
+              2026,
+              2027,
+              2028
+            ],
+            "predictThisYearEps": 19.79,
+            "predictNextYearEps": 23.74,
+            "predictNextTwoYearEps": 28.1
+          },
+          {
+            "stockCode": "300750",
+            "symbol": "sz300750",
+            "stockName": "宁德时代",
+            "title": "2025年年报点评：盈利与出货双升，扩产提速锚定26年高增长",
+            "publishDate": "2026-03-10",
+            "orgSName": "东吴证券",
+            "infoCode": "AP202603101820437630",
+            "pdf_url": "https://pdf.dfcfw.com/pdf/H3_AP202603101820437630_1.pdf",
+            "source": "akshare_eastmoney",
+            "forecast_years": [
+              2026,
+              2027,
+              2028
+            ],
+            "predictThisYearEps": 20.6,
+            "predictNextYearEps": 25.58,
+            "predictNextTwoYearEps": 31.3
+          },
+          {
+            "stockCode": "300750",
+            "symbol": "sz300750",
+            "stockName": "宁德时代",
+            "title": "盈利韧性强，份额提升，龙头地位稳固",
+            "publishDate": "2026-01-29",
+            "orgSName": "东吴证券",
+            "infoCode": "AP202601291818534905",
+            "pdf_url": "https://pdf.dfcfw.com/pdf/H3_AP202601291818534905_1.pdf",
+            "source": "akshare_eastmoney",
+            "forecast_years": [
+              2026,
+              2027,
+              2028
+            ],
+            "predictThisYearEps": 20.02,
+            "predictNextYearEps": 24.9,
+            "predictNextTwoYearEps": null
+          }
+        ],
+        "date_based_pair_coverage_not_validated_signals": [
+          {
+            "organization": "东吴证券",
+            "start_info_code": "AP202604161821255081",
+            "end_info_code": "AP202607261827357010",
+            "start_age_days": 67,
+            "end_age_days": 54,
+            "raw_pair_present": true,
+            "within_frozen_staleness": true,
+            "same_report": false,
+            "share_basis_verified": false
+          },
+          {
+            "organization": "东莞证券",
+            "start_info_code": "AP202604161821262529",
+            "end_info_code": "AP202604161821262529",
+            "start_age_days": 67,
+            "end_age_days": 155,
+            "raw_pair_present": true,
+            "within_frozen_staleness": true,
+            "same_report": true,
+            "share_basis_verified": false
+          },
+          {
+            "organization": "中银证券",
+            "start_info_code": "AP202603111820479800",
+            "end_info_code": "AP202603111820479800",
+            "start_age_days": 103,
+            "end_age_days": 191,
+            "raw_pair_present": true,
+            "within_frozen_staleness": false,
+            "same_report": true,
+            "share_basis_verified": false
+          },
+          {
+            "organization": "交银国际证券",
+            "start_info_code": "AP202604171821285130",
+            "end_info_code": "AP202607281827402414",
+            "start_age_days": 66,
+            "end_age_days": 52,
+            "raw_pair_present": true,
+            "within_frozen_staleness": true,
+            "same_report": false,
+            "share_basis_verified": false
+          },
+          {
+            "organization": "华鑫证券",
+            "start_info_code": "AP202603241820713245",
+            "end_info_code": "AP202603241820713245",
+            "start_age_days": 90,
+            "end_age_days": 178,
+            "raw_pair_present": true,
+            "within_frozen_staleness": true,
+            "same_report": true,
+            "share_basis_verified": false
+          },
+          {
+            "organization": "国信证券",
+            "start_info_code": "AP202604221821434869",
+            "end_info_code": "AP202607311827537552",
+            "start_age_days": 61,
+            "end_age_days": 49,
+            "raw_pair_present": true,
+            "within_frozen_staleness": true,
+            "same_report": false,
+            "share_basis_verified": false
+          },
+          {
+            "organization": "国金证券",
+            "start_info_code": "AP202604161821260252",
+            "end_info_code": "AP202607261827354335",
+            "start_age_days": 67,
+            "end_age_days": 54,
+            "raw_pair_present": true,
+            "within_frozen_staleness": true,
+            "same_report": false,
+            "share_basis_verified": false
+          },
+          {
+            "organization": "山西证券",
+            "start_info_code": null,
+            "end_info_code": "AP202607291827453255",
+            "start_age_days": null,
+            "end_age_days": 51,
+            "raw_pair_present": false,
+            "within_frozen_staleness": false,
+            "same_report": false,
+            "share_basis_verified": false
+          },
+          {
+            "organization": "开源证券",
+            "start_info_code": "AP202604171821295253",
+            "end_info_code": "AP202604171821295253",
+            "start_age_days": 66,
+            "end_age_days": 154,
+            "raw_pair_present": true,
+            "within_frozen_staleness": true,
+            "same_report": true,
+            "share_basis_verified": false
+          },
+          {
+            "organization": "群益证券",
+            "start_info_code": null,
+            "end_info_code": "AP202607271827380430",
+            "start_age_days": null,
+            "end_age_days": 53,
+            "raw_pair_present": false,
+            "within_frozen_staleness": false,
+            "same_report": false,
+            "share_basis_verified": false
+          },
+          {
+            "organization": "西南证券",
+            "start_info_code": "AP202603161820571903",
+            "end_info_code": "AP202607281827423474",
+            "start_age_days": 98,
+            "end_age_days": 52,
+            "raw_pair_present": true,
+            "within_frozen_staleness": true,
+            "same_report": false,
+            "share_basis_verified": false
+          }
+        ]
+      },
+      "bars": {
+        "metadata": {
+          "ok": true,
+          "error": null,
+          "errors": {},
+          "source": "hithink",
+          "sources_used": [
+            "hithink"
+          ],
+          "attempted_sources": [
+            "hithink"
+          ],
+          "fallback_reason": null,
+          "data_as_of": null,
+          "retrieved_at": "2026-09-22T06:45:49.742215+00:00",
+          "coverage": {
+            "amount": true,
+            "volume_unit": "share"
+          },
+          "adjust": "none",
+          "adjustment_basis": {
+            "provider": "hithink",
+            "direction": "none",
+            "cross_source_equivalent": true,
+            "method": "unadjusted"
+          },
+          "warning": null,
+          "frequency": "D",
+          "partial": false,
+          "quality": {
+            "status": "ok",
+            "requested_count": 180,
+            "returned_count": 180,
+            "max_gap_days": 11,
+            "issues": []
+          }
+        },
+        "returned_count": 180,
+        "range": [
+          "2025-12-26",
+          "2026-09-22"
+        ],
+        "requested_endpoints_found": [
+          "2026-06-22",
+          "2026-09-18"
+        ],
+        "raw_endpoint_rows": [
+          {
+            "datetime": "2026-06-22",
+            "open": 393.0,
+            "high": 413.33,
+            "low": 386.0,
+            "close": 408.98,
+            "vol": 59464844.0,
+            "volume": 59464844.0,
+            "volume_unit": "share",
+            "amount": 23926026000.0,
+            "amount_unit": "CNY",
+            "source": "hithink",
+            "retrieved_at": "2026-09-22T06:45:49.742215+00:00",
+            "data_as_of": null,
+            "provider_timestamp": "2026-09-21T16:00:00+00:00"
+          },
+          {
+            "datetime": "2026-09-18",
+            "open": 309.77,
+            "high": 310.0,
+            "low": 300.27,
+            "close": 301.95,
+            "vol": 38071252.0,
+            "volume": 38071252.0,
+            "volume_unit": "share",
+            "amount": 11537664647.91,
+            "amount_unit": "CNY",
+            "source": "hithink",
+            "retrieved_at": "2026-09-22T06:45:49.742215+00:00",
+            "data_as_of": null,
+            "provider_timestamp": "2026-09-21T16:00:00+00:00"
+          }
+        ],
+        "price_currency_inference": "A-share CNY from requested market; endpoint rows carry amount_unit=CNY but no explicit price currency or symbol",
+        "positive_finite_endpoint_closes": true
+      },
+      "announcements": {
+        "metadata": {
+          "ok": true,
+          "error": null,
+          "source": "stock_announcements",
+          "market": "a",
+          "adapter": "akshare",
+          "query_window": {
+            "start": "2025-09-22",
+            "end": "2026-09-22"
+          },
+          "available_count": 229,
+          "partial": true,
+          "coverage": {
+            "all_history": false,
+            "pdf_url_in_list": false
+          },
+          "warning": "List covers the last year; attachment URLs resolve on download"
+        },
+        "returned_count": 229,
+        "selected_original": {
+          "title": "2026年中期分红A股实施公告",
+          "date": "2026-08-04",
+          "announcement_id": "1225456175",
+          "url": "https://www.cninfo.com.cn/new/disclosure/detail?stockCode=300750&announcementId=1225456175&orgId=GD165627&announcementTime=2026-08-04 00:00:00",
+          "pdf_url": null,
+          "type": "",
+          "adjunct_type": "",
+          "adjunct_size_kb": null,
+          "sec_code": "300750",
+          "sec_name": "宁德时代",
+          "market": "a",
+          "file_resolution": "cninfo_detail"
+        },
+        "title_screened_action_count": 4
+      },
+      "dividends": {
+        "metadata": {
+          "ok": true,
+          "error": null,
+          "source": "hithink",
+          "retrieved_at": "2026-09-22T06:45:50.091035+00:00",
+          "data_as_of": null,
+          "provider_timestamp": null,
+          "partial": true,
+          "warning": "Record/payment dates and bonus/transfer split are unavailable",
+          "units": {
+            "bonus_rmb": "CNY per 10 shares",
+            "dividend_per_share": "CNY per share"
+          },
+          "attempted_sources": [
+            "hithink"
+          ],
+          "sources_used": [
+            "hithink"
+          ],
+          "fallback_reason": null
+        },
+        "returned_count": 11,
+        "raw_recent_rows": [
+          {
+            "date": "2026-08-10",
+            "dividend_per_share": 1.411,
+            "bonus_rmb": 14.11,
+            "per_share_bonus": 0.0,
+            "bonus_ratio": null,
+            "transfer_ratio": null,
+            "record_date": null,
+            "payment_date": null,
+            "source": "hithink"
+          },
+          {
+            "date": "2026-04-22",
+            "dividend_per_share": 6.957,
+            "bonus_rmb": 69.57,
+            "per_share_bonus": 0.0,
+            "bonus_ratio": null,
+            "transfer_ratio": null,
+            "record_date": null,
+            "payment_date": null,
+            "source": "hithink"
+          },
+          {
+            "date": "2025-08-20",
+            "dividend_per_share": 1.007,
+            "bonus_rmb": 10.069999999999999,
+            "per_share_bonus": 0.0,
+            "bonus_ratio": null,
+            "transfer_ratio": null,
+            "record_date": null,
+            "payment_date": null,
+            "source": "hithink"
+          },
+          {
+            "date": "2025-04-22",
+            "dividend_per_share": 4.553,
+            "bonus_rmb": 45.53,
+            "per_share_bonus": 0.0,
+            "bonus_ratio": null,
+            "transfer_ratio": null,
+            "record_date": null,
+            "payment_date": null,
+            "source": "hithink"
+          },
+          {
+            "date": "2025-01-24",
+            "dividend_per_share": 1.23,
+            "bonus_rmb": 12.3,
+            "per_share_bonus": 0.0,
+            "bonus_ratio": null,
+            "transfer_ratio": null,
+            "record_date": null,
+            "payment_date": null,
+            "source": "hithink"
+          }
+        ]
+      },
+      "action_original_check": {
+        "document_date": "2026-08-03",
+        "ex_date": "2026-08-10",
+        "cash_dividend_cny_per_share": 1.411,
+        "ex_price_adjustment_cny_per_share": 1.4019358,
+        "total_shares": 4626654919,
+        "a_shares": 4408354619,
+        "h_shares": 218300300,
+        "in_window": true,
+        "finding": "分红金额与除息日匹配；差异化分红下派现金额和除息参考价扣减不同；公告称本次不送转，不等于整个窗口无其他股本变化。"
+      },
+      "automatic_window_comparison_status": "blocked_pending_share_basis"
+    },
+    "sh600051": {
+      "request_symbol": "sh600051",
+      "calls": {
+        "reports": {
+          "started_at": "2026-09-22T06:45:50.102878+00:00",
+          "elapsed_seconds": 0.879
+        },
+        "bars": {
+          "started_at": "2026-09-22T06:45:50.989665+00:00",
+          "elapsed_seconds": 0.964
+        },
+        "announcements": {
+          "started_at": "2026-09-22T06:45:51.841979+00:00",
+          "elapsed_seconds": 1.967
+        },
+        "dividends": {
+          "started_at": "2026-09-22T06:45:51.965221+00:00",
+          "elapsed_seconds": 0.451
+        }
+      },
+      "reports": {
+        "metadata": {
+          "ok": false,
+          "error": "akshare: provider_error; routes: environment=provider_error",
+          "source": "stock_reports",
+          "error_code": null
+        },
+        "returned_count": 0,
+        "all_returned_identity_checks_passed": null,
+        "raw_rows": [],
+        "date_based_pair_coverage_not_validated_signals": []
+      },
+      "bars": {
+        "metadata": {
+          "ok": true,
+          "error": null,
+          "errors": {},
+          "source": "hithink",
+          "sources_used": [
+            "hithink"
+          ],
+          "attempted_sources": [
+            "hithink"
+          ],
+          "fallback_reason": null,
+          "data_as_of": null,
+          "retrieved_at": "2026-09-22T06:45:51.949092+00:00",
+          "coverage": {
+            "amount": true,
+            "volume_unit": "share"
+          },
+          "adjust": "none",
+          "adjustment_basis": {
+            "provider": "hithink",
+            "direction": "none",
+            "cross_source_equivalent": true,
+            "method": "unadjusted"
+          },
+          "warning": null,
+          "frequency": "D",
+          "partial": false,
+          "quality": {
+            "status": "ok",
+            "requested_count": 180,
+            "returned_count": 180,
+            "max_gap_days": 11,
+            "issues": []
+          }
+        },
+        "returned_count": 180,
+        "range": [
+          "2025-12-26",
+          "2026-09-22"
+        ],
+        "requested_endpoints_found": [
+          "2026-06-22",
+          "2026-09-18"
+        ],
+        "raw_endpoint_rows": [
+          {
+            "datetime": "2026-06-22",
+            "open": 6.01,
+            "high": 6.07,
+            "low": 5.76,
+            "close": 6.06,
+            "vol": 5082543.0,
+            "volume": 5082543.0,
+            "volume_unit": "share",
+            "amount": 30046002.72,
+            "amount_unit": "CNY",
+            "source": "hithink",
+            "retrieved_at": "2026-09-22T06:45:51.949092+00:00",
+            "data_as_of": null,
+            "provider_timestamp": "2026-09-21T16:00:00+00:00"
+          },
+          {
+            "datetime": "2026-09-18",
+            "open": 6.1,
+            "high": 6.17,
+            "low": 6.05,
+            "close": 6.07,
+            "vol": 3305300.0,
+            "volume": 3305300.0,
+            "volume_unit": "share",
+            "amount": 20199352.0,
+            "amount_unit": "CNY",
+            "source": "hithink",
+            "retrieved_at": "2026-09-22T06:45:51.949092+00:00",
+            "data_as_of": null,
+            "provider_timestamp": "2026-09-21T16:00:00+00:00"
+          }
+        ],
+        "price_currency_inference": "A-share CNY from requested market; endpoint rows carry amount_unit=CNY but no explicit price currency or symbol",
+        "positive_finite_endpoint_closes": true
+      },
+      "announcements": {
+        "metadata": {
+          "ok": true,
+          "error": null,
+          "source": "stock_announcements",
+          "market": "a",
+          "adapter": "akshare",
+          "query_window": {
+            "start": "2025-09-22",
+            "end": "2026-09-22"
+          },
+          "available_count": 66,
+          "partial": true,
+          "coverage": {
+            "all_history": false,
+            "pdf_url_in_list": false
+          },
+          "warning": "List covers the last year; attachment URLs resolve on download"
+        },
+        "returned_count": 66,
+        "selected_original": {
+          "title": "宁波联合2025年年度权益分派实施公告",
+          "date": "2026-06-09",
+          "announcement_id": "1225358086",
+          "url": "https://www.cninfo.com.cn/new/disclosure/detail?stockCode=600051&announcementId=1225358086&orgId=gssh0600051&announcementTime=2026-06-09",
+          "pdf_url": null,
+          "type": "",
+          "adjunct_type": "",
+          "adjunct_size_kb": null,
+          "sec_code": "600051",
+          "sec_name": "宁波联合",
+          "market": "a",
+          "file_resolution": "cninfo_detail"
+        },
+        "title_screened_action_count": 3
+      },
+      "dividends": {
+        "metadata": {
+          "ok": true,
+          "error": null,
+          "source": "hithink",
+          "retrieved_at": "2026-09-22T06:45:52.414854+00:00",
+          "data_as_of": null,
+          "provider_timestamp": null,
+          "partial": true,
+          "warning": "Record/payment dates and bonus/transfer split are unavailable",
+          "units": {
+            "bonus_rmb": "CNY per 10 shares",
+            "dividend_per_share": "CNY per share"
+          },
+          "attempted_sources": [
+            "hithink"
+          ],
+          "sources_used": [
+            "hithink"
+          ],
+          "fallback_reason": null
+        },
+        "returned_count": 28,
+        "raw_recent_rows": [
+          {
+            "date": "2026-06-16",
+            "dividend_per_share": 0.06,
+            "bonus_rmb": 0.6,
+            "per_share_bonus": 0.0,
+            "bonus_ratio": null,
+            "transfer_ratio": null,
+            "record_date": null,
+            "payment_date": null,
+            "source": "hithink"
+          },
+          {
+            "date": "2025-06-17",
+            "dividend_per_share": 0.12,
+            "bonus_rmb": 1.2,
+            "per_share_bonus": 0.0,
+            "bonus_ratio": null,
+            "transfer_ratio": null,
+            "record_date": null,
+            "payment_date": null,
+            "source": "hithink"
+          },
+          {
+            "date": "2024-06-07",
+            "dividend_per_share": 0.12,
+            "bonus_rmb": 1.2,
+            "per_share_bonus": 0.0,
+            "bonus_ratio": null,
+            "transfer_ratio": null,
+            "record_date": null,
+            "payment_date": null,
+            "source": "hithink"
+          },
+          {
+            "date": "2023-06-16",
+            "dividend_per_share": 0.12,
+            "bonus_rmb": 1.2,
+            "per_share_bonus": 0.0,
+            "bonus_ratio": null,
+            "transfer_ratio": null,
+            "record_date": null,
+            "payment_date": null,
+            "source": "hithink"
+          },
+          {
+            "date": "2022-06-10",
+            "dividend_per_share": 0.1,
+            "bonus_rmb": 1.0,
+            "per_share_bonus": 0.0,
+            "bonus_ratio": null,
+            "transfer_ratio": null,
+            "record_date": null,
+            "payment_date": null,
+            "source": "hithink"
+          }
+        ]
+      },
+      "action_original_check": {
+        "document_date": "2026-06-09",
+        "ex_date": "2026-06-16",
+        "cash_dividend_cny_per_share": 0.06,
+        "in_window": false,
+        "finding": "最近分红在 T0 前；研报接口失败不能表述为无预测覆盖。"
+      },
+      "automatic_window_comparison_status": "blocked_reports_fetch_failed"
+    }
+  },
+  "documents": [
+    {
+      "call": "sh600519.action.1225379934",
+      "started_at": "2026-09-22T06:48:41.132144+00:00",
+      "elapsed_seconds": 0.887,
+      "ok": true,
+      "partial": false,
+      "error": null,
+      "text_error": null,
+      "url": "https://static.cninfo.com.cn/finalpage/2026-06-22/1225379934.PDF",
+      "bytes": 155250,
+      "sha256": "6b082b6a00db748f23b6dea166b0296cd69d8c10542d352e23d2e2c344ea516e",
+      "original_check": {
+        "document_date": "2026-06-22",
+        "ex_date": "2026-06-26",
+        "cash_dividend_cny_per_share": 28.02423,
+        "in_window": true,
+        "finding": "公告金额和除息日与 dividend_history 一致；该公告不能证明整个窗口股本未变化。"
+      }
+    },
+    {
+      "call": "sh600519.report.AP202604281821659552",
+      "started_at": "2026-09-22T06:48:41.131618+00:00",
+      "elapsed_seconds": 2.036,
+      "ok": true,
+      "partial": false,
+      "error": null,
+      "text_error": null,
+      "url": "https://pdf.dfcfw.com/pdf/H3_AP202604281821659552_1.pdf",
+      "bytes": 1173131,
+      "sha256": "c5794d93851c27d2380cba1486178fb8219cea086637ea2be7953141622001a5",
+      "source_display_date": "2026-04-28",
+      "organization": "西南证券",
+      "security_code_verified_in_original": "600519",
+      "forecast_years_in_original": [
+        2026,
+        2027,
+        2028
+      ],
+      "source_eps": [
+        70.67,
+        76.93,
+        85.06
+      ],
+      "original_check": {
+        "document_date": "2026-04-27",
+        "eps": [
+          70.67,
+          76.93,
+          85.06
+        ],
+        "total_shares_billion": 1.252,
+        "eps_basis_evidence": "总股本(亿股) 12.52；预测表股本 12.52 / 12.52 / 12.52 / 12.52。",
+        "page": 1
+      },
+      "eps_values_match": true,
+      "date_difference_calendar_days": 1,
+      "first_available_at": null,
+      "historical_version_verified": false
+    },
+    {
+      "call": "sh600519.report.AP202608211828244348",
+      "started_at": "2026-09-22T06:48:41.132035+00:00",
+      "elapsed_seconds": 3.716,
+      "ok": true,
+      "partial": false,
+      "error": null,
+      "text_error": null,
+      "url": "https://pdf.dfcfw.com/pdf/H3_AP202608211828244348_1.pdf",
+      "bytes": 1118135,
+      "sha256": "b84eb750e1d1eba65d5ec24a66cffa559591cd93565a464a6eedcbff4c72b7a7",
+      "source_display_date": "2026-08-21",
+      "organization": "西南证券",
+      "security_code_verified_in_original": "600519",
+      "forecast_years_in_original": [
+        2026,
+        2027,
+        2028
+      ],
+      "source_eps": [
+        69.83,
+        75.82,
+        83.83
+      ],
+      "original_check": {
+        "document_date": "2026-08-18",
+        "eps": [
+          69.83,
+          75.82,
+          83.83
+        ],
+        "total_shares_billion": 1.25,
+        "eps_basis_evidence": "总股本(亿股) 12.50；预测表股本 12.52 / 12.50 / 12.50 / 12.50。",
+        "page": 1
+      },
+      "eps_values_match": true,
+      "date_difference_calendar_days": 3,
+      "first_available_at": null,
+      "historical_version_verified": false
+    },
+    {
+      "call": "sh688981.report.AP202608211828253185",
+      "started_at": "2026-09-22T06:48:43.168292+00:00",
+      "elapsed_seconds": 1.755,
+      "ok": true,
+      "partial": false,
+      "error": null,
+      "text_error": null,
+      "url": "https://pdf.dfcfw.com/pdf/H3_AP202608211828253185_1.pdf",
+      "bytes": 445143,
+      "sha256": "2eb84a39ff747ccbcefeb6ea9e815c951973d08ae19217bcbacb3c575a21394b",
+      "source_display_date": "2026-08-21",
+      "organization": "山西证券",
+      "security_code_verified_in_original": "688981",
+      "forecast_years_in_original": [
+        2026,
+        2027,
+        2028
+      ],
+      "source_eps": [
+        0.96,
+        1.28,
+        1.81
+      ],
+      "original_check": {
+        "document_date": "2026-08-21",
+        "eps": [
+          0.96,
+          1.28,
+          1.81
+        ],
+        "total_shares_billion": 8.561,
+        "eps_basis_evidence": "流通 A 股/总股本（亿股）20.00/85.61；EPS(摊薄/元)。",
+        "page": 2
+      },
+      "eps_values_match": true,
+      "date_difference_calendar_days": 0,
+      "first_available_at": null,
+      "historical_version_verified": false
+    },
+    {
+      "call": "sh688981.report.AP202605221822682971",
+      "started_at": "2026-09-22T06:48:42.019217+00:00",
+      "elapsed_seconds": 3.378,
+      "ok": true,
+      "partial": false,
+      "error": null,
+      "text_error": null,
+      "url": "https://pdf.dfcfw.com/pdf/H3_AP202605221822682971_1.pdf",
+      "bytes": 543305,
+      "sha256": "88d2a954e8cf917242e6145e9274dcabded34801a3e583538d6715d6904ad5e8",
+      "source_display_date": "2026-05-22",
+      "organization": "中邮证券",
+      "security_code_verified_in_original": "688981",
+      "forecast_years_in_original": [
+        2026,
+        2027,
+        2028
+      ],
+      "source_eps": [
+        0.79,
+        0.95,
+        1.18
+      ],
+      "original_check": {
+        "document_date": "2026-05-22",
+        "eps": [
+          0.79,
+          0.95,
+          1.18
+        ],
+        "total_shares_billion": 8.013,
+        "eps_basis_evidence": "总股本/流通股本（亿股）80.13 / 20.00；EPS(元/股)。",
+        "page": 2
+      },
+      "eps_values_match": true,
+      "date_difference_calendar_days": 0,
+      "first_available_at": null,
+      "historical_version_verified": false
+    },
+    {
+      "call": "sh688981.action.1225386195",
+      "started_at": "2026-09-22T06:48:44.910499+00:00",
+      "elapsed_seconds": 0.918,
+      "ok": true,
+      "partial": false,
+      "error": null,
+      "text_error": null,
+      "url": "https://static.cninfo.com.cn/finalpage/2026-06-25/1225386195.PDF",
+      "bytes": 174368,
+      "sha256": "96df3182584be073925124be7b7d2878dee9ab5f5f79dc0d43c563468f9f01af",
+      "original_check": {
+        "document_date": "2026-06-25",
+        "registration_date": "2026-06-23",
+        "new_a_shares": 547182073,
+        "a_shares_after": 2546744622,
+        "in_window": true,
+        "finding": "发行股份购买资产的新增 A 股在 T0 后完成登记，自动跨窗口每股比较必须阻断。"
+      }
+    },
+    {
+      "call": "sz300750.action.1225456175",
+      "started_at": "2026-09-22T06:48:45.828627+00:00",
+      "elapsed_seconds": 1.254,
+      "ok": true,
+      "partial": false,
+      "error": null,
+      "text_error": null,
+      "url": "https://static.cninfo.com.cn/finalpage/2026-08-04/1225456175.PDF",
+      "bytes": 155504,
+      "sha256": "42196742c9fc92cceeb9ec23246c2cd7855189235e801908ee89b3a08cc94c59",
+      "original_check": {
+        "document_date": "2026-08-03",
+        "ex_date": "2026-08-10",
+        "cash_dividend_cny_per_share": 1.411,
+        "ex_price_adjustment_cny_per_share": 1.4019358,
+        "total_shares": 4626654919,
+        "a_shares": 4408354619,
+        "h_shares": 218300300,
+        "in_window": true,
+        "finding": "分红金额与除息日匹配；差异化分红下派现金额和除息参考价扣减不同；公告称本次不送转，不等于整个窗口无其他股本变化。"
+      }
+    },
+    {
+      "call": "sz300750.report.AP202607311827537552",
+      "started_at": "2026-09-22T06:48:45.398409+00:00",
+      "elapsed_seconds": 1.684,
+      "ok": true,
+      "partial": false,
+      "error": null,
+      "text_error": null,
+      "url": "https://pdf.dfcfw.com/pdf/H3_AP202607311827537552_1.pdf",
+      "bytes": 521316,
+      "sha256": "4de8cb1efefc0ff57a3bbb61174e3ec3326a0e9b521b6c5a319d1fca1a0f1627",
+      "source_display_date": "2026-07-31",
+      "organization": "国信证券",
+      "security_code_verified_in_original": "300750",
+      "forecast_years_in_original": [
+        2026,
+        2027,
+        2028
+      ],
+      "source_eps": [
+        20.83,
+        25.96,
+        30.45
+      ],
+      "original_check": {
+        "document_date": "2026-07-31",
+        "eps": [
+          20.83,
+          25.96,
+          30.45
+        ],
+        "forecast_net_income_cny_100m": [
+          963.51,
+          1200.89,
+          1408.87
+        ],
+        "eps_basis_evidence": "摊薄每股收益按最新总股本计算；归母净利预测仍为 963.51/1200.89/1408.87 亿元。",
+        "page": 1
+      },
+      "eps_values_match": true,
+      "date_difference_calendar_days": 0,
+      "first_available_at": null,
+      "historical_version_verified": false
+    },
+    {
+      "call": "sz300750.report.AP202604221821434869",
+      "started_at": "2026-09-22T06:48:44.923930+00:00",
+      "elapsed_seconds": 2.599,
+      "ok": true,
+      "partial": false,
+      "error": null,
+      "text_error": null,
+      "url": "https://pdf.dfcfw.com/pdf/H3_AP202604221821434869_1.pdf",
+      "bytes": 626087,
+      "sha256": "68e5caec13dfbbbf07abd6fd059aa4e4bba26071113bbe34953a141c07244bb0",
+      "source_display_date": "2026-04-22",
+      "organization": "国信证券",
+      "security_code_verified_in_original": "300750",
+      "forecast_years_in_original": [
+        2026,
+        2027,
+        2028
+      ],
+      "source_eps": [
+        21.11,
+        26.31,
+        30.87
+      ],
+      "original_check": {
+        "document_date": "2026-04-22",
+        "eps": [
+          21.11,
+          26.31,
+          30.87
+        ],
+        "forecast_net_income_cny_100m": [
+          963.51,
+          1200.89,
+          1408.87
+        ],
+        "eps_basis_evidence": "维持盈利预测；归母净利润 963.51/1200.89/1408.87 亿元；EPS 21.11/26.31/30.87 元。",
+        "page": 1
+      },
+      "eps_values_match": true,
+      "date_difference_calendar_days": 0,
+      "first_available_at": null,
+      "historical_version_verified": false
+    },
+    {
+      "call": "sh600051.action.1225358086",
+      "started_at": "2026-09-22T06:48:47.082758+00:00",
+      "elapsed_seconds": 0.955,
+      "ok": true,
+      "partial": false,
+      "error": null,
+      "text_error": null,
+      "url": "https://static.cninfo.com.cn/finalpage/2026-06-09/1225358086.PDF",
+      "bytes": 153808,
+      "sha256": "9f36788d1834735dbbff77c4b73ba665b94a206a6f79348bcf484e48ce7ebb62",
+      "original_check": {
+        "document_date": "2026-06-09",
+        "ex_date": "2026-06-16",
+        "cash_dividend_cny_per_share": 0.06,
+        "in_window": false,
+        "finding": "最近分红在 T0 前；研报接口失败不能表述为无预测覆盖。"
+      }
+    }
+  ],
+  "limitations": [
+    "No independent-source verification of endpoint closing prices; validates requested unadjusted basis, finite positive values and exact endpoint coverage.",
+    "All fetched report headers expose current forecast_years [2026, 2027, 2028]; six originals were checked, not all 77 returned rows.",
+    "No selected company has all broker EPS share bases and all window corporate actions fully verified; no automatic eligible signal claimed.",
+    "Observed bars lacked symbol/code and explicit price currency; request identity is retained separately and amount_unit is CNY. Do not describe these as upstream row identity fields.",
+    "Source current constituents are not historical constituents.",
+    "Failures are distinct from successful empty responses; Ningbo report failure does not prove no coverage."
+  ],
+  "index_constituents": {
+    "call_started_at": "2026-09-22T06:45:52.028629+00:00",
+    "elapsed_seconds": 1.022,
+    "metadata": {
+      "ok": true,
+      "error": null,
+      "source": "akshare_csindex",
+      "index_code": "000905",
+      "include_weights": false,
+      "partial": false,
+      "weight_error": null,
+      "backup_used": false
+    },
+    "returned_count": 500,
+    "unique_verified_symbols": 500,
+    "invalid_rows": [],
+    "source_dates": {
+      "2026-09-21": 500
+    },
+    "exchanges": {
+      "深圳证券交易所": 220,
+      "上海证券交易所": 280
+    },
+    "raw_row_samples": [
+      {
+        "index_code": "000905",
+        "index_name": "中证500",
+        "date": "2026-09-21",
+        "code": "000009",
+        "name": "中国宝安",
+        "exchange": "深圳证券交易所",
+        "weight_pct": null,
+        "source": "akshare_csindex"
+      },
+      {
+        "index_code": "000905",
+        "index_name": "中证500",
+        "date": "2026-09-21",
+        "code": "000021",
+        "name": "深科技",
+        "exchange": "深圳证券交易所",
+        "weight_pct": null,
+        "source": "akshare_csindex"
+      },
+      {
+        "index_code": "000905",
+        "index_name": "中证500",
+        "date": "2026-09-21",
+        "code": "000027",
+        "name": "深圳能源",
+        "exchange": "深圳证券交易所",
+        "weight_pct": null,
+        "source": "akshare_csindex"
+      },
+      {
+        "index_code": "000905",
+        "index_name": "中证500",
+        "date": "2026-09-21",
+        "code": "688778",
+        "name": "厦钨新能",
+        "exchange": "上海证券交易所",
+        "weight_pct": null,
+        "source": "akshare_csindex"
+      },
+      {
+        "index_code": "000905",
+        "index_name": "中证500",
+        "date": "2026-09-21",
+        "code": "688819",
+        "name": "天能股份",
+        "exchange": "上海证券交易所",
+        "weight_pct": null,
+        "source": "akshare_csindex"
+      },
+      {
+        "index_code": "000905",
+        "index_name": "中证500",
+        "date": "2026-09-21",
+        "code": "689009",
+        "name": "九号公司",
+        "exchange": "上海证券交易所",
+        "weight_pct": null,
+        "source": "akshare_csindex"
+      }
+    ],
+    "identity_set_sha256": "326446b84ebf775caf5ace3e30b0c264b703c1da1061b2763e88f38271c206c6",
+    "historical_universe": false
+  },
+  "document_selection_rule": "Choose broker with latest endpoint T1 report among brokers with T0 coverage; lexicographic organization tie-break descending. Deduplicate identical endpoint reports and supplement with latest report if only one. Select latest action implementation or share-change announcement in window; if absent retain latest before window.",
+  "document_selection_frozen_at": "2026-09-22T06:48:41.131214+00:00"
+}

@@ -1,0 +1,1394 @@
+{
+  "case": "market",
+  "question": "请帮我寻找 A 股未来 1—3 年值得考虑的投资机会，不预设行业或公司。请自行研究公开信息，说明哪些对象及条件更有吸引力，也可以得出目前没有合适机会的结论。研究截止日为 2026-09-21。",
+  "answers": [
+    {
+      "label": "A",
+      "answer": "截至 **2026 年 9 月 21 日**，这轮研究没有确认一个“经营逻辑成立、价格也足够有吸引力”的即时买入对象。我会优先跟踪**美的集团，其次新和成；中微公司保留观察，但对价格要求更严格**。这只是本次查证范围内的结论，不能推出整个 A 股没有机会。\n\n起点是公开经营数据，而非先选行业。2026 年 1—7 月工业企业利润增长 17.6%，但电子、有色、化工与汽车、电气机械之间分化明显，应收账款和存货增速又高于收入增速。因此，行业利润复苏需要进一步核对现金兑现和持续性。[国家统计局](https://www.stats.gov.cn/sj/zxfb/202608/t20260827_1965126.html) 沪市半年报综述也显示盈利及现金流改善，但电子利润增长包含存储企业大幅扭亏，不能直接当成全部科技企业的长期增速。[上交所半年报综述](https://www.sse.com.cn/aboutus/mediacenter/hotandd/c/c_20260830_10830362.shtml)\n\n我据此选了三种不同机制做公司核查：成熟制造的现金回报、精细化工的周期与技术能力、半导体设备的国产替代。没有把行业相关公司名单当成机会。\n\n**美的集团（000333）：优先等现金回报与价格匹配。**\n\n上半年收入 2600.42 亿元、归母利润 264.46 亿元，分别增长 3.55%、1.66%；经营现金流 375.52 亿元。扣非利润下降 25.31%，公司解释主要涉及汇兑损失计入经常损益、对应外汇管理衍生工具收益计入非经常损益，不能仅凭扣非下降认定主业崩坏，也不能未经匹配核对就全部加回。海外收入增长 5.54%，楼宇科技和机器人业务各增长约 10%，提供增量，但当前整体仍是低速增长。[公司半年报](https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12572219&stockid=000333)\n\n我的判断是，其吸引力应主要来自制造、渠道和现金分配能力，不能依赖机器人概念赋予高估值。按报告现金流减去购建长期资产支出，半年余量约 349.18 亿元；这不是严格的股东自由现金流，仍含营运资金和财务公司业务影响。\n\n更有吸引力的条件是：完成汇兑与套保匹配后，可持续每股盈利仍接近 6 元，并有能力在正常资本开支后每年分配约 3 元以上；价格进入下述约 66 元的情景门槛。未来两三期若收入增长停滞、渠道回款恶化或真实套保损失持续侵蚀利润，应下调盈利假设，而不是机械等待“估值修复”。\n\n**新和成（002001）：有利润和现金，但需要为周期回落留余地。**\n\n上半年收入 131.29 亿元、归母利润 40.11 亿元，分别增长 18.28%、11.31%。公司明确披露蛋氨酸量价齐升，因此增长包含产品价格景气因素。经营现金流 36.40 亿元，扣除购建长期资产支出 13.71 亿元后约剩 22.70 亿元，仅约为归母利润的 57%；尼龙产业链、PPS 等项目仍在建设。[公司半年报](https://static.cninfo.com.cn/finalpage/2026-08-20/1225482495.PDF)\n\n价值来源是已有产品的技术与生产能力以及真实分红，风险则是竞争供给恢复、价格下行和新项目持续占用资金。2025 年分红合计 30.68 亿元，占净利润 45.36%；2026 年提出的回购用于激励或员工持股，不能当成注销回购带来的每股权益提升。[公司回报公告](https://paper.cnstock.com/html/2026-08/20/content_2256633.htm)\n\n我不会把半年利润直接翻倍再给予成长估值。按已披露派息金额、派息率及约 30.73 亿股粗算，2025 年每股利润约 2.20 元；下面采用 2029 年 2.10 元，容许景气回落。约 20 元才较符合这个保守情景。要上调门槛，需证实利润增长主要来自可持续销量和成本优势，同时资本开支后的现金足以覆盖分红；单看蛋氨酸涨价不够。\n\n**中微公司（688012）：经营兑现明显，当前价格包含很高要求。**\n\n上半年收入 66.91 亿元、同比增长 34.89%，扣非利润 11.23 亿元、增长 108.36%。归母利润 28.25 亿元还包含股权投资重估及出售持股的收益。研发投入 20.41 亿元，其中资本化支出 6.89 亿元，资本化比例同比上升 13.02 个百分点；经营现金流 6.85 亿元，约为扣非利润的 61%。[公司半年报](https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12505778&stockid=688012)\n\n先进刻蚀产品进入量产、客户验证后扩大采用，是可理解的收入来源；未来回报取决于设备份额、客户扩产与研发成果兑现，而非一次性投资收益。资本化本身不等于造假，但会改变利润与现金支出的时点，应跟踪新增资本化、后续摊销和项目收益。\n\n9 月 21 日收盘 **353.55 元**已核实。用半年扣非每股收益 1.72 元简单翻倍，仅作为尺度比较，对应约 103 倍；它不是正式全年预测，却足以说明不能使用含投资收益的低表观市盈率来判断便宜。[历史行情](https://hk.investing.com/equities/advanced-micro-fabrication-inc-historical-data) 我更倾向等待价格下降，或等待主营盈利与现金证明更强的增长能力。\n\n以下把“有吸引力”写成可以复核的价格条件。**全部是我的情景假设，不是公司指引、市场一致预期或精准目标价。**假设持有三年、第三年按指定市盈率出售，股息每年支付；不考虑税费。可接受价格为各年股息与第三年出售价值的折现和。\n\n| 对象 | 已核实参考价及日期 | 2029 年每股利润 / 退出市盈率假设 | 未来三年每股股息假设 | 要求年回报 | 情景价格门槛 |\n|---|---|---|---|---|---|\n| 美的集团 | 84.40 元，9 月 18 日 | 6.80 元 / 12 倍 | 3.20、3.40、3.60 元 | 12% | 约 66 元 |\n| 新和成 | 26.86 元，9 月 4 日，仅搜索摘要 | 2.10 元 / 12 倍 | 0.90、0.90、0.95 元 | 12% | 约 20 元 |\n| 中微公司 | 353.55 元，9 月 21 日 | 7.00 元 / 35 倍 | 保守按零处理 | 15% | 约 161 元 |\n\n美的参考价来自有日期的[历史行情表](https://jp.investing.com/equities/midea-group-a-historical-data)；新和成参考价来自[Yahoo 历史行情搜索结果](https://hk.finance.yahoo.com/quote/002001.SZ/history/)，正文打开失败，可靠性和时效性较低。**美的、新和成的 9 月 21 日收盘价没有成功提取，因此不能宣称它们在截止日确定距离买入门槛多少。**更新到可靠的截止日价格，是实际作出买入判断前仍缺的一步。\n\n这些门槛的意义是拒绝为未经证明的增长提前付太多钱：美的情景不要求很高增长，新和成容许利润回归，中微则已经要求三年后每股扣非盈利约为当前半年年化尺度的两倍，同时仍给 35 倍估值。即便如此，中微参考价格也高于该情景支持的价格。\n\n还需看下行：若三年后美的每股盈利降至 4.50 元、给 10 倍估值、累计收息 7.50 元；新和成降至 1.30 元、给 10 倍、累计收息 1.80 元；中微仅达 3.50 元、给 30 倍且不计股息，三者相对上述参考价格的累计回报分别约为 **−38%、−45%、−70%**。这些是压力情景，不是概率预测，也不是最大损失。\n\n实际优先顺序是：先补齐美的、新和成的截止日价格及现金分配核查，再按价格门槛决定是否进入可买名单；中微则重点等待价格与主营盈利要求之间的差距缩小。对未来一年，现金兑现与价格纪律更关键；对两三年，才有时间验证海外业务、化工项目和新设备的增量。\n\n本轮深入核查只有上述三家公司，未完成银行、医药、资源、消费和其他制造行业的系统比较；也未完成三家公司全部债务期限、项目回报和竞争供给核查。因此结论是**暂未确认可立即买入的机会，保留有条件的候选**，不是对 A 股整体作否定判断。",
+      "sources": [
+        {
+          "title": "国家统计局：2026年1—7月份全国规模以上工业企业利润增长17.6%",
+          "url": "https://www.stats.gov.cn/sj/zxfb/202608/t20260827_1965126.html",
+          "published": "2026-08-27",
+          "used_for": "跨行业初筛，利润、收入和营运资金增速"
+        },
+        {
+          "title": "上交所：沪市公司2026年半年报业绩综述",
+          "url": "https://www.sse.com.cn/aboutus/mediacenter/hotandd/c/c_20260830_10830362.shtml",
+          "published": "2026-08-30",
+          "used_for": "整体经营现金流、电子增长的集中贡献；不作单家公司预测"
+        },
+        {
+          "title": "美的集团2026年半年度报告（发行人公告转载）",
+          "url": "https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12572219&stockid=000333",
+          "published": "2026-08-29",
+          "used_for": "收入、归母与扣非、现金流、资本开支、套保说明及业务分部"
+        },
+        {
+          "title": "新和成2026年半年度报告",
+          "url": "https://static.cninfo.com.cn/finalpage/2026-08-20/1225482495.PDF",
+          "published": "2026-08-20",
+          "used_for": "蛋氨酸量价、在建项目、财务与现金流、股本"
+        },
+        {
+          "title": "新和成半年度报告摘要及质量回报双提升公告",
+          "url": "https://paper.cnstock.com/html/2026-08/20/content_2256633.htm",
+          "published": "2026-08-20",
+          "used_for": "2025分红金额及派息率、2026回购用途"
+        },
+        {
+          "title": "中微公司2026年半年度报告（发行人公告转载）",
+          "url": "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12505778&stockid=688012",
+          "used_for": "主营增长、非经常收益、扣非每股收益、现金流及研发资本化",
+          "publication_note": "2026年8月披露的半年报；本轮未独立确认该转载页面具体发布日期。"
+        },
+        {
+          "title": "美的集团000333历史行情",
+          "url": "https://jp.investing.com/equities/midea-group-a-historical-data",
+          "observation_date": "2026-09-18",
+          "used_for": "参考收盘84.40元；不当作9月21日"
+        },
+        {
+          "title": "新和成002001.SZ历史行情搜索片段",
+          "url": "https://hk.finance.yahoo.com/quote/002001.SZ/history/",
+          "observation_date": "2026-09-04",
+          "used_for": "仅搜索片段26.86元；正文失败，非截止日价格"
+        },
+        {
+          "title": "中微公司688012历史行情",
+          "url": "https://hk.investing.com/equities/advanced-micro-fabrication-inc-historical-data",
+          "observation_date": "2026-09-21",
+          "used_for": "收盘353.55元；排除页面9月22日盘中数据"
+        }
+      ],
+      "tools_log": [
+        {
+          "at": "2026-09-22T06:57:06.165Z",
+          "tool": "web.run",
+          "request": {
+            "search_query": [
+              {
+                "q": "site.stats.gov.cn 2026年1—8月份 国民经济 9月"
+              },
+              {
+                "q": "site.stats.gov.cn 2026年1—7月份 全国规模以上工业企业 利润"
+              },
+              {
+                "q": "A股 2026 半年报 行业 利润 现金流 增长"
+              }
+            ],
+            "response_length": "long"
+          },
+          "operation_count": 3,
+          "status": "success",
+          "key_urls": [
+            "https://www.stats.gov.cn/sj/zxfb/202608/t20260827_1965126.html",
+            "https://www.stats.gov.cn/sj/zxfb/202609/t20260915_1965307.html",
+            "https://www.sse.com.cn/aboutus/mediacenter/hotandd/c/c_20260830_10830362.shtml"
+          ],
+          "evidence_summary": "国家统计局2026年1—7月工业利润+17.6%，电子、有色、化工表现强，汽车、电气机械利润下滑；沪市2026H1综述可用。"
+        },
+        {
+          "at": "2026-09-22T06:57:35.466Z",
+          "tool": "web.run",
+          "request": {
+            "open": [
+              {
+                "ref_id": "turn385search1"
+              },
+              {
+                "ref_id": "turn385search9"
+              }
+            ],
+            "search_query": [
+              {
+                "q": "site.szse.cn 2026 半年报 综述 分红 现金流"
+              }
+            ],
+            "response_length": "long"
+          },
+          "operation_count": 3,
+          "status": "partial_success",
+          "key_urls": [
+            "https://www.sse.com.cn/aboutus/mediacenter/hotandd/c/c_20260830_10830362.shtml",
+            "https://www.stats.gov.cn/sj/zxfb/202609/t20260915_1965307.html",
+            "https://paper.cnstock.com/html/2026-08/20/content_2256633.htm"
+          ],
+          "evidence_summary": "上交所全文确认制造业盈利和经营现金流改善；电子增长含存储周期集中贡献，不能外推；统计局8月经济页打开报Internal Error；深交所综述未检出，搜索带出新和成半年报摘要及45.36%年度派息率线索，未把无名PDF用于结论。"
+        },
+        {
+          "at": "2026-09-22T06:58:01.341Z",
+          "tool": "web.run",
+          "request": {
+            "open": [
+              {
+                "ref_id": "turn388view1",
+                "lineno": 63
+              },
+              {
+                "ref_id": "https://www.stats.gov.cn/sj/zxfb/202609/t20260915_1965307.html"
+              }
+            ],
+            "search_query": [
+              {
+                "q": "美的集团 2026 半年度报告 营业收入 净利润 经营现金流"
+              },
+              {
+                "q": "中微公司 2026 半年度报告 扣非 营业收入 现金流"
+              },
+              {
+                "q": "新和成 2026 半年度报告 净利润 现金流 维生素 蛋氨酸"
+              }
+            ],
+            "response_length": "long"
+          },
+          "operation_count": 5,
+          "status": "partial_success",
+          "key_urls": [
+            "https://static.cninfo.com.cn/finalpage/2026-08-20/1225482495.PDF",
+            "https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12572219&stockid=000333",
+            "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12505778&stockid=688012"
+          ],
+          "evidence_summary": "初选美的、新和成、中微三种经营机制。美的H1归母264.46亿、扣非195.95亿受汇率/套保分类影响；中微归母28.25亿而扣非11.23亿，需核实非经常收益；新和成归母40.11亿。排除搜索误命中的中微半导688380；第三方AI摘要称36.4亿现金流超过40.11亿利润明显错误，不采用。统计局8月页第二次打开仍失败。"
+        },
+        {
+          "at": "2026-09-22T06:58:29.389Z",
+          "tool": "web.run",
+          "request": {
+            "open": [
+              {
+                "ref_id": "turn391search12"
+              },
+              {
+                "ref_id": "turn391search2"
+              },
+              {
+                "ref_id": "turn391search1"
+              }
+            ],
+            "search_query": [
+              {
+                "q": "美的集团 \"2026年9月21日\" 收盘"
+              },
+              {
+                "q": "新和成 \"2026年9月21日\" 收盘"
+              },
+              {
+                "q": "中微公司 \"2026年9月21日\" 收盘"
+              }
+            ],
+            "response_length": "long"
+          },
+          "operation_count": 6,
+          "status": "success_with_gaps",
+          "key_urls": [
+            "https://static.cninfo.com.cn/finalpage/2026-08-20/1225482495.PDF",
+            "https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12572219&stockid=000333",
+            "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12505778&stockid=688012",
+            "https://hk.finance.yahoo.com/quote/002001.SZ/history/",
+            "https://jp.investing.com/equities/midea-group-a-historical-data"
+          ],
+          "evidence_summary": "三份2026H1报告打开成功。美的经营现金流375.52亿，固定资产等购建支出26.34亿；中微投资重估及出售拓荆持股导致归母高增长，扣非为估值锚。精确9/21收盘搜索未命中新和成/中微公司，误命中港股美的、中微半导均不用；金融界美的实时报价无匹配日期不当成截止日收盘。"
+        },
+        {
+          "at": "2026-09-22T06:59:04.852Z",
+          "tool": "web.run",
+          "request": {
+            "open": [
+              {
+                "ref_id": "turn393search3"
+              },
+              {
+                "ref_id": "turn393search6"
+              }
+            ],
+            "find": [
+              {
+                "ref_id": "turn393view0",
+                "pattern": "经营活动产生的现金流量净额"
+              },
+              {
+                "ref_id": "turn393view0",
+                "pattern": "蛋氨酸"
+              },
+              {
+                "ref_id": "turn393view1",
+                "pattern": "利润分配"
+              }
+            ],
+            "search_query": [
+              {
+                "q": "\"688012\" \"2026-09-21\" 股价"
+              },
+              {
+                "q": "\"000333\" \"002001\" \"2026-09-21\" 收盘"
+              }
+            ],
+            "response_length": "long"
+          },
+          "operation_count": 7,
+          "status": "partial_success",
+          "key_urls": [
+            "https://hk.investing.com/equities/advanced-micro-fabrication-inc-historical-data",
+            "https://www.gurufocus.com/term/pe-ratio/SHSE%3A688012",
+            "https://q.stock.sohu.com/app2/mpssTrade.up?code=688012&ed=&sd=",
+            "https://jp.investing.com/equities/midea-group-a-historical-data"
+          ],
+          "evidence_summary": "中微9/21价格353.55元获有日期报价搜索结果，拟交叉核实。美的历史页成功但需读取顶部最新日期；新和成Yahoo页Internal Error。新和成PDF现金流36.40亿获确认，蛋氨酸全文find无匹配；美的分红find只显示权益表，对应期内对股东分配283.89亿，不能直接当未来每股股息。组合价格搜索未找到美的/新和成目标日数据。"
+        },
+        {
+          "at": "2026-09-22T06:59:43.450Z",
+          "tool": "web.run",
+          "request": {
+            "open": [
+              {
+                "ref_id": "turn396view1",
+                "lineno": 60
+              },
+              {
+                "ref_id": "turn396search1"
+              },
+              {
+                "ref_id": "https://finance.yahoo.com/quote/002001.SZ/history/"
+              },
+              {
+                "ref_id": "turn391search4"
+              }
+            ],
+            "find": [
+              {
+                "ref_id": "turn393view2",
+                "pattern": "资本化"
+              },
+              {
+                "ref_id": "turn393view0",
+                "pattern": "购建固定资产"
+              }
+            ],
+            "response_length": "long"
+          },
+          "operation_count": 6,
+          "status": "partial_success",
+          "key_urls": [
+            "https://jp.investing.com/equities/midea-group-a-historical-data",
+            "https://hk.investing.com/equities/advanced-micro-fabrication-inc-historical-data",
+            "https://paper.cnstock.com/html/2026-08/20/content_2256633.htm",
+            "https://static.cninfo.com.cn/finalpage/2026-08-20/1225482495.PDF"
+          ],
+          "evidence_summary": "中微历史表确认2026-09-21为353.55元，9/22盘中行排除。美的9/18为84.40元，尚缺9/21。新和成Yahoo英文页也失败；官方公告确认2025分红合计30.68亿、45.36%派息率，拟回购用于激励/员工持股，不当成注销回购收益。新和成H1资本开支13.705亿、现金流36.401亿；期初股本30.7342亿。中微资本化find无匹配，未断言其差额全部资本化。"
+        },
+        {
+          "at": "2026-09-22T07:00:33.831Z",
+          "tool": "web.run",
+          "request": {
+            "open": [
+              {
+                "ref_id": "https://hk.investing.com/equities/midea-group-a-historical-data"
+              },
+              {
+                "ref_id": "https://hk.investing.com/equities/zhejiang-nhu-a-historical-data"
+              },
+              {
+                "ref_id": "turn391search7"
+              },
+              {
+                "ref_id": "turn393view2",
+                "lineno": 215
+              },
+              {
+                "ref_id": "turn393view1",
+                "lineno": 100
+              },
+              {
+                "ref_id": "turn393view0",
+                "lineno": 150
+              }
+            ],
+            "response_length": "long"
+          },
+          "operation_count": 6,
+          "status": "partial_success",
+          "key_urls": [
+            "https://hk.investing.com/equities/midea-group-a-historical-data",
+            "https://hk.investing.com/equities/zhejiang-nhu-a-historical-data",
+            "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12505778&stockid=688012",
+            "https://static.cninfo.com.cn/finalpage/2026-08-20/1225482495.PDF"
+          ],
+          "evidence_summary": "美的/新和成香港Investing价格页打开成功但返回片段未显示价格行，未提取到目标日收盘；新和成证券之星全文报错。中微定点阅读核实H1研发资本化6.89亿、占比同比升13.02个百分点。新和成PDF正文确认蛋氨酸量价齐升、尼龙/PPS等项目建设，说明增长含周期价格因素。美的确认净非经常损益68.51亿及汇率套保分类解释，尚未逐笔重构完全匹配后的经济利润。"
+        },
+        {
+          "at": "2026-09-22T07:01:04.623Z",
+          "tool": "functions.exec/local_arithmetic",
+          "request": {
+            "javascript": "const pv=(eps,pe,div,r)=>div.reduce((s,d,i)=>s+d/(1+r)**(i+1),0)+eps*pe/(1+r)**3;\nconst scenarios=[\n{name:\"美的\",reference:84.4,eps2029:6.8,pe2029:12,dividends:[3.2,3.4,3.6],discount:0.12,bearEPS:4.5,bearPE:10,bearCumDiv:7.5},\n{name:\"新和成\",reference:26.86,eps2029:2.1,pe2029:12,dividends:[0.9,0.9,0.95],discount:0.12,bearEPS:1.3,bearPE:10,bearCumDiv:1.8},\n{name:\"中微\",reference:353.55,eps2029:7,pe2029:35,dividends:[0,0,0],discount:0.15,bearEPS:3.5,bearPE:30,bearCumDiv:0}\n];\nreturn {cash:{midea:375.52090-26.34210,nhu:36.4014428294-13.7054633773,nhuCashToProfit:36.4014428294/40.107335,amecCashToRecurring:6.845534906/11.2259033526},nhu2025Profit:30.68/0.4536,nhu2025EPS:(30.68/0.4536)/30.7342168,amecSimplePE:353.55/(1.72*2),scenarios:scenarios.map(x=>({...x,entryPV:pv(x.eps2029,x.pe2029,x.dividends,x.discount),referenceAnnualizedTotalReturn:((x.eps2029*x.pe2029+x.dividends.reduce((a,b)=>a+b,0))/x.reference)**(1/3)-1,bearTotalReturn:(x.bearEPS*x.bearPE+x.bearCumDiv)/x.reference-1}))};"
+          },
+          "operation_count": 1,
+          "status": "success",
+          "key_urls": [],
+          "evidence_summary": "依据已读取报告计算简化现金余量、现金/利润比及三年情景折现。结果：美的H1经营现金流减购建支出349.18亿；新和成22.70亿。三年基准情景现值门槛分别66.21、20.13、161.09元，均为自设假设推导，不是公司指引或精确价值。",
+          "result": {
+            "cash": {
+              "midea": 349.17879999999997,
+              "nhu": 22.695979452099998,
+              "nhuCashToProfit": 0.9076006378733465,
+              "amecCashToRecurring": 0.6097981330308286
+            },
+            "nhu2025Profit": 67.63668430335098,
+            "nhu2025EPS": 2.2006965312794624,
+            "amecSimplePE": 102.77616279069768,
+            "scenarios": [
+              {
+                "name": "美的",
+                "reference": 84.4,
+                "eps2029": 6.8,
+                "pe2029": 12,
+                "dividends": [
+                  3.2,
+                  3.4,
+                  3.6
+                ],
+                "discount": 0.12,
+                "bearEPS": 4.5,
+                "bearPE": 10,
+                "bearCumDiv": 7.5,
+                "entryPV": 66.21127915451893,
+                "referenceAnnualizedTotalReturn": 0.028411074829211902,
+                "bearTotalReturn": -0.37796208530805686
+              },
+              {
+                "name": "新和成",
+                "reference": 26.86,
+                "eps2029": 2.1,
+                "pe2029": 12,
+                "dividends": [
+                  0.9,
+                  0.9,
+                  0.95
+                ],
+                "discount": 0.12,
+                "bearEPS": 1.3,
+                "bearPE": 10,
+                "bearCumDiv": 1.8,
+                "entryPV": 20.134099398688043,
+                "referenceAnnualizedTotalReturn": 0.013347968761032503,
+                "bearTotalReturn": -0.4489947877885331
+              },
+              {
+                "name": "中微",
+                "reference": 353.55,
+                "eps2029": 7,
+                "pe2029": 35,
+                "dividends": [
+                  0,
+                  0,
+                  0
+                ],
+                "discount": 0.15,
+                "bearEPS": 3.5,
+                "bearPE": 30,
+                "bearCumDiv": 0,
+                "entryPV": 161.09147694583712,
+                "referenceAnnualizedTotalReturn": -0.11507781922538107,
+                "bearTotalReturn": -0.7030123037759864
+              }
+            ]
+          }
+        }
+      ],
+      "operation_counts": {
+        "web_entries": 36,
+        "search_entries": 12,
+        "local_research_calculations": 1
+      },
+      "unresolved": [
+        "美的、新和成2026-09-21收盘价未成功提取；分别仅核实9/18的84.40元及搜索片段9/4的26.86元。",
+        "未逐笔重构美的外汇货币项目与衍生金融工具的匹配经济损益。",
+        "未完成新和成全部产品供给、价格、项目回报率与持续资本开支周期验证。",
+        "未取得中微全部订单交付与客户资本开支、资本化研发未来摊销时间表。"
+      ]
+    },
+    {
+      "label": "B",
+      "answer": "截至 **2026-09-21**，本轮最值得继续考虑的是工业富联的算力设备业务，但现价下回报对持续增长已有要求；药明康德的经营改善很强，政策风险与价格核查仍阻止我把它升级为当前买入机会；平高电气暂列观察。**我没有找到证据足够完整、可以不附条件推荐的标的，也没有据此断言全市场没有机会。**\n\n起点是全市场经营变化，而非预设行业：2026年上半年上市公司合计净利润增长19.5%，净利润增速中位数却只有0.9%，只有四成公司净利润正增长，说明总量复苏不能直接转为广泛买入理由。统计局1—7月数据中，电子、有色利润强劲，汽车、电气机械利润下降，也提醒我们区分产量、收入与最终利润。[中上协半年经营报告](https://www.capco.org.cn/sjfb/dytj/202609/20260901/j_2026090109504700017882275680267259.html)、[统计局工业利润](https://www.stats.gov.cn/sj/zxfb/202608/t20260827_1965126.html)\n\n随后沿上交所披露的具体变化，核查了算力设备、药物研发生产服务和电网设备三个分支。它们是有限范围的研究结果，不是全市场排名。[上交所半年报综述](https://www.sse.com.cn/aboutus/mediacenter/hotandd/c/c_20260830_10830362.shtml)\n\n| 对象 | 本轮判断 | 更有吸引力的条件 |\n|---|---|---|\n| 工业富联，601138.SH | 三者中最接近可以讨论现价回报的对象；增长兑现，但并非明显低估 | 约60元以内才接近下述基准情景的10%年化门槛，且需要现金回收跟上 |\n| 药明康德，603259.SH | 经营机会成立，当前投资机会尚未闭合 | 先核清截至研究日的美国业务约束，再结合正常化利润判断；128—142元只是估值敏感区间 |\n| 平高电气，600312.SH | 设备能力得到验证，收入与现金尚未同步 | 订单交付和全年回款改善后，再看约18—20倍正常化利润；当前证据不能支持追价 |\n\n表中药明、平高的价格均为条件测算，**不是核实到的9月21日收盘价**。\n\n**工业富联：价值来自整机柜与系统整合，回报受现金占用和估值约束。**\n\n公司半年报显示，云计算收入增长75.7%，GPU、ASIC机柜同时放量，液冷、电源和机柜设计构成系统交付能力。CPO目前披露的是样机交付，不能提前计作成熟利润。半年收入5578.61亿元、归母利润237.40亿元，但经营现金流只有73.91亿元，约为归母利润的31%；存货与应收继续增长。按报表算出的毛利率约7.15%、归母净利率约4.26%，说明它保留的是制造和系统交付价值，不能享有整条算力产业链的利润。[工业富联2026半年报](https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12487983&stockid=601138)\n\n未来1年主要看已有订单交付、营运资金回收及新平台切换；2—3年看机柜、液冷和高速网络能否持续提高单机价值，同时维持份额。我的判断是增长路径有经营依据，但客户压价、平台转换或过量备货都可能令收入增长不能转成同幅度的股东回报。尚未取得客户侧合同与采购材料，因此不把公司的份额表述当成独立验证。\n\n富途页面显示9月21日15:00收盘为63.60元，总股本198.44亿股，对应约1.262万亿元市值。该报价仅取得单一行情来源；页面列出的TTM市盈率26.90倍与下方的情景测算口径不同。[工业富联行情](https://www.futunn.com/stock/601138-SH/news)\n\n下表全部是我的2029年条件假设，单位为人民币亿元；股数不变，未计分红、税费与交易成本。公式为“收入×归母净利率×退出PE÷股数”。\n\n| 2029年条件 | 收入 | 归母净利率 | 归母利润 | 退出PE | 对应每股价值 | 从63.60元起的三年年化价格回报 |\n|---|---:|---:|---:|---:|---:|---:|\n| 增长放缓、利润率受压 | 12,000 | 3.5% | 420 | 20倍 | 42.33元 | -12.7% |\n| 交付扩张且盈利能力略升 | 16,000 | 4.5% | 720 | 22倍 | 79.82元 | 7.9% |\n| 高增长与更高利润率均兑现 | 20,000 | 5.0% | 1,000 | 25倍 | 125.98元 | 25.6% |\n\n这些不是目标价或概率预测。半年收入乘二为11157亿元，仅作为经营速度参考，不能代替全年预测。63.60元若要在三年后以22倍PE取得10%年化价格回报，需要约764亿元归母利润；若净利率4.5%，对应收入约1.70万亿元。反过来，基准情景79.82元折回10%年化，当前门槛约60元。这解释了为何我认可经营变化，却认为当前价格还谈不上厚实安全边际；若现金占用持续恶化，跌到60元也不自动构成机会。\n\n**药明康德：商业化项目贡献比“创新药热度”更实在，但地缘风险改变估值。**\n\n半年持续经营收入增长48%，在手订单664.3亿元、同比增长25.2%，支持“管线走向后期、既有产能释放带来规模效应”的解释。扣非归母利润105.72亿元、经营现金流96.99亿元；上年处置股权形成高基数，所以29.43%的归母增速与89.39%的扣非增速不能混用。公司把2026收入指引上调至585—605亿元，同时把资本开支增至75—85亿元；增长仍要持续投入。[药明康德半年报](https://static.cninfo.com.cn/finalpage/2026-08-04/1225455027.PDF)、[公司业绩与指引](https://www.wuxiapptec.cn/news/wuxi-news/m4tt0j39a735o3vj5qsrfzdi)\n\n未来1—3年的受益路径是订单交付、客户分子进入商业化、产能爬坡，而非把订单余额一次性计成收入。不过，公司报告披露6月被列入美国1260H名单、已起诉，并称截至8月3日报告定稿时禁令申请尚无裁决。这是公司披露和立场，不能当成独立法律判断；本轮未核实此后至9月21日的裁决及具体适用限制。若客户转移项目，新产能可能同时面对收入损失与折旧压力。这个缺口足以阻止我给出当前买入结论。[半年报风险披露，第24页](https://static.cninfo.com.cn/finalpage/2026-08-04/1225455027.PDF)\n\n仅作价格敏感性：半年扣非利润乘二、除以期末总股本，约为7.09元每股收益；18—20倍对应128—142元。倍数是我为增长与政策不确定性设的研究假设，并非同业公允价。公司调整自由现金流指引中值140亿元，在130元股价下相当于约3.6%的市值收益率，而且它是公司调整口径、不是已核实的普通股自由现金流。这说明即使落在该区间，也仍需未来增长；不能因为利润快速增长就认为很便宜。\n\n**平高电气：有设备能力，但尚不能把电网建设量当成股东回报。**\n\n上交所披露其800千伏断路器已工程应用，说明具备承接高规格项目的能力。但半年收入53.74亿元、下降5.64%，归母利润8.17亿元、增长22.87%，经营现金流为-6.89亿元，利润与交付、回款并不同步。本轮没有取得可核验的新订单金额和完整归因，因此只能判断其受益方向合理，尚不能量化未来三年的利润增量。[上交所经营综述](https://www.sse.com.cn/aboutus/mediacenter/hotandd/c/c_20260830_10830362.shtml)、[平高电气半年报](https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12506211&stockid=600312)\n\n将半年扣非利润简单乘二，约合每股1.18元；18—20倍对应21.2—23.5元。这只是偏谨慎的研究区间，半年季节性使它不能替代全年估值。若后续交付增长而应收、存货或现金缺口进一步扩大，就应下调吸引力；若持续回款且高规格设备盈利贡献扩大，才有依据提高正常化盈利。现阶段它的研究优先级低于工业富联。\n\n本轮已用完36项网页操作、其中12项搜索。药明和平高的行情入口报错或拒绝访问，平高中标公告PDF也未能打开；客户侧采购、美国政策最新状态未完成独立核查。我因此交付的是一个有现价反推的成长候选、一个受重大未知限制的经营候选和一个观察对象，没有用缺失资料补造结论。银行、消费、资源品等尚未进行公司层面的充分比较，不能解释为已排除。",
+      "sources": [
+        {
+          "title": "境内股票市场上市公司2026年半年度经营业绩报告",
+          "url": "https://www.capco.org.cn/sjfb/dytj/202609/20260901/j_2026090109504700017882275680267259.html",
+          "published_at": "2026-09-01",
+          "type": "industry association primary summary",
+          "used_for": [
+            "全市场经营分化与覆盖入口"
+          ]
+        },
+        {
+          "title": "2026年1—7月份全国规模以上工业企业利润增长17.6%",
+          "url": "https://www.stats.gov.cn/sj/zxfb/202608/t20260827_1965126.html",
+          "published_at": "2026-08-27",
+          "type": "government primary statistics; search excerpt",
+          "used_for": [
+            "电子有色与汽车电气机械利润分化"
+          ]
+        },
+        {
+          "title": "沪市公司2026年半年报业绩综述",
+          "url": "https://www.sse.com.cn/aboutus/mediacenter/hotandd/c/c_20260830_10830362.shtml",
+          "published_at": "2026-08-30",
+          "type": "exchange primary summary",
+          "used_for": [
+            "候选发现",
+            "平高高规格设备工程应用"
+          ]
+        },
+        {
+          "title": "工业富联2026年半年度报告",
+          "url": "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12487983&stockid=601138",
+          "published_at": "2026-08-12",
+          "type": "company primary filing reproduced by Sina",
+          "used_for": [
+            "财务基线",
+            "GPU ASIC 机柜价值归属",
+            "新技术阶段",
+            "营运资金"
+          ]
+        },
+        {
+          "title": "工业富联行情与新闻",
+          "url": "https://www.futunn.com/stock/601138-SH/news",
+          "as_of": "2026-09-21 15:00 Asia/Shanghai",
+          "type": "broker quote page; single source",
+          "used_for": [
+            "63.60元收盘",
+            "198.44亿总股本",
+            "TTM PE26.90"
+          ]
+        },
+        {
+          "title": "药明康德2026年半年度报告",
+          "url": "https://static.cninfo.com.cn/finalpage/2026-08-04/1225455027.PDF",
+          "published_at": "2026-08-04",
+          "type": "company primary filing",
+          "used_for": [
+            "持续经营与终止经营口径",
+            "扣非及现金流",
+            "股本",
+            "截至8月3日诉讼披露"
+          ]
+        },
+        {
+          "title": "药明康德2026年上半年业绩强劲并全面上调全年指引",
+          "url": "https://www.wuxiapptec.cn/news/wuxi-news/m4tt0j39a735o3vj5qsrfzdi",
+          "published_at": "2026-08-03",
+          "type": "company primary release",
+          "used_for": [
+            "收入/资本开支/调整FCF指引",
+            "管理层政策风险表述"
+          ]
+        },
+        {
+          "title": "平高电气2026年半年度报告",
+          "url": "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12506211&stockid=600312",
+          "published_at": "2026-08-20",
+          "type": "company primary filing reproduced by Sina",
+          "used_for": [
+            "收入利润现金流股数",
+            "条件估值"
+          ]
+        }
+      ],
+      "tools_log": [
+        {
+          "call": 1,
+          "tool": "web.run",
+          "request": {
+            "search_query": [
+              {
+                "q": "site.stats.gov.cn 2026年 1—8月份 全国规模以上工业 增加值 利润"
+              },
+              {
+                "q": "2026年 半年报 A股 利润 增长 行业 现金流"
+              },
+              {
+                "q": "2026年9月21日 A股 收盘 市盈率 银行 电网 家电"
+              }
+            ],
+            "response_length": "long"
+          },
+          "web_entries": 3,
+          "search_entries": 3,
+          "status": "success",
+          "evidence": [
+            "统计局1—7月工业利润+17.6%，电子+1.1倍、有色+91.8%，汽车-20.4%、电气设备-7.6%；产业量增长与利润并不相同。",
+            "上交所半年度综述：沪市净利润+17.6%，电子、有色、石油石化净利增速领先。",
+            "上市公司协会提供全市场半年经营报告，可作为非预设行业入口；行情聚合页仅为线索尚未核实。"
+          ],
+          "key_urls": [
+            "https://www.stats.gov.cn/sj/zxfb/202608/t20260827_1965126.html",
+            "https://www.sse.com.cn/aboutus/mediacenter/hotandd/c/c_20260830_10830362.shtml",
+            "https://www.capco.org.cn/sjfb/dytj/202609/20260901/j_2026090109504700017882275680267259.html"
+          ]
+        },
+        {
+          "call": 2,
+          "tool": "web.run",
+          "request": {
+            "open": [
+              {
+                "ref_id": "https://www.sse.com.cn/aboutus/mediacenter/hotandd/c/c_20260830_10830362.shtml"
+              },
+              {
+                "ref_id": "https://www.capco.org.cn/sjfb/dytj/202609/20260901/j_2026090109504700017882275680267259.html"
+              },
+              {
+                "ref_id": "https://www.stats.gov.cn/sj/zxfb/202609/t20260915_1965307.html"
+              }
+            ],
+            "response_length": "long"
+          },
+          "web_entries": 3,
+          "search_entries": 0,
+          "status": "2 success, 1 internal error",
+          "evidence": [
+            "SSE原文给出工业富联AI服务器收入+2.3倍与机柜出货+3.2倍；药明康德在手订单664亿元+25%；平高电气归母业绩方向+23%，成为三条待核查线索。",
+            "中上协全市场净利增速19.5%，中位数0.9%，四成公司净利润正增长；总量改善高度分化。",
+            "统计局2026-09-15经济运行正文打开内部错误，保留搜索摘要但不假装打开核实。"
+          ],
+          "key_urls": [
+            "https://www.sse.com.cn/aboutus/mediacenter/hotandd/c/c_20260830_10830362.shtml",
+            "https://www.capco.org.cn/sjfb/dytj/202609/20260901/j_2026090109504700017882275680267259.html"
+          ]
+        },
+        {
+          "call": 3,
+          "tool": "web.run",
+          "request": {
+            "search_query": [
+              {
+                "q": "工业富联 2026年 半年度报告 归母 净利润 现金流"
+              },
+              {
+                "q": "药明康德 2026年 半年度报告 持续经营 在手订单"
+              },
+              {
+                "q": "平高电气 2026年 半年度报告 在手订单 营业收入"
+              }
+            ],
+            "response_length": "long"
+          },
+          "web_entries": 3,
+          "search_entries": 3,
+          "status": "success",
+          "evidence": [
+            "药明公司披露持续收入+48%、在手订单664.3亿元+25.2%，归母与调整利润差异需核对；在建工程增加40.35%。",
+            "工业富联半年报转载显示经营现金流73.91亿元、收入5578.61亿元；存在存货与应收占款。",
+            "平高半年报搜索摘要称重点项目未到交付期、经营现金流-6.89亿元，提示不能把电网投资直接当收入。"
+          ],
+          "key_urls": [
+            "https://static.cninfo.com.cn/finalpage/2026-08-04/1225455027.PDF",
+            "https://www.wuxiapptec.cn/news/wuxi-news/m4tt0j39a735o3vj5qsrfzdi",
+            "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12487983&stockid=601138",
+            "http://static.sse.com.cn/disclosure/listedinfo/announcement/c/new/2026-08-20/600312_20260820_NUD9.pdf"
+          ]
+        },
+        {
+          "call": 4,
+          "tool": "web.run",
+          "request": {
+            "open": [
+              {
+                "ref_id": "https://static.cninfo.com.cn/finalpage/2026-08-04/1225455027.PDF"
+              },
+              {
+                "ref_id": "https://www.wuxiapptec.cn/news/wuxi-news/m4tt0j39a735o3vj5qsrfzdi"
+              },
+              {
+                "ref_id": "http://static.sse.com.cn/disclosure/listedinfo/announcement/c/new/2026-08-20/600312_20260820_NUD9.pdf"
+              },
+              {
+                "ref_id": "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12487983&stockid=601138"
+              }
+            ],
+            "response_length": "long"
+          },
+          "web_entries": 4,
+          "search_entries": 0,
+          "status": "3 success, 1 internal error",
+          "evidence": [
+            "药明半年报核实：H1归母110.80亿、扣非105.72亿、CFO96.99亿；去年出售药明合联权益形成高非经常基数；总股本29.8376亿股。",
+            "药明持续收入48%同比相较总收入38.93%因终止业务剥离，不能混口径。",
+            "平高上交所PDF返回Internal Error；工业富联新浪公司报告正文可读待定向定位。"
+          ],
+          "key_urls": [
+            "https://static.cninfo.com.cn/finalpage/2026-08-04/1225455027.PDF",
+            "https://www.wuxiapptec.cn/news/wuxi-news/m4tt0j39a735o3vj5qsrfzdi",
+            "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12487983&stockid=601138"
+          ]
+        },
+        {
+          "call": 5,
+          "tool": "web.run",
+          "request": {
+            "search_query": [
+              {
+                "q": "\"工业富联\" \"2026年9月21日\" \"收盘\""
+              },
+              {
+                "q": "\"药明康德\" \"2026年9月21日\" \"收盘\""
+              },
+              {
+                "q": "\"平高电气\" \"2026年9月21日\" \"收盘\""
+              }
+            ],
+            "open": [
+              {
+                "ref_id": "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12506211&stockid=600312"
+              },
+              {
+                "ref_id": "turn379view1",
+                "lineno": 45
+              },
+              {
+                "ref_id": "turn379view0",
+                "lineno": 325
+              }
+            ],
+            "find": [
+              {
+                "ref_id": "turn379view3",
+                "pattern": "归属于上市公司股东的净利润"
+              }
+            ],
+            "response_length": "long"
+          },
+          "web_entries": 7,
+          "search_entries": 3,
+          "status": "success; two A-share quote searches unresolved",
+          "evidence": [
+            "富途工业富联601138-SH页面显示09/21 15:00收盘63.60元、总股本198.44亿股、TTM PE26.90；别处日期混杂报道不采用。",
+            "药明报价搜索主要返回港股208港元，不能用于A股；平高未返回合适历史收盘。",
+            "药明官网把2026收入指引从513—530亿元调至585—605亿元。",
+            "工业富联原报告核实H1归母237.40亿、扣非229.84亿，报表单位为千元。平高报告正文打开成功。"
+          ],
+          "key_urls": [
+            "https://www.futunn.com/stock/601138-SH/news",
+            "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12506211&stockid=600312",
+            "https://www.wuxiapptec.cn/news/wuxi-news/m4tt0j39a735o3vj5qsrfzdi"
+          ]
+        },
+        {
+          "call": 6,
+          "tool": "web.run",
+          "request": {
+            "open": [
+              {
+                "ref_id": "https://www.futunn.com/stock/603259-SH"
+              },
+              {
+                "ref_id": "https://www.futunn.com/stock/600312-SH"
+              },
+              {
+                "ref_id": "turn379view3",
+                "lineno": 180
+              },
+              {
+                "ref_id": "turn380view0",
+                "lineno": 105
+              },
+              {
+                "ref_id": "turn379view1",
+                "lineno": 53
+              }
+            ],
+            "response_length": "long"
+          },
+          "web_entries": 5,
+          "search_entries": 0,
+          "status": "3 success, 1 internal error, 1 empty body",
+          "evidence": [
+            "工业富联期末存货1921.09亿较年初+27.30%，应收1275.22亿+15.15%，应付1784.59亿+29.36%；产能扩张也占用资金。",
+            "平高H1收入53.74亿-5.64%、归母8.1685亿+22.87%、扣非7.983亿、CFO-6.894亿、总股本13.5692亿。",
+            "药明公司披露被列入1260H清单且诉讼进行中；2026资本开支指引75—85亿、调整自由现金流135—145亿。这改变风险评估，需独立核验限制范围。",
+            "药明富途根报价页Internal Error；平高根报价页仅一行空文，无可用价格。"
+          ],
+          "key_urls": [
+            "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12487983&stockid=601138",
+            "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12506211&stockid=600312",
+            "https://www.wuxiapptec.cn/news/wuxi-news/m4tt0j39a735o3vj5qsrfzdi"
+          ]
+        },
+        {
+          "call": 7,
+          "tool": "web.run",
+          "request": {
+            "search_query": [
+              {
+                "q": "WuXi AppTec 1260H 2026 September BIOSECURE site.congress.gov"
+              },
+              {
+                "q": "2026 second quarter earnings AI capital expenditures demand site.abc.xyz"
+              },
+              {
+                "q": "2026 国家电网 投资 8000 亿元 site.sasac.gov.cn"
+              }
+            ],
+            "open": [
+              {
+                "ref_id": "https://www.futunn.com/stock/603259-SH/news"
+              },
+              {
+                "ref_id": "https://www.futunn.com/stock/600312-SH/news"
+              },
+              {
+                "ref_id": "turn380view0",
+                "lineno": 147
+              }
+            ],
+            "response_length": "long"
+          },
+          "web_entries": 6,
+          "search_entries": 3,
+          "status": "searches returned nonmatching secondary news only; 1 report open success; quote opens failed",
+          "evidence": [
+            "1260H法律查询及国资委电网查询没有返回对应官方原始材料，不能据此断言已覆盖清单或招标。",
+            "Alphabet查询返回AP等二手新闻，不作为客户合同或工业富联份额的证据。",
+            "药明/news端点Internal Error；平高/news跳403。两家公司截止日A股报价仍缺。",
+            "平高报告打开成功但本次未返回目标管理层段落，继续定向find。"
+          ],
+          "key_urls": [
+            "https://apnews.com/article/f914606d842d4c6848019083d667fc3a",
+            "https://www.futunn.com/403",
+            "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12506211&stockid=600312"
+          ]
+        },
+        {
+          "call": 8,
+          "tool": "web.run",
+          "request": {
+            "find": [
+              {
+                "ref_id": "turn380view0",
+                "pattern": "重点项目"
+              },
+              {
+                "ref_id": "turn379view3",
+                "pattern": "云计算"
+              },
+              {
+                "ref_id": "turn379view0",
+                "pattern": "1260H"
+              }
+            ],
+            "response_length": "long"
+          },
+          "web_entries": 3,
+          "search_entries": 0,
+          "status": "2 matches, 1 no match",
+          "evidence": [
+            "药明半年报第24页：公司称6月8日被列入1260H、6月11日起诉、6月29日申请禁令，8月3日报告定稿时未裁决；这只能支持该时点，不能断言9月21日诉讼状态。",
+            "工业富联报告云计算定义包含服务器存储软硬方案，云计算在建工程85.80亿元；没有据此把芯片价值归给整机厂。",
+            "平高find重点项目无匹配，搜索摘要与可检索正文存在可见性差异，不能称完整复核该原因。"
+          ],
+          "key_urls": [
+            "https://static.cninfo.com.cn/finalpage/2026-08-04/1225455027.PDF",
+            "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12487983&stockid=601138"
+          ]
+        },
+        {
+          "call": 9,
+          "tool": "web.run",
+          "request": {
+            "open": [
+              {
+                "ref_id": "https://static.sse.com.cn/disclosure/listedinfo/announcement/c/new/2026-09-09/600312_20260909_XCBJ.pdf"
+              },
+              {
+                "ref_id": "turn379view3",
+                "lineno": 155
+              }
+            ],
+            "response_length": "long"
+          },
+          "web_entries": 2,
+          "search_entries": 0,
+          "status": "industrial report success; Pinggao award PDF internal error",
+          "evidence": [
+            "工业富联管理层全文：云计算收入+75.7%；ASIC与GPU双路线增长，已覆盖机柜设计/液冷/电源；CPO为样机交货而非规模利润。",
+            "营业成本5179.69798亿元、收入5578.60645亿元，可计算毛利率；当前业绩主要兑现于既有AI服务器/交换机，而新产品不能全算未来确定利润。",
+            "平高9月9日中标公告PDFInternal Error，未核实订单金额及归属，不将公告标题当收入。"
+          ],
+          "key_urls": [
+            "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12487983&stockid=601138"
+          ]
+        },
+        {
+          "call": 10,
+          "tool": "local JavaScript deterministic calculation",
+          "inputs": {
+            "fii": {
+              "h1_revenue_yi": 5578.60645,
+              "h1_cost_yi": 5179.69798,
+              "h1_profit_yi": 237.40458,
+              "h1_cfo_yi": 73.91463,
+              "shares_yi": 198.44,
+              "price": 63.6
+            },
+            "wuxi": {
+              "h1_core_profit_yi": 105.7217731783,
+              "shares_yi": 29.83757155,
+              "fcf_guidance_mid_yi": 140
+            },
+            "pinggao": {
+              "h1_core_profit_yi": 7.9830224194,
+              "shares_yi": 13.56921309
+            }
+          },
+          "formulas": [
+            "market_cap=price*shares",
+            "gross_margin=1-cost/revenue",
+            "cash_conversion=CFO/net_profit",
+            "three_year_price=revenue*net_margin*PE/shares",
+            "annual_return=(three_year_price/current_price)^(1/3)-1",
+            "required_profit=current_price*1.1^3*shares/22",
+            "annualized_core_EPS=H1_deducted_profit*2/shares"
+          ],
+          "status": "success",
+          "results": {
+            "fii": {
+              "market_cap_yi": 12620.784,
+              "gm": 0.07150683124456647,
+              "net_margin": 0.04255625166030488,
+              "cfo_profit": 0.31134458315842095,
+              "annualized_reference_profit": 474.80916,
+              "annualized_reference_revenue": 11157.2129,
+              "annualized_pe": 26.58075088526093,
+              "required_profit_for_3yr_10pct_22pe": 763.5574320000003,
+              "required_revenue_at_4_5pct": 16967.94293333334,
+              "scenarios": [
+                {
+                  "label": "downside",
+                  "revenue": 12000,
+                  "margin": 0.035,
+                  "pe": 20,
+                  "profit": 420.00000000000006,
+                  "price": 42.330175367869394,
+                  "annual_return": -0.12689933832131994
+                },
+                {
+                  "label": "conditional_base",
+                  "revenue": 16000,
+                  "margin": 0.045,
+                  "pe": 22,
+                  "profit": 720,
+                  "price": 79.82261640798227,
+                  "annual_return": 0.07867251881059234
+                },
+                {
+                  "label": "strong",
+                  "revenue": 20000,
+                  "margin": 0.05,
+                  "pe": 25,
+                  "profit": 1000,
+                  "price": 125.98266478532554,
+                  "annual_return": 0.25588890833603095
+                }
+              ],
+              "entry_for_10pct_base": 59.971913154006195
+            },
+            "wuxi": {
+              "annualized_core_eps": 7.08648644552978,
+              "price_at18pe": 127.55675601953604,
+              "price_at20pe": 141.7297289105956,
+              "fcf_yield_at130": 0.03609285276847797
+            },
+            "pinggao": {
+              "annualized_core_eps": 1.1766374905385173,
+              "price_at18pe": 21.179474829693312,
+              "price_at20pe": 23.532749810770348
+            }
+          },
+          "evidence": [
+            "所有未来收入、净利率、PE、10%回报要求均为研究者情景假设；半年×2仅统一运行速度参考，非全年预测。"
+          ]
+        }
+      ],
+      "operation_counts": {
+        "web_entries": 36,
+        "search_entries": 12,
+        "local_research_calculations": 1
+      },
+      "unresolved": [
+        "药明康德与平高电气截至2026-09-21的A股收盘价未取得，不采用药明港股报价代替。",
+        "药明1260H及相关诉讼、适用法律限制在2026-08-03之后至2026-09-21的变化未独立核实。",
+        "工业富联客户侧采购、份额与新产品量产的独立交叉证据不足。",
+        "平高9月9日中标公告金额、订单所属公司及未来交付进度未取得；收入下降与利润上升的完整分解未查清。",
+        "工业富联未来利润率、现金转换与2029年收入均为条件假设，未获得公司三年盈利指引。"
+      ]
+    },
+    {
+      "label": "C",
+      "answer": "截至 **2026 年 9 月 21 日**，本轮最值得优先考虑的是 **海尔智家（600690.SH）的有条件价值修复**；**紫金矿业（601899.SH）**有更明确的项目增量，但要为金属价格回落留出余地。北方华创与阳光电源都存在真实业务机会，我暂不把其现价视为优先选择。\n\n我先查看跨行业数据，再沿半导体设备、矿业、家电和储能四条路径核验公司。中上协数据显示，上半年上市公司归母利润增长 19.5%，但公司利润增速中位数仅 0.9%；总量改善不能直接变成普遍买入理由。这是四家公司的定向比较，**不是完成了全 A 股筛选或证明其余公司没有机会**。[中上协半年报统计](https://www.capco.org.cn/sjfb/dytj/202609/20260901/j_2026090109504700017882275680267259.html)\n\n| 对象 | 9 月 21 日 A 股收盘价 | 本轮判断 | 更有吸引力的条件 |\n|---|---:|---|---|\n| 海尔智家 | [19.89 元](https://hk.finance.yahoo.com/quote/600690.SS/) | 当前可优先考虑，但需要接受需求仍弱 | 约 20 元以内，且可持续每股利润能维持约 2 元 |\n| 紫金矿业 | [31.30 元](https://cn.investing.com/equities/zijin-mining-historical-data) | 经营路径较强，当前便宜程度取决于金属价格 | 约 24—25 元，或现价下确认扩产足以抵销价格和成本压力 |\n| 阳光电源 | [88.47 元](https://www.dabanke.com/gupiao-300274.html) | 储能需求不能直接证明整体盈利恢复 | 约 75 元且持续利润企稳；或在现价证明持续 EPS 约 4.9 元以上 |\n| 北方华创 | [676.61 元](https://www.yyqyx.com/s/002371.SZ) | 产品扩张成立，但价格要求较高 | 盈利明显加速，或价格充分降低增长兑现要求 |\n\n这些价位是下文假设下的研究条件，不是目标价、保底价或触价即买规则。\n\n**海尔智家：重点是暖通增量与经营修复，不能只把汇兑损失加回来。**\n\n2026 年上半年归母利润 103.16 亿元，下降 14.27%；扣非利润 92.99 亿元，下降 20.54%；经营现金净流入 97.52 亿元。汇兑因素同比形成 15.86 亿元的不利税前变动，但经营也承压。与此同时，暖通业务对外收入 450.28 亿元，增长约 5.8%，分部利润 45.67 亿元，增长约 26.8%；它增加的 9.64 亿元分部利润，尚未完全抵销生活电器减少的 11.97 亿元。分部利润未扣财务费用和所得税，不能当成归母利润。[海尔智家中报，第 6、16、172 页](https://static.cninfo.com.cn/finalpage/2026-08-28/1225522691.PDF)\n\n我的推断是：未来一年先看国内与美国需求能否稳定，未来两三年的增量主要依靠暖通组合改善、渠道和供应链效率，而不是等待新一轮家电补贴。增长业务已经产生利润，提供了一定支撑；但旧业务仍有下降压力，不能仅凭汇率反转就预测净利润恢复。\n\n价格给了这条路径较低的起点：上半年扣非 EPS 为 1.01 元，简单乘二为 2.02 元，19.89 元对应约 9.85 倍。**这只是半年度运行水平的比价，不是 TTM 市盈率，也不是全年盈利预测。**\n\n一个可检查的三年情景：由我假设基准 EPS 为 2 元，2027—2029 年每年增长 5%，现金派息率 40%，期末估值 12 倍。期末 EPS 约 2.32 元、股价约 27.78 元，三年累计股息约 2.65 元，相对 19.89 元的含息累计回报约 53%，简单年化约 15%。这里没有假定高增长，却仍依赖估值从约 10 倍升到 12 倍。若每年 EPS 降至 1.6 元，仍派息 40%，期末仅 9 倍，三年含息累计回报约为 **-18%**。股息未再投资，未计税费，也没有给情景赋予概率。\n\n因此它的吸引力来自“价格允许温和恢复”，不是业绩已触底。若扣除汇兑和一次性事项后盈利继续下降、暖通利润不足以填补旧业务缺口，约 20 元也可能仍贵。当前证据支持有条件考虑，尚不足以称为高确定性机会。\n\n**紫金矿业：项目增量可信，但高利润不能全部归因于产量。**\n\n上半年矿产金 47 吨、增长 13%，矿产铜 53.4 万吨；公司所说铜增长 5%是“剔除卡莫阿影响”后的口径，不能冒充总体增速。巨龙改扩建已投产，朱诺预计 2026 年底投产，马诺诺选矿已投产但冶炼一系列工程仍是年底计划；这些项目的爬坡可进入未来 1—3 年。部分产量仍落后全年计划。赤峰黄金控制权收购仍在推进，联合黄金收购已经终止，我未给未完成交易计入确定收益。[紫金中报摘要](https://static.cninfo.com.cn/finalpage/2026-08-22/1225493321.PDF)\n\n价值归属上，矿山保留资源利润的能力明显强于低毛利冶炼，但成本并未下降：铜精矿单位销售成本 24,480 元/吨，同比增加 16%；金锭单位成本增加 6.43%。对应毛利率仍高达 70.37%和 66.42%，说明当期金属价格贡献很大。上半年扣非基本 EPS 为 1.430 元，稀释后的报表 EPS 为 1.434 元，需留意可转债与股权变化。[紫金中报成本与每股收益披露](https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12519310&stockid=601899)\n\n一个经营压力测试：假设售价下降 20%、销量增加 20%、单位成本不变，按上述毛利率计算，铜精矿毛利总额仍下降约 14%，金锭下降约 16%。公式为“1.2 ×（原毛利率 − 20%）÷ 原毛利率”。这只算到毛利，尚未计税费、少数股东和各项目权益；它说明扩产并不能自动覆盖商品价格下跌。\n\n31.30 元相对“上半年扣非 EPS × 2”约为 10.94 倍，看似不高，但若中期持续 EPS 只有 2 元，便是 15.65 倍。这里的 2 元是压力估值假设，不是从毛利压力机械推导的盈利预测。若以这一利润水平配 12—12.5 倍，研究价位约为 24—25 元。现价要更有吸引力，需要金属价格保持较好水平，或者新增产量、成本改善明显超出上述压力情景。我的偏好是保留为第二顺位、更加看重价格，而不为当前利润增速直接付价。\n\n**阳光电源：储能扩张尚未证明利润同步扩张。**\n\n上半年公司归母利润 52.59 亿元、下降 32.01%，扣非利润 42.75 亿元、下降 42.96%。储能收入 154.56 亿元、下降 13.18%，毛利率 32.43%、下降 7.49 个百分点；据此计算，该业务半年毛利约从 71.1 亿元降到 50.1 亿元。整体估值还必须承担其他业务的变化，不能只看储能主题。[阳光电源中报](https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12570250&stockid=300274)\n\n我的判断是未来两三年有修复可能，但关键是项目结构、交付收入及利润率恢复。收入不变时，储能毛利率恢复 5 个百分点只增加约 7.73 亿元半年毛利，还不能直接当归母增量。用报表 EPS 按扣非利润比例近似折算，上半年扣非 EPS 年化约 4.16 元，现价约为其 21.25 倍。若要求 18 倍，条件价约 75 元；现价对应 18 倍则需持续 EPS 约 4.9 元。18 倍是我的回报要求假设，盈利继续下滑时降价本身并不构成机会。AIDC 电源布局的规模和订单未核实，不计入确定估值。\n\n**北方华创：产品进入量产是进步，但价格需要利润明显提速。**\n\n上半年收入增长 24.90%，归母利润只增长 5.05%；研发与销售服务投入增长，客户验证迭代成本和大客户商务优惠压低毛利率。新产品供货及键合设备批量出货支持未来产品覆盖扩展，但也说明客户获取了部分经济收益，公司仍需投入。[北方华创中报，第 8—11 页](https://static.cninfo.com.cn/finalpage/2026-08-26/1225501903.PDF)\n\n用半年基本 EPS 4.6486 元乘二作为计算基准，现价约为 72.8 倍。假设三年后估值降至仍不低的 40 倍，为取得不含股息的年回报 12%，届时 EPS 需约 23.76 元，相对上述基准每年增长约 36.7%；只维持当前股价也需要 EPS 约 16.92 元。公式是“现价 × 1.12³ ÷ 40”。这些不是市场一致预期，而是价格条件反推。已核实的收入与利润增速差距尚不足以支持这样的盈利要求，所以当前排在后面。\n\n本轮的结论边界是：仅深入核验四家公司，未覆盖银行、保险、创新药等所有可能方向；没有取得足够客户和竞争者资料来独立验证公司的全部前瞻陈述，也未完成四家的资本开支、并购整合与自由现金流估值。36 次网页检索/读取额度已用完，因此这些缺口保留，不能据此说全市场只有这两个机会。\n\n价格来自公开行情网页，财务以公司披露为主。海尔的一处网页把 21.12 元标为 9 月 21 日，核对后该组行情实际与 8 月 28 日数据相符，已弃用；采用与其他行情一致的 19.89 元。[历史价格记录](https://data.agoer.com/cms/Index/detail?id=600690)、[Yahoo 收盘报价](https://hk.finance.yahoo.com/quote/600690.SS/)。所有未来 EPS、估值倍数与派息假设均为本研究的条件推演，不能视为公司承诺。",
+      "sources": [
+        {
+          "title": "中上协：2026年半年度经营业绩报告",
+          "url": "https://www.capco.org.cn/sjfb/dytj/202609/20260901/j_2026090109504700017882275680267259.html",
+          "published_at": "2026-09-01",
+          "type": "association_primary",
+          "used_for": "跨行业发现入口；非自行完整扫描"
+        },
+        {
+          "title": "统计局：2026年1—7月工业利润",
+          "url": "https://www.stats.gov.cn/sj/zxfb/202608/t20260827_1965126.html",
+          "published_at": "2026-08-27",
+          "type": "government_primary",
+          "used_for": "初步行业方向；正文open超时，未作最终主要论据"
+        },
+        {
+          "title": "海尔智家2026年半年度报告",
+          "url": "https://static.cninfo.com.cn/finalpage/2026-08-28/1225522691.PDF",
+          "published_at": "2026-08-28",
+          "type": "company_filing",
+          "used_for": "财务、汇兑、暖通与生活电器分部、EPS"
+        },
+        {
+          "title": "紫金矿业2026年半年度报告摘要",
+          "url": "https://static.cninfo.com.cn/finalpage/2026-08-22/1225493321.PDF",
+          "published_at": "2026-08-22",
+          "type": "company_filing",
+          "used_for": "产量、项目节点、未完成及终止并购"
+        },
+        {
+          "title": "紫金矿业2026年半年度报告",
+          "url": "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12519310&stockid=601899",
+          "published_at": "2026-08",
+          "type": "company_filing_republication",
+          "used_for": "各产品成本毛利率、EPS与稀释口径"
+        },
+        {
+          "title": "北方华创2026年半年度报告",
+          "url": "https://static.cninfo.com.cn/finalpage/2026-08-26/1225501903.PDF",
+          "published_at": "2026-08-26",
+          "type": "company_filing",
+          "used_for": "盈利、研发销售投入、毛利原因、客户验证与产品量产"
+        },
+        {
+          "title": "阳光电源2026年半年度报告",
+          "url": "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12570250&stockid=300274",
+          "published_at": "2026-08",
+          "type": "company_filing_republication",
+          "used_for": "扣非利润、储能收入毛利率、AIDC仅为未量化布局"
+        },
+        {
+          "title": "Yahoo海尔智家A股报价",
+          "url": "https://hk.finance.yahoo.com/quote/600690.SS/",
+          "data_date": "2026-09-21",
+          "type": "public_quote",
+          "used_for": "19.89元收盘价；未采用页面盈利估值和预测股息"
+        },
+        {
+          "title": "海尔历史报价",
+          "url": "https://data.agoer.com/cms/Index/detail?id=600690",
+          "type": "public_quote",
+          "used_for": "识别21.12元对应2026-08-28旧行情"
+        },
+        {
+          "title": "大波浪海尔历史报价",
+          "url": "https://www.yyqyx.com/s/600690.SH",
+          "data_date": "2026-09-21",
+          "type": "public_quote",
+          "used_for": "与Yahoo19.89元交叉核对"
+        },
+        {
+          "title": "Investing紫金矿业A股历史报价",
+          "url": "https://cn.investing.com/equities/zijin-mining-historical-data",
+          "data_date": "2026-09-21",
+          "type": "public_quote",
+          "used_for": "31.30元人民币A股收盘价"
+        },
+        {
+          "title": "大波浪紫金矿业A股报价",
+          "url": "https://www.yyqyx.com/s/601899.SH",
+          "data_date": "2026-09-21",
+          "type": "public_quote",
+          "used_for": "31.30元交叉核对"
+        },
+        {
+          "title": "打板客阳光电源报价",
+          "url": "https://www.dabanke.com/gupiao-300274.html",
+          "data_date": "2026-09-21",
+          "type": "public_quote",
+          "used_for": "88.47元收盘价"
+        },
+        {
+          "title": "大波浪阳光电源历史报价",
+          "url": "https://www.yyqyx.com/s/300274.SZ",
+          "data_date": "2026-09-21",
+          "type": "public_quote",
+          "used_for": "88.47元交叉核对"
+        },
+        {
+          "title": "大波浪北方华创历史报价",
+          "url": "https://www.yyqyx.com/s/002371.SZ",
+          "data_date": "2026-09-21",
+          "type": "public_quote",
+          "used_for": "676.61元不复权收盘价；未采用未经重算的TTM"
+        },
+        {
+          "title": "海尔价格冲突网页（弃用）",
+          "url": "https://www.kissdown.cn/daima/600690.html",
+          "type": "excluded_quote",
+          "used_for": "21.12元与日期冲突，不用于估值"
+        },
+        {
+          "title": "北方9月21日收盘新闻（截止后发布）",
+          "url": "https://wap.stockstar.com/detail/RB2026092200006635",
+          "published_at": "2026-09-22",
+          "type": "excluded_post_cutoff_article",
+          "used_for": "不作为截止日已发布材料；随后从历史行情页独立取9/21价格"
+        }
+      ],
+      "tools_log": [
+        {
+          "seq": 4,
+          "tool": "web__run",
+          "request": {
+            "search_query": [
+              {
+                "q": "2026 上市公司 半年报 整体 净利润 行业 中国上市公司协会"
+              },
+              {
+                "q": "2026年 1—8月份 规模以上工业 利润 国家统计局"
+              }
+            ],
+            "response_length": "long"
+          },
+          "operations": 2,
+          "search_operations": 2,
+          "status": "success",
+          "returned_key_urls": [
+            "https://www.stats.gov.cn/sj/zxfb/202608/t20260827_1965126.html",
+            "https://www.capco.org.cn/sjfb/dytj/202609/20260901/j_2026090109504700017882275680267259.html"
+          ],
+          "evidence": "找到2026H1上市公司整体业绩及2026年1—7月工业利润。8月工业利润尚未取得（9月21日前不能假设已发布）；行业利润强弱分化。"
+        },
+        {
+          "seq": 5,
+          "tool": "web__run",
+          "request": {
+            "open": [
+              {
+                "ref_id": "https://www.capco.org.cn/sjfb/dytj/202609/20260901/j_2026090109504700017882275680267259.html"
+              },
+              {
+                "ref_id": "https://www.stats.gov.cn/sj/zxfb/202608/t20260827_1965126.html"
+              }
+            ],
+            "response_length": "long"
+          },
+          "operations": 2,
+          "search_operations": 0,
+          "status": "partial_success",
+          "returned_key_urls": [
+            "https://www.capco.org.cn/sjfb/dytj/202609/20260901/j_2026090109504700017882275680267259.html",
+            "https://www.stats.gov.cn/sj/zxfb/202608/t20260827_1965126.html"
+          ],
+          "evidence": "中上协原文确认5557份半年报、归母净利增长19.5%、中位数0.9%；集成电路、有色和储能出口强，消费等方向分化。统计局正文打开超时；仅已有搜索摘要可用。"
+        },
+        {
+          "seq": 6,
+          "tool": "web__run",
+          "request": {
+            "search_query": [
+              {
+                "q": "北方华创 2026 半年度报告 营业收入 归母 净利润 site:cninfo.com.cn"
+              },
+              {
+                "q": "紫金矿业 2026 半年度报告 产量 成本 净利润"
+              },
+              {
+                "q": "海尔智家 2026 半年度报告 营业收入 利润"
+              },
+              {
+                "q": "阳光电源 2026 半年度报告 储能 毛利率"
+              }
+            ],
+            "response_length": "long"
+          },
+          "operations": 4,
+          "search_operations": 4,
+          "status": "success",
+          "returned_key_urls": [
+            "https://static.cninfo.com.cn/finalpage/2026-08-26/1225501903.PDF",
+            "https://static.cninfo.com.cn/finalpage/2026-08-22/1225493321.PDF",
+            "https://static.cninfo.com.cn/finalpage/2026-08-28/1225522691.PDF",
+            "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12570250&stockid=300274"
+          ],
+          "evidence": "候选北方华创、紫金矿业、海尔智家、阳光电源2026中报均取得入口。出现重要反证：北方设备毛利率下降、紫金产量滞后计划、海尔利润下降、阳光储能量增收入降；后续须正文核验。"
+        },
+        {
+          "seq": 7,
+          "tool": "web__run",
+          "request": {
+            "open": [
+              {
+                "ref_id": "https://static.cninfo.com.cn/finalpage/2026-08-26/1225501903.PDF"
+              },
+              {
+                "ref_id": "https://static.cninfo.com.cn/finalpage/2026-08-22/1225493321.PDF"
+              },
+              {
+                "ref_id": "https://static.cninfo.com.cn/finalpage/2026-08-28/1225522691.PDF"
+              },
+              {
+                "ref_id": "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12570250&stockid=300274"
+              }
+            ],
+            "response_length": "long"
+          },
+          "operations": 4,
+          "search_operations": 0,
+          "status": "success",
+          "returned_key_urls": [
+            "https://static.cninfo.com.cn/finalpage/2026-08-26/1225501903.PDF",
+            "https://static.cninfo.com.cn/finalpage/2026-08-22/1225493321.PDF",
+            "https://static.cninfo.com.cn/finalpage/2026-08-28/1225522691.PDF",
+            "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12570250&stockid=300274"
+          ],
+          "evidence": "四份原始披露可打开。北方华创H1营收201.61亿元、归母33.70亿元、经营现金37.74亿元；研发与客户服务增长，验证迭代和大客户优惠使综合毛利率42.17%降至40.07%；芯源微并表，键合批量出货。其余文档已建立正文入口，需定向提取。"
+        },
+        {
+          "seq": 8,
+          "tool": "web__run",
+          "request": {
+            "search_query": [
+              {
+                "q": "北方华创 2026年9月21日 收盘 市盈率"
+              },
+              {
+                "q": "紫金矿业 2026年9月21日 收盘"
+              },
+              {
+                "q": "海尔智家 2026年9月21日 收盘"
+              },
+              {
+                "q": "阳光电源 2026年9月21日 收盘"
+              }
+            ],
+            "response_length": "long"
+          },
+          "operations": 4,
+          "search_operations": 4,
+          "status": "partial_success",
+          "returned_key_urls": [
+            "https://www.yyqyx.com/s/300274.SZ",
+            "https://www.yyqyx.com/s/600690.SH",
+            "https://www.kissdown.cn/daima/600690.html",
+            "https://wap.stockstar.com/detail/RB2026092200006635",
+            "https://hk.finance.yahoo.com/quote/601899.SS/history/",
+            "https://data.eastmoney.com/gzfx/detail/300274.html"
+          ],
+          "evidence": "阳光9/21收盘88.47元在两行情页一致，9/18价与Investing一致；海尔9/21有19.89与21.12冲突，不能确证。北方9/21价676.61来源发表于9/22，暂不作截止日可得资料。紫金结果混入H股34.22港元，不能作A股价。价格口径须补查。"
+        },
+        {
+          "seq": 9,
+          "tool": "web__run",
+          "request": {
+            "find": [
+              {
+                "ref_id": "turn389view2",
+                "pattern": "主要会计数据"
+              },
+              {
+                "ref_id": "turn389view3",
+                "pattern": "主要会计数据"
+              }
+            ],
+            "open": [
+              {
+                "ref_id": "turn389view1",
+                "lineno": 75
+              },
+              {
+                "ref_id": "https://www.haier.com/about_haier/xinwen/20260828_294376.shtml"
+              }
+            ],
+            "response_length": "long"
+          },
+          "operations": 4,
+          "search_operations": 0,
+          "status": "success",
+          "returned_key_urls": [
+            "https://static.cninfo.com.cn/finalpage/2026-08-28/1225522691.PDF",
+            "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12570250&stockid=300274",
+            "https://www.haier.com/about_haier/xinwen/20260828_294376.shtml",
+            "https://static.cninfo.com.cn/finalpage/2026-08-22/1225493321.PDF"
+          ],
+          "evidence": "海尔H1收入1521.15亿元、归母103.16亿元、扣非92.99亿元、经营现金97.52亿元、扣非EPS1.01；阳光收入309.12亿元、归母52.59亿元、扣非42.75亿元、EPS2.56、经营现金37.35亿元；阳光非经常损益9.83亿元且已布局AIDC电源。紫金定位75行落到债券表，经营段仍未读取。"
+        },
+        {
+          "seq": 10,
+          "tool": "web__run",
+          "request": {
+            "search_query": [
+              {
+                "q": "紫金矿业 601899 \"2026-09-21\" 收盘价"
+              },
+              {
+                "q": "海尔智家 600690 2026年9月21日 19.89 21.12"
+              }
+            ],
+            "find": [
+              {
+                "ref_id": "turn389view3",
+                "pattern": "32.43"
+              },
+              {
+                "ref_id": "turn394view1",
+                "pattern": "汇兑"
+              }
+            ],
+            "open": [
+              {
+                "ref_id": "turn389view1",
+                "lineno": 154
+              }
+            ],
+            "response_length": "long"
+          },
+          "operations": 5,
+          "search_operations": 2,
+          "status": "partial_success",
+          "returned_key_urls": [
+            "https://cn.investing.com/equities/zijin-mining-historical-data",
+            "https://www.yyqyx.com/s/601899.SH",
+            "https://hk.finance.yahoo.com/quote/600690.SS/",
+            "https://data.agoer.com/cms/Index/detail?id=600690",
+            "https://static.cninfo.com.cn/finalpage/2026-08-22/1225493321.PDF",
+            "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12570250&stockid=300274"
+          ],
+          "evidence": "紫金A股9/21价31.30由Investing及其它页一致确认。海尔Yahoo9/21价19.89与大波浪一致；21.12另在行情历史表明确是8/28，原冲突页疑旧价错标日，弃用。紫金H1矿金47吨+13%、矿铜53.4万吨（剔除卡莫阿才+5%），锂当量4.4万吨；不能泛称铜产量同比增长5%。阳光原文储能收入154.56亿元-13.18%，毛利32.43%-7.49pct（与研报-13.5%不符，采用公告）。海尔官网find汇兑无匹配。"
+        },
+        {
+          "seq": 11,
+          "tool": "web__run",
+          "request": {
+            "find": [
+              {
+                "ref_id": "turn389view2",
+                "pattern": "7.04"
+              },
+              {
+                "ref_id": "turn389view3",
+                "pattern": "AIDC电源业务"
+              }
+            ],
+            "open": [
+              {
+                "ref_id": "turn389view1",
+                "lineno": 155
+              },
+              {
+                "ref_id": "https://www.lixinger.com/equity/company/detail/sz/002371/2371/fundamental/valuation/pe-ttm"
+              }
+            ],
+            "response_length": "long"
+          },
+          "operations": 4,
+          "search_operations": 0,
+          "status": "partial_success",
+          "returned_key_urls": [
+            "https://static.cninfo.com.cn/finalpage/2026-08-22/1225493321.PDF",
+            "https://static.cninfo.com.cn/finalpage/2026-08-28/1225522691.PDF",
+            "https://www.lixinger.com/equity/company/detail/sz/002371/2371/fundamental/valuation/pe-ttm"
+          ],
+          "evidence": "紫金巨龙改扩建已投产、朱诺预计2026年底投产、马诺诺选矿5月投产但冶炼一系列年底计划；联合黄金收购已终止，赤峰控制权仍在推进不可算已完成贡献。海尔原文确认汇兑净损7.04亿、上年净收益8.82亿、税前摆动15.86亿；毛利率27.2%+0.4pct但海外含一次性退税、销售费率+0.7pct。北方理杏仁open失败，阳光AIDC精确字符串find无匹配。"
+        },
+        {
+          "seq": 13,
+          "tool": "web__run",
+          "request": {
+            "open": [
+              {
+                "ref_id": "https://www.yyqyx.com/s/002371.SZ"
+              },
+              {
+                "ref_id": "https://hk.finance.yahoo.com/quote/002371.SZ/"
+              },
+              {
+                "ref_id": "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12519310&stockid=601899"
+              }
+            ],
+            "response_length": "long"
+          },
+          "operations": 3,
+          "search_operations": 0,
+          "status": "partial_success",
+          "returned_key_urls": [
+            "https://www.yyqyx.com/s/002371.SZ",
+            "https://hk.finance.yahoo.com/quote/002371.SZ/",
+            "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12519310&stockid=601899"
+          ],
+          "evidence": "北方华创历史不复权行情确认9/21为676.61元、总市值约4910亿元；不采用网站TTM未经重算。Yahoo北方页失败。紫金完整中报打开成功供成本与EPS核验。"
+        },
+        {
+          "seq": 14,
+          "tool": "web__run",
+          "request": {
+            "find": [
+              {
+                "ref_id": "turn399view2",
+                "pattern": "单位销售成本"
+              },
+              {
+                "ref_id": "turn399view2",
+                "pattern": "基本每股收益"
+              },
+              {
+                "ref_id": "turn389view3",
+                "pattern": "固态变压器"
+              },
+              {
+                "ref_id": "turn389view2",
+                "pattern": "智慧暖通方案"
+              }
+            ],
+            "response_length": "long"
+          },
+          "operations": 4,
+          "search_operations": 0,
+          "status": "partial_success",
+          "returned_key_urls": [
+            "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12519310&stockid=601899",
+            "https://static.cninfo.com.cn/finalpage/2026-08-28/1225522691.PDF",
+            "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12570250&stockid=300274"
+          ],
+          "evidence": "紫金铜精矿单位销售成本24480元/吨同比+16%、毛利70.37%；金锭成本347.30元/克+6.43%、毛利66.42%；EPS基本1.473、稀释1.434、扣非基本1.430。海尔暖通对外收入450.28亿对比425.47亿、分部利润45.67亿对比36.03亿（不含财务费用、税等，不等于归母）；生活电器分部利润81.81亿对比93.79亿，暖通增长未完全抵销。阳光固态变压器find无匹配，正文此前总体业务出现该布局但规模与订单不能核实。"
+        },
+        {
+          "seq": 15,
+          "tool": "exec_command",
+          "request": {
+            "cmd": "python3 - <<'PY'\nimport json\nout={}\nout['haier']={'interim_recurring_runrate_eps':1.01*2,'price_runrate_pe':19.89/(1.01*2),'hvac_external_revenue_growth':45028171651.55/42546504379.27-1,'hvac_segment_profit_growth':4567122385.72/3602802929.27-1,'hvac_profit_increment_yi':(4567122385.72-3602802929.27)/1e8,'life_profit_decrease_yi':(8181462891.22-9378917565.94)/1e8}\nh_eps=[2*1.05**i for i in [1,2,3]]\nh_total=h_eps[-1]*12+sum(h_eps)*.4\nout['haier_scenario']={'assumptions':'2026基准EPS2.0元，2027—2029年每年+5%，派息40%，期末PE12；所有为研究者假设','eps':h_eps,'dividends_total':sum(h_eps)*.4,'terminal_price':h_eps[-1]*12,'three_year_total_return':h_total/19.89-1,'annualized_total_return':(h_total/19.89)**(1/3)-1,'downside_assumptions':'每年EPS1.6，派息40%，期末PE9','downside_total_return':(1.6*9+1.6*.4*3)/19.89-1}\nout['zijin']={'annualized_basic_recurring_eps':1.43*2,'price_runrate_pe':31.3/(1.43*2),'price_at_12x_stress_eps2':12*2,'price25_at_stress_eps2_pe':25/2,'price_current_at_stress_eps2_pe':31.3/2,'copper_gross_profit_ratio_if_price_minus20pct_volume_plus20pct':1.2*(.7037-.2)/.7037,'gold_gross_profit_ratio_if_price_minus20pct_volume_plus20pct':1.2*(.6642-.2)/.6642}\ns_eps=2.56*(4275499654.46/5258509295.38)*2\nout['sungrow']={'approx_annualized_recurring_eps':s_eps,'price_to_runrate_recurring_eps':88.47/s_eps,'price_at_18x_runrate':s_eps*18,'halfyear_storage_gross_profit_yi':154.5576510122*.3243,'prior_halfyear_storage_grossprofit_yi':154.5576510122/(1-.1318)*(.3243+.0749),'gross_profit_increase_yi_if_margin_plus5pct_constant_revenue':154.5576510122*.05}\nout['naura']={'interim_basic_eps_times2':4.6486*2,'price_runrate_pe':676.61/(4.6486*2),'eps_needed_in3years_to_return12pct_peryear_at40x_PE_no_dividends':676.61*1.12**3/40,'eps_cagr_needed_from_interim_runrate':((676.61*1.12**3/40)/(4.6486*2))**(1/3)-1,'flat_price_eps_needed_at40x':676.61/40}\nprint(json.dumps(out,ensure_ascii=False,indent=2))\nPY",
+            "workdir": "<repo>",
+            "max_output_tokens": 2500
+          },
+          "operations": 1,
+          "calculation_operations": 1,
+          "status": "success",
+          "evidence": "确定性计算：海尔按H1扣非EPS乘2比价9.85倍；暖通对外收入+5.83%、分部利润+26.77%，利润增量9.64亿仍低于生活电器减少11.97亿。海尔假设EPS2元后3年+5%、派息40%、期末12倍，累计含息回报53.0%、简单年化15.23%；压力假设EPS1.6、9倍，累计含息-17.95%。紫金扣非EPS年化2.86元、比价10.94倍；售价-20%数量+20%且单位成本固定，铜/金锭毛利仍分别-14.1%/-16.1%。阳光按同一加权股数近似扣非EPS年化4.163元、比价21.25倍；18倍约74.93元。北方H1EPS年化9.2972元、比价72.78倍；假定3年后40倍并需12%年回报，则EPS须23.76元，较基线年增36.73%。所有年化仅机械标尺，非全年预测。"
+        }
+      ],
+      "operation_counts": {
+        "web_entries": 36,
+        "search_entries": 12,
+        "local_research_calculations": 1
+      },
+      "unresolved": [
+        "未完整扫描全A股；深入对象仅四家，其他行业机会仍可能存在。",
+        "海尔可持续EPS约2元、渠道改造和暖通利润能否抵销旧业务下降，缺少客户侧独立验证；资本开支、受限现金与并购整合未充分核查。",
+        "紫金金属价格中周期水平、投产爬坡与最终权益贡献仍不确定；未形成完整按矿山权益与税费拆分模型。",
+        "阳光AIDC电源规模、订单、客户验证与商业化时间未查清；储能出货增长只见研报线索，最终未当作公司披露事实。",
+        "北方华创收入中的并表和有机增长未完整拆解，客户实际资本开支与产品份额未由客户侧交叉确认。",
+        "行情网页仅为本次读取的历史数据，未取得截止日网页归档；部分估值网页TTM未经重算，未用于主要判断。"
+      ]
+    }
+  ]
+}

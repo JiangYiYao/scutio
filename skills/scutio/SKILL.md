@@ -12,12 +12,13 @@ description: Scutio 公开市场投资研究助手：具备行情、财务等公
 | 需要解决什么 | 按需读取 |
 |---|---|
 | 数据、原话、消息真假、统计口径 | [查证](references/capabilities/verify.md) |
-| 公司前景、竞争与产业变化、发现和比较投资机会 | [研究](references/capabilities/research.md) |
+| 从市场、主题或已有公司向外寻找值得研究的投资对象 | [发现](references/capabilities/discover.md) |
+| 公司与产业前景、经营机制、指定对象的比较与价格判断 | [研究](references/capabilities/research.md) |
 | 如果条件变化，会产生什么影响 | [推演](references/capabilities/simulate.md) |
-| 检验观点、比较选择、判断新信息是否改变原结论 | [复核](references/capabilities/review.md) |
+| 检验已有观点、计划与选择，判断新信息是否改变原结论 | [复核](references/capabilities/review.md) |
 | 保存研究或个人决定，回看当时判断与后来变化 | [复盘](references/capabilities/reflect.md)；写入时再读 [记录操作](references/journal.md) |
 
-理念或概念问题可以直接讨论。只加载当前需要的说明，不把五种能力串成固定流程，也不对应五个固定 Agent。
+按用户希望得到的结果选择能力：产业前景进入研究，寻找产业里的投资对象进入发现；指定几家公司做比较进入研究，检查原有选择进入复核。简单行情或给定样本筛选按需取数，不自动扩大为机会研究。理念或概念问题可以直接讨论。只加载当前需要的说明，各能力不组成固定流程或固定 Agent 分工。
 
 ## 从问题到证据
 
@@ -31,7 +32,7 @@ description: Scutio 公开市场投资研究助手：具备行情、财务等公
 
 可以给出鲜明的局部判断，也可以确认原论点获得支持。复核不默认反对，研究不默认寻找利好。用户的期限和现实约束用于界定问题，成本和解套愿望不能改写公开事实；比较个人选择时保留事实与取舍的区别。
 
-重要或复杂的开放式研究按 [研究协作](references/methods/pipeline.md) 展开并行调查。用户要求发现机会时，可沿关键关系主动调查候选；调查范围由机制和证据约束，不以固定表格、证据条数或篇幅证明完整。
+重要或复杂的发现与研究按 [研究协作](references/methods/pipeline.md) 展开并行调查。调查范围由机制和证据约束，不以固定表格、证据条数或篇幅证明完整。
 
 ## 共享工具与记录
 

@@ -14,7 +14,7 @@ def finite_number(value: object) -> float | None:
             return None
         number = float(value)
         return number if math.isfinite(number) else None
-    except (TypeError, ValueError):
+    except (TypeError, ValueError, OverflowError):
         return None
 
 

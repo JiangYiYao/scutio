@@ -1,0 +1,33 @@
+{
+  "frozen_at": "2026-09-22T07:03:28.637184+00:00",
+  "question": "请从给定四家 A 股公司的真实研报、端点价格及原文核验材料中，寻找值得继续研究的盈利预期变化线索，判断哪些变化可比较、哪些需要补证，以及这些材料能把投资机会判断推进到哪一步。观察窗口为2026-06-22至2026-09-18，目标财年2026。不必凑候选，不把数值名单直接当投资机会。",
+  "inputs": "quant-inputs.json",
+  "conditions": [
+    "without_signal",
+    "with_signal"
+  ],
+  "candidate_method": "methods/candidate/",
+  "additional_input_with_signal": "quant-results.json",
+  "tools": "Frozen-material replay; local reading/calculation only, no network or subagents. Both conditions receive identical underlying primary-source checks and raw fields. With-signal also receives deterministic API output.",
+  "criteria": [
+    "correct separation of EPS/share denominator changes",
+    "same-broker pairing and coverage",
+    "new economic or price insight supported by materials",
+    "meaningful next research actions",
+    "no invented automatic match or historical availability"
+  ],
+  "limitations": [
+    "Only this small sample, no fully verified comparable company windows",
+    "Measures interpretation and false-positive handling, not open retrieval or positive-signal discovery gain",
+    "Not a return backtest"
+  ],
+  "signal_output_sha256": "0d00821bfc24ad37b2dbc2b519f43040f0964bf5427abda0501296c8ceab1923",
+  "code_hashes_at_replay": {
+    "skills/scutio/scripts/scutio_data/research/signals.py": "b309018a531c5ed21136d31df716cc2580bb9eba4cc508513a060666204bfb16",
+    "skills/scutio/scripts/scutio_data/research/consensus.py": "e442e09394368fbf8b07fe45e66282b7d07f444bbb778cdd84d5d105dcf4768c",
+    "skills/scutio/scripts/scutio_data/market.py": "6dc81e785b3d2f838d0958c4816a8c080c7e33bdecb65b6872aa711738125d3e",
+    "skills/scutio/references/capabilities/discover.md": "d7bf13b5fc99511e554f14300ede7214ebd4c5bf9cb30f925a5264cd71331f44",
+    "skills/scutio/references/toolkit/04-research.md": "db11dd5dd536bd1cbec352e3c9876cc833b42e853c180b60f537a57ad229c4a2"
+  },
+  "post_review_note": "Research actors used the frozen quant-results.json before final code audit. Later corrections are verified separately in quant-results-final.json; the original research answers are not regenerated or relabelled as a final-code effectiveness test."
+}

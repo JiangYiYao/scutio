@@ -4,7 +4,7 @@
 **只调能力门面**；多源/限流/备胎由 `scutio_data` 内部处理——不要自选源站或手写 fallback。
 字段与陷阱 → [01-runtime](01-runtime.md) … [11-fallback](11-fallback.md)（按需打开）。
 
-这些接口为查证、研究、推演、复核和复盘共享。独立请求可用 [批量调用](01-runtime.md#批量调用)；有明确样本与条件时用 [程序筛选](screening.md)，不以热榜或筛选结果生成机会排名。
+这些接口为发现、查证、研究、推演、复核和复盘共享。独立请求可用 [批量调用](01-runtime.md#批量调用)；有明确样本与条件时用 [程序筛选](screening.md)，不以热榜或筛选结果生成机会排名。
 
 | 用 | 不用 |
 |----|------|
@@ -90,6 +90,7 @@ from scutio_data.research import stock_reports, download_pdf, list_local_reports
 - `report_page_detail` / `report_abstract` / `download_pdf` — `path` + `text_path`；缓存 `cache/documents/reports/{code}/`
 - `list_local_reports` — 本地文件 + `stale`
 - `consensus_forecast` / `consensus_revisions(reports=None)` — 标准化一致预期（AKShare 同花顺）/逐机构研报修订；已有研报列表须复用
+- `forecast_price_changes` — 对已取得材料计算同财年盈利预测与价格的区间变化；可选研究线索，非收益预测或回测，输入要求见 [04-research](04-research.md)
 - `eps_forecast` — 同花顺原始表，仅调试源字段时使用
 - `local_report_search` / `local_stock_screen` / `dedup_articles` — 本地工具
 
@@ -124,6 +125,10 @@ from scutio_data.research import stock_reports, download_pdf, list_local_reports
 - `economic_calendar` / `macro_surprises` — 宏观日历与 actual-forecast；actual-only fallback 默认关闭
 
 非入口（`em_get` / 单源 quote / `_providers` / `_documents` / `self_check` 等）→ [01-runtime](01-runtime.md) / [11-fallback](11-fallback.md)。
+
+### 跨对象发现
+
+无预设公司时，可以用 `events.performance_updates` / `company_events`、跨公司研报与 `feeds` 开始调查，再通过公告和公司数据核实候选。具体窗口、分页、截断和市场支持以对应域说明及返回元数据为准；多数行情和财务接口要求已知证券身份，不承担建立全市场证券池的职责。取得的有限样本与未取得部分分别说明，不能将资讯窗口或供应商覆盖称为全市场扫描。对象选择与机会判断见 [发现](../capabilities/discover.md)。
 
 ---
 

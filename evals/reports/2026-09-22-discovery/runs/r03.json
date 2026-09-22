@@ -1,0 +1,454 @@
+{
+  "id": "r03",
+  "case": "market",
+  "condition": "plain",
+  "question": "请帮我寻找 A 股未来 1—3 年值得考虑的投资机会，不预设行业或公司。请自行研究公开信息，说明哪些对象及条件更有吸引力，也可以得出目前没有合适机会的结论。研究截止日为 2026-09-21。",
+  "started_at": "2026-09-22T06:56:14Z",
+  "completed_at": "2026-09-22T07:03:44Z",
+  "tools_log": [
+    {
+      "at": "2026-09-22T06:56:14Z",
+      "tool": "exec_command",
+      "request": {
+        "cmd": "cat evals/reports/2026-09-22-discovery/manifest.json",
+        "workdir": "<repo>",
+        "max_output_tokens": 16000
+      },
+      "operation_count": 0,
+      "status": "success",
+      "evidence_summary": "读取原始问题、截止日及本次研究边界。"
+    },
+    {
+      "at": "2026-09-22T06:56:14Z",
+      "tool": "clock.curr_time",
+      "request": {},
+      "operation_count": 0,
+      "status": "success"
+    },
+    {
+      "at": "2026-09-22T06:57:06.165Z",
+      "tool": "web.run",
+      "request": {
+        "search_query": [
+          {
+            "q": "site.stats.gov.cn 2026年1—8月份 国民经济 9月"
+          },
+          {
+            "q": "site.stats.gov.cn 2026年1—7月份 全国规模以上工业企业 利润"
+          },
+          {
+            "q": "A股 2026 半年报 行业 利润 现金流 增长"
+          }
+        ],
+        "response_length": "long"
+      },
+      "operation_count": 3,
+      "status": "success",
+      "key_urls": [
+        "https://www.stats.gov.cn/sj/zxfb/202608/t20260827_1965126.html",
+        "https://www.stats.gov.cn/sj/zxfb/202609/t20260915_1965307.html",
+        "https://www.sse.com.cn/aboutus/mediacenter/hotandd/c/c_20260830_10830362.shtml"
+      ],
+      "evidence_summary": "国家统计局2026年1—7月工业利润+17.6%，电子、有色、化工表现强，汽车、电气机械利润下滑；沪市2026H1综述可用。"
+    },
+    {
+      "at": "2026-09-22T06:57:35.466Z",
+      "tool": "web.run",
+      "request": {
+        "open": [
+          {
+            "ref_id": "turn385search1"
+          },
+          {
+            "ref_id": "turn385search9"
+          }
+        ],
+        "search_query": [
+          {
+            "q": "site.szse.cn 2026 半年报 综述 分红 现金流"
+          }
+        ],
+        "response_length": "long"
+      },
+      "operation_count": 3,
+      "status": "partial_success",
+      "key_urls": [
+        "https://www.sse.com.cn/aboutus/mediacenter/hotandd/c/c_20260830_10830362.shtml",
+        "https://www.stats.gov.cn/sj/zxfb/202609/t20260915_1965307.html",
+        "https://paper.cnstock.com/html/2026-08/20/content_2256633.htm"
+      ],
+      "evidence_summary": "上交所全文确认制造业盈利和经营现金流改善；电子增长含存储周期集中贡献，不能外推；统计局8月经济页打开报Internal Error；深交所综述未检出，搜索带出新和成半年报摘要及45.36%年度派息率线索，未把无名PDF用于结论。"
+    },
+    {
+      "at": "2026-09-22T06:58:01.341Z",
+      "tool": "web.run",
+      "request": {
+        "open": [
+          {
+            "ref_id": "turn388view1",
+            "lineno": 63
+          },
+          {
+            "ref_id": "https://www.stats.gov.cn/sj/zxfb/202609/t20260915_1965307.html"
+          }
+        ],
+        "search_query": [
+          {
+            "q": "美的集团 2026 半年度报告 营业收入 净利润 经营现金流"
+          },
+          {
+            "q": "中微公司 2026 半年度报告 扣非 营业收入 现金流"
+          },
+          {
+            "q": "新和成 2026 半年度报告 净利润 现金流 维生素 蛋氨酸"
+          }
+        ],
+        "response_length": "long"
+      },
+      "operation_count": 5,
+      "status": "partial_success",
+      "key_urls": [
+        "https://static.cninfo.com.cn/finalpage/2026-08-20/1225482495.PDF",
+        "https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12572219&stockid=000333",
+        "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12505778&stockid=688012"
+      ],
+      "evidence_summary": "初选美的、新和成、中微三种经营机制。美的H1归母264.46亿、扣非195.95亿受汇率/套保分类影响；中微归母28.25亿而扣非11.23亿，需核实非经常收益；新和成归母40.11亿。排除搜索误命中的中微半导688380；第三方AI摘要称36.4亿现金流超过40.11亿利润明显错误，不采用。统计局8月页第二次打开仍失败。"
+    },
+    {
+      "at": "2026-09-22T06:58:29.389Z",
+      "tool": "web.run",
+      "request": {
+        "open": [
+          {
+            "ref_id": "turn391search12"
+          },
+          {
+            "ref_id": "turn391search2"
+          },
+          {
+            "ref_id": "turn391search1"
+          }
+        ],
+        "search_query": [
+          {
+            "q": "美的集团 \"2026年9月21日\" 收盘"
+          },
+          {
+            "q": "新和成 \"2026年9月21日\" 收盘"
+          },
+          {
+            "q": "中微公司 \"2026年9月21日\" 收盘"
+          }
+        ],
+        "response_length": "long"
+      },
+      "operation_count": 6,
+      "status": "success_with_gaps",
+      "key_urls": [
+        "https://static.cninfo.com.cn/finalpage/2026-08-20/1225482495.PDF",
+        "https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12572219&stockid=000333",
+        "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12505778&stockid=688012",
+        "https://hk.finance.yahoo.com/quote/002001.SZ/history/",
+        "https://jp.investing.com/equities/midea-group-a-historical-data"
+      ],
+      "evidence_summary": "三份2026H1报告打开成功。美的经营现金流375.52亿，固定资产等购建支出26.34亿；中微投资重估及出售拓荆持股导致归母高增长，扣非为估值锚。精确9/21收盘搜索未命中新和成/中微公司，误命中港股美的、中微半导均不用；金融界美的实时报价无匹配日期不当成截止日收盘。"
+    },
+    {
+      "at": "2026-09-22T06:59:04.852Z",
+      "tool": "web.run",
+      "request": {
+        "open": [
+          {
+            "ref_id": "turn393search3"
+          },
+          {
+            "ref_id": "turn393search6"
+          }
+        ],
+        "find": [
+          {
+            "ref_id": "turn393view0",
+            "pattern": "经营活动产生的现金流量净额"
+          },
+          {
+            "ref_id": "turn393view0",
+            "pattern": "蛋氨酸"
+          },
+          {
+            "ref_id": "turn393view1",
+            "pattern": "利润分配"
+          }
+        ],
+        "search_query": [
+          {
+            "q": "\"688012\" \"2026-09-21\" 股价"
+          },
+          {
+            "q": "\"000333\" \"002001\" \"2026-09-21\" 收盘"
+          }
+        ],
+        "response_length": "long"
+      },
+      "operation_count": 7,
+      "status": "partial_success",
+      "key_urls": [
+        "https://hk.investing.com/equities/advanced-micro-fabrication-inc-historical-data",
+        "https://www.gurufocus.com/term/pe-ratio/SHSE%3A688012",
+        "https://q.stock.sohu.com/app2/mpssTrade.up?code=688012&ed=&sd=",
+        "https://jp.investing.com/equities/midea-group-a-historical-data"
+      ],
+      "evidence_summary": "中微9/21价格353.55元获有日期报价搜索结果，拟交叉核实。美的历史页成功但需读取顶部最新日期；新和成Yahoo页Internal Error。新和成PDF现金流36.40亿获确认，蛋氨酸全文find无匹配；美的分红find只显示权益表，对应期内对股东分配283.89亿，不能直接当未来每股股息。组合价格搜索未找到美的/新和成目标日数据。"
+    },
+    {
+      "at": "2026-09-22T06:59:43.450Z",
+      "tool": "web.run",
+      "request": {
+        "open": [
+          {
+            "ref_id": "turn396view1",
+            "lineno": 60
+          },
+          {
+            "ref_id": "turn396search1"
+          },
+          {
+            "ref_id": "https://finance.yahoo.com/quote/002001.SZ/history/"
+          },
+          {
+            "ref_id": "turn391search4"
+          }
+        ],
+        "find": [
+          {
+            "ref_id": "turn393view2",
+            "pattern": "资本化"
+          },
+          {
+            "ref_id": "turn393view0",
+            "pattern": "购建固定资产"
+          }
+        ],
+        "response_length": "long"
+      },
+      "operation_count": 6,
+      "status": "partial_success",
+      "key_urls": [
+        "https://jp.investing.com/equities/midea-group-a-historical-data",
+        "https://hk.investing.com/equities/advanced-micro-fabrication-inc-historical-data",
+        "https://paper.cnstock.com/html/2026-08/20/content_2256633.htm",
+        "https://static.cninfo.com.cn/finalpage/2026-08-20/1225482495.PDF"
+      ],
+      "evidence_summary": "中微历史表确认2026-09-21为353.55元，9/22盘中行排除。美的9/18为84.40元，尚缺9/21。新和成Yahoo英文页也失败；官方公告确认2025分红合计30.68亿、45.36%派息率，拟回购用于激励/员工持股，不当成注销回购收益。新和成H1资本开支13.705亿、现金流36.401亿；期初股本30.7342亿。中微资本化find无匹配，未断言其差额全部资本化。"
+    },
+    {
+      "at": "2026-09-22T07:00:33.831Z",
+      "tool": "web.run",
+      "request": {
+        "open": [
+          {
+            "ref_id": "https://hk.investing.com/equities/midea-group-a-historical-data"
+          },
+          {
+            "ref_id": "https://hk.investing.com/equities/zhejiang-nhu-a-historical-data"
+          },
+          {
+            "ref_id": "turn391search7"
+          },
+          {
+            "ref_id": "turn393view2",
+            "lineno": 215
+          },
+          {
+            "ref_id": "turn393view1",
+            "lineno": 100
+          },
+          {
+            "ref_id": "turn393view0",
+            "lineno": 150
+          }
+        ],
+        "response_length": "long"
+      },
+      "operation_count": 6,
+      "status": "partial_success",
+      "key_urls": [
+        "https://hk.investing.com/equities/midea-group-a-historical-data",
+        "https://hk.investing.com/equities/zhejiang-nhu-a-historical-data",
+        "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12505778&stockid=688012",
+        "https://static.cninfo.com.cn/finalpage/2026-08-20/1225482495.PDF"
+      ],
+      "evidence_summary": "美的/新和成香港Investing价格页打开成功但返回片段未显示价格行，未提取到目标日收盘；新和成证券之星全文报错。中微定点阅读核实H1研发资本化6.89亿、占比同比升13.02个百分点。新和成PDF正文确认蛋氨酸量价齐升、尼龙/PPS等项目建设，说明增长含周期价格因素。美的确认净非经常损益68.51亿及汇率套保分类解释，尚未逐笔重构完全匹配后的经济利润。"
+    },
+    {
+      "at": "2026-09-22T07:01:04.623Z",
+      "tool": "functions.exec/local_arithmetic",
+      "request": {
+        "javascript": "const pv=(eps,pe,div,r)=>div.reduce((s,d,i)=>s+d/(1+r)**(i+1),0)+eps*pe/(1+r)**3;\nconst scenarios=[\n{name:\"美的\",reference:84.4,eps2029:6.8,pe2029:12,dividends:[3.2,3.4,3.6],discount:0.12,bearEPS:4.5,bearPE:10,bearCumDiv:7.5},\n{name:\"新和成\",reference:26.86,eps2029:2.1,pe2029:12,dividends:[0.9,0.9,0.95],discount:0.12,bearEPS:1.3,bearPE:10,bearCumDiv:1.8},\n{name:\"中微\",reference:353.55,eps2029:7,pe2029:35,dividends:[0,0,0],discount:0.15,bearEPS:3.5,bearPE:30,bearCumDiv:0}\n];\nreturn {cash:{midea:375.52090-26.34210,nhu:36.4014428294-13.7054633773,nhuCashToProfit:36.4014428294/40.107335,amecCashToRecurring:6.845534906/11.2259033526},nhu2025Profit:30.68/0.4536,nhu2025EPS:(30.68/0.4536)/30.7342168,amecSimplePE:353.55/(1.72*2),scenarios:scenarios.map(x=>({...x,entryPV:pv(x.eps2029,x.pe2029,x.dividends,x.discount),referenceAnnualizedTotalReturn:((x.eps2029*x.pe2029+x.dividends.reduce((a,b)=>a+b,0))/x.reference)**(1/3)-1,bearTotalReturn:(x.bearEPS*x.bearPE+x.bearCumDiv)/x.reference-1}))};"
+      },
+      "operation_count": 1,
+      "status": "success",
+      "key_urls": [],
+      "evidence_summary": "依据已读取报告计算简化现金余量、现金/利润比及三年情景折现。结果：美的H1经营现金流减购建支出349.18亿；新和成22.70亿。三年基准情景现值门槛分别66.21、20.13、161.09元，均为自设假设推导，不是公司指引或精确价值。",
+      "result": {
+        "cash": {
+          "midea": 349.17879999999997,
+          "nhu": 22.695979452099998,
+          "nhuCashToProfit": 0.9076006378733465,
+          "amecCashToRecurring": 0.6097981330308286
+        },
+        "nhu2025Profit": 67.63668430335098,
+        "nhu2025EPS": 2.2006965312794624,
+        "amecSimplePE": 102.77616279069768,
+        "scenarios": [
+          {
+            "name": "美的",
+            "reference": 84.4,
+            "eps2029": 6.8,
+            "pe2029": 12,
+            "dividends": [
+              3.2,
+              3.4,
+              3.6
+            ],
+            "discount": 0.12,
+            "bearEPS": 4.5,
+            "bearPE": 10,
+            "bearCumDiv": 7.5,
+            "entryPV": 66.21127915451893,
+            "referenceAnnualizedTotalReturn": 0.028411074829211902,
+            "bearTotalReturn": -0.37796208530805686
+          },
+          {
+            "name": "新和成",
+            "reference": 26.86,
+            "eps2029": 2.1,
+            "pe2029": 12,
+            "dividends": [
+              0.9,
+              0.9,
+              0.95
+            ],
+            "discount": 0.12,
+            "bearEPS": 1.3,
+            "bearPE": 10,
+            "bearCumDiv": 1.8,
+            "entryPV": 20.134099398688043,
+            "referenceAnnualizedTotalReturn": 0.013347968761032503,
+            "bearTotalReturn": -0.4489947877885331
+          },
+          {
+            "name": "中微",
+            "reference": 353.55,
+            "eps2029": 7,
+            "pe2029": 35,
+            "dividends": [
+              0,
+              0,
+              0
+            ],
+            "discount": 0.15,
+            "bearEPS": 3.5,
+            "bearPE": 30,
+            "bearCumDiv": 0,
+            "entryPV": 161.09147694583712,
+            "referenceAnnualizedTotalReturn": -0.11507781922538107,
+            "bearTotalReturn": -0.7030123037759864
+          }
+        ]
+      }
+    },
+    {
+      "at": "2026-09-22T07:01:04Z",
+      "tool": "clock.curr_time",
+      "request": {},
+      "operation_count": 0,
+      "status": "success",
+      "evidence_summary": "完成主要检索与计算后读取时间。"
+    },
+    {
+      "at": "2026-09-22T07:03:44Z",
+      "tool": "clock.curr_time",
+      "request": {},
+      "operation_count": 0,
+      "status": "success",
+      "evidence_summary": "读取实际完成时间并写入最终结果。"
+    }
+  ],
+  "operation_counts": {
+    "web_entries": 36,
+    "search_entries": 12,
+    "local_calculations": 1
+  },
+  "answer": "截至 **2026 年 9 月 21 日**，这轮研究没有确认一个“经营逻辑成立、价格也足够有吸引力”的即时买入对象。我会优先跟踪**美的集团，其次新和成；中微公司保留观察，但对价格要求更严格**。这只是本次查证范围内的结论，不能推出整个 A 股没有机会。\n\n起点是公开经营数据，而非先选行业。2026 年 1—7 月工业企业利润增长 17.6%，但电子、有色、化工与汽车、电气机械之间分化明显，应收账款和存货增速又高于收入增速。因此，行业利润复苏需要进一步核对现金兑现和持续性。[国家统计局](https://www.stats.gov.cn/sj/zxfb/202608/t20260827_1965126.html) 沪市半年报综述也显示盈利及现金流改善，但电子利润增长包含存储企业大幅扭亏，不能直接当成全部科技企业的长期增速。[上交所半年报综述](https://www.sse.com.cn/aboutus/mediacenter/hotandd/c/c_20260830_10830362.shtml)\n\n我据此选了三种不同机制做公司核查：成熟制造的现金回报、精细化工的周期与技术能力、半导体设备的国产替代。没有把行业相关公司名单当成机会。\n\n**美的集团（000333）：优先等现金回报与价格匹配。**\n\n上半年收入 2600.42 亿元、归母利润 264.46 亿元，分别增长 3.55%、1.66%；经营现金流 375.52 亿元。扣非利润下降 25.31%，公司解释主要涉及汇兑损失计入经常损益、对应外汇管理衍生工具收益计入非经常损益，不能仅凭扣非下降认定主业崩坏，也不能未经匹配核对就全部加回。海外收入增长 5.54%，楼宇科技和机器人业务各增长约 10%，提供增量，但当前整体仍是低速增长。[公司半年报](https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12572219&stockid=000333)\n\n我的判断是，其吸引力应主要来自制造、渠道和现金分配能力，不能依赖机器人概念赋予高估值。按报告现金流减去购建长期资产支出，半年余量约 349.18 亿元；这不是严格的股东自由现金流，仍含营运资金和财务公司业务影响。\n\n更有吸引力的条件是：完成汇兑与套保匹配后，可持续每股盈利仍接近 6 元，并有能力在正常资本开支后每年分配约 3 元以上；价格进入下述约 66 元的情景门槛。未来两三期若收入增长停滞、渠道回款恶化或真实套保损失持续侵蚀利润，应下调盈利假设，而不是机械等待“估值修复”。\n\n**新和成（002001）：有利润和现金，但需要为周期回落留余地。**\n\n上半年收入 131.29 亿元、归母利润 40.11 亿元，分别增长 18.28%、11.31%。公司明确披露蛋氨酸量价齐升，因此增长包含产品价格景气因素。经营现金流 36.40 亿元，扣除购建长期资产支出 13.71 亿元后约剩 22.70 亿元，仅约为归母利润的 57%；尼龙产业链、PPS 等项目仍在建设。[公司半年报](https://static.cninfo.com.cn/finalpage/2026-08-20/1225482495.PDF)\n\n价值来源是已有产品的技术与生产能力以及真实分红，风险则是竞争供给恢复、价格下行和新项目持续占用资金。2025 年分红合计 30.68 亿元，占净利润 45.36%；2026 年提出的回购用于激励或员工持股，不能当成注销回购带来的每股权益提升。[公司回报公告](https://paper.cnstock.com/html/2026-08/20/content_2256633.htm)\n\n我不会把半年利润直接翻倍再给予成长估值。按已披露派息金额、派息率及约 30.73 亿股粗算，2025 年每股利润约 2.20 元；下面采用 2029 年 2.10 元，容许景气回落。约 20 元才较符合这个保守情景。要上调门槛，需证实利润增长主要来自可持续销量和成本优势，同时资本开支后的现金足以覆盖分红；单看蛋氨酸涨价不够。\n\n**中微公司（688012）：经营兑现明显，当前价格包含很高要求。**\n\n上半年收入 66.91 亿元、同比增长 34.89%，扣非利润 11.23 亿元、增长 108.36%。归母利润 28.25 亿元还包含股权投资重估及出售持股的收益。研发投入 20.41 亿元，其中资本化支出 6.89 亿元，资本化比例同比上升 13.02 个百分点；经营现金流 6.85 亿元，约为扣非利润的 61%。[公司半年报](https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12505778&stockid=688012)\n\n先进刻蚀产品进入量产、客户验证后扩大采用，是可理解的收入来源；未来回报取决于设备份额、客户扩产与研发成果兑现，而非一次性投资收益。资本化本身不等于造假，但会改变利润与现金支出的时点，应跟踪新增资本化、后续摊销和项目收益。\n\n9 月 21 日收盘 **353.55 元**已核实。用半年扣非每股收益 1.72 元简单翻倍，仅作为尺度比较，对应约 103 倍；它不是正式全年预测，却足以说明不能使用含投资收益的低表观市盈率来判断便宜。[历史行情](https://hk.investing.com/equities/advanced-micro-fabrication-inc-historical-data) 我更倾向等待价格下降，或等待主营盈利与现金证明更强的增长能力。\n\n以下把“有吸引力”写成可以复核的价格条件。**全部是我的情景假设，不是公司指引、市场一致预期或精准目标价。**假设持有三年、第三年按指定市盈率出售，股息每年支付；不考虑税费。可接受价格为各年股息与第三年出售价值的折现和。\n\n| 对象 | 已核实参考价及日期 | 2029 年每股利润 / 退出市盈率假设 | 未来三年每股股息假设 | 要求年回报 | 情景价格门槛 |\n|---|---|---|---|---|---|\n| 美的集团 | 84.40 元，9 月 18 日 | 6.80 元 / 12 倍 | 3.20、3.40、3.60 元 | 12% | 约 66 元 |\n| 新和成 | 26.86 元，9 月 4 日，仅搜索摘要 | 2.10 元 / 12 倍 | 0.90、0.90、0.95 元 | 12% | 约 20 元 |\n| 中微公司 | 353.55 元，9 月 21 日 | 7.00 元 / 35 倍 | 保守按零处理 | 15% | 约 161 元 |\n\n美的参考价来自有日期的[历史行情表](https://jp.investing.com/equities/midea-group-a-historical-data)；新和成参考价来自[Yahoo 历史行情搜索结果](https://hk.finance.yahoo.com/quote/002001.SZ/history/)，正文打开失败，可靠性和时效性较低。**美的、新和成的 9 月 21 日收盘价没有成功提取，因此不能宣称它们在截止日确定距离买入门槛多少。**更新到可靠的截止日价格，是实际作出买入判断前仍缺的一步。\n\n这些门槛的意义是拒绝为未经证明的增长提前付太多钱：美的情景不要求很高增长，新和成容许利润回归，中微则已经要求三年后每股扣非盈利约为当前半年年化尺度的两倍，同时仍给 35 倍估值。即便如此，中微参考价格也高于该情景支持的价格。\n\n还需看下行：若三年后美的每股盈利降至 4.50 元、给 10 倍估值、累计收息 7.50 元；新和成降至 1.30 元、给 10 倍、累计收息 1.80 元；中微仅达 3.50 元、给 30 倍且不计股息，三者相对上述参考价格的累计回报分别约为 **−38%、−45%、−70%**。这些是压力情景，不是概率预测，也不是最大损失。\n\n实际优先顺序是：先补齐美的、新和成的截止日价格及现金分配核查，再按价格门槛决定是否进入可买名单；中微则重点等待价格与主营盈利要求之间的差距缩小。对未来一年，现金兑现与价格纪律更关键；对两三年，才有时间验证海外业务、化工项目和新设备的增量。\n\n本轮深入核查只有上述三家公司，未完成银行、医药、资源、消费和其他制造行业的系统比较；也未完成三家公司全部债务期限、项目回报和竞争供给核查。因此结论是**暂未确认可立即买入的机会，保留有条件的候选**，不是对 A 股整体作否定判断。",
+  "sources": [
+    {
+      "title": "国家统计局：2026年1—7月份全国规模以上工业企业利润增长17.6%",
+      "url": "https://www.stats.gov.cn/sj/zxfb/202608/t20260827_1965126.html",
+      "published": "2026-08-27",
+      "used_for": "跨行业初筛，利润、收入和营运资金增速"
+    },
+    {
+      "title": "上交所：沪市公司2026年半年报业绩综述",
+      "url": "https://www.sse.com.cn/aboutus/mediacenter/hotandd/c/c_20260830_10830362.shtml",
+      "published": "2026-08-30",
+      "used_for": "整体经营现金流、电子增长的集中贡献；不作单家公司预测"
+    },
+    {
+      "title": "美的集团2026年半年度报告（发行人公告转载）",
+      "url": "https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12572219&stockid=000333",
+      "published": "2026-08-29",
+      "used_for": "收入、归母与扣非、现金流、资本开支、套保说明及业务分部"
+    },
+    {
+      "title": "新和成2026年半年度报告",
+      "url": "https://static.cninfo.com.cn/finalpage/2026-08-20/1225482495.PDF",
+      "published": "2026-08-20",
+      "used_for": "蛋氨酸量价、在建项目、财务与现金流、股本"
+    },
+    {
+      "title": "新和成半年度报告摘要及质量回报双提升公告",
+      "url": "https://paper.cnstock.com/html/2026-08/20/content_2256633.htm",
+      "published": "2026-08-20",
+      "used_for": "2025分红金额及派息率、2026回购用途"
+    },
+    {
+      "title": "中微公司2026年半年度报告（发行人公告转载）",
+      "url": "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12505778&stockid=688012",
+      "used_for": "主营增长、非经常收益、扣非每股收益、现金流及研发资本化",
+      "publication_note": "2026年8月披露的半年报；本轮未独立确认该转载页面具体发布日期。"
+    },
+    {
+      "title": "美的集团000333历史行情",
+      "url": "https://jp.investing.com/equities/midea-group-a-historical-data",
+      "observation_date": "2026-09-18",
+      "used_for": "参考收盘84.40元；不当作9月21日"
+    },
+    {
+      "title": "新和成002001.SZ历史行情搜索片段",
+      "url": "https://hk.finance.yahoo.com/quote/002001.SZ/history/",
+      "observation_date": "2026-09-04",
+      "used_for": "仅搜索片段26.86元；正文失败，非截止日价格"
+    },
+    {
+      "title": "中微公司688012历史行情",
+      "url": "https://hk.investing.com/equities/advanced-micro-fabrication-inc-historical-data",
+      "observation_date": "2026-09-21",
+      "used_for": "收盘353.55元；排除页面9月22日盘中数据"
+    }
+  ],
+  "unresolved": [
+    "美的、新和成2026-09-21收盘价未成功提取；分别仅核实9/18的84.40元及搜索片段9/4的26.86元。",
+    "未逐笔重构美的外汇货币项目与衍生金融工具的匹配经济损益。",
+    "未完成新和成全部产品供给、价格、项目回报率与持续资本开支周期验证。",
+    "未取得中微全部订单交付与客户资本开支、资本化研发未来摊销时间表。"
+  ],
+  "limitations": [
+    "深入核查仅三家不同机制公司，不构成全A股穷尽筛选；未完成银行、医药、资源、消费等行业的系统比较。",
+    "网页检索36项、其中搜索12项已达本次资源上限；本地计算1次。多个页面Internal Error，两个find未定位到实际存在文本；后续定点阅读解决了业务与研发问题，部分目标日价格仍缺失。",
+    "美的与新和成使用明确标注的较早参考价格，后者只有搜索片段，不能据此宣称2026-09-21已经便宜或确定不便宜。",
+    "估值与压力情景是自设假设，未作完整DCF、资本结构、税费及概率加权分析；不以半年利润简单翻倍作为正式预测。",
+    "经营现金流减购建长期资产支出为粗略现金余量，不等于可分配股东自由现金流；美的含财务业务与营运资金影响。",
+    "没有读取私人账户、个人会话、其他研究答案或方法文件；没有调用金融数据脚本或量化信号入口。",
+    "日志仅对本地路径脱敏：仓库路径记为<repo>，本机home记为<home>，其他临时路径记为<tmp>；web请求、失败与答案不因路径脱敏而改写。工具轨迹为当次真实请求与即时记录，没有复制网页全文。"
+  ]
+}

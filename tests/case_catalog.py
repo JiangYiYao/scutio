@@ -688,6 +688,11 @@ CASE_GROUPS: dict[str, tuple[str, str]] = {
     "data/test_evidence_reuse.py": ("材料复用", "证券身份、财年、时点、覆盖与 PDF 直链"),
     "data/test_research_pagination.py": ("研报分页", "非个股列表分页、部分失败与检索覆盖"),
     "data/test_research_local.py": ("研报检索", "评分、去重、市值筛选、在线身份与时效覆盖"),
+    "data/test_forecast_observations.py": ("预测观测", "机构、财年、日期、重复记录和同日冲突"),
+    "data/test_forecast_price_changes.py": (
+        "预测与价格",
+        "固定窗口、机构配对、每股口径、价格和覆盖缺口",
+    ),
     "data/test_ths_eps_and_valuation.py": ("估值与一致预期", "EPS 原生字段、历史估值与报价复用"),
     "data/test_live_smoke.py": ("公网通路", "公开数据门面可用性；需显式启用网络"),
 }

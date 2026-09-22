@@ -100,6 +100,7 @@ from scutio_data.breadth import market_breadth, index_constituents
 - 指数不适用的涨跌停价为 `None`；不能把源站的 `-1` 占位值当作价格。
 - 腾讯普通 A 股报价成交量按手换算，科创板及港美股按股；东财 A 股（含科创板）按手换算。Financial API 报价成交量为股。日线成交量使用各自的解析规则。
 - K 线行字段为 `datetime/open/high/low/close/volume`，日期读 `bar["datetime"]`；`date` 与报价的 `time` 不是 K 线日期字段。`adjust` 默认 `none`；可显式 `qfq` / `hfq`（视源能力）。返回顶层 `quality.status=ok|partial`、请求/返回条数、最大日期间隔与问题列表；极少样本跨超长时间断层会拒绝该源，不能用来计算“单日”涨跌。
+- K 线信封的 `symbol/code/currency` 来自门面已校验的请求身份及市场计价币种，`identity_provenance=request` 标明这一来源。AKShare 原始行若带有证券身份，会在归一化前检查；明确冲突时拒绝该源并尝试后备源。源未提供身份时仍可返回，但信封不是上游逐行身份的独立证明，`currency` 也不是公司财报币种。复用时保留整个信封，不给无来源的裸日线补造身份。
 - OHLC 缺失、非有限数值或高低价关系错误会拒绝该来源并尝试后备来源；缺失值保留为 `None`，不补零。前复权历史价格可能为负，不仅凭正负判断数据错误。
 - 美股 K 线经 AKShare 东财解析市场 ID，并以 AKShare 新浪作为日线后备；调用方只传 `usAAPL` 等标准完整代码。
 - **成交额契约（硬）**：`amount` = 元，`amount_wan` = 万元；跨源/跨市场已归一。

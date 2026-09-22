@@ -1,0 +1,512 @@
+{
+  "reviewer": "judge-two",
+  "review_date": "2026-09-22",
+  "cutoff_date": "2026-09-21",
+  "review_scope": {
+    "input_files": [
+      "blind/market.json",
+      "blind/grid.json",
+      "blind/packaging.json"
+    ],
+    "answer_read_order_per_case": [
+      "C",
+      "B",
+      "A"
+    ],
+    "prohibited_materials_read": false,
+    "label_identity_inferred": false,
+    "procedure": "先按指定顺序读各题答复，再用独立 web 调用核验关键原文与数字；未阅读映射、方法、原始运行文件、其他评审或用户历史。只按匿名答案内容比较。",
+    "verdict_rule": "left/right 只表示该对比存在新增、核实成立且重要的投资研究价值，并在本次检查中未发现获胜方有重大事实、单位、时点、归属或范围错误。未形成明确整体优势的取舍记 no_clear_advantage；不按篇幅、格式或候选数量评分。"
+  },
+  "case_results": [
+    {
+      "case": "market",
+      "pairwise": [
+        {
+          "left": "A",
+          "right": "B",
+          "verdict": "no_clear_advantage",
+          "reason": "A 更细查成熟制造现金、化工周期与设备公司的非经常收益；B 更细查算力整机交付和利润率，并正面限制药明的政策未知。两者均给出可复算的经营及买价条件，也都有主候选截止日报价或正常化利润缺口。本次独立核验未证明一方新增发现构成整体优胜；不同公司、不同回报假设不直接排名。"
+        },
+        {
+          "left": "A",
+          "right": "C",
+          "verdict": "no_clear_advantage",
+          "reason": "C 的海尔暖通利润增量和生活电器下滑对照已核实，是有价值的恢复机制，且其分部利润归属口径正确；A 则更重视资本开支后现金、套保匹配和非经常收益。C 的半年度年化及 EPS 2 元起点仍未证明可持续，独立评审亦未核验其截止日行情。不能仅因 C 给出一个当前可考虑对象而判胜，也不能把 A 的保守结论自动当作更好。"
+        },
+        {
+          "left": "B",
+          "right": "C",
+          "verdict": "no_clear_advantage",
+          "reason": "C 新增了经核实的低增长修复路径与商品价格压力机制；B 的工业富联把收入、薄净利率、营运资金及现价要求连起来。两者的可投资性仍依赖未经独立验证的持续盈利和价格条件。已确认海尔的经营证据不等于已证明其风险调整回报优于 B 的算力路径，本对比保留取舍。"
+        }
+      ],
+      "critical_errors": [],
+      "verified_gains": [
+        {
+          "answer": "C",
+          "finding": "海尔中报确认暖通对外收入与分部利润分别约 450.28、45.67 亿元；按同表同比计算增长约 5.8%、26.8%，新增利润约 9.64 亿元，仍小于生活电器约 11.97 亿元的下降。分部利润排除财务费用、所得税等，C 未错认成归母增量。",
+          "source_checks": [
+            "S01",
+            "S07"
+          ],
+          "investment_value": "将修复判断落到具体经营组合，并说明新业务尚不能完全覆盖旧业务压力；是有效发现，但不独自证明股价便宜。"
+        }
+      ],
+      "unresolved": [
+        "本次仅独立核验市场题的海尔关键披露，未把 A、B 所引材料的自记核验当作独立核验。",
+        "各答复均未充分证明持续 EPS、终值倍数与客户侧竞争条件；情景可复算不意味着发生概率已被研究。",
+        "未独立复核各公司 2026-09-21 行情、全部股本变化与完整自由现金流；未据此宣告存在报价错误。",
+        "样本范围不足以判断全市场最佳机会；未将缺少其他公司覆盖计作关键遗漏。"
+      ]
+    },
+    {
+      "case": "grid",
+      "pairwise": [
+        {
+          "left": "A",
+          "right": "B",
+          "verdict": "no_clear_advantage",
+          "reason": "A 的年度现金流视角已有原文支持，可避免把南瑞半年现金下滑直接当成长期恶化；B 增加合同量与电力结构、付费机制，并给出下行情景。B 对平高会计估计影响的遗漏削弱该排查，但 A 也未完成其自身直流候选许继的盈利归因与价格。主结论与南瑞买价条件相近，证据互有增益，未形成整体明确优胜。"
+        },
+        {
+          "left": "A",
+          "right": "C",
+          "verdict": "no_clear_advantage",
+          "reason": "A 补出南瑞全年及滚动现金尺度；C 提供采购付款解释、思源新增收入结构，以及平高中标含合营公司的归属限制。C 的平高利润归因仍缺会计估计影响，A 的许继路径也止于待查。两者终值收益门槛不同，不能用较低买价或更精细表格判胜；现金解释与订单结构属于研究取舍。"
+        },
+        {
+          "left": "B",
+          "right": "C",
+          "verdict": "no_clear_advantage",
+          "reason": "C 较深入拆思源低毛利储能增长与平高中标归属，B 较深入查电力结构、容量付费及南瑞分红。双方都未完成平高会计变更的已披露量化影响；B 明示未知，C 的扣非增速也不足以代替利润桥。南瑞与思源的估值结论接近，未核实到能够消除这些取舍的决定性优势。"
+        }
+      ],
+      "critical_errors": [
+        {
+          "answers": [
+            "B",
+            "C"
+          ],
+          "category": "material_omission",
+          "severity": "important_but_not_proven_false_statement",
+          "finding": "平高 2026-08-20 公告已明确：会计估计自 6 月 1 日生效，使半年归母利润减少 7,453.55 万元，约占所述半年利润的 9.1%。B 提到公告却未取得方向和金额；C 的利润归因亦未包含此项。",
+          "pre_cutoff_availability": "公告标明 2026-08-20，早于研究截止日；本次读取到正文及金额。",
+          "why_it_changes_judgment": "它排除将该变更理解为抬高半年利润的解释，并会改变对利润增长来源与正常化盈利的进一步调查顺序。不得据此机械加回并认定全部损失不再发生，因为变更反映的是关联方应收信用风险。",
+          "qualification": "B 明确承认缺口，没有直接声称会计变更抬高利润；C 也未作这种断言。因此记录为重要遗漏，而不升级为已证实的事实造假或方向性陈述错误。",
+          "source_checks": [
+            "S09",
+            "S11"
+          ]
+        }
+      ],
+      "verified_gains": [
+        {
+          "answer": "A",
+          "finding": "国电南瑞 2025 年报确认经营现金流约 127.69 亿元，支持使用全年现金背景评价半年下滑。",
+          "source_checks": [
+            "S02",
+            "S08"
+          ],
+          "investment_value": "相对于单看半年现金比例，减少季节性误判。滚动约 105.5 亿元的算术与答复相容，但半年精确输入未在本次独立打开，故不把整个 TTM 数字标成完全独立核实。"
+        }
+      ],
+      "unresolved": [
+        "平高估计变更的正常化处理仍需分年度、分债务人及风险变化分析，不能直接把 0.745355 亿元视为未来新增盈利。",
+        "南瑞 2025 年报的资金补充表也显示经营性应付增加对现金有贡献；全年经营现金流高于利润并不等同可自由分配现金。",
+        "未独立核验全部合同、半年度分产品表、容量电价细则或截止日价格；未把这些未经本次抽查的材料认定错误。",
+        "三者均缺合同逐年交付、竞争与长期资本投入验证；各自 10% 或 12% 回报门槛是选择，不是事实优劣。"
+      ]
+    },
+    {
+      "case": "packaging",
+      "pairwise": [
+        {
+          "left": "A",
+          "right": "B",
+          "verdict": "no_clear_advantage",
+          "reason": "B 补足年度持续利润与现金覆盖，能削弱半年度年化便宜感；A 则找到更具体的昇兴提价、海外爬坡与稀释传导路径，并反推现价的利润要求。A 承认定增条款未核齐，B 的净债务和必要资本开支也未齐。本次未独立核实昇兴细节，不能因核验抽样偏向 B 而自动判其胜出；这是发现方向与现金审查的取舍。"
+        },
+        {
+          "left": "A",
+          "right": "C",
+          "verdict": "no_clear_advantage",
+          "reason": "A 把金属包装改善推进到产能、定价和发行稀释的每股回报；C 则加入成熟软包装与紫江的利润归属问题，并给现金股息情景。两者共同的奥瑞金、裕同价格判断均有明确边界，半年年化未冒充全年或 TTM。额外候选并未全部形成现金、利润、价格闭环，未据此认定任一方明显胜出。"
+        },
+        {
+          "left": "B",
+          "right": "C",
+          "verdict": "left",
+          "reason": "在两者共同重点对象上，B 增加了两项已独立核实的重要反证：奥瑞金 2025 年扣非仅约 5.03 亿元且下降 33.89%，揭示单看最近半年年化会掩盖的利润不均；永新全年经营现金减长期资产购建仅约 1.65 亿元，明显低于会计利润。这直接提高了整合盈利门槛和稳定股息判断的证据质量。C 已提示相应风险，却没有同样的年度量化支撑；其额外紫江线索仍缺分部利润与资金归属，不构成已闭合的同等增益。判胜依据是这些证据改变持续利润和现金覆盖判断，不是 B 更保守、使用 TTM 或给更低买价本身。抽查与算术范围内未发现 B 的重大错误；裕同重述近似等限制已明确。"
+        }
+      ],
+      "critical_errors": [],
+      "verified_gains": [
+        {
+          "answer": "B",
+          "relative_to": [
+            "A",
+            "C"
+          ],
+          "finding": "奥瑞金年报确认 2025 年扣非归母利润约 5.03 亿元、同比下降 33.89%。结合答复共同采用的半年数据，滚动扣非约 6.47 亿元、对应约 17.5 倍；最近半年简单年化约 10.4 倍，两者差异有真实年度基数来源。",
+          "source_checks": [
+            "S10",
+            "S12"
+          ],
+          "investment_value": "判断整合已兑现到何种程度时，年度低谷与最新半年改善必须同时保留；不是只因某一个倍数更低就便宜。TTM 半年输入未再独立打开，因此仅年度数据标为完全独立核实。"
+        },
+        {
+          "answer": "B",
+          "relative_to": [
+            "C"
+          ],
+          "finding": "永新官网年报确认 2025 年经营现金流 3.4303 亿元、长期资产购建现金 1.7825 亿元、归母利润 4.3813 亿元。相减约 1.6478 亿元，约为归母利润的 37.6%；财务表亦确认利润同比下降 6.33%。",
+          "source_checks": [
+            "S03",
+            "S06"
+          ],
+          "investment_value": "对以稳定现金分红为核心的候选，全年资本投入后现金覆盖比单列历史股息率更能约束两年分红情景；不能因此认定永久自由现金流只有该数。"
+        }
+      ],
+      "unresolved": [
+        "A 的昇兴、C 的紫江新增线索未独立核验，不作真伪判定，也不将未被抽中的答案视为天然劣势。",
+        "三者都未完整重建净债务、必要资本开支、客户调价条款与并购可比口径；B 的 TTM 也不能消除并表变化。",
+        "未独立核验三者截止日价格；已披露旧价、搜索摘要及盘中冲突的，按答复自己给的置信边界评价。",
+        "各自悲观、基准、乐观利润和 PE 均为假设；倍数、股息、收益门槛选择不单独算事实错误或质量增益。",
+        "本次确认的年度现金缺口是有用反证，但不足以单独证明永新应削减分红或奥瑞金不可投资。"
+      ]
+    }
+  ],
+  "source_checks": [
+    {
+      "id": "S01",
+      "case": "market",
+      "tool": "web.run",
+      "parameters": {
+        "open": [
+          {
+            "ref_id": "https://static.cninfo.com.cn/finalpage/2026-08-28/1225522691.PDF"
+          }
+        ],
+        "response_length": "long"
+      },
+      "url": "https://static.cninfo.com.cn/finalpage/2026-08-28/1225522691.PDF",
+      "status": "success",
+      "finding": "取得海尔 2026 半年报；第 6 页确认归母、扣非、经营现金约 103.16、92.99、97.52 亿元及扣非 EPS 1.01 元。",
+      "failure": null
+    },
+    {
+      "id": "S02",
+      "case": "grid",
+      "tool": "web.run",
+      "parameters": {
+        "open": [
+          {
+            "ref_id": "https://static.cninfo.com.cn/finalpage/2026-04-30/1225257886.PDF"
+          }
+        ],
+        "response_length": "long"
+      },
+      "url": "https://static.cninfo.com.cn/finalpage/2026-04-30/1225257886.PDF",
+      "status": "success",
+      "finding": "取得国电南瑞 2025 年报全文入口，共 306 页；需定向查找现金流。",
+      "failure": null
+    },
+    {
+      "id": "S03",
+      "case": "packaging",
+      "tool": "web.run",
+      "parameters": {
+        "open": [
+          {
+            "ref_id": "https://www.novel.com.cn/Uploads/202604/69eb648001ed1.pdf"
+          }
+        ],
+        "response_length": "long"
+      },
+      "url": "https://www.novel.com.cn/Uploads/202604/69eb648001ed1.pdf",
+      "status": "success",
+      "finding": "取得永新公司官网 2025 年报全文入口，共 190 页。",
+      "failure": null
+    },
+    {
+      "id": "S04",
+      "case": "market",
+      "tool": "web.run",
+      "parameters": {
+        "find": [
+          {
+            "ref_id": "https://static.cninfo.com.cn/finalpage/2026-08-28/1225522691.PDF",
+            "pattern": "报告分部的财务信息"
+          }
+        ],
+        "response_length": "long"
+      },
+      "url": "https://static.cninfo.com.cn/finalpage/2026-08-28/1225522691.PDF",
+      "status": "no_match",
+      "finding": "未按该标题匹配，不能认定报告未披露分部。",
+      "failure": "No matching text found"
+    },
+    {
+      "id": "S05",
+      "case": "grid",
+      "tool": "web.run",
+      "parameters": {
+        "find": [
+          {
+            "ref_id": "https://static.cninfo.com.cn/finalpage/2026-04-30/1225257886.PDF",
+            "pattern": "12,769"
+          }
+        ],
+        "response_length": "long"
+      },
+      "url": "https://static.cninfo.com.cn/finalpage/2026-04-30/1225257886.PDF",
+      "status": "no_match",
+      "finding": "按圆整数查找失败；后续改查现金流科目。",
+      "failure": "No matching text found"
+    },
+    {
+      "id": "S06",
+      "case": "packaging",
+      "tool": "web.run",
+      "parameters": {
+        "find": [
+          {
+            "ref_id": "https://www.novel.com.cn/Uploads/202604/69eb648001ed1.pdf",
+            "pattern": "343,"
+          }
+        ],
+        "response_length": "long"
+      },
+      "url": "https://www.novel.com.cn/Uploads/202604/69eb648001ed1.pdf",
+      "status": "success",
+      "finding": "第 7、73 页显示经营现金流 343,030,281.22 元、资产购建支出 178,253,767.72 元；利润表归母 438,133,521.15 元、同比 -6.33%。",
+      "failure": null
+    },
+    {
+      "id": "S07",
+      "case": "market",
+      "tool": "web.run",
+      "parameters": {
+        "find": [
+          {
+            "ref_id": "https://static.cninfo.com.cn/finalpage/2026-08-28/1225522691.PDF",
+            "pattern": "分部利润"
+          }
+        ],
+        "response_length": "long"
+      },
+      "url": "https://static.cninfo.com.cn/finalpage/2026-08-28/1225522691.PDF",
+      "status": "success",
+      "finding": "第 172 页分部表及口径说明支持 C 对暖通增量、生活电器下降与归属边界的描述。",
+      "failure": null
+    },
+    {
+      "id": "S08",
+      "case": "grid",
+      "tool": "web.run",
+      "parameters": {
+        "find": [
+          {
+            "ref_id": "https://static.cninfo.com.cn/finalpage/2026-04-30/1225257886.PDF",
+            "pattern": "经营活动产生的现金流量净额"
+          }
+        ],
+        "response_length": "long"
+      },
+      "url": "https://static.cninfo.com.cn/finalpage/2026-04-30/1225257886.PDF",
+      "status": "success",
+      "finding": "第 26 页确认 2025 年经营现金流 12,768,702,125.04 元；现金补充表显示经营应付增加贡献，不能把全部现金流等同股东自由现金。",
+      "failure": null
+    },
+    {
+      "id": "S09",
+      "case": "grid",
+      "tool": "web.run",
+      "parameters": {
+        "open": [
+          {
+            "ref_id": "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12506207&stockid=600312"
+          }
+        ],
+        "response_length": "long"
+      },
+      "url": "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12506207&stockid=600312",
+      "status": "success_needs_targeted_read",
+      "finding": "取得平高会计估计变更公告转载入口，后续定位正文。",
+      "failure": null
+    },
+    {
+      "id": "S10",
+      "case": "packaging",
+      "tool": "web.run",
+      "parameters": {
+        "open": [
+          {
+            "ref_id": "https://disc.static.szse.cn/download/disc/disk03/finalpage/2026-04-29/a7d8cafb-aa01-491a-a7fc-677f44287237.PDF"
+          }
+        ],
+        "response_length": "long"
+      },
+      "url": "https://disc.static.szse.cn/download/disc/disk03/finalpage/2026-04-29/a7d8cafb-aa01-491a-a7fc-677f44287237.PDF",
+      "status": "failed",
+      "finding": "该 download 路径未返回正文。",
+      "failure": "Internal Error"
+    },
+    {
+      "id": "S11",
+      "case": "grid",
+      "tool": "web.run",
+      "parameters": {
+        "open": [
+          {
+            "ref_id": "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12506207&stockid=600312",
+            "lineno": 35
+          }
+        ],
+        "response_length": "long"
+      },
+      "url": "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12506207&stockid=600312",
+      "status": "success",
+      "finding": "公告日期 2026-08-20，自 6 月 1 日执行；关联方应收款组合改为按预期信用损失计提，使半年归母利润减少 7,453.55 万元。已证实截止日前可得且方向、金额能改变利润桥解读。",
+      "failure": null
+    },
+    {
+      "id": "S12",
+      "case": "packaging",
+      "tool": "web.run",
+      "parameters": {
+        "open": [
+          {
+            "ref_id": "https://disc.static.szse.cn/disc/disk03/finalpage/2026-04-29/a7d8cafb-aa01-491a-a7fc-677f44287237.PDF"
+          }
+        ],
+        "response_length": "long"
+      },
+      "url": "https://disc.static.szse.cn/disc/disk03/finalpage/2026-04-29/a7d8cafb-aa01-491a-a7fc-677f44287237.PDF",
+      "status": "success",
+      "finding": "不含 download 的披露路径成功。第 10 页年度扣非为 503,497,151 元、同比 -33.89%；第 4 页股利基数 2,559,760,469 股，与三答复约 25.60 亿股尺度相容。",
+      "failure": null
+    }
+  ],
+  "local_checks": {
+    "arithmetic_batches": 1,
+    "calculations": [
+      {
+        "item": "海尔暖通收入/利润同比及增量",
+        "result": {
+          "revenue_growth_pct": 5.8328347028,
+          "profit_growth_pct": 26.7658119354,
+          "profit_increment_yi": 9.6431945645,
+          "living_profit_decline_yi": 11.9745467472
+        }
+      },
+      {
+        "item": "海尔 C 基准含息累计回报",
+        "result": 0.5299698341,
+        "note": "只核算假设，不验证假设会发生。"
+      },
+      {
+        "item": "南瑞年现金/近似滚动现金",
+        "result": {
+          "annual_cash_yi": 127.6870212504,
+          "approx_ttm_cash_yi": 105.5210117492
+        },
+        "note": "滚动数使用答案圆整半年金额和降幅；与其 105.51 亿元差异属于圆整，不计错误。"
+      },
+      {
+        "item": "平高估计变更",
+        "result": {
+          "profit_reduction_yi": 0.745355,
+          "fraction_of_reported_h1_profit": 0.0912307222,
+          "counterfactual_growth_without_this_change": 0.3407951883
+        },
+        "note": "约 34.1% 仅是旧计提方法下的机械反事实，不是可持续盈利预测。"
+      },
+      {
+        "item": "永新全年现金余量",
+        "result": {
+          "cash_less_long_asset_spend_yi": 1.647765135,
+          "ratio_to_parent_profit": 0.3760874381
+        }
+      },
+      {
+        "item": "奥瑞金两种利润尺度",
+        "result": {
+          "annual_recurring_yi": 5.03497151,
+          "approx_ttm_recurring_yi": 6.4661284739,
+          "approx_ttm_pe": 17.4595974169,
+          "h1_annualized_pe": 10.3764705882
+        },
+        "note": "半年输入采用答复共同数字，并非本次独立重取；不同期间都受并表和季节性影响。"
+      }
+    ],
+    "log_request_recount": [
+      {
+        "case": "market",
+        "label": "C",
+        "web": 36,
+        "search": 12
+      },
+      {
+        "case": "market",
+        "label": "B",
+        "web": 36,
+        "search": 12
+      },
+      {
+        "case": "market",
+        "label": "A",
+        "web": 36,
+        "search": 12
+      },
+      {
+        "case": "grid",
+        "label": "C",
+        "web": 36,
+        "search": 12
+      },
+      {
+        "case": "grid",
+        "label": "B",
+        "web": 36,
+        "search": 12
+      },
+      {
+        "case": "grid",
+        "label": "A",
+        "web": 36,
+        "search": 12
+      },
+      {
+        "case": "packaging",
+        "label": "C",
+        "web": 36,
+        "search": 12
+      },
+      {
+        "case": "packaging",
+        "label": "B",
+        "web": 36,
+        "search": 12
+      },
+      {
+        "case": "packaging",
+        "label": "A",
+        "web": 36,
+        "search": 11
+      }
+    ],
+    "log_audit_note": "重数盲文件自记日志中的 request/parameters/params；各项均与声明上限相容。这仅核对记录内部一致性，不是独立网络抓包或完整工具执行审计。"
+  },
+  "limitations": [
+    "独立核验共 12 个 web 条目：7 个 open、5 个 find；无搜索。覆盖每题至少一份关键原文及数字。市场 3 项、电网 5 项、包装 4 项。2 次 find 无匹配、1 次 open Internal Error 均保留。",
+    "parameters 中已把 find 使用的临时文档引用解析为实际 URL，保留查找词、行号和响应长度；同一批调用为便于审计按网页条目拆开记录。",
+    "执行者日志是自记日志，不是独立网络捕获；本评审的 source_checks 亦是工具输出的记录，不宣称 HTTP 层抓包或截止日网页存档。",
+    "宿主单 agent；本评审未另行委派。模型设置继承，具体版本未暴露；不能由匿名答案猜测标签或实际实现。",
+    "研究在 2026-09-22 实时读取截止日前材料，不能保证内容与截止日网页完全相同；一次实时检索有缓存、排序、可达性与随机性。",
+    "有限抽样不能证明不存在其他重大错误。只有检查到的差异进入 verified_gains；未核实项目不因措辞完整而升级为事实。",
+    "明确优势仅包装 B 对 C 一组，其余八组为 no_clear_advantage；这是单次匿名内容诊断，不能证明方法具有统计优越性或真实投资超额收益。",
+    "报告未保存个人绝对路径；输入仅列实验内相对路径。"
+  ]
+}

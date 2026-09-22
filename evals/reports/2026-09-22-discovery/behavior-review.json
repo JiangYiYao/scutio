@@ -1,0 +1,60 @@
+{
+  "reviewer": "implementation owner; not blinded or independent",
+  "cases": [
+    {
+      "id": "company-investment-outward",
+      "result": "satisfied_in_this_execution",
+      "evidence": "区分丙的重要缺口、乙已确认但相对小的订单、丁无关系；未把资本开支全部归供应商。"
+    },
+    {
+      "id": "stable-business-and-price",
+      "result": "satisfied_in_this_execution",
+      "evidence": "正确计算12.5%现金收益关系，不强加技术主题，并保留股东可得与维护条件。"
+    },
+    {
+      "id": "truncated-coverage",
+      "result": "satisfied_in_this_execution",
+      "evidence": "区分事件数、公司数、截断与失败；不外推全市场不存在机会。"
+    },
+    {
+      "id": "partner-changes-value-owner",
+      "result": "satisfied_in_this_execution",
+      "evidence": "从甲固定安装费转向乙许可收益及丙30%权益；没有把乙收入全部并入丙。"
+    },
+    {
+      "id": "opportunity-cannot-stop-at-lead",
+      "result": "satisfied_in_this_execution",
+      "evidence": "工具轨迹确实读取三份夹具，算出60倍与条件性42.9倍；识别3亿元资本开支和验收回款，不停于订单名单。"
+    },
+    {
+      "id": "quantitative-hit-is-a-lead",
+      "result": "satisfied_in_this_execution",
+      "evidence": "保留机构分歧、20家缺资料和历史时点不足，不把命中当收益或市场遗漏证据。"
+    },
+    {
+      "id": "whole-company-business-links",
+      "result": "satisfied_in_this_execution",
+      "evidence": "重点解释计算、运输、芯片及部署共同经济性，保留成熟业务基础，没有以当前亏损或利润机械判断市值。"
+    },
+    {
+      "id": "horizon-and-company-scope",
+      "result": "satisfied_in_this_execution",
+      "evidence": "以2029-09-10为终点，区分2028验收、2027投产与2031成熟利用率；分析平台持股与合同合作的权益差异。"
+    },
+    {
+      "id": "simple-calculation-without-delegation",
+      "result": "satisfied_in_this_execution",
+      "evidence": "仅答20%，本批未派子agent。"
+    },
+    {
+      "id": "table-screening-scope",
+      "result": "satisfied_in_this_execution",
+      "evidence": "仅返回甲命中、丙字段缺失，没有升级为投资排名。"
+    }
+  ],
+  "limitations": [
+    "Ten cases executed in one context with explicit skill loading; not independent repetitions or automatic activation evidence.",
+    "Material fixtures test reasoning and completion, not open retrieval or general discovery quality.",
+    "No control answers for these fixtures in this run; cannot claim comparative improvement."
+  ]
+}

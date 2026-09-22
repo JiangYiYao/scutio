@@ -1,0 +1,78 @@
+{
+  "base_commit": "a5e176e",
+  "tests": [
+    {
+      "command": "SCUTIO_TEST_REPORT=0 PYTHONDONTWRITEBYTECODE=1 <python> -m pytest -q -m \"not live\"",
+      "result": {
+        "passed": 1244,
+        "skipped": 6,
+        "deselected": 13,
+        "seconds": 33.9
+      }
+    },
+    {
+      "command": "ruff check skills/scutio/scripts tests scripts",
+      "result": "All checks passed"
+    },
+    {
+      "command": "ruff format --check skills/scutio/scripts tests scripts",
+      "result": "132 files already formatted"
+    },
+    {
+      "command": "python3 <skill-creator>/scripts/quick_validate.py skills/scutio",
+      "result": "Skill is valid!"
+    },
+    {
+      "command": "PYTHONPATH=skills/scutio/scripts SCUTIO_TEST_REPORT=0 <python> -m pytest -q tests/data/test_forecast_observations.py tests/data/test_forecast_price_changes.py tests/data/test_research_local.py tests/data/test_hk_us_market.py tests/data/test_akshare_market_contracts.py",
+      "result": {
+        "passed": 239,
+        "seconds": 0.37
+      },
+      "scope": "Independent reviewer rechecked all four original reproductions after fixes."
+    }
+  ],
+  "sha256": {
+    "skills/scutio/scripts/scutio_data/research/signals.py": "c05eeaeb3d07d4bcd8e18c21dbbcaa7432f4e5aef8c68747d8c561ac084c1d84",
+    "skills/scutio/scripts/scutio_data/research/consensus.py": "710154ef3fc4154b71f9782e8c666207d94b691ad079a7af1a83ef8152dd0ab3",
+    "skills/scutio/scripts/scutio_data/market.py": "b05da54c0e5e40031c5ece1b15194c12530b8c8680ac51603e9b69e51b3c31ee",
+    "skills/scutio/references/capabilities/discover.md": "d7bf13b5fc99511e554f14300ede7214ebd4c5bf9cb30f925a5264cd71331f44",
+    "skills/scutio/references/toolkit/04-research.md": "a42e7ca5fe6fd62cff1b5c884b6027053d2914b47010770076f8162fc61d1782",
+    "skills/scutio/scripts/scutio_data/_providers/akshare/market.py": "3836e3080beb8c0067ceac7bb44377531176aa9007d63d2174da52076a5ed368",
+    "skills/scutio/scripts/scutio_data/_runtime/parsing.py": "cf1bf0017495488f9d4e7f5e612274b8f2fdc83a60526d5c4ed9c137fe4975b1",
+    "skills/scutio/references/toolkit/02-market.md": "917e6ae6f8a397f9bf23aea9d3c3dd2d1928329b97dd181a36899b03efea2a00"
+  },
+  "notes": [
+    "Offline test run includes standalone release ZIP hash and runtime extraction test.",
+    "Live field audit is recorded separately; six optional tests were skipped and thirteen live-marked tests excluded from offline suite.",
+    "Code checks and behavioral experiments are separate evidence.",
+    "Explicit final package inspection: discover.md and signals.py included, one SKILL.md, handoff/evals excluded."
+  ],
+  "artifact_checks": {
+    "public_files": "scripts.build_release.check_public_files(ROOT, source_files(ROOT)): passed",
+    "release_package": {
+      "result": "passed",
+      "files": 117,
+      "skill_entrypoints": 1,
+      "includes": [
+        "references/capabilities/discover.md",
+        "scripts/scutio_data/research/signals.py"
+      ],
+      "excludes": [
+        "handoff/",
+        "evals/"
+      ],
+      "mode": "Local allow_dirty build in a temporary directory; no release published."
+    },
+    "eval_definitions": {
+      "unique_ids": 85,
+      "duplicates": 0
+    },
+    "local_markdown_links": {
+      "checked": 196,
+      "missing_files_or_anchors": 0,
+      "scope": "README, evals README, skill Markdown, handoff Markdown, implementation report"
+    },
+    "diff_whitespace": "git diff --check: passed",
+    "documentation_consistency": "Independent read-only review found no remaining inconsistency in handoff status, interface documentation or evaluation claims."
+  }
+}

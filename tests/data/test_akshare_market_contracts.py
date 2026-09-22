@@ -138,6 +138,7 @@ def test_invalid_bar_price_reaches_quality_check_and_falls_back(monkeypatch, mis
     monkeypatch.setattr(akshare_source, "fetch", fetch)
     out = market.security_bars("600519", count=1, sources=["akshare_sina", "akshare_tencent"])
     assert out["ok"] and not out["partial"] and out["source"] == "akshare_tencent"
+    assert (out["symbol"], out["code"], out["currency"]) == ("sh600519", "600519", "CNY")
     assert out["bars"][0]["low"] == 9
     assert "invalid_ohlc_rows:1" in out["errors"]["akshare_sina"]
     assert calls == ["stock_zh_a_daily", "stock_zh_a_hist_tx"]
@@ -153,6 +154,7 @@ def test_all_missing_bar_prices_cannot_become_a_successful_zero_bar(monkeypatch)
     )
     out = market.security_bars("600519", count=1, sources=["akshare_sina"])
     assert not out["ok"] and not out["bars"]
+    assert (out["symbol"], out["code"], out["currency"]) == ("sh600519", "600519", "CNY")
     assert "invalid_ohlc_rows:1" in out["error"]
 
 
@@ -176,3 +178,97 @@ def test_native_adjusted_bar_prices_may_be_negative(monkeypatch):
     )
     out = market.security_bars("600519", count=1, adjust="qfq", sources=["akshare_sina"])
     assert out["ok"] and out["bars"][0]["close"] == -1.5
+
+
+@pytest.mark.parametrize(
+    "code,pure,exchange,native_code",
+    [
+        ("sz000001", "000001", "sz", 1),
+        ("hk00700", "00700", "hk", 700),
+        ("usAAPL", "AAPL", "us", "aapl"),
+    ],
+)
+def test_bars_accept_consistent_native_identity_before_normalization(
+    monkeypatch, code, pure, exchange, native_code
+):
+    raw = {
+        "date": "2026-09-10",
+        "open": 10,
+        "high": 11,
+        "low": 9,
+        "close": 10.5,
+        "symbol": code,
+        "code": pure,
+        "stockCode": native_code,
+        "exchange": exchange,
+        "股票代码": native_code,
+        "证券代码": native_code,
+        "SECURITY_CODE": native_code,
+        "ticker": native_code,
+    }
+    monkeypatch.setattr(akshare_source, "fetch", lambda *a, **k: [raw])
+    out = market.security_bars(code, count=1, sources=["akshare_sina"])
+    assert out["ok"] and out["symbol"] == code and out["bars"][0]["close"] == 10.5
+
+
+@pytest.mark.parametrize(
+    "field",
+    ["symbol", "stockCode", "code", "ticker", "股票代码", "证券代码", "SECURITY_CODE", "exchange"],
+)
+def test_conflicting_native_bar_claim_is_not_erased_even_with_correct_symbol(monkeypatch, field):
+    correct = {
+        "date": "2026-09-09",
+        "open": 20,
+        "high": 20,
+        "low": 20,
+        "close": 20,
+        "symbol": "sh600519",
+    }
+    wrong = {**correct, "date": "2026-09-10", field: "sz" if field == "exchange" else "sz000001"}
+    monkeypatch.setattr(akshare_source, "fetch", lambda *a, **k: [correct, wrong])
+    out = market.security_bars("600519", count=2, sources=["akshare_sina"])
+    assert not out["ok"] and not out["bars"]
+    assert "bar identity mismatch" in out["errors"]["akshare_sina"]
+
+
+@pytest.mark.parametrize(
+    "code,wrong", [("sh600519", "sz000001"), ("hk00700", "hk09988"), ("usAAPL", "usMSFT")]
+)
+def test_native_wrong_security_falls_back_before_request_identity_is_attached(
+    monkeypatch, code, wrong
+):
+    from scutio_data._providers.akshare import market as adapter
+
+    raw = {"date": "2026-09-10", "open": 10, "high": 11, "low": 9, "close": 10.5}
+    monkeypatch.setattr(adapter, "em_secid_candidates", lambda _: ["105.AAPL"])
+    remembered = []
+    monkeypatch.setattr(adapter, "remember_em_secid", lambda *args: remembered.append(args))
+
+    def fetch(function, **params):
+        return [{**raw, "symbol": code if function.endswith("_daily") else wrong}]
+
+    monkeypatch.setattr(akshare_source, "fetch", fetch)
+    out = market.security_bars(code, count=1, sources=["akshare_eastmoney", "akshare_sina"])
+    assert out["ok"] and out["source"] == "akshare_sina" and out["symbol"] == code
+    assert "bar identity mismatch" in out["errors"]["akshare_eastmoney"]
+    assert not remembered
+
+
+@pytest.mark.parametrize("code", ["sh600519", "hk00700", "usAAPL"])
+def test_unidentified_native_bars_keep_request_identity_as_provenance(monkeypatch, code):
+    raw = {"date": "2026-09-10", "open": 10, "high": 11, "low": 9, "close": 10.5}
+    monkeypatch.setattr(akshare_source, "fetch", lambda *a, **k: [raw])
+    out = market.security_bars(code, count=1, sources=["akshare_sina"])
+    assert out["ok"] and out["identity_provenance"] == "request"
+    assert not any(
+        key in out["bars"][0] for key in ("symbol", "stockCode", "code", "identity_verified")
+    )
+
+
+def test_bar_facade_rejects_contradictory_identity_from_a_normalized_provider(monkeypatch):
+    raw = {"datetime": "2026-09-10", "open": 10, "high": 11, "low": 9, "close": 10.5}
+    monkeypatch.setattr(market.hithink, "bars", lambda *a, **k: [{**raw, "symbol": "sz000001"}])
+    monkeypatch.setattr(akshare_source, "fetch", lambda *a, **k: [raw])
+    out = market.security_bars("600519", count=1, sources=["hithink", "akshare_sina"])
+    assert out["ok"] and out["source"] == "akshare_sina"
+    assert "identity mismatch" in out["errors"]["hithink"]

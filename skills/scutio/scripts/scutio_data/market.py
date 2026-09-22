@@ -291,7 +291,13 @@ def security_bars(
 ):
     """K 线有序 fallback。默认不复权；链按市场选择（见 ``BARS_FALLBACK_BY_MARKET``）。"""
     chain = tuple(sources) if sources is not None else _default_bars_chain_for_code(code)
-    require_security(code, "security_bars")
+    _, prefix, pure = require_security(code, "security_bars")
+    identity = {
+        "symbol": prefix + pure,
+        "code": pure,
+        "currency": {"hk": "HKD", "us": "USD"}.get(prefix, "CNY"),
+        "identity_provenance": "request",
+    }
     count = int(count)
     if count < 1:
         raise ValueError("count must be positive")
@@ -331,11 +337,14 @@ def security_bars(
                 errors[source] = "unknown bars source"
                 continue
             if bars:
+                for bar in bars:
+                    validate_identity(bar, code, required=False)
                 quality = _bar_candidate_quality(bars, frequency=frequency, count=count)
                 if quality["status"] == "invalid":
                     errors[source] = "bar quality failed: %s" % ", ".join(quality["issues"])
                     continue
                 return {
+                    **identity,
                     "ok": True,
                     "error": None,
                     "errors": errors,
@@ -369,6 +378,7 @@ def security_bars(
         except Exception as exc:
             errors[source] = str(exc)
     return {
+        **identity,
         "ok": False,
         "error": "; ".join("%s: %s" % (k, v) for k, v in errors.items())
         or "all bars sources failed",

@@ -18,6 +18,7 @@
 | `eps_forecast(code)` | ✓ | — | — | 同花顺原始表；业务使用标准化一致预期接口 |
 | `consensus_forecast(code)` | ✓ | — | — | 标准 `year/eps/analyst_count`；AKShare 同花顺逐公司年度 |
 | `consensus_revisions(code, reports=None)` | ✓ | — | — | 同机构、同预测财年的 EPS 修订；可复用列表 |
+| `forecast_price_changes(code, reports, bars, ...)` | ✓ | — | — | 已取材料的固定窗口预测与参考 PE 变化，纯计算 |
 | `local_report_search(...)` | ✓ | — | — | 对 records 本地打分；未传 records 时先在线拉行业列表 |
 | `local_stock_screen` / `dedup_articles` | ✓* | ✓* | ✓* | *纯本地工具 |
 
@@ -105,4 +106,46 @@
 
 `stock_reports(max_pages=...)` 的参数为 1–50 的整数，控制本地最多返回 `max_pages * 50` 条；AKShare 内部仍先获取该股票的研报数据。`coverage.available_count/returned_count/limit/truncated` 描述 begin 过滤后的本地覆盖，`limit_scope=local_rows`；截断时 `partial=True`，不声称限制了源端请求页数。PDF 链接统一使用 `pdf_url`，下载入口同时接受已有记录的 `pdfUrl`。
 
-`consensus_revisions(reports=...)` 与 `list_local_reports(online_reports=...)` 共用证券身份校验；手工材料每条须提供 `stockCode` 或完整 `symbol`，空列表须在信封中提供身份，所有代码与交易所声明必须一致。错票、混合证券及无身份返回错误。每个 EPS 修订条目对应一个明确的 `fiscal_year`，包含 `eps/previous_eps/change/direction`、前后 `info_code/previous_info_code` 和 `date/previous_date`。没有先前同财年预测时为 `new`，不会把跨年的“本年 EPS”直接相减。`forecast_years`、发布日期或机构缺失时跳过并记录 `skipped_reports`，返回部分覆盖；同日顺序不明或前一日预测存在冲突时不生成涨跌方向。上游 `coverage/errors/partial` 继续保留。
+`consensus_revisions(reports=...)` 与 `list_local_reports(online_reports=...)` 共用证券身份校验；手工材料每条须提供 `stockCode` 或完整 `symbol`，空列表须在信封中提供身份，所有代码与交易所声明必须一致。错票、混合证券及无身份返回错误。每个 EPS 修订条目对应一个明确的 `fiscal_year`，包含 `eps/previous_eps/change/direction`、前后 `info_code/previous_info_code` 和 `date/previous_date`。没有先前同财年预测时为 `new`，不会把跨年的“本年 EPS”直接相减。`forecast_years`、发布日期、机构或有效 EPS 缺失时跳过并记录 `skipped_reports`，返回部分覆盖；同日 EPS 或显式口径冲突时整组标记 `conflict=True`，第一条也不生成涨跌方向，相邻比较不跨过冲突组取旧值。第一版不按同日时间或版本号自动消歧。相同观测去重但保留 `report_references`；上游 `coverage/errors/partial` 继续保留。
+
+### 固定窗口的预测与价格变化
+
+`forecast_price_changes` 为[发现](../capabilities/discover.md)提供可选线索，自身不联网、不扫描市场、不做收益回测。它与相邻修订共用预测解析；不要把 `consensus_revisions.direction` 直接当作本窗口方向。
+
+```python
+from scutio_data.research import forecast_price_changes
+
+# reports 和 bars 是已经取得的同一证券信封；缺少口径核验时保留补证结果。
+comparison = forecast_price_changes(
+    "688981", reports, bars,
+    start_date="2026-06-22", end_date="2026-09-18", fiscal_year=2026,
+    max_age_days=120, eps_floor=0.01, share_basis=None,
+)
+```
+
+窗口、目标财年、陈旧度 `max_age_days` 和近零界限 `eps_floor` 必须显式指定，不能为取得命中再改参数。日线信封须有证券身份、`currency`、`frequency=D/1D`、`adjust=none`，并包含两个指定交易日的收盘价；停牌或缺端点不向前填价，复权价不参加参考 PE 计算。手工复用须保留来源与身份，不能给另一只证券的数据补上请求代码。
+
+预测可来自 `stock_reports`，也可复用 `consensus_revisions` 的标准观测。每条合格端点还须有从原文核实的 `currency`、`eps_basis`（股数/每股基准）、`eps_definition`（如年度归母基本或摊薄 EPS）；两端各字段须一致且币种匹配价格。源未提供时保持未知，不因接口成功就补成相同口径。标准观测包含 `date/source_date`、显式 `published_at/available_at`、`info_code/report_url/report_references`、`retrieved_at`；后者不能当成历史可用时间。
+
+`share_basis` 是本次核验记录，含同一证券的 `symbol`、与调用一致的 `start_date/end_date`、`status=unchanged|changed|unknown`、原文引用列表 `evidence`、`cash_dividends=none|present|unknown`。只有有证据支持的 `unchanged` 才允许自动比较；它表示跨端点预测与价格的每股基准已核对，不等于仅查到一条股本公告。公司行动接口空结果不能证明没有变化。拆股、送转、股数或预测定义变化第一版不自动换算；尚未完成核验时传 `None`，结果保留原值及补证原因。现金分红单独提示，原价 PE 不做派息调整。
+
+每个机构、同一绝对财年分别取端点前最后可用预测。只有日期、没有明确发布时间的材料，从该日期之后才可用于端点；显式时间须带时区，并按 A 股端点日 15:00 判断，首次可用时间延后不会让旧预测变新。没有端点预测、过旧、同日冲突或未知口径均保留原因，不退到更有利的旧预测。今天取得的材料一律标记 `mode=retrospective_current_materials`、`point_in_time_verified=False`，不能据此声称历史当时可交易。
+
+端点冲突只在当时可用的材料内判定，盘后记录不会阻断收盘前已有预测；同日多条已可用记录仍不按时间自动消歧。顶层 `conflicts` 保留全部输入的冲突，端点的 `conflict_scope=endpoint_available_materials` 标明其取舍范围。
+
+| 输出 | 如何解读 |
+|---|---|
+| `items` | 全部已覆盖机构的端点预测/原文引用、端点价格、可比性与 `reasons`；不是只返回命中机构 |
+| `eps_change` / `direction` | 口径可比时的绝对变化与上修/下修/持平；负 EPS 可保留绝对变化 |
+| `eps_change_pct` / `pe0` / `pe1` / `pe_change_pct` | 两端 EPS 均大于显式近零界限且为正时计算；PE 是该机构对该财年预测的参考倍数，不是 TTM PE |
+| `metrics_computable` / `matched` | 同一合格机构同时 EPS 上修且参考 PE 下降才命中；不可计算为 `matched=None`，可计算但不命中为 `False` |
+| `summary` | 配对/可计算/命中机构数，上修、下修、持平及分歧；`not_updated` 另列，可与持平重叠；中位数带实际分母 |
+| `coverage` / `input_provenance` | 公司输入、可计算、命中、缺口计数及机构展示范围；同时保留预测与价格的源、时间和覆盖缺口 |
+
+公司级命中须至少有一个**相同机构配对**同时满足条件，不能拼接不同机构的有利指标。`limit` 只截取展示，`summary` 和总数始终基于全部机构。公司计数描述不同覆盖维度，存在可计算配对与尚待补证机构时，`computable`、`missing` 可以同时为 1。
+
+`coverage_status` 描述两个端点是否有未过期、无冲突的预测：`paired/new_coverage/old_only/unavailable`。两端存在预测仍可能因股数或盈利口径未知而不可比；`summary.paired` 只统计口径也已确认可比的配对，不能用它替代机构覆盖总数。
+
+`unchanged_report/not_updated` 只描述两端是否沿用同一预测，即使口径尚不可比或预测已过期也单独计数；未更新不能解释为盈利预期稳定。
+
+公式为 `EPS变化%=(E1/E0-1)*100`、`PE0=P0/E0`、`PE1=P1/E1`、`PE变化%=(PE1/PE0-1)*100`。虚构的 `E0=2, E1=2.4, P0=20, P1=22` 得到 EPS 上修 20%、价格上涨 10%、参考 PE 从 10 降至约 9.17。它也可能命中价格大跌的公司，不能解释成“价格反应温和”或“市场遗漏”。筛选继续复用 [screen_records](screening.md)，再核实经营原因、价值归属和价格要求；没有收益预测有效性的承诺。

@@ -1,0 +1,342 @@
+{
+  "condition": "with_signal",
+  "question": "请从给定四家 A 股公司的真实研报、端点价格及原文核验材料中，寻找值得继续研究的盈利预期变化线索，判断哪些变化可比较、哪些需要补证，以及这些材料能把投资机会判断推进到哪一步。观察窗口为2026-06-22至2026-09-18，目标财年2026。不必凑候选，不把数值名单直接当投资机会。",
+  "started_at": "2026-09-22T07:26:54.585040+00:00",
+  "completed_at": "2026-09-22T07:32:04.212286+00:00",
+  "tools_log": [
+    {
+      "seq": 1,
+      "operation": "read_attempt",
+      "inputs": [
+        "methods/candidate/SKILL.md",
+        "evals/reports/2026-09-22-discovery/quant-manifest.json"
+      ],
+      "selection": "最初尝试从仓库根目录读取方法并串接 manifest。",
+      "result": "methods/candidate/SKILL.md 不存在，cat 返回 1；因 && 后续 manifest 未执行。",
+      "error": "wrong_relative_method_path"
+    },
+    {
+      "seq": 2,
+      "operation": "read",
+      "inputs": [
+        "evals/reports/2026-09-22-discovery/quant-manifest.json"
+      ],
+      "selection": "明确问题、窗口、目标年、with_signal 附加输入和实验限制。",
+      "result": "成功，读取完整 manifest。"
+    },
+    {
+      "seq": 3,
+      "operation": "path_discovery",
+      "inputs": [
+        "evals/reports/2026-09-22-discovery/methods/candidate/",
+        "methods/candidate/"
+      ],
+      "selection": "仅定位授权的 candidate 方法目录。",
+      "result": "实际位于报告目录内；根目录候选不存在，rg 报该路径不存在，同时列出合法方法目录。",
+      "error": "one_candidate_path_missing"
+    },
+    {
+      "seq": 4,
+      "operation": "read",
+      "inputs": [
+        "evals/reports/2026-09-22-discovery/methods/candidate/SKILL.md"
+      ],
+      "selection": "采用冻结 Scutio 方法。",
+      "result": "完整读取成功。"
+    },
+    {
+      "seq": 5,
+      "operation": "size_inspection",
+      "inputs": [
+        "evals/reports/2026-09-22-discovery/quant-inputs.json",
+        "evals/reports/2026-09-22-discovery/quant-results.json"
+      ],
+      "selection": "确定是否需程序化压缩大 JSON。",
+      "result": "输入 76340 bytes，结果 124216 bytes；决定保留所需原值分批读取。"
+    },
+    {
+      "seq": 6,
+      "operation": "read",
+      "inputs": [
+        "evals/reports/2026-09-22-discovery/methods/candidate/references/capabilities/discover.md",
+        "evals/reports/2026-09-22-discovery/methods/candidate/references/capabilities/research.md",
+        "evals/reports/2026-09-22-discovery/methods/candidate/references/methods/evidence-and-sources.md"
+      ],
+      "selection": "读取发现、研究及证据口径方法；本任务禁止联网与派 agent 优先于方法默认流程。",
+      "result": "完整读取成功。"
+    },
+    {
+      "seq": 7,
+      "operation": "local_json_projection",
+      "inputs": [
+        "evals/reports/2026-09-22-discovery/quant-inputs.json",
+        "evals/reports/2026-09-22-discovery/quant-results.json"
+      ],
+      "selection": "只展示顶层键、数组长度、配置结构，未修改材料。",
+      "result": "四个证券输入、10 条原文核验；识别 signal 的 items/summary/coverage 等字段。"
+    },
+    {
+      "seq": 8,
+      "operation": "local_json_projection",
+      "inputs": [
+        "evals/reports/2026-09-22-discovery/quant-inputs.json",
+        "evals/reports/2026-09-22-discovery/quant-results.json"
+      ],
+      "selection": "读取完整 configuration、10 条 original_checks；逐证券摘要、覆盖、首条配对记录。",
+      "result": "发现全部自动计量阻断，原文提供宁德净利和茅台股本；完整输出。"
+    },
+    {
+      "seq": 9,
+      "operation": "local_json_projection",
+      "inputs": [
+        "evals/reports/2026-09-22-discovery/quant-inputs.json",
+        "evals/reports/2026-09-22-discovery/quant-results.json"
+      ],
+      "selection": "尝试输出全量研报、端点价格、压缩配对及跳过/冲突记录。",
+      "result": "进程成功，但工具显示输出被截断；不将未显示段落视为已阅读。首次采集时钟 2026-09-22T07:26:54.585040+00:00。",
+      "error": "output_truncation"
+    },
+    {
+      "seq": 10,
+      "operation": "local_json_projection",
+      "inputs": [
+        "evals/reports/2026-09-22-discovery/quant-inputs.json",
+        "evals/reports/2026-09-22-discovery/quant-results.json"
+      ],
+      "selection": "针对截断重新输出所有证券报告信封、完整两条端点价格、茅台窗口内及窗口后报告、全部中芯和宁德研报简字段，以及所有机构的日期/EPS/年龄/状态/阻断理由。茅台窗口前原始研报关键行已在前次可见输出和 signal 端点覆盖。",
+      "result": "完整输出成功，保留所有答复引用的原值与选择理由。"
+    },
+    {
+      "seq": 11,
+      "operation": "local_quantitative_calculation",
+      "inputs": [
+        "evals/reports/2026-09-22-discovery/quant-inputs.json",
+        "evals/reports/2026-09-22-discovery/quant-results.json"
+      ],
+      "selection": "一批本地算术：从 signal 明细识别更新配对与旧报告沿用；原始 EPS 差异；端点报价与已知现金分红条件变化；茅台 EPS×预测股本；宁德净利/EPS 隐含股本和固定起点倍数敏感性；中芯跨券商诊断。未运行项目数据脚本。",
+      "result": {
+        "calculation_timestamp": "2026-09-22T07:28:25.092541+00:00",
+        "formulae": {
+          "raw_eps_change_pct": "100*(eps1/eps0-1); descriptive only before basis verification",
+          "price_pct": "100*(close1/close0-1); raw unadjusted endpoint quote change",
+          "cash_inclusive_pct": "100*((close1+known_cash)/close0-1); conditional: no omitted actions, no taxes/costs/reinvestment",
+          "implied_profit_cny_100m": "eps_cny_per_share*forecast_shares_100m; rounded report fields, approximate",
+          "pe": "unadjusted_quote/that_report_eps; conditional endpoint multiple, not automatically comparable"
+        },
+        "sh600519": {
+          "coverage_review": {
+            "updated_pair": 10,
+            "raw_increase": 3,
+            "old_report_carried_forward": 5,
+            "raw_decrease": 7,
+            "new_coverage": 1
+          },
+          "unverified_updated_pair_raw_changes": [
+            {
+              "org": "万联证券",
+              "start": 68.83,
+              "end": 68.95,
+              "pct": 0.17434258317594598
+            },
+            {
+              "org": "东吴证券",
+              "start": 67.91,
+              "end": 67.51,
+              "pct": -0.5890148726255262
+            },
+            {
+              "org": "中邮证券",
+              "start": 68.16,
+              "end": 66.53,
+              "pct": -2.3914319248826255
+            },
+            {
+              "org": "中银证券",
+              "start": 68.1,
+              "end": 67.1,
+              "pct": -1.468428781204112
+            },
+            {
+              "org": "华鑫证券",
+              "start": 68.71,
+              "end": 68.82,
+              "pct": 0.1600931451026133
+            },
+            {
+              "org": "国信证券",
+              "start": 67.06,
+              "end": 65.77,
+              "pct": -1.923650462272597
+            },
+            {
+              "org": "国金证券",
+              "start": 67.383,
+              "end": 66.23,
+              "pct": -1.7111140792187784
+            },
+            {
+              "org": "山西证券",
+              "start": 68.19,
+              "end": 68.21,
+              "pct": 0.029329813755674117
+            },
+            {
+              "org": "群益证券",
+              "start": 68.91,
+              "end": 68.12,
+              "pct": -1.1464228704106683
+            },
+            {
+              "org": "西南证券",
+              "start": 70.67,
+              "end": 69.83,
+              "pct": -1.1886231781519818
+            }
+          ],
+          "p0": 1241.41,
+          "p1": 1257.12,
+          "quote_pct": 1.2654964918922706,
+          "known_cash_dividend": 28.02423,
+          "cash_inclusive_pct_conditional": 3.522948099338641,
+          "endpoint_pe0_conditional": 17.566294042733833,
+          "endpoint_pe1_conditional": 18.00257768867249,
+          "endpoint_pe_change_pct_not_verified_comparable": 2.483640800258158
+        },
+        "sh688981": {
+          "coverage_review": {
+            "old_report_carried_forward": 1,
+            "new_coverage": 1
+          },
+          "unverified_updated_pair_raw_changes": [],
+          "p0": 145.59,
+          "p1": 122,
+          "quote_pct": -16.203035922796893
+        },
+        "sz300750": {
+          "coverage_review": {
+            "updated_pair": 5,
+            "raw_decrease": 4,
+            "old_report_carried_forward": 3,
+            "old_only": 1,
+            "raw_increase": 1,
+            "new_coverage": 2
+          },
+          "unverified_updated_pair_raw_changes": [
+            {
+              "org": "东吴证券",
+              "start": 21.07,
+              "end": 20.78,
+              "pct": -1.3763644992880852
+            },
+            {
+              "org": "交银国际证券",
+              "start": 19.906,
+              "end": 20.507,
+              "pct": 3.019190193911392
+            },
+            {
+              "org": "国信证券",
+              "start": 21.11,
+              "end": 20.83,
+              "pct": -1.3263855992420748
+            },
+            {
+              "org": "国金证券",
+              "start": 22.57,
+              "end": 22.138,
+              "pct": -1.9140451927337154
+            },
+            {
+              "org": "西南证券",
+              "start": 19.92,
+              "end": 19.65,
+              "pct": -1.3554216867470048
+            }
+          ],
+          "p0": 408.98,
+          "p1": 301.95,
+          "quote_pct": -26.169983862291556,
+          "known_cash_dividend": 1.411,
+          "cash_inclusive_pct_conditional": -25.824979216587618,
+          "endpoint_pe0_conditional": 19.373756513500712,
+          "endpoint_pe1_conditional": 14.495919347095535,
+          "endpoint_pe_change_pct_not_verified_comparable": -25.177549655927745
+        },
+        "sh600051": {
+          "coverage_review": {},
+          "unverified_updated_pair_raw_changes": [],
+          "p0": 6.06,
+          "p1": 6.07,
+          "quote_pct": 0.16501650165017256
+        },
+        "maotai_profit_bridge": {
+          "shares_change_pct": -0.15974440894568342,
+          "implied_profit0_100m": 884.7884,
+          "implied_profit1_100m": 872.875,
+          "implied_profit_change_pct": -1.3464688280271364,
+          "same_old_share_basis_eps1": 69.71845047923323
+        },
+        "catl_denominator_bridge": {
+          "profit_100m_both": 963.51,
+          "implied_shares0_100m": 45.64234959734723,
+          "implied_shares1_100m": 46.255880940950554,
+          "implied_shares_change_pct": 1.3442150744119141,
+          "eps_change_pct": -1.3263855992420748,
+          "eps_required_at_start_report_pe": 15.585516406670251,
+          "net_profit_100m_at_that_eps_using_end_implied_shares": 720.9217913101706
+        },
+        "smic_noncomparable_diagnostics": {
+          "cross_broker_raw_eps_diff_pct_not_revision": 21.51898734177213,
+          "rounded_share_growth_pct": 6.838886808935474,
+          "issue_vs_old_total_pct": 6.828679308623487,
+          "end_conditional_multiple": 127.08333333333334,
+          "raw_implied_profit_ratio_pct_not_revision": 29.829533337440584
+        }
+      }
+    },
+    {
+      "seq": 12,
+      "operation": "clock_read",
+      "inputs": [],
+      "selection": "记录过程时钟。",
+      "result": "2026-09-22 07:28:42 UTC"
+    },
+    {
+      "seq": 13,
+      "operation": "write_and_validate",
+      "inputs": [
+        "evals/reports/2026-09-22-discovery/quant-with-run.json"
+      ],
+      "selection": "仅写本条件研究产物，序列化后检查必需字段、计算次数和个人本地路径脱敏；验证为同一写入进程中的内存对象检查。",
+      "result": "由下方落盘命令确认。"
+    }
+  ],
+  "operation_counts": {
+    "exec_command_calls_including_final_write": 12,
+    "read_attempts": 1,
+    "plain_read_commands": 3,
+    "authorized_path_discovery_commands": 1,
+    "size_inspection_commands": 1,
+    "json_projection_commands": 4,
+    "quantitative_calculation_batches": 1,
+    "quantitative_calculation_limit": 8,
+    "artifact_write_and_validation_commands": 1,
+    "clock_tool_calls": 1,
+    "network_calls": 0,
+    "project_data_script_calls": 0,
+    "subagents_spawned": 0,
+    "failed_or_partially_failed_path_attempts": 2,
+    "truncated_outputs": 1
+  },
+  "answer": "这批材料支持把宁德时代列为下一轮研究的优先对象，但尚不支持认定任何一家已经构成投资机会。最有用的发现是：宁德时代一组看似下修的 EPS 实际没有下调归母净利润预测；贵州茅台有一组经股本拆解后仍成立的轻微利润预期下修；中芯国际的“预测上升”同时混入了券商更换和发行股份，不能当成盈利上修。600051 的研报获取失败，判断应留空。\n\n本轮观察窗口为 2026-06-22 至 2026-09-18，目标为 2026 财年。采用端点之前最近、距端点不超过 180 天的同券商预测；日期只有日粒度，不把标注日等同于开盘前已可取得。材料冻结于 9 月 22 日，是事后阅读当前保存版本。以下“变化”分别说明是原始字段差异、已核验利润变化，还是条件估算。\n\n| 公司 | 端点未复权收盘价（元） | 材料能确认到哪一步 | 当前研究判断 |\n|---|---:|---|---|\n| 贵州茅台 600519 | 1241.41 → 1257.12，+1.27% | 西南证券 EPS 70.67 → 69.83，预测股本 12.52 → 12.50 亿股；拆开分母后，隐含利润约下降 1.35% | 有轻微负向预期调整线索，不能列为盈利上修机会 |\n| 中芯国际 688981 | 145.59 → 122.00，−16.20% | 中邮证券端点沿用同一份 0.79 元预测；山西证券 0.96 元属样本新增覆盖；窗口内发行股份 | 尚无同券商更新能验证上修，需先补交易与预测口径 |\n| 宁德时代 300750 | 408.98 → 301.95，−26.17% | 国信证券 EPS 21.11 → 20.83，但 2026 年归母净利均为 963.51 亿元 | 值得研究价格下跌与利润预测韧性之间的差异 |\n| 600051 | 6.06 → 6.07，+0.17% | 只有端点报价，研报接口报错 | 缺失样本，不是“无上修”或“无机构覆盖” |\n\n表中的价格涨跌只是两个未复权报价的算术变化，不是已经核实全部公司行动后的总回报。\n\n宁德时代最值得继续查的是盈利兑现与估值要求，而不是把 EPS 下降当作经营恶化。国信证券 4 月 22 日和 7 月 31 日报告均给出 2026—2028 年归母净利 963.51、1200.89、1408.87 亿元；后者明确按最新总股本计算摊薄 EPS。2026 年 EPS 原始值下降 1.33%，而以同一净利除以 EPS 得到的隐含股本约从 45.64 亿股增加到 46.26 亿股，增幅 1.34%。两者在报告四舍五入精度内吻合，说明这组变化主要是每股分母更新，不能称为归母净利预测下调。这个判断只针对国信这组预测，不能自动外推到其他券商。[国信 4 月报告，第 1 页](https://pdf.dfcfw.com/pdf/H3_AP202604221821434869_1.pdf)、[国信 7 月报告，第 1 页](https://pdf.dfcfw.com/pdf/H3_AP202607311827537552_1.pdf)\n\n它的价格问题已经可以量化到有用的条件边界。以各端点所配国信报告 EPS 相除，报价/预测 EPS 分别约为 19.37 倍和 14.50 倍。这是两份报告口径下的静态比值，尚不能作为自动生成的严格可比估值降幅。若作一个明确的分析假设：继续使用起点的 19.37 倍倍数，并采用期末隐含股本，则 301.95 元对应 EPS 约 15.59 元、归母净利约 721 亿元，比国信 963.51 亿元预测低约 25%。这个计算没有证明市场恰好预测利润下降 25%；它给出了需要检验的取舍：价格差异可能来自盈利下调风险，也可能来自投资者要求更低倍数，或二者共同作用。材料还不能决定哪一种解释成立。\n\n8 月 10 日每股派现金额为 1.411 元；若仅加入这笔已知分红，并假设没有遗漏其他影响回报的行动，现金计入后的简单变化约为 −25.82%，没有改变大幅回落的事实。差异化分红的除息参考价扣减是 1.4019358 元，不能拿它代替投资者的实际派现金额；本次不送转，也不等于整个窗口股本不变。[宁德时代分红公告](https://static.cninfo.com.cn/finalpage/2026-08-04/1225456175.PDF)\n\n下一步应先用中报与经营数据重建国信 963.51 亿元预测：已实现利润多少、全年余下月份需要多少销量和单位利润、动力与储能组合如何影响利润率、资本开支和营运资金是否吞噬现金。再追查为何其他更新者出现不同方向：东吴、国金、西南原始 EPS 分别约下降 1.38%、1.91%、1.36%，交银国际却从 19.906 升至 20.507 元、约 +3.02%。这些仅是待核验字段差异；若交银的净利润预测也上升，且并非股本、币种或利润定义变化，才形成一条独立的正向预期修正线索。交银 4 月 23 日存在缺失 EPS 的较晚报告，当前基线沿用 4 月 17 日，必须核实缺值报告是否实际更新了盈利判断。报告标题涉及出货、盈利修复和回购，仅能帮助定位核验方向，不能据标题认定已发生相应经营改善。\n\n贵州茅台能推进得更明确的是一条负向变化。西南证券两份原文核验出：2026 年预测 EPS 从 70.67 元降至 69.83 元，预测股本从 12.52 亿股降至 12.50 亿股。用“EPS × 同份报告预测股本”还原，隐含利润约为 884.79 亿元和 872.88 亿元，下降约 1.35%；按旧股本统一后，新 EPS 约为 69.72 元。股数减少本应抬高 EPS，因此这里的每股下降不能用稀释解释，轻微的利润预期下修反而被股本减少略微掩盖。隐含利润是由已四舍五入的字段重建，最终仍应核对预测表归母净利行及定义，不能假装拿到了未提供的原始净利精确值。[西南 4 月报告，第 1 页](https://pdf.dfcfw.com/pdf/H3_AP202604281821659552_1.pdf)、[西南 8 月报告，第 1 页](https://pdf.dfcfw.com/pdf/H3_AP202608211828244348_1.pdf)\n\n在茅台 10 家确实有新旧报告的机构中，7 家原始 EPS 下移、3 家微升；微升的万联、华鑫、山西幅度仅约 0.17%、0.16%、0.03%。未逐家验证分母前，既不能叫“7 家确认下修”，也不能将微升视为经营改善。西南这组已有证据说明，茅台的研究重点应是渠道与价格改革能否抵消销量、系列酒或费用端的压力。冻结材料没有提供足够经营正文证明原因；应核对直销占比、成交价格、投放与实际动销、系列酒利润贡献，并对照各家净利修订说明。\n\n价格方面，期末报价高于期初；按西南各报告 EPS 得到的静态比值约从 17.57 倍到 18.00 倍。加上 6 月 26 日已核验的每股 28.02423 元分红，假设没有遗漏其他行动的简单现金计入变化约 +3.52%。因此这份材料不能支持“盈利预期上升而价格未跟随”的说法，也没有给出充分的便宜依据。分红核验不证明整个窗口股本没有变化。[茅台分红公告](https://static.cninfo.com.cn/finalpage/2026-06-22/1225379934.PDF)\n\n中芯国际应先排除一项很容易制造的假阳性。中邮 5 月 22 日的 2026 年 EPS 为 0.79 元，到了 9 月端点仍只是沿用这份报告；山西 8 月 21 日的 0.96 元是样本中新出现的机构。直接把二者连起来会得到 +21.52%，但那不是同券商上修。两份报告总股本分别为 80.13 亿股与 85.61 亿股；6 月 23 日登记了发行股份购买资产所新增的约 5.47 亿 A 股，发生在起点之后。故旧的每股预测不能直接跨窗口使用，增发同时涉及资产和归属利润变化，不能只按一个摊薄系数“修复”全部口径。中邮缺少窗口内新预测，山西缺少起点预测，本轮没有真正更新且可比较的一对。[中邮报告，第 2 页](https://pdf.dfcfw.com/pdf/H3_AP202605221822682971_1.pdf)、[山西报告，第 2 页](https://pdf.dfcfw.com/pdf/H3_AP202608211828253185_1.pdf)、[新增股份登记公告](https://static.cninfo.com.cn/finalpage/2026-06-25/1225386195.PDF)\n\n中芯股价下降 16.20% 可以作为报价事实；按山西 0.96 元算出的期末静态预测市盈率约 127 倍，也只是一家报告的 2026 年口径。它们都不足以证明错杀。真正能改变判断的下一步，是取得同券商交易前后更新，把购买资产前后的归母利润、少数股东权益、股份分母和纳入时间接起来，再查产能利用率、产品结构、售价和折旧如何支撑利润。山西报告标题提到二季度与三季度指引，提供了核验入口；冻结摘要没有给出指引原值，不能据此宣称增长已经抵消了稀释。\n\n600051 的 provider_error 只能表示这次没有取得研报；不能把空列表变成无覆盖、盈利预测不变或研究价值低。已核验的每股 0.06 元分红在 6 月 16 日除息，早于观察起点，不能加入本窗口现金回报。下一步只有在恢复研报或取得其他可靠预测来源后，才有资格讨论盈利预期变化。[分红公告](https://static.cninfo.com.cn/finalpage/2026-06-09/1225358086.PDF)\n\n覆盖与自动输出也限制了结论。冻结输入对茅台、中芯、宁德分别返回 48、3、26 条研报，共 77 条，涉及 16、2、11 个公司—机构组合；600051 失败。这是指定四家公司和该来源的返回范围，不是全市场覆盖。“本地未截断”也不是证明上游没有遗漏。按输出明细检查，茅台有 10 个更新配对、5 个旧报告沿用、1 个样本新增覆盖；中芯为 1 个旧报告沿用和 1 个新增覆盖；宁德为 5 个更新配对、3 个旧报告沿用、2 个新增覆盖、1 个过期旧覆盖。宁德中银预测在期末已达 191 天，超过 180 天限度；华鑫 178 天虽未超限，也不是新的判断。茅台诚通 9 月 21 日报告在终点之后，不能纳入本窗口。\n\n给定 API 对取得材料的三家公司均返回 partial:true、matched:null、可计算数 0，主要阻断项是股本基准、币种、EPS 基础及定义未核实。不能把摘要中的 paired:0、up/down:0、disagreement:false 当成“没有两端报告”“没有变化”或“机构不存在分歧”：明细里确有同机构两端记录，部分还是同一旧报告；原始字段也有不同方向。这里的 null 是自动可比性未成立，不是投资结论。本答复的分母拆解与条件计算来自冻结原文核验和本地算术，并未把 API 的阻断状态改写成自动命中。\n\n因此，本轮已完成的是：剔除两类虚假盈利修订解释，确认茅台一条局部负向修订，给宁德时代提出可检验的盈利与估值问题，并明确中芯和 600051 的关键缺口。最值得优先补证的是宁德时代利润与现金兑现能否支持既有预测、价格所需回报是否已降低到有吸引力的水平；茅台适合检验改革与利润修订，中芯须先解决交易口径。没有一家已经同时获得完整可比预期窗口、充分经营机制证据和可靠价格吸引力证明。此次为单次冻结材料回放，不能证明历史时点可交易、市场未定价、统计发现增益或未来超额收益。",
+  "limitations": [
+    "本次为 with_signal 单次冻结材料回放；没有读取另一条件答案、handoff 或其他实验结果，没有检索或收益回测，不能声称统计增益。",
+    "started_at 是首次实际记录的本地时钟，最初的方法定位和读取发生在该时刻之前，未即时计时；因此不得用 started_at/completed_at 的差值比较实验耗时。全部准备操作按真实顺序列在 tools_log。",
+    "直接使用提供的原文核验摘要，未重新取得或打开链接中的 PDF；链接用于明确所给核验材料出处。正文中的经营标题只能定位假说，不能代替完整经营证据。",
+    "原文样本仅六份研报和四份行动公告；不构成三家公司全机构、全窗口股本与 EPS 口径核验。600051 的研报失败为资料缺失，非无覆盖。",
+    "所有原始材料为 2026-09-22 获取或冻结的当前版本。first_available_at 为空且 historical_version_verified=false；茅台西南两份报告展示日期比文内日期晚 1 和 3 天，未验证历史时点可得性。",
+    "原始证券身份包含请求级保留字段，并非每条上游记录均有原生市场身份；六份被核验报告确认了证券代码，其余记录仍需原文口径确认。",
+    "股价变化为未复权端点报价；仅加已知分红的计算忽略税费、再投资和遗漏行动，不能当完整总收益；静态 PE 及固定倍数反推均是披露假设的分析，不是 API 自动可比信号或市场真实隐含预测。",
+    "路径均以项目相对路径记录；没有记录个人本地绝对路径或凭据。"
+  ]
+}

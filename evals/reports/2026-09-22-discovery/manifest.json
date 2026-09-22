@@ -1,0 +1,99 @@
+{
+  "frozen_at": "2026-09-22T06:51:37.919411+00:00",
+  "base_commit": "a5e176e",
+  "purpose": "Discovery implementation diagnostic, not alpha validation or a stable-effect claim",
+  "questions": {
+    "market": "请帮我寻找 A 股未来 1—3 年值得考虑的投资机会，不预设行业或公司。请自行研究公开信息，说明哪些对象及条件更有吸引力，也可以得出目前没有合适机会的结论。研究截止日为 2026-09-21。",
+    "grid": "电网投资与电力系统结构正在变化，A 股未来三年有哪些值得考虑的投资机会？请自行核实变化、受益关系和价格条件，不把产业相关公司名单直接当成投资机会。研究截止日为 2026-09-21。",
+    "packaging": "如何寻找 A 股包装行业未来两年的投资机会？请研究具体对象、经济机制与价格，可以得出没有合适机会的结论，不要求新技术或转型故事。研究截止日为 2026-09-21。"
+  },
+  "conditions": [
+    "baseline",
+    "candidate",
+    "plain"
+  ],
+  "method_hashes": {
+    "baseline": "e94f7a8a08fb695c14a67c8be31eda49319701f84449edad7d7049e9c290d5b8",
+    "candidate": "2f12770a98615ecad9dd5d460b84e1140fee3b7f36e0131065378b1f1bdb198f"
+  },
+  "runtime": "Fresh fork_turns=none subagents, inherited root model/settings; exact backend version and token usage not exposed",
+  "tools": "Same web retrieval and local calculation tools; no subagents inside runs, no personal history or accounts; quantitative signal tool excluded in this comparison",
+  "resource_ceiling_per_run": {
+    "web_entries": 36,
+    "search_entries": 12,
+    "local_calculations": 8
+  },
+  "resource_note": "Experiment-only equal ceilings; not daily skill restrictions. Read calls to frozen methods and artifact writes are not calculations.",
+  "criteria": [
+    "verified incremental discoveries",
+    "facts/identity/dates/units",
+    "economic mechanism and value capture",
+    "price and valuation conditions",
+    "coverage honesty",
+    "resolving gaps and integrating findings",
+    "efficiency and research regression"
+  ],
+  "decision_rule": "Two independent blinded reviewers must both identify verified substantive gain without major factual or coverage errors; disagreement is no clear advantage, not averaged away.",
+  "limitations": [
+    "Single run per condition/question; no statistical reliability",
+    "Live retrieval may differ",
+    "Executor-authored tool logs, not independent network capture",
+    "Single-agent host condition; parallel orchestration untested",
+    "Installed skill metadata may remain visible to plain runs, but reading/using skill content is prohibited"
+  ],
+  "runs": [
+    {
+      "id": "r01",
+      "case": "market",
+      "condition": "baseline"
+    },
+    {
+      "id": "r02",
+      "case": "market",
+      "condition": "candidate"
+    },
+    {
+      "id": "r03",
+      "case": "market",
+      "condition": "plain"
+    },
+    {
+      "id": "r04",
+      "case": "grid",
+      "condition": "baseline"
+    },
+    {
+      "id": "r05",
+      "case": "grid",
+      "condition": "candidate"
+    },
+    {
+      "id": "r06",
+      "case": "grid",
+      "condition": "plain"
+    },
+    {
+      "id": "r07",
+      "case": "packaging",
+      "condition": "baseline"
+    },
+    {
+      "id": "r08",
+      "case": "packaging",
+      "condition": "candidate"
+    },
+    {
+      "id": "r09",
+      "case": "packaging",
+      "condition": "plain"
+    }
+  ],
+  "excluded_attempts": [
+    {
+      "run": "r01",
+      "reason": "Executor accidentally read combined methods snapshot; stopped before research. Restarted with isolated condition directory."
+    }
+  ],
+  "method_storage": "Exact per-path contents retained in methods.json. Isolated methods/{condition}/ working copies were reconstructed for actors and removed after execution to avoid keeping duplicate Markdown trees; historical tool paths refer to those copies.",
+  "review_correction": "Initial review packet leaked method self-descriptions in limitations. Earlier review excluded; metadata removed and two fresh independent reviewers restarted. See blinding-correction.json."
+}
