@@ -4,7 +4,7 @@
 **只调能力门面**；多源/限流/备胎由 `scutio_data` 内部处理——不要自选源站或手写 fallback。
 字段与陷阱 → [01-runtime](01-runtime.md) … [11-fallback](11-fallback.md)（按需打开）。
 
-这些接口为发现、查证、研究、推演、复核和复盘共享。独立请求可用 [批量调用](01-runtime.md#批量调用)；有明确样本与条件时用 [程序筛选](screening.md)，不以热榜或筛选结果生成机会排名。
+这些接口为发现、查证、研究、推演、复核和复盘共享。独立请求可用 [批量调用](01-runtime.md#批量调用)；按市场或明确样本的特征筛选用 [程序筛选](screening.md)，不以热榜或筛选结果生成机会排名。
 
 | 用 | 不用 |
 |----|------|
@@ -53,6 +53,7 @@ from scutio_data.research import stock_reports, download_pdf, list_local_reports
 | 交易日历 / 停复牌 / 事件 `events` | ✓ | ~ | ~ | [02-market](02-market.md) |
 | 市场宽度 / 指数成分 `breadth` | ✓ | ~ | ~ | [02-market](02-market.md) |
 | 档案 `stock_info` | ✓ | ✓ | ✓ | [03-fundamentals](03-fundamentals.md) |
+| 证券名单 / 按特征筛选 `universe/screening` | ✓ | — | — | [程序筛选](screening.md) |
 | 三表 `financial_report` | ✓ | ✓ | ✓ | [03-fundamentals](03-fundamentals.md) |
 | 个股资料长文 `stock_materials` | ✓ | — | — | [03-fundamentals](03-fundamentals.md) |
 | 估值快照（报价侧） | ✓ | ✓ | ✓ | [03-fundamentals](03-fundamentals.md) |
@@ -92,7 +93,8 @@ from scutio_data.research import stock_reports, download_pdf, list_local_reports
 - `consensus_forecast` / `consensus_revisions(reports=None)` — 标准化一致预期（AKShare 同花顺）/逐机构研报修订；已有研报列表须复用
 - `forecast_price_changes` — 对已取得材料计算同财年盈利预测与价格的区间变化；可选研究线索，非收益预测或回测，输入要求见 [04-research](04-research.md)
 - `eps_forecast` — 同花顺原始表，仅调试源字段时使用
-- `local_report_search` / `local_stock_screen` / `dedup_articles` — 本地工具
+- `local_report_search` / `dedup_articles` — 本地研报工具
+- `screening.feature_catalog` / `screen_market` / `screen_records` — 特征目录、A 股市场筛选与已有材料筛选，见 [程序筛选](screening.md)
 
 ### 资金 · `capital` · [05-capital](05-capital.md)
 
@@ -128,7 +130,7 @@ from scutio_data.research import stock_reports, download_pdf, list_local_reports
 
 ### 跨对象发现
 
-无预设公司时，可以用 `events.performance_updates` / `company_events`、跨公司研报与 `feeds` 开始调查，再通过公告和公司数据核实候选。具体窗口、分页、截断和市场支持以对应域说明及返回元数据为准；多数行情和财务接口要求已知证券身份，不承担建立全市场证券池的职责。取得的有限样本与未取得部分分别说明，不能将资讯窗口或供应商覆盖称为全市场扫描。对象选择与机会判断见 [发现](../capabilities/discover.md)。
+无预设公司时，可以用 `events.performance_updates` / `company_events`、跨公司研报与 `feeds` 开始调查，再通过公告和公司数据核实候选。具体窗口、分页、截断和市场支持以对应域说明及返回元数据为准；市场筛选用 `universe.stock_universe` 建立当前名册，`screening.screen_market` 按条件取数；多数单公司接口仍要求已知证券身份。取得的有限样本与未取得部分分别说明，不能将资讯窗口或供应商覆盖称为全市场扫描。对象选择与机会判断见 [发现](../capabilities/discover.md)。
 
 ---
 

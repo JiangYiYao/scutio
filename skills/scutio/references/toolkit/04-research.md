@@ -20,7 +20,7 @@
 | `consensus_revisions(code, reports=None)` | ✓ | — | — | 同机构、同预测财年的 EPS 修订；可复用列表 |
 | `forecast_price_changes(code, reports, bars, ...)` | ✓ | — | — | 已取材料的固定窗口预测与参考 PE 变化，纯计算 |
 | `local_report_search(...)` | ✓ | — | — | 对 records 本地打分；未传 records 时先在线拉行业列表 |
-| `local_stock_screen` / `dedup_articles` | ✓* | ✓* | ✓* | *纯本地工具 |
+| `dedup_articles` | ✓* | ✓* | ✓* | *纯本地工具 |
 
 ---
 
@@ -47,7 +47,7 @@
 - 可用 `attachPages` 过滤极短稿（如跳过 ≤2 页）。
 - `eps_forecast` / `consensus_forecast` 只接受 A 股公司证券，保留完整 `symbol`；指数、ETF、债券返回 `unsupported_asset`。`sh000001` 不会改成平安银行的 `sz000001`。
 - `dedup_articles` 优先按 `infoCode/uid` 去重，缺少标识时结合标题、发布日期、机构和证券；同名不同期研报保留。
-- `local_stock_screen` 与筛选 CLI 共用数值解析：NaN、无穷和布尔值不参加数值筛选；逗号和百分号只做格式清理，百分数不缩放。
+- 按字段筛选统一使用 `screening.screen_records` 或 `screening.screen_market`，见[程序筛选](screening.md)。
 - 筛选和 `sort_by` 共用字段别名；“市值”“总市值”对应报价字段 `mcap_yi`，单位为该证券报价币种的亿元，跨市场比较前先统一币种。
 - 同花顺未发布机构预测时可能为空 —— 说明**覆盖不足**，勿当「EPS=0」。
 - `consensus_revisions.direction` 是按同一证券、机构和预测财年计算，`revision_scope=broker_report_updates`；不是供应商直接发布的全市场净上调家数。

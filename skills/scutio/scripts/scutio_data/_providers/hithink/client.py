@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import hashlib
+import re
 from datetime import datetime, timezone
 
 import requests
@@ -11,11 +12,12 @@ from scutio_data._runtime import config
 from scutio_data._runtime.execution import CacheSpec, SourceFailure, execute, network_identity
 from scutio_data._runtime.http import Session, retry_after
 from scutio_data._runtime.symbols import is_a_share as eligible
-from scutio_data._runtime.symbols import split_code
-from scutio_data._runtime.timeouts import source, source_budget
+from scutio_data._runtime.symbols import require_a_share, split_code, validate_identity
+from scutio_data._runtime.timeouts import RequestTimeout, remaining, source, source_budget
 
 BASE = "https://fuyao.aicubes.cn"
 CACHE_VERSION = 4
+QUOTE_BATCH_SIZE = 100
 
 
 _FINANCIAL_FIELDS = {
@@ -227,35 +229,86 @@ def provenance(response):
     }
 
 
+def _quote_identities(identity_records):
+    """Validate reusable A-share roster identities without inventing source metadata."""
+    if identity_records is None:
+        return {}
+    if not isinstance(identity_records, list):
+        raise ValueError("identity_records must be a list of A-share identity records")
+    metas = {}
+    for row in identity_records:
+        if not isinstance(row, dict):
+            raise ValueError("invalid identity_records entry")
+        symbol = row.get("symbol")
+        if not isinstance(symbol, str) or not re.fullmatch(r"(?:sh|sz|bj)\d{6}", symbol):
+            raise ValueError("identity_records require complete canonical A-share symbols")
+        require_a_share(symbol, "identity_records")
+        if row.get("asset_type") not in ("stock", "a-share"):
+            raise ValueError("identity_records require A-share company identities")
+        if not isinstance(row.get("exchange"), str) or row["exchange"].lower() != symbol[:2]:
+            raise ValueError("identity_records exchange mismatch")
+        validate_identity(row, symbol, fields=("symbol", "code", "stockCode", "thscode"))
+        if row.get("currency") not in (None, "CNY"):
+            raise ValueError("identity_records currency mismatch")
+        if row.get("name") is not None and not isinstance(row["name"], str):
+            raise ValueError("identity_records name must be a string")
+        meta = {"thscode": symbol[2:] + "." + symbol[:2].upper(), "name": row.get("name") or ""}
+        if symbol in metas and metas[symbol] != meta:
+            raise ValueError("conflicting duplicate identity_records")
+        metas[symbol] = meta
+    return metas
+
+
 @source("query")
-def quotes(codes):
+def quotes(codes, *, identity_records=None):
     from scutio_data._providers.hithink import parse
 
-    metas = {}
+    reusable = _quote_identities(identity_records)
+    if isinstance(codes, (str, bytes)):
+        codes = [codes]
+    codes = list(dict.fromkeys(codes))
     failure = "hithink: no eligible identities"
-    for code in codes:
-        try:
-            meta = identity(code)
-            metas[meta["thscode"]] = meta
-        except SourceError as exc:
-            failure = str(exc)
-            continue
-    if not metas:
-        raise SourceError(failure)
     result = {}
-    keys = list(metas)
-    for start in range(0, len(keys), 100):
-        response = request(
-            "/api/a-share/prices/snapshot", {"thscodes": ",".join(keys[start : start + 100])}, ttl=5
-        )
-        for row in response["data"]["item"]:
-            meta = metas.get(row.get("thscode"))
-            if meta:
+    saw_response = False
+    # Fetch each identity batch's quotes before resolving the next batch. A later
+    # lookup or snapshot failure must not discard already completed quote rows.
+    for start in range(0, len(codes), QUOTE_BATCH_SIZE):
+        metas = {}
+        try:
+            remaining()
+            for code in codes[start : start + QUOTE_BATCH_SIZE]:
                 try:
+                    _, prefix, pure = require_a_share(code, "hithink.quotes")
+                    meta = reusable.get(prefix + pure) or identity(code)
+                    metas[meta["thscode"]] = meta
+                except (SourceError, ValueError) as exc:
+                    failure = str(exc)
+            if not metas:
+                continue
+            response = request("/api/a-share/prices/snapshot", {"thscodes": ",".join(metas)}, ttl=5)
+            saw_response = True
+            for row in response["data"]["item"]:
+                meta = metas.get(row.get("thscode"))
+                if not meta:
+                    continue
+                try:
+                    pure, prefix = meta["thscode"].split(".")
+                    validate_identity(
+                        row,
+                        prefix.lower() + pure,
+                        fields=("symbol", "code", "stockCode", "thscode"),
+                    )
                     mapped = parse.quote(row, meta, provenance(response))
                     result[mapped["symbol"]] = mapped
                 except ValueError:
                     continue  # The facade fills only missing/invalid securities.
+        except RequestTimeout as exc:
+            failure = str(exc)
+            break
+        except Exception as exc:
+            failure = str(exc)
+    if not result and not saw_response:
+        raise SourceError(failure)
     return result
 
 

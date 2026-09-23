@@ -19,7 +19,6 @@ from scutio_data.research.discovery import stock_reports as stock_reports
 from scutio_data.research.local import dedup_articles as dedup_articles
 from scutio_data.research.local import list_local_reports as list_local_reports
 from scutio_data.research.local import local_report_search as local_report_search
-from scutio_data.research.local import local_stock_screen as local_stock_screen
 from scutio_data.research.signals import forecast_price_changes as forecast_price_changes
 
 __all__ = [
@@ -37,7 +36,6 @@ __all__ = [
     "consensus_revisions",
     "forecast_price_changes",
     "local_report_search",
-    "local_stock_screen",
     "dedup_articles",
     "COMMON_INDUSTRY_CODES",
     "REPORT_CACHE_NOTE",

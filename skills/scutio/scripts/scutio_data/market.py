@@ -72,15 +72,36 @@ def _default_bars_chain_for_code(code):
 
 
 @operation("query")
-def security_quote(codes, sources=None):
+def security_quote(codes, sources=None, *, identity_records=None):
     """实时报价有序 fallback。
 
     ``sources=None`` 时按**每只票的市场**选默认链；显式 ``sources=`` 则整批统一。
+    ``identity_records`` 可复用已核验的 A 股名册（完整 symbol、exchange、asset_type），
+    减少同花顺逐股身份查询；报价响应仍须匹配请求身份。大名单应通过 batch 分批调用。
     返回 ``{ok, partial, error, errors, sources_used, quotes, missing}``。
     """
     if isinstance(codes, (str, bytes)):
         codes = [codes]
     codes = list(codes or [])
+    try:
+        hithink._quote_identities(identity_records)
+    except (TypeError, ValueError):
+        return {
+            "ok": False,
+            "partial": False,
+            "error": "invalid identity_records: expected consistent A-share company identities",
+            "error_code": "invalid_arguments",
+            "source": None,
+            "warning": None,
+            "errors": {},
+            "sources_used": [],
+            "attempted_sources": [],
+            "quotes": {},
+            "missing": [str(code) for code in codes],
+            "invalid": [],
+            "requested_count": len(codes),
+            "returned_count": 0,
+        }
     errors = {}
     invalid = []
     sources_used = []
@@ -128,7 +149,12 @@ def security_quote(codes, sources=None):
                 "hithink": hithink.quotes,
             }
             if source in fetchers:
-                batch = fetchers[source]([c for c, _, _, _ in items])
+                kwargs = (
+                    {"identity_records": identity_records}
+                    if source == "hithink" and identity_records is not None
+                    else {}
+                )
+                batch = fetchers[source]([c for c, _, _, _ in items], **kwargs)
                 for orig, symbol, pure, prefix in items:
                     row = batch.get(symbol) or batch.get(pure)
                     try:

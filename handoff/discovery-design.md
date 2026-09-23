@@ -95,7 +95,7 @@
 
 ## 5. 数据能力与覆盖边界
 
-以下为当前代码与调用文档的核对结果，不代表本设计已重新执行这些金融接口。
+以下为当前代码与调用文档的核对结果。2026-09-23 补入 A 股名册与特征筛选入口，真实执行结果和覆盖限制见[验收报告](../evals/reports/2026-09-22-market-screening.md)；其他接口不因本设计更新视为已重新验证。
 
 | 当前入口 | 可以支持什么 | 需要保留的限制 |
 |---|---|---|
@@ -105,7 +105,10 @@
 | `feeds.telegraph`、`global_news` | 补充跨市场中文资讯线索 | 源窗口分别为 20 / 200 条，不支持宣称覆盖完整历史窗口 |
 | `announcements.stock_announcements`、`periodic_reports` | 对候选核实公告与定期报告原文 | 主要按公司调用；市场覆盖与原文解析均有各自限制 |
 | 行情、财务、估值、公司行动等公开门面 | 核查候选的经营基础、价格和重要事项 | 大多需要已知证券身份；批量调用不自动建立全市场证券池 |
-| `screen_records.py` | 对已取得样本做确定性筛选 | 不建立数据库，不产生机会评分，不证明全市场覆盖 |
+| `universe.stock_universe` | 从沪深北官方名册建立 A 股证券池 | 当前名单，不支持历史成员重建；沪、北源完整性仍未知 |
+| `fundamentals.financial_snapshot` | 指定报告期的跨公司财务特征 | 累计或年度口径，来源更新日不是首次披露日；必须与上市名单相交 |
+| `screening.screen_market` | 根据内置字段批量取数、派生计算与条件筛选 | 当前支持 A 股；逐字段报告来源和缺口，条件命中不等于投资机会 |
+| `screening.screen_records`、`screen_records.py` | 同一条件引擎筛选已取得样本 | 不建立数据库，不产生机会评分，不证明全市场覆盖 |
 
 数据细节以 [数据索引](../skills/scutio/references/toolkit/index.md)、[事件说明](../skills/scutio/references/toolkit/02-market.md)、[研报说明](../skills/scutio/references/toolkit/04-research.md)、[新闻说明](../skills/scutio/references/toolkit/06-feeds.md) 和 [公告说明](../skills/scutio/references/toolkit/07-announcements.md) 为唯一维护位置。能力文件只引用入口与用途，不再复制完整签名、参数和限流策略。
 
@@ -122,7 +125,7 @@
 
 完整性只能针对具体证券范围、资料类型和时间窗口声明，即使遍历完证券名单，也不等于发现了所有投资机会。抽样复查可用于发现遗漏，不能证明全市场完整覆盖。
 
-后续优先验证证券名单和跨公司公告索引能否稳定取得，再决定是否增加公共门面。数据层继续统一处理 Financial API、AKShare 与现存必要备用来源；配置 Key 不自动承诺跨市场全量数据或无限请求额度。来源未验证前不设计绑定某个供应商的调用流程。
+A 股名单、财务横截面和特征筛选公共入口已实现，调用以[筛选文档](../skills/scutio/references/toolkit/screening.md)为准。后续仍需验证名单完整性与长期稳定性，以及跨公司公告索引的覆盖；港美全市场名单与特征尚未接通。数据层继续统一处理 Financial API、AKShare 与现存必要备用来源；配置 Key 不自动承诺跨市场全量数据或无限请求额度。
 
 ## 6. 内容迁移与文件组织
 

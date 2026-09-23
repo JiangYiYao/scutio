@@ -82,7 +82,9 @@ export PYTHONPATH="skills/scutio/scripts:${PYTHONPATH:-}"
 | `test_optional_sources.py` | 无 Key/public 零凭据请求、权限冷却、缓存、按标的回退、完整财报与摘要、跨进程设置更新 |
 | `test_request_timeouts.py` | 复制安装后的真实 HTTP 子进程启动、脱敏错误分类、缓慢响应取消、共享预算、Retry-After、日历部分结果、凭据传递边界，以及线程/进程持有偏好锁时仍返回成功数据 |
 | `test_security_identity.py`、`test_exchange_ids.py` | 公司入口的指数/基金/交易所边界、源响应身份、回退错证券与合法 A/港/美请求 |
-| `test_research_local.py`、`test_ths_eps_and_valuation.py` | 同名不同期研报、市值别名与有限数值筛选、在线材料身份及不完整覆盖下的时效判断 |
+| `test_research_local.py`、`test_ths_eps_and_valuation.py` | 同名不同期研报、在线材料身份及不完整覆盖下的时效判断 |
+| `test_screen_records.py`、`test_market_screening.py` | 共用条件求值、可扩展字段目录、按需取数、三态判断、期别与来源、筛选及展示字段覆盖 |
+| `test_universe.py`、`test_financial_snapshot.py`、`test_quote_batching.py` | 名册范围、财务横截面、批量报价、身份复用、缺失与部分失败 |
 | `test_akshare_market_contracts.py`、`test_hk_us_market.py` | 市场/资产路由、OHLC 缺失及非有限数值回退、复权、成交量、成交额与市值区分和行情覆盖 |
 | `test_evidence_reuse.py` | 证券与预测年份复用、分页缺口、原文身份缓存、同名长标题及正文更新隔离 |
 | `test_akshare_network.py`、`test_akshare_maintenance.py` | 停用接口、代理恢复、共享预算、失败分类和只检查不安装 |

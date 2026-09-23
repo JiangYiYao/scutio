@@ -18,8 +18,37 @@ from scutio_data._runtime.timeouts import operation
 __all__ = [
     "stock_info",
     "financial_report",
+    "financial_snapshot",
     "stock_materials",
 ]
+
+
+@operation("batch")
+def financial_snapshot(report_date, *, codes=None):
+    """Cross-company A-share financial features for one explicit quarter end.
+
+    ``report_date`` is YYYY-MM-DD or YYYYMMDD (from 2010-03-31). March,
+    June and September amounts are YTD; December amounts are annual. ``codes``
+    optionally filters source rows; an empty list performs no request.
+
+    Returns a ``result_list`` with per-field units/bases, nulls and error reasons.
+    The source also includes OTC/delisted issuers and is never a listing universe.
+    Materials reflect currently available revisions, not historical availability.
+    Native YoY does not establish a positive prior-year base.
+    """
+    try:
+        from scutio_data._providers.akshare.financial_snapshot import snapshot
+
+        return snapshot(report_date, codes=codes)
+    except Exception as exc:
+        return result_list_err(
+            str(exc),
+            source="financial_snapshot",
+            report_date=str(report_date),
+            error_code="financial_snapshot_error",
+            complete=False,
+            partial=True,
+        )
 
 
 # 统一 report_type → 内部码；A=新浪 source；港/美再映射中文表名。

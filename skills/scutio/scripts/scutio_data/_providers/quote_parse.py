@@ -138,13 +138,17 @@ _TQ_MIN_A = 53
 _TQ_MIN_HK_US_EXT = 35
 
 
-def _fnum(values, i, default=0.0):
-    try:
-        if i >= len(values) or values[i] in ("", None):
-            return default
-        return float(values[i])
-    except (TypeError, ValueError):
-        return default
+def _fnum(values, i, default=None):
+    value = finite_number(values[i]) if i < len(values) else None
+    return value if value is not None else default
+
+
+def _quote_amount(raw, *, raw_unit):
+    """Quote-only missing semantics; the historical amount_pair contract is unchanged."""
+    value = finite_number(raw)
+    if value is None or value < 0:
+        return None, None
+    return amount_pair(value, raw_unit=raw_unit)
 
 
 def quote_volume(raw, raw_unit="share"):
@@ -312,9 +316,9 @@ def parse_tencent_quote_raw(raw_text):
                 if len(values) < 7:
                     continue
             # 腾讯美股成交额：本币元
-            amount, amount_wan = amount_pair(_fnum(values, _TQ_AMOUNT), raw_unit="yuan")
+            amount, amount_wan = _quote_amount(_fnum(values, _TQ_AMOUNT), raw_unit="yuan")
             pe_ttm = _fnum(values, _TQ_PE_TTM, None)
-            amplitude = _fnum(values, _TQ_AMPLITUDE) if len(values) > _TQ_AMPLITUDE else 0.0
+            amplitude = _fnum(values, _TQ_AMPLITUDE)
             mcap_yi = _fnum(values, _TQ_MCAP, None)
             float_mcap_yi = _fnum(values, _TQ_FLOAT_MCAP, None)
             pb = _fnum(values, _TQ_PB_US, None)
@@ -340,9 +344,9 @@ def parse_tencent_quote_raw(raw_text):
             if len(values) < _TQ_MIN_HK_US_EXT:
                 continue
             # 腾讯港股成交额：本币元
-            amount, amount_wan = amount_pair(_fnum(values, _TQ_AMOUNT), raw_unit="yuan")
+            amount, amount_wan = _quote_amount(_fnum(values, _TQ_AMOUNT), raw_unit="yuan")
             pe_ttm = _fnum(values, _TQ_PE_TTM, None)
-            amplitude = _fnum(values, _TQ_AMPLITUDE) if len(values) > _TQ_AMPLITUDE else 0.0
+            amplitude = _fnum(values, _TQ_AMPLITUDE)
             mcap_yi = _fnum(values, _TQ_MCAP, None)
             float_mcap_yi = _fnum(values, _TQ_FLOAT_MCAP, None)
             pb = _fnum(values, _TQ_PB_HK, None)
@@ -362,7 +366,7 @@ def parse_tencent_quote_raw(raw_text):
             if len(values) < _TQ_MIN_A:
                 continue
             # 腾讯 A 股成交额字段已是「万元」→ amount 升为元
-            amount, amount_wan = amount_pair(_fnum(values, _TQ_AMOUNT), raw_unit="wan")
+            amount, amount_wan = _quote_amount(_fnum(values, _TQ_AMOUNT), raw_unit="wan")
             pe_ttm = _fnum(values, _TQ_PE_TTM, None)
             amplitude = _fnum(values, _TQ_AMPLITUDE)
             mcap_yi = _fnum(values, _TQ_MCAP, None)
@@ -456,9 +460,7 @@ def parse_sina_quote_raw(raw_text):
                 continue
             price = _fnum(parts, 6)
             last_close = _fnum(parts, 3)
-            amount, amount_wan = amount_pair(
-                _fnum(parts, 11) if len(parts) > 11 else 0.0, raw_unit="yuan"
-            )
+            amount, amount_wan = _quote_amount(_fnum(parts, 11), raw_unit="yuan")
             row = {
                 "name": parts[1] or parts[0],
                 "name_en": parts[0],
@@ -467,8 +469,8 @@ def parse_sina_quote_raw(raw_text):
                 "open": _fnum(parts, 2),
                 "high": _fnum(parts, 4),
                 "low": _fnum(parts, 5),
-                "change_amt": _fnum(parts, 7) if len(parts) > 7 else 0.0,
-                "change_pct": _fnum(parts, 8) if len(parts) > 8 else 0.0,
+                "change_amt": _fnum(parts, 7),
+                "change_pct": _fnum(parts, 8),
                 "amount": amount,
                 **quote_volume(_fnum(parts, 12, None)),
                 "amount_wan": amount_wan,
@@ -506,7 +508,7 @@ def parse_sina_quote_raw(raw_text):
             row = {
                 "name": parts[0],
                 "price": price,
-                "last_close": 0.0,
+                "last_close": None,
                 "open": _fnum(parts, 5),
                 "high": _fnum(parts, 6),
                 "low": _fnum(parts, 7),
@@ -548,28 +550,28 @@ def parse_sina_quote_raw(raw_text):
             price = _fnum(parts, 3)
             last_close = _fnum(parts, 2)
             # 新浪 A 股成交额：元
-            amount, amount_wan = amount_pair(
-                _fnum(parts, 9) if len(parts) > 9 else 0.0, raw_unit="yuan"
-            )
+            amount, amount_wan = _quote_amount(_fnum(parts, 9), raw_unit="yuan")
+            high, low = _fnum(parts, 4), _fnum(parts, 5)
+            change = price - last_close if price is not None and last_close is not None else None
             row = {
                 "name": parts[0],
                 "price": price,
                 "last_close": last_close,
                 "open": _fnum(parts, 1),
-                "high": _fnum(parts, 4) if len(parts) > 4 else 0.0,
-                "low": _fnum(parts, 5) if len(parts) > 5 else 0.0,
+                "high": high,
+                "low": low,
                 **quote_volume(_fnum(parts, 8, None)),
                 "amount": amount,
-                "change_amt": round(price - last_close, 4) if last_close else 0.0,
-                "change_pct": round((price - last_close) / last_close * 100.0, 4)
-                if last_close
-                else 0.0,
+                "change_amt": round(change, 4) if change is not None else None,
+                "change_pct": round(change / last_close * 100.0, 4)
+                if change is not None and last_close
+                else None,
                 "amount_wan": amount_wan,
                 "turnover_pct": None,
                 "pe_ttm": None,
                 "amplitude_pct": (
-                    round((_fnum(parts, 4) - _fnum(parts, 5)) / last_close * 100, 4)
-                    if last_close and len(parts) > 5
+                    round((high - low) / last_close * 100, 4)
+                    if last_close and high is not None and low is not None
                     else None
                 ),
                 "mcap_yi": None,

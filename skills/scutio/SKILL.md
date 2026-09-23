@@ -12,7 +12,7 @@ description: Scutio 公开市场投资研究助手：具备行情、财务等公
 | 需要解决什么 | 按需读取 |
 |---|---|
 | 数据、原话、消息真假、统计口径 | [查证](references/capabilities/verify.md) |
-| 从市场、主题或已有公司向外寻找值得研究的投资对象 | [发现](references/capabilities/discover.md) |
+| 从市场、主题或已有公司向外寻找值得研究的投资对象 | [发现](references/capabilities/discover.md)：先说明本轮选股策略，再调查候选 |
 | 公司与产业前景、经营机制、指定对象的比较与价格判断 | [研究](references/capabilities/research.md) |
 | 如果条件变化，会产生什么影响 | [推演](references/capabilities/simulate.md) |
 | 检验已有观点、计划与选择，判断新信息是否改变原结论 | [复核](references/capabilities/review.md) |
@@ -38,7 +38,7 @@ description: Scutio 公开市场投资研究助手：具备行情、财务等公
 
 需要数据时按需读 [数据索引](references/toolkit/index.md) 和相关域说明；运行脚本前读 [运行时](references/toolkit/01-runtime.md)。以当前 `SKILL.md` 所在目录定位 `scripts/`，使用 `SCUTIO_PYTHON`。Windows 首次使用或启动失败时用内置离线探针定位和检查，不把权限造成的启动失败直接当成环境损坏。数据只通过公开领域接口获取，限流和切源由 `scutio_data` 处理。
 
-按实际问题选择公开领域接口；多个独立请求可用[运行时的批量调用](references/toolkit/01-runtime.md#批量调用)。`screen_records.py` 对明确范围的数据做条件筛选，披露范围和缺失项；结果不是投资排名。推演中的计算使用可检查的公式或脚本，假设的提供者与单位需明确。
+按实际问题选择公开领域接口；多个独立请求可用[运行时的批量调用](references/toolkit/01-runtime.md#批量调用)。选股条件可以来自用户，也可以由 AI 根据已说明的策略提出；能用可比数据表达时读[程序筛选](references/toolkit/screening.md)，查询目录后用 `screening.screen_market` 产生候选，已有材料复用 `screen_records`。无需等用户给出指标阈值；公告与产业线索按[发现](references/capabilities/discover.md)取证，披露范围和缺失项。推演中的计算使用可检查的公式或脚本，假设的提供者与单位需明确。
 
 重要事实保留来源、时点和口径；区分事实、推断、用户假设与 AI 假设，不用来源数量或多 Agent 一致性代替论证。公开证据缺失不代表事实不存在。当前材料不能伪装成历史当时可得的信息。
 

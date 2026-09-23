@@ -1,6 +1,6 @@
 # 基本面、个股资料与估值（`fundamentals` + `valuation`）
 
-**范围**：轻量档案、三表、个股资料长文；报价侧估值快照、A 股历史估值与纯公式。
+**范围**：轻量档案、三表、指定报告期的跨公司财务特征、个股资料长文；报价侧估值快照、A 股历史估值与纯公式。
 **市场总览**：**档案 / 三表 / 估值快照 A✓ 港✓ 美✓**（港美三表须显式代码）；**历史估值与资料长文仅 A**。
 **代码模块**：档案/三表/长文在 `fundamentals`；估值快照与公式在 `valuation`（薄模块，文档合在本页）。  
 **一致预期不在本页** → `research.consensus_forecast`（标准表）/ `eps_forecast`（同花顺原表；仅 A，见 [`04-research.md`](04-research.md)）。
@@ -15,10 +15,13 @@
 |------|---|----|----|------|
 | `stock_info(code)` | ✓ | ✓ | ✓ | **结构化轻量档案**：名、行业、股本、市值、上市日、价 |
 | `financial_report(code, report_type='lrb', num=8, period='annual')` | ✓ | ✓ | ✓ | **三表** `result_list`；`items` 为宽表行（科目×报告期） |
+| `financial_snapshot(report_date, *, codes=None)` | ✓ | — | — | 一个明确季末的跨公司财务特征；结果含字段口径、缺失状态与覆盖 |
 | `stock_materials(code, name=None)` | ✓ | — | — | **资料长文信封**：目录在 `items`，正文在 `text` |
 
 ```python
-from scutio_data.fundamentals import stock_info, financial_report, stock_materials
+from scutio_data.fundamentals import (
+    stock_info, financial_report, financial_snapshot, stock_materials,
+)
 ```
 
 | 别混 | |
@@ -26,6 +29,7 @@ from scutio_data.fundamentals import stock_info, financial_report, stock_materia
 | `stock_info` | 卡片字段，可直接引用数字 |
 | `stock_materials` | 叙述性文本，不是档案字段表 |
 | `financial_report` | 可计算的报表科目 |
+| `financial_snapshot` | 指定报告期的跨公司特征，不替代完整三表或上市名册 |
 
 - 港/美代码须显式：`hk00700` / `usAAPL`。
 - 本页公司档案、三表、资料长文与历史估值只接受公司证券；A 股指数、ETF 或交易所不匹配的代码在取数前返回 `unsupported_asset`。指数和基金的报价、K 线使用行情入口。
@@ -52,6 +56,45 @@ from scutio_data.research import consensus_forecast  # 标准化一致预期
 ---
 
 ## 解读
+
+### 跨公司财务特征 `financial_snapshot`
+
+```python
+from scutio_data.fundamentals import financial_snapshot
+
+# 明确报告期；codes 只筛选返回行，不改为逐公司查询。
+features = financial_snapshot("2026-06-30", codes=["sh600519", "sz000001"])
+annual = financial_snapshot("20251231")  # 当前源中该报告期可取得的公司行
+```
+
+`report_date` 必填，接受 `YYYY-MM-DD` 或 `YYYYMMDD`，支持从 `2010-03-31` 起且不晚于今天的 3/6/9/12 月季末。不会自行猜“最新一期”。`codes=None` 返回源表中可识别为 A 股代码族的行；`codes` 可传公司代码集合，归一化并去重后按请求顺序返回。`codes=[]` 不发请求；裸字符串、指数、ETF、港美证券或非法报告期返回失败信封。
+
+该接口通过 AKShare `stock_yjbb_em(date=...)` 一次取得指定期的跨公司表，再本地筛选 `codes`，不会逐股调用 `financial_report`。所有调用共用已有 AKShare 预算、配额及精确报告期的一小时快照缓存；`snapshot_retrieved_at` 是原取得时间（Unix 秒），`snapshot_cached` 标记是否复用缓存。
+
+每行有 `symbol/code/exchange/name/industry/report_date/currency`，`currency='CNY'`。`report_date_basis='request_filter'` 表示日期来自上游查询条件；AKShare 当前输出不保留源报告期列，如以后保留且与请求冲突，相应字段置空并标记状态。字段定义也随信封的 `field_catalog` 返回：
+
+| 字段 | 单位 | 口径 |
+|------|------|------|
+| `revenue` | CNY 元 | 营业总收入，年初至期末累计 |
+| `net_profit` | CNY 元 | 归母净利润，年初至期末累计 |
+| `revenue_yoy` / `net_profit_yoy` | `pct`，20 表示 20% | 源披露同比，比较基数符号及调整口径未提供 |
+| `roe` | `pct` | 累计加权净资产收益率，未经年化 |
+| `gross_margin` | `pct` | 源披露累计销售毛利率 |
+| `eps` | CNY/股 | 累计基本每股收益 |
+| `operating_cashflow_per_share` | CNY/股 | 累计每股经营现金流 |
+| `net_assets_per_share` | CNY/股 | 报告期末每股净资产 |
+
+3/6/9 月为 `period_type='ytd'`，12 月为 `annual`，对应当年累计/全年；不能当作单季、TTM 或自动年化数据。`yoy_base_status='not_provided'`，源同比的 `basis='provider_reported_base_unknown'`；严格的正基数同比应另外取得上年同季数据，确认口径与分母为正后计算。[`screen_market`](screening.md) 提供的 `revenue_growth_pct/net_profit_growth_pct` 采用这一路径，不与源 `*_yoy` 混为一个字段。
+
+源“最新公告日期”实际对应 `UPDATE_DATE`，因此 `disclosed_at_basis='provider_update_date_not_first_disclosure'`。它不是首次公开日，`time_basis='retrospective_current_materials'` 表示当前可得的回溯材料及修订值；指定旧报告期不等于恢复当时投资者可见的数据，不能据此做无前视偏差的历史筛选。
+
+状态与覆盖必须和数值一起使用：
+
+- 成功取数为 `ok=True`，合法空表也可成功；该源不是完整上市样本，始终 `partial=True, complete=False`。错误返回 `ok=False, error_code='financial_snapshot_error'`，不能当成没有符合条件的公司。
+- `coverage` 提供 `upstream_count/returned_count/requested_count/rejected_count`；`scope='source_report_rows_not_listing_universe'`。源表可能混有场外与退市发行人，行内 `listing_status='unverified'`；做上市 A 股筛选时必须与独立名册按完整 `symbol` 求交集。
+- `missing_symbols` 列出指定但没有返回行的证券；`rejected_rows` 记录非法/不支持身份，`duplicate_rows` 记录重复数。重复证券字段一致则去重，字段冲突则该字段置 `None`、`field_status[field]='conflicting_rows'`，不按返回顺序覆盖。
+- 数值缺失、缺列、非法或非有限时保留 `None`，原因分别在每行 `field_status` 中。`disclosed_at` 的日期异常也保留状态（如 `before_report_date/future_provider_update_date/invalid_date`）；该状态不自动清空其余原始数值，使用前需判断日期是否可接受。
+- 经 `batch.fetch_many` 调用时，任务的 `state` 描述执行结果；它不能替代财务信封的 `partial/complete/coverage`，成功任务不表示全市场财务信息完整。
 
 ### 三表 `report_type`
 
@@ -132,7 +175,7 @@ A 股完整报表使用 AKShare 东财原生字段 ID。每行保留全部源字
 - 一致预期：`research.consensus_forecast`（A；AKShare 同花顺）；估值快照不含预期。
 - **年报/季报/10-K 原文**（叙事与附注）→ [`07-announcements.md`](07-announcements.md) `periodic_reports` + `download_announcement_pdf`，不是本页三表。  
   **`financial_report` 有数字 ≠ 本地已有年报 PDF/HTML**；要原文必须再调 07（或按 `fallback_hint` 自搜）。
-- 财务快照 **不是**公开门面，仅作 `stock_info` 内部降级。
+- 跨公司报告期特征使用公开 `financial_snapshot`；现价与 PE/PB 使用 `valuation_snapshot`，公司详细报表使用 `financial_report`。
 - 动态源优先级见 [`11-fallback.md`](11-fallback.md)。
 
 ### 示例

@@ -17,7 +17,9 @@ from scutio_data._providers.quote_parse import (
 from scutio_data._runtime.environment import UA
 from scutio_data._runtime.http import Session
 from scutio_data._runtime.symbols import require_security
-from scutio_data._runtime.timeouts import source
+from scutio_data._runtime.timeouts import RequestTimeout, remaining, source
+
+QUOTE_BATCH_SIZE = 100
 
 
 def _http_get_bytes(url, *, headers=None, timeout=20, decode=None):
@@ -34,35 +36,50 @@ def _http_get_bytes(url, *, headers=None, timeout=20, decode=None):
     return raw
 
 
-@source("query")
-def tencent_quote(codes):
-    """腾讯实时报价（A 股 / 港股 / 美股）。"""
+def _batched_quote(codes, provider, url_prefix, parser, *, headers=None):
+    """Bound each URL and retain completed rows if another batch fails."""
     if isinstance(codes, (str, bytes)):
         codes = [codes]
-    prefs = [source_symbol(code, "tencent") for code in codes]
-    if not prefs:
-        return {}
-    url = "https://qt.gtimg.cn/q=" + ",".join(prefs)
-    raw = _http_get_bytes(url, timeout=10, decode="gbk")
-    return index_quote_rows(parse_tencent_quote_raw(raw))
+    symbols = list(dict.fromkeys(source_symbol(code, provider) for code in codes))
+    out = {}
+    failures = []
+    for start in range(0, len(symbols), QUOTE_BATCH_SIZE):
+        try:
+            remaining()
+            raw = _http_get_bytes(
+                url_prefix + ",".join(symbols[start : start + QUOTE_BATCH_SIZE]),
+                headers=headers,
+                timeout=10,
+                decode="gbk",
+            )
+            out.update(parser(raw))
+        except RequestTimeout as exc:
+            failures.append(exc)
+            break
+        except Exception as exc:
+            failures.append(exc)
+    if not out and failures:
+        raise failures[0]
+    # Index aliases only after all batches are merged: collisions may straddle chunks.
+    return index_quote_rows(out)
+
+
+@source("query")
+def tencent_quote(codes):
+    """腾讯实时报价（A 股 / 港股 / 美股）；每请求最多 100 只。"""
+    return _batched_quote(codes, "tencent", "https://qt.gtimg.cn/q=", parse_tencent_quote_raw)
 
 
 @source("query")
 def sina_quote(codes):
     """新浪实时报价（港/美主用；A 股也可）。"""
-    if isinstance(codes, (str, bytes)):
-        codes = [codes]
-    syms = [source_symbol(code, "sina") for code in codes]
-    if not syms:
-        return {}
-    url = "https://hq.sinajs.cn/list=" + ",".join(syms)
-    raw = _http_get_bytes(
-        url,
+    return _batched_quote(
+        codes,
+        "sina",
+        "https://hq.sinajs.cn/list=",
+        parse_sina_quote_raw,
         headers={"User-Agent": UA, "Referer": "https://finance.sina.com.cn"},
-        timeout=10,
-        decode="gbk",
     )
-    return index_quote_rows(parse_sina_quote_raw(raw))
 
 
 @source("query")
@@ -74,7 +91,11 @@ def eastmoney_quote(codes):
     failures = []
     for code in codes:
         try:
+            remaining()
             row = _eastmoney_quote_one(code)
+        except RequestTimeout as exc:
+            failures.append(exc)
+            break
         except Exception as exc:
             # This source requests securities separately. Keep completed rows when
             # another response fails; the facade can retry the missing symbol.

@@ -271,60 +271,6 @@ def local_report_search(
     )
 
 
-def local_stock_screen(records, filters=None, limit=50, sort_by=None, descending=True):
-    """对已有 records 做本地条件筛选（不负责取数）。
-
-    filters 值为相等标量，或含 min/max/eq/contains 的 dict。
-    filters 与 sort_by 共用字段别名；市值 / 总市值对应行情字段 mcap_yi。
-    """
-    aliases = {
-        "市值": "mcap_yi",
-        "总市值": "mcap_yi",
-        "pe": "pe_ttm",
-        "市盈率": "pe_ttm",
-        "pb": "pb",
-        "换手率": "turnover_pct",
-        "行业": "industry",
-    }
-    filters = filters or {}
-    output = []
-    for record in records:
-        matched = True
-        for requested, condition in filters.items():
-            field = aliases.get(requested, requested)
-            value = record.get(field)
-            if isinstance(condition, dict):
-                number = _number(value)
-                if "contains" in condition:
-                    if str(condition["contains"]).lower() not in str(value or "").lower():
-                        matched = False
-                        break
-                if "eq" in condition and value != condition["eq"]:
-                    matched = False
-                    break
-                if "min" in condition and (number is None or number < condition["min"]):
-                    matched = False
-                    break
-                if "max" in condition and (number is None or number > condition["max"]):
-                    matched = False
-                    break
-            elif value != condition:
-                matched = False
-                break
-        if matched:
-            output.append(dict(record))
-    if sort_by:
-        sort_by = aliases.get(sort_by, sort_by)
-        present = [item for item in output if _number(item.get(sort_by)) is not None]
-        missing = [item for item in output if _number(item.get(sort_by)) is None]
-        present.sort(
-            key=lambda item: _number(item.get(sort_by)),
-            reverse=descending,
-        )
-        output = present + missing
-    return output[:limit] if limit is not None else output
-
-
 def dedup_articles(articles):
     """按文档标识或完整发布元数据去重，同名不同期保留。"""
     best = {}

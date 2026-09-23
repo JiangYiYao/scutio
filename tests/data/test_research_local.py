@@ -83,57 +83,6 @@ def test_local_report_search_mixed_case_terms_score_positive():
     assert any(t.lower() == "ai" or "ai" in t.lower() for t in results[0]["_matched_terms"])
 
 
-def test_local_stock_screen_supports_aliases_and_missing_sort_values():
-    """Local numeric filters and Chinese aliases work without remote screening."""
-    records = [
-        {"code": "000001", "pe_ttm": 12, "mcap_yi": 100, "industry": "银行"},
-        {"code": "000002", "pe_ttm": 8, "mcap_yi": 200, "industry": "地产"},
-        {"code": "000003", "pe_ttm": None, "mcap_yi": 50, "industry": "银行"},
-    ]
-    results = research.local_stock_screen(
-        records,
-        filters={"市盈率": {"max": 15}, "行业": {"contains": "银行"}},
-        sort_by="市盈率",
-    )
-    assert [item["code"] for item in results] == ["000001"]
-
-    bank_results = research.local_stock_screen(
-        records,
-        filters={"行业": {"contains": "银行"}},
-        sort_by="pe_ttm",
-    )
-    assert [item["code"] for item in bank_results] == ["000001", "000003"]
-
-
-@pytest.mark.parametrize("alias", ["市值", "总市值"])
-@pytest.mark.parametrize("descending", [True, False])
-def test_local_stock_screen_market_cap_alias_uses_quote_fields(alias, descending):
-    records = [
-        {"symbol": "sh600519", "mcap_yi": 17000},
-        {"symbol": "sz000001", "mcap_yi": 2100},
-        {"symbol": "sz000002", "mcap_yi": 800},
-        {"symbol": "sz000003", "mcap_yi": None},
-    ]
-    expected = records[:2] if descending else list(reversed(records[:2]))
-    assert (
-        research.local_stock_screen(
-            records, filters={alias: {"min": 1000}}, sort_by=alias, descending=descending
-        )
-        == expected
-    )
-    sorted_rows = research.local_stock_screen(records, sort_by=alias, descending=descending)
-    assert sorted_rows[-1] == records[-1]
-    assert sorted_rows[:-1] == (records[:3] if descending else list(reversed(records[:3])))
-
-
-def test_local_stock_screen_preserves_input_and_supports_limit_none():
-    """Screening returns copied records and can return the full filtered set."""
-    records = [{"code": "000001", "pb": 1.2}, {"code": "000002", "pb": 2.5}]
-    results = research.local_stock_screen(records, filters={"pb": {"min": 1}}, limit=None)
-    assert results == records
-    assert results[0] is not records[0]
-
-
 def test_report_detail_url_and_html_extractors():
     """Detail URL templates and HTML extractors stay stable offline."""
     record = {
@@ -482,13 +431,3 @@ def test_report_dedup_preserves_distinct_periods_and_document_ids():
     assert result["search_coverage"]["matched"] == 2
     without_ids = [{k: v for k, v in row.items() if k != "infoCode"} for row in records]
     assert len(research.dedup_articles(without_ids)) == 2
-
-
-def test_direct_screen_excludes_nonfinite_values_like_cli():
-    records = [
-        {"code": str(i), "pe_ttm": value}
-        for i, value in enumerate(["NaN", float("nan"), "Infinity", "-Infinity", True, None, "10"])
-    ]
-    assert research.local_stock_screen(records, filters={"pe": {"min": 5, "max": 15}}) == [
-        records[-1]
-    ]

@@ -11,7 +11,7 @@
 
 | 函数 | A | 港 | 美 | 说明 |
 |------|---|----|----|------|
-| `security_quote(codes, sources=None)` | ✓ | ✓ | ✓ | 批量报价；单码失败不拖垮整批 |
+| `security_quote(codes, sources=None, *, identity_records=None)` | ✓ | ✓ | ✓ | 批量报价；可复用已核验 A 股名册身份，单码失败不拖垮整批 |
 | `security_bars(code, frequency='D', count=80, adjust='none', …)` | ✓ | ✓ | ✓ | K 线；**默认不复权** |
 | `tencent_quote` / `sina_quote` / `eastmoney_quote` | ✓ | ✓ | ✓ | 单源调试；业务默认勿直接调 |
 | `events.trade_calendar(market, start_date, end_date)` | ✓ | ✓ | ✓ | 本地交易所规则；历史可由真实日 K backup |
@@ -34,6 +34,39 @@ from scutio_data.breadth import market_breadth, index_constituents
 - `security_bars` 的非法代码、非正 `count`、未知频率/复权参数会抛 `ValueError`；外部输入应先校验或捕获。源请求失败才返回失败信封。
 - 默认链与覆盖方式见 [`11-fallback.md`](11-fallback.md)。
 - 均线（MA5/10/20）对 OHLCV **本地算**，无单独均线上游。
+
+### 大名单报价与名册身份复用
+
+腾讯、新浪每个 HTTP 请求最多包含 100 个证券；Financial API 每批快照最多 100 个证券。某批失败保留其他批已取得的报价，门面只向下一来源补齐缺失或身份冲突的证券。超时停止尚未开始的批次，取消信号继续向调用方传播。
+
+这些分块仍共用**一次 `security_quote` 的来源与操作预算**。全市场取数应把名单按 100 只分成独立调用，交给 `batch.fetch_many` 有界执行；默认不把整次筛选塞进一个查询预算，也不每批重取证券名册。例如：
+
+```python
+from functools import partial
+from scutio_data.batch import fetch_many
+from scutio_data.market import security_quote
+from scutio_data.universe import stock_universe
+
+directory = stock_universe("a")
+if not directory["ok"]:
+    raise RuntimeError(directory["error"])
+rows = directory["items"]
+requests = {}
+for start in range(0, len(rows), 100):
+    chunk = rows[start:start + 100]
+    requests[str(start // 100)] = partial(
+        security_quote,
+        [row["symbol"] for row in chunk],
+        identity_records=chunk,
+    )
+batched = fetch_many(requests, max_workers=4)
+```
+
+每项报价信封在 `batched["results"][名称]["result"]`，执行状态在同项 `state`；报价覆盖与证券名册覆盖分别检查。名册部分成功时仍可查询已取得的成员，但不能因报价批次成功就声称全市场完整。
+
+`identity_records` 仅接受**已核验名册记录的列表**，用于减少 Financial API 逐股代码目录查询。每条必须包含规范完整 `symbol`（如 `sh600519`）、匹配的 `exchange`（`sh/sz/bj`）和 `asset_type`（`a-share` 或 `stock`）；`name` 可选。出现 `code/stockCode/thscode/currency` 时必须与该 A 股身份一致，冲突重复记录会被拒绝。指数、ETF、港美证券及裸码身份记录不接受；参数错误返回 `ok=False, error_code='invalid_arguments'`，不发请求。
+
+该参数只复用身份与名称，不替代报价证据；Financial API 快照仍须返回本批请求中的精确 `thscode`，响应自带的其他身份不能冲突。缺少复用记录的证券仍走原有精确身份查询。不要仅凭用户输入代码生成一行 `asset_type='stock'` 来省略查验；没有独立名册时保留默认 `identity_records=None`。名册入口、完整性与筛选流程见 [`screening.md`](screening.md)。
 
 ### 事件与宽度的口径
 
@@ -95,7 +128,7 @@ from scutio_data.breadth import market_breadth, index_constituents
 
 - 字典键：**始终**含完整代码（`sh000001`、`hk00700`、`usAAPL`）；裸码不冲突时额外提供裸码键。
 - 同一批次若出现相同裸码（如 `sh000001` 与 `sz000001`），不会提供歧义裸键 `000001`；必须读完整代码键。
-- PE/PB/市值等上游未提供时为 `None`，不得把未知解释成 0。
+- 腾讯、新浪及东财的价格、涨跌、振幅、成交额和估值等数值缺失、占位或非有限时保留为 `None`，不得把未知解释成 0；真实的零成交额、零成交量、零涨跌仍保留。新浪派生涨跌/振幅时，所需价格缺失则结果为 `None`。
 - 东财报价中的缺失、占位或非有限数值保留为 `None`，真实的零成交量、零成交额及零涨跌保留为 `0`。仅昨收可用时 `price=None`，返回 `partial=True`、`missing_fields` 和 `coverage`，不能把昨收当现价；现价与昨收均不可用或单票响应失败时，由报价门面对该证券尝试备用源，保留同批其他正常证券。
 - 指数不适用的涨跌停价为 `None`；不能把源站的 `-1` 占位值当作价格。
 - 腾讯普通 A 股报价成交量按手换算，科创板及港美股按股；东财 A 股（含科创板）按手换算。Financial API 报价成交量为股。日线成交量使用各自的解析规则。
@@ -138,6 +171,8 @@ from scutio_data.breadth import market_breadth, index_constituents
 ## 数据覆盖
 
 有 Key 的 A 股报价/日线优先 Financial API；报价不包含 PE/PB，估值请调用 `valuation_snapshot`。响应顶层时间仅保留为 `provider_timestamp`，其业务含义未经确认，不能当作报价时间。报价 `time` / `data_as_of` 留空，`coverage.timestamp=False` 并标记 `partial`；`retrieved_at` 也不能当作交易时点。
+
+`security_quote` 按证券回退，某行已取得有效价格时不会自动逐字段补齐所有来源。`screen_market` 对 Financial API 行所需字段缺失或业务时点未知的情况，另用现有腾讯/新浪报价入口分批补证，并逐字段记录 `field_sources`；不能把补充源的报价时间写成原 Financial API 的时间。
 
 免费 A 股不复权日线走 AKShare 新浪 → 腾讯 → 东财；港美日线走 AKShare 东财 → 新浪。指数和 ETF 使用对应的 AKShare 接口，新浪 ETF 专用接口仅提供不复权日线，周/月线走 AKShare 东财。A 股、美股市场宽度和指数成分/权重同样经 AKShare 获取；港股宽度因东财港股快照停用而暂不可用。报价已尝试 AKShare 全市场及盘口候选，字段/时点与可用性尚未满足；直接报价适配登记为 `status=retained`，详见数据源状态。
 
